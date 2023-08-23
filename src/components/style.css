@@ -243,28 +243,68 @@ input[type="number"] {
 /* main home page */
 .home-grid {
   display: grid;
-  grid-template-rows: 100px min-content;
+  grid-template-rows: 80px 1fr;
   grid-template-columns: 100vw;
+  /* min-height: 100vh; */
+  background-color: inherit;
 }
 
 .nav {
-  background-color: inherit;
-border: 1px solid black;
-  overflow: hidden;
+  background-color: #161a21;
   position: fixed;
   top: 0px;
+  overflow: hidden;
   width: 100%;
-  height: 100px;
+  height: 80px;
+
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
-.main-home  {
-
+.main-home {
+  margin-top: 80px;
   min-height: 200vh;
 }
 
 .caroussel {
-  background-image: url();
-  min-height: 100vh;
-  width: auto 
+  background-image: url("./images/carOne.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 800px;
+  width: 100vw;
+}
+
+.logo {
+  background-image: url("./images/roundLogoDark.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nav div {
+    border: 1px solid rgb(80, 18, 18);
+    display: grid;
+    align-content: center;
+}
+
+.options {
+display: grid;
+grid-template-columns: repeat(4, 100px);
+justify-content: center;
+
+
+
+}
+
+.options li {
+list-style-type: none;
+
+}
+
+.options li a {
+  text-decoration: none;
+  color: #d4d3d1;
+  align-self: center;
 
 }
