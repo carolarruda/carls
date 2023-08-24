@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
+
+.section {
+  background-color: #fafafc;
+  display: grid;
+  padding-top: 200px;
+}
+.welcome-info {
+  display: grid;
+  grid-template-columns: 4fr 5fr 4fr;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  row-gap: 1rem;
+  margin-left: 20px;
+  margin-right: 40px;
+  padding: 40px;
+
+}
+
+.info-card {
+  flex: 1 1 auto;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+
+  justify-self: center;
+  background-color: #ffffff;
+}
+
+.info-card {
+
+  overflow: hidden;
+  display: grid;
+}
+
+.header {
+  font-weight: 800;
+  align-self: start;
+  font-size: 2.5rem;
+  padding-left: 40px;
+  color: #000000;
+  font-family: "Helvetica";
+  width: 600px;
+  padding-bottom: 200px;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: Inter, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin: 0 0 1rem;
+}
+
+.info-card h2 {
+  padding-left: 20px;
+  padding-top: 30px;
+}
+
+img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  align-self: center;
+  justify-self: center;
+}
+
+.text-tag {
+  font-size: 19px;
+  font-family: Inter, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-weight: 500;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Adjust the heights as needed */
+.info-card:nth-child(1) {
+  height: 320px;
+}
+
+.info-card:nth-child(2) {
+  height: 350px;
+}
+
+.info-card:nth-child(3) {
+  height: 280px;
+}
+
+.info-card:nth-child(4) {
+  height: 380px;
+
+  align-self: end;
+}
+
+.info-card:nth-child(5) {
+  height: 280px;
+}
+.info-card:nth-child(6) {
+  height: 380px;
+  align-self: end;
+}
+
+.info-card {
+  margin-bottom: 2rem;
+}
+
+.column-one {
+  display: grid;
+min-height: 800px;
+
+}
+
+.one {
+  min-height: 400px;
+
+}
+
+.four {
+  min-height: 350px;
+}
+
+.four, .five, .six {
+  align-self: end;
+
+}
+
+.column-two {
+  display: grid;
+  min-height: 800px;
+}
+
+.column-three {
+  display: grid;
+  min-height: 800px;
+}
+
+.five {
+  min-height: 450px;
+}
+
+.six {
+  min-height: 450px;
+}
+

@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
 
 * {
-  max-width: 100%; /* Adjust as needed */
-  margin: 0 auto; /* Center align the container */
+  max-width: 100%; 
+  margin: 0 auto;
 }
 
 .background {
@@ -372,7 +372,7 @@ input[type="number"] {
 }
 
 .caroussel {
-  min-height: 800px;
+  /* min-height: 800px; */
   width: 100%;
 
 }
@@ -429,7 +429,7 @@ input[type="number"] {
     rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   font-weight: 500;
   padding-left: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
 .card-title.log-but {
@@ -441,7 +441,7 @@ input[type="number"] {
   height: 40px;
   margin-left: 40px;
   padding-left: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 .caroussel-card-active {

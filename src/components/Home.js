@@ -1,4 +1,5 @@
 import Caroussel from "./Caroussel";
+import Welcome from "./Welcome";
 import "./style.css";
 import { blogs } from "./Data";
 
@@ -30,7 +31,9 @@ const Home = () => {
         <section className="caroussel">
           <Caroussel blogs={blogs} />
         </section>
-        <section className="users"></section>
+        <section className="welcome">
+          <Welcome />
+        </section>
         <section className="youtube"></section>
       </section>
     </div>
