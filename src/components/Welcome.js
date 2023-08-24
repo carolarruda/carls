@@ -51,7 +51,7 @@ const Welcome = () => {
             {!isHovered(1) && <img src={pic} alt="" className="img-one" />}
             {isHovered(1) && (
               <p
-                className="text-tag"
+                className="text-tag specialy"
                 style={{
                   opacity: isHovered(1) ? 1 : 0,
       
@@ -145,7 +145,7 @@ const Welcome = () => {
             {!isHovered(5) && <img src={pic5} alt="" className="img-five" />}
             {isHovered(5) && (
               <p
-                className="text-tag"
+                className="text-tag special"
                 style={{
                   opacity: isHovered(5) ? 1 : 0,
 
@@ -214,7 +214,7 @@ const Welcome = () => {
             {!isHovered(6) && <img src={pic6} alt="" className="img-six" />}
             {isHovered(6) && (
               <p
-                className="text-tag"
+                className="text-tag specialy"
                 style={{
                   opacity: isHovered(6) ? 1 : 0,
 
