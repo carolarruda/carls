@@ -1,11 +1,11 @@
 import Caroussel from "./Caroussel";
 import "./style.css";
-import React from "react";
+import { blogs } from "./Data";
 
 const Home = () => {
   return (
     <div className="background home-grid">
-      <section className="nav">
+      <nav className="nav">
         <div className="logo"></div>
         <div>
           <ul className="options">
@@ -25,10 +25,10 @@ const Home = () => {
         </div>
 
         <div></div>
-      </section>
+      </nav>
       <section className="main-home">
         <section className="caroussel">
-            <Caroussel/>
+          <Caroussel blogs={blogs} />
         </section>
         <section className="users"></section>
         <section className="youtube"></section>
