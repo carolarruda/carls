@@ -14,7 +14,6 @@
   margin-left: 20px;
   margin-right: 40px;
   padding: 40px;
-
 }
 
 .info-card {
@@ -46,10 +45,8 @@
 .info-card:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   transform: translateY(-5px);
-  transition: transform 0.8s
+  transition: transform 0.8s;
 }
-
-
 
 .header {
   font-weight: 800;
@@ -104,7 +101,6 @@ img {
   position: absolute;
   top: 110px;
   transition: opacity 0.4s ease-in-out;
-
 }
 
 .text-tag {
@@ -113,7 +109,6 @@ img {
   transition-delay: 0s;
 }
 
-/* Adjust the heights as needed */
 .info-card:nth-child(1) {
   height: 320px;
 }
@@ -146,22 +141,21 @@ img {
 
 .column-one {
   display: grid;
-min-height: 800px;
-
+  min-height: 800px;
 }
 
 .one {
   min-height: 400px;
-
 }
 
 .four {
-  min-height: 350px;
+  min-height: 370px;
 }
 
-.four, .five, .six {
+.four,
+.five,
+.six {
   align-self: end;
-
 }
 
 .column-two {
@@ -174,26 +168,26 @@ min-height: 800px;
   min-height: 800px;
 }
 
+.three {
+  min-height: 380px;
+}
+
 .five {
   min-height: 450px;
 }
 
 .six {
-  min-height: 450px;
+  min-height: 400px;
 }
 
 .special {
   font-size: 22px;
-  /* font-weight: 700 */
 }
 
 .specialy {
   font-size: 20px;
-  /* font-weight: 700 */
 }
 
 .larger {
   font-size: 23px;
 }
-
-
