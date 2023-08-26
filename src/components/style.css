@@ -21,6 +21,18 @@
 
 }
 
+
+.box {
+  font-size: 10px;
+  background-color: #f4f9fc;
+  padding: 20px;
+  min-height: 150px;
+}
+
+.left {
+  font-size: 12px;
+}
+
 .right {
 
   height: 100%;
@@ -50,6 +62,7 @@
 }
 
 .left {
+  height: 50%;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   justify-self: end;
@@ -82,7 +95,7 @@
 h1 {
   text-align: left;
   color: #191d3a;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .undertext {
@@ -91,7 +104,7 @@ h1 {
   align-self: center;
   text-decoration: underline;
   text-decoration-color: transparent;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .sign {
@@ -104,12 +117,13 @@ h1 {
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
   align-self: center;
+  font-size: 0.7rem;
 }
 
 .register, .login {
   display: grid;
   grid-template-columns: auto 1fr;
-  font-size: 15px;
+
 }
 
 
@@ -131,7 +145,7 @@ h1 {
 .formy.log {
   display: grid;
   text-align: left;
-  grid-template-rows: repeat(6, 50px) 20px 50px;
+  grid-template-rows: repeat(6, 45px) 20px 45px;
 }
 
 .formy label {
@@ -151,10 +165,13 @@ h1 {
   border: 1.5px solid #d6d5d5;
   border-radius: 10px;
   background-color: #f9fbfc;
+  /* height: 45px; */
+  font-size: 10px;
+
 }
 
 .log-but {
-  background-color: #222832;
+  background-color: #7b8895;
   color: #ffffff;
   border: none;
   text-align: center;
@@ -162,6 +179,9 @@ h1 {
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   border-radius: 10px;
+  width: 100%;
+  justify-self: center;
+  height: 100%;
 }
 
 input::-webkit-outer-spin-button,
@@ -186,12 +206,6 @@ input::-webkit-inner-spin-button {
   overflow: auto;
 }
 
-.box {
-  font-size: 12px;
-  background-color: #f4f9fc;
-  padding: 20px;
-  min-height: 150px;
-}
 
 .log-but:hover {
   transform: translateY(-5px);

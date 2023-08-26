@@ -150,7 +150,7 @@ const SignUp = () => {
 
           {<div className="error"></div>}
           <button className="log-but" type="submit">
-            REGISTER
+            Sign Up
           </button>
         </form>
       </div>

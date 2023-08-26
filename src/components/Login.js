@@ -106,7 +106,7 @@ const Login = () => {
 
           {<div className="error"></div>}
           <button className="log-but" type="submit">
-            LOGIN
+            Sign In
           </button>
         </form>
       </div>
