@@ -5,12 +5,13 @@ import './styles/old.css'
 
 
 const RecipeAdd = ()=> {
+  let userId = localStorage.getItem("userId");
     const [title, setTitle] = useState("");
-    const [photo, setPhoto] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const [rating, setRating] = useState("");
-    const [course, setCourse] = useState("");
-    const [prep, setPrep] = useState("");
-    const [cook, setCook] = useState("");
+    const [courseType, setCourseType] = useState("");
+    const [prepTime, setPrepTime] = useState("");
+    const [cookTime, setCookTime] = useState("");
     const [servings, setServings] = useState("");
     const [ingredients, setIngredients] = useState("");
     const [instructions, setInstructions] = useState("");
@@ -25,7 +26,7 @@ const RecipeAdd = ()=> {
     };
   
     const handlePhoto = (e) => {
-      setPhoto(e.target.value);
+      setImageUrl(e.target.value);
     };
   
     const handleRating = (e) => {
@@ -33,15 +34,15 @@ const RecipeAdd = ()=> {
     };
   
     const handleCourse = (e) => {
-      setCourse(e.target.value);
+      setCourseType(e.target.value);
     };
   
     const handlePrep = (e) => {
-      setPrep(e.target.value);
+      setPrepTime(e.target.value);
     };
   
     const handleCook = (e) => {
-      setCook(e.target.value);
+      setCookTime(e.target.value);
     };
   
     const handleServings = (e) => {
@@ -62,11 +63,27 @@ const RecipeAdd = ()=> {
 
     function handleSubmit(e) {
         e.preventDefault();
+        const newRecipe = {
+          title,
+          imageUrl,
+          rating,
+          courseType,
+          prepTime,
+          cookTime,
+          servings,
+          ingredients,
+          instructions,
+          notes,
+userId
+
+        }
     }
 
     const handleCancel = () => {
         navigate(-1)
       }
+
+
 
     return (
         <div >
@@ -90,7 +107,7 @@ const RecipeAdd = ()=> {
             </div>
             <div className="segment">
               <label htmlFor="image">Image url</label>
-              <input type="url" value={photo} onChange={handlePhoto} />
+              <input type="url" value={imageUrl} onChange={handlePhoto} />
             </div>
 
             <div className="inline">
@@ -159,33 +176,33 @@ const RecipeAdd = ()=> {
                 <option value="DEFAULT" disabled>
                   Choose course
                 </option>
-                <option value="entree" checked={course === "entree"}>
+                <option value="entree" checked={courseType === "entree"}>
                   Entree
                 </option>
-                <option value="main" checked={course === "main"}>
+                <option value="main" checked={courseType === "main"}>
                   Main
                 </option>
-                <option value="dessert" checked={course === "dessert"}>
+                <option value="dessert" checked={courseType === "dessert"}>
                   Dessert
                 </option>
               </select>
             </div>
             <div className="segment">
-              <label htmlFor="prepTime">Prep Time</label>
+              <label htmlFor="prepTime">Prep Time (mins)</label>
               <input
-                type="time"
+                type="number"
                 style={{ width: "50px" }}
                 onChange={handlePrep}
-                value={prep}
+                value={prepTime}
               />
             </div>
             <div className="segment">
-              <label htmlFor="cookTime">Cook Time</label>
+              <label htmlFor="cookTime">Cook Time (mins)</label>
               <input
-                type="time"
+                type="number"
                 style={{ width: "50px" }}
                 onChange={handleCook}
-                value={cook}
+                value={cookTime}
               />
             </div>
             <div className="segment">

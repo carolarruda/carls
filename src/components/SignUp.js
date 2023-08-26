@@ -1,7 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Typography from "@mui/material/Typography";
+
+import Link from "@mui/material/Link";
+
+import Grid from "@mui/material/Grid";
 
 import "./style.css";
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Carls
+      </Link>{" "}
+      {new Date().getFullYear()}
+    </Typography>
+  );
+}
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -152,6 +173,8 @@ const SignUp = () => {
           <button className="log-but" type="submit">
             Sign Up
           </button>
+          <Grid container></Grid>
+          <Copyright sx={{ mt: 5 }} />
         </form>
       </div>
       <div className="right box"></div>
