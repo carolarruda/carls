@@ -11,7 +11,7 @@ const Caroussel = ({ blogs }) => {
       autoPlay &&
       setTimeout(() => {
         slideRight();
-      }, 6500);
+      }, 3500);
   });
 
   const slideLeft = () => {

@@ -5,10 +5,10 @@ import "./style.css";
 import { blogs } from "./Data";
 import Footer from "./Footer";
 
-const Home = ({ users }) => {
+const Home = ({ users, setSearch, search }) => {
   return (
     <div className="background home-grid">
-      <Nav users={users} />
+      <Nav users={users}  search={search} setSearch={setSearch}/>
       <section className="main-home">
         <section className="caroussel">
           <Caroussel blogs={blogs} />

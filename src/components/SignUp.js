@@ -7,6 +7,7 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 
 import "./style.css";
+
 function Copyright(props) {
   return (
     <Typography
@@ -104,7 +105,7 @@ const SignUp = () => {
 
   return (
     <div className="background">
-      <div className="left box">
+      <div className="lefty side">
         <h1>Sign up</h1>
         <div className="register">
           <p className="undertext">Already have an account?</p>
@@ -177,7 +178,7 @@ const SignUp = () => {
           <Copyright sx={{ mt: 5 }} />
         </form>
       </div>
-      <div className="right box"></div>
+      <div className="righty side"></div>
     </div>
   );
 };

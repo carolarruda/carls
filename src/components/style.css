@@ -16,24 +16,24 @@
   overflow: auto;
 }
 
-.box {
+.side {
   background-color: #ffefce;
   width: 60%;
   align-self: center;
 }
 
-.box {
+.side {
   font-size: 10px;
   background-color: #f4f9fc;
   padding: 20px;
   min-height: 150px;
 }
 
-.left {
+.lefty {
   font-size: 12px;
 }
 
-.right {
+.righty {
   height: 100%;
   width: 80%;
   display: grid;
@@ -45,7 +45,7 @@
   justify-self: right;
 }
 
-.right.log {
+.righty.log {
   height: 100%;
   width: 80%;
   display: grid;
@@ -57,7 +57,7 @@
   justify-self: right;
 }
 
-.left {
+.lefty {
   height: 50%;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -67,7 +67,7 @@
   grid-template-rows: min-content min-content min-content;
 }
 
-.left h1,
+.lefty h1,
 .register,
 .formy {
   margin-left: 40px;
@@ -271,6 +271,7 @@ input::-webkit-inner-spin-button {
   grid-template-columns: 1fr 3fr 1fr;
   z-index: 100;
   align-content: center;
+
 }
 
 .main-home {
@@ -291,8 +292,8 @@ input::-webkit-inner-spin-button {
 
 .options {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  justify-content: center;
+  grid-template-columns: repeat(6, 100px);
+  justify-content: center
 }
 
 .options li {
@@ -371,10 +372,13 @@ input::-webkit-inner-spin-button {
   width: 100vw;
 }
 
+
+
 .right-nav {
   display: grid;
   justify-items: right;
   padding-right: 20px;
+
 }
 
 .log-but.home {
@@ -584,4 +588,3 @@ input::-webkit-inner-spin-button {
     margin-left: 0rem;
   }
 }
-

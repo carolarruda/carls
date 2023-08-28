@@ -16,7 +16,7 @@ const Welcome = () => {
         <div className="column-one">
           <div className="info-card one">
             <h2 className="larger">Share Your Culinary Creations</h2>
-            <img src={pic} alt="" className="img-one" />
+            <img src={pic} alt="" className="img-one" loading="lazy" />
             <p className="text-tag specialy">
               Whether it's your grandma's secret cookie recipe or a modern twist
               on a classic dish, this is your space to showcase your culinary
@@ -26,7 +26,7 @@ const Welcome = () => {
           </div>
           <div className="info-card four">
             <h2>Learn from the Best</h2>
-            <img src={pic4} alt="" className="img-one" />
+            <img src={pic4} alt="" className="img-one" loading="lazy" />
             <p className="text-tag">
               Delve into a treasure trove of cooking guides, technique
               tutorials, and chef insights. Whether you're a novice or a pro,
@@ -38,7 +38,7 @@ const Welcome = () => {
         <div className="column-two">
           <div className="info-card two">
             <h2>Connect and Collaborate</h2>
-            <img src={pic2} alt="" className="img-two" />
+            <img src={pic2} alt="" className="img-two" loading="lazy" />
 
             <p className="text-tag">
               Connect with fellow food enthusiasts from around the globe.
@@ -49,7 +49,7 @@ const Welcome = () => {
           </div>
           <div className="info-card five">
             <h2 className="larger">Build Your Foodie Network</h2>
-            <img src={pic5} alt="" className="img-five" />
+            <img src={pic5} alt="" className="img-five" loading="lazy" />
 
             <p className="text-tag special">
               Create lasting connections as you engage with like-minded food
@@ -61,7 +61,7 @@ const Welcome = () => {
         <div className="column-three">
           <div className="info-card three">
             <h2> Explore Diverse Cuisines</h2>
-            <img src={pic3} alt="" className="img-three" />
+            <img src={pic3} alt="" className="img-three" loading="lazy" />
 
             <p className="text-tag">
               Embark on a virtual culinary expedition through the diverse
@@ -72,7 +72,7 @@ const Welcome = () => {
           </div>
           <div className="info-card six">
             <h2 className="larger">Visual Feast</h2>
-            <img src={pic6} alt="" className="img-six" />
+            <img src={pic6} alt="" className="img-six" loading="lazy" />
 
             <p className="text-tag specialy">
               They say we eat with our eyes first. Immerse yourself in a visual

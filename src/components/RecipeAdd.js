@@ -38,17 +38,14 @@ const RecipeAdd = () => {
   };
 
   const handlePrep = (e) => {
-    console.log(Number(e.target.value));
     setPrepTime(Number(e.target.value));
   };
 
   const handleCook = (e) => {
-    console.log(Number(e.target.value));
     setCookTime(Number(e.target.value));
   };
 
   const handleServings = (e) => {
-    console.log(Number(e.target.value));
     setServings(Number(e.target.value));
   };
 
@@ -139,7 +136,7 @@ const RecipeAdd = () => {
                     name="rating"
                     value="5"
                     onChange={handleRating}
-                    checked={rating === "5"}
+                    checked={rating === 5}
                   />
                   <label htmlFor="star5"></label>
                   <input
@@ -148,7 +145,7 @@ const RecipeAdd = () => {
                     name="rating"
                     value="4"
                     onChange={handleRating}
-                    checked={rating === "4"}
+                    checked={rating === 4}
                   />
                   <label htmlFor="star4"></label>
                   <input
@@ -157,7 +154,7 @@ const RecipeAdd = () => {
                     name="rating"
                     value="3"
                     onChange={handleRating}
-                    checked={rating === "3"}
+                    checked={rating === 3}
                   />
                   <label htmlFor="star3"></label>
                   <input
@@ -166,7 +163,7 @@ const RecipeAdd = () => {
                     name="rating"
                     value="2"
                     onChange={handleRating}
-                    checked={rating === "2"}
+                    checked={rating === 2}
                   />
                   <label htmlFor="star2"></label>
                   <input
@@ -175,7 +172,7 @@ const RecipeAdd = () => {
                     name="rating"
                     value="1"
                     onChange={handleRating}
-                    checked={rating === "1"}
+                    checked={rating === 1}
                   />
                   <label htmlFor="star1"></label>
                 </div>

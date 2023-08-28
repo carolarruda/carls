@@ -9,7 +9,7 @@ import "./style.css";
 
 export default function Footer() {
   return (
-    <Box className="bottom"
+    <Box className="footer"
       component="footer"
       sx={{
         display: "grid",

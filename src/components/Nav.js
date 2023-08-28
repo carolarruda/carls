@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { Context } from "../App";
 import pic from "./images/roundLogoDark.png";
 import AccountMenu from "./AccountMenu";
+import  SearchAppBar  from "./Search";
 
-const Nav = ({ users }) => {
+const Nav = ({ users, search,  setSearch}) => {
   const [loggedIn, setLoggedIn] = useContext(Context);
   const username = localStorage.getItem("username");
 
@@ -32,7 +33,13 @@ const Nav = ({ users }) => {
           <li>
             <a href="about.asp">About</a>
           </li>
+
+          <SearchAppBar className='remove-border' search= {search} setSearch={setSearch}/>
+
         </ul>
+
+
+
       </div>
 
       <div className="right-nav">

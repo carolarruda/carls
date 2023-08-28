@@ -35,6 +35,10 @@ export default function AccountMenu({username, setLoggedIn}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleGoSettings = ()=> {
+    navigate('/settings')
+  }
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -107,7 +111,7 @@ export default function AccountMenu({username, setLoggedIn}) {
           </ListItemIcon>
           Favorites
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleGoSettings}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>

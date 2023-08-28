@@ -43,10 +43,10 @@ const Login = ({ setUsers, users }) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoggedIn(false);
-    localStorage.clear();
-  }, [setLoggedIn]);
+  // useEffect(() => {
+  //   setLoggedIn(false);
+  //   localStorage.clear();
+  // }, [setLoggedIn]);
 
   const handleGoToRegister = (e) => {
     navigate("/");
@@ -111,7 +111,7 @@ const Login = ({ setUsers, users }) => {
 
   return (
     <div className="background">
-      <div className="left box">
+      <div className="lefty side">
         <h1>Sign in</h1>
         <div className="register">
           <p className="undertext">Don't have an account?</p>
@@ -158,7 +158,7 @@ const Login = ({ setUsers, users }) => {
           <Copyright sx={{ mt: 5 }} />
         </form>
       </div>
-      <div className="right box log"></div>
+      <div className="righty side log"></div>
     </div>
   );
 };
