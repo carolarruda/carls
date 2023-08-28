@@ -1,9 +1,21 @@
-const RecipesList = ()=> {
-return(
-    <div>
-        Hey there, here is the recipe list
-    </div>
-)
-}
+import Nav from "./Nav";
+import StickyFooter from "./FooterTwo";
+import { useEffect, useState } from "react";
 
-export default RecipesList
+const RecipesList = ({publicRecipes, setPublicRecipes}) => {
+
+
+  return (
+    <div>
+      <Nav />
+      <section className="grid">
+        {publicRecipes.length >0 && publicRecipes.map((recipe) => {
+          return <div> {recipe.title}</div>;
+        })}
+      </section>
+      <StickyFooter />
+    </div>
+  );
+};
+
+export default RecipesList;

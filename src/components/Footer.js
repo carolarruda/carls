@@ -5,12 +5,15 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box } from "@mui/material";
+import "./style.css";
 
 export default function Footer() {
   return (
-    <Box
+    <Box className="bottom"
       component="footer"
       sx={{
+        display: "grid",
+        placeItems: "end",
         backgroundColor: (theme) =>
           theme.palette.mode === "light"
             ? theme.palette.grey[200]
@@ -18,7 +21,7 @@ export default function Footer() {
         p: 6,
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" >
         <Grid container spacing={5}>
           <Grid item xs={12} sm={4}>
             <Typography variant="h6" color="text.primary" gutterBottom>
@@ -69,7 +72,7 @@ export default function Footer() {
               Carl's
             </Link>{" "}
             {new Date().getFullYear()}
-            {"."}
+ 
           </Typography>
         </Box>
       </Container>

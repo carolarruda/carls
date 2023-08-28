@@ -15,23 +15,24 @@ export const Context = React.createContext();
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState();
+  const [publicRecipes, setPublicRecipes]= useState('')
   
 
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
+  
   
 
   useEffect(() => {
     if (token) {
       setLoggedIn(true);
 
-      // fetch recipe data instead
-        // fetch(`http://localhost:4000/movie/${userId}`)
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     setMovies(data.movies);
-        //   })
-        //   .catch((error) => console.error("Error fetching movies:", error));
+        fetch(`http://localhost:4000/recipes`)
+          .then((res) => res.json())
+          .then((data) => {
+            setPublicRecipes(data.data);
+          })
+          .catch((error) => console.error("Error fetching recipes:", error));
     }
   }, [token]);
 
@@ -44,7 +45,7 @@ function App() {
           <Route path="/login" element={<Login setUsers={setUsers} users={users} setLoggedIn={setLoggedIn}/>} />
           <Route path="/home" element={<Home users={users} setLoggedIn={setLoggedIn}/>} />
           <Route path="/add" element={<RecipeAdd />} />
-          <Route path="/recipes" element={<RecipesList />} />
+          <Route path="/recipes" element={<RecipesList publicRecipes={publicRecipes} setPublicRecipes={setPublicRecipes}/>} />
         </Routes>
       </div>
     </Context.Provider>

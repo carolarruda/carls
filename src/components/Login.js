@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../App";
 import Typography from "@mui/material/Typography";
-import { keyframes } from "styled-components";
+
 
 import Link from "@mui/material/Link";
 
@@ -29,6 +29,7 @@ function Copyright(props) {
 const Login = ({ setUsers, users }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useContext(Context);
   const [status, setStatus] = useState("");
   const [failed, setFailed] = useState(false);
@@ -45,7 +46,7 @@ const Login = ({ setUsers, users }) => {
   useEffect(() => {
     setLoggedIn(false);
     localStorage.clear();
-  }, []);
+  }, [setLoggedIn]);
 
   const handleGoToRegister = (e) => {
     navigate("/");
@@ -87,7 +88,6 @@ const Login = ({ setUsers, users }) => {
             localStorage.setItem("token", data.data.token);
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);
-            let userId = data.data.user.id;
             setUsers(data.data.user);
             navigate(`/home`);
           } else if (loginResponse.status === 400) {

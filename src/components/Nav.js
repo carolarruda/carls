@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../App";
 import pic from "./images/roundLogoDark.png";
-import Profile from "./icons/profile";
 import AccountMenu from "./AccountMenu";
 
 const Nav = ({ users }) => {
   const [loggedIn, setLoggedIn] = useContext(Context);
-  const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
   const username = localStorage.getItem("username");
 
   const navigate = useNavigate();

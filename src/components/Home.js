@@ -16,7 +16,7 @@ const Home = ({ users }) => {
         <section className="welcome">
           <Welcome />
         </section>
-        <section className="youtube">
+        <section className="footer">
         <Footer/>
         </section>
       </section>

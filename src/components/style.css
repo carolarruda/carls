@@ -275,7 +275,7 @@ input::-webkit-inner-spin-button {
 
 .main-home {
   margin-top: 70px;
-  min-height: 200vh;
+  /* min-height: 200vh; */
   width: 1fr;
 }
 
@@ -584,3 +584,4 @@ input::-webkit-inner-spin-button {
     margin-left: 0rem;
   }
 }
+
