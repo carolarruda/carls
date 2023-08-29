@@ -1,19 +1,33 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../App";
 import pic from "./images/roundLogoDark.png";
 import AccountMenu from "./AccountMenu";
-import  SearchAppBar  from "./Search";
+import SearchAppBar from "./Search";
 
-const Nav = ({ users, search,  setSearch}) => {
+const Nav = ({ users, search, setSearch }) => {
   const [loggedIn, setLoggedIn] = useContext(Context);
-  const username = localStorage.getItem("username");
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState("");
 
   const navigate = useNavigate();
 
   const handleSign = () => {
     navigate("/login");
   };
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
   return (
     <nav className="nav">
       <div className="logo">
@@ -34,27 +48,26 @@ const Nav = ({ users, search,  setSearch}) => {
             <a href="about.asp">About</a>
           </li>
 
-          <SearchAppBar className='remove-border' search= {search} setSearch={setSearch}/>
-
+          <SearchAppBar
+            className="remove-border"
+            search={search}
+            setSearch={setSearch}
+          />
         </ul>
-
-
-
       </div>
 
       <div className="right-nav">
-        {!loggedIn && (
-          <button className="log-but home" onClick={handleSign}>
-            Sign In
-          </button>
-        )}
-        {loggedIn && (
+        {loggedIn ? (
           <div className="profile">
             <p>Welcome back, {username}</p>
             <div>
               <AccountMenu username={username} setLoggedIn={setLoggedIn} />
             </div>
           </div>
+        ) : (
+          <button className="log-but home" onClick={handleSign}>
+            Sign In
+          </button>
         )}
       </div>
     </nav>

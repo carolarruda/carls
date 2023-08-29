@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Josefin+Sans:ital,wght@0,100;0,400;1,600;1,700&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap');
 
 
 
@@ -89,9 +89,16 @@
 }
 
 h1 {
-  text-align: left;
   color: #191d3a;
   font-size: 20px;
+}
+
+.lefth1 {
+  text-align: left;
+}
+
+.centerh1 {
+  text-align: center;
 }
 
 .undertext {
@@ -588,3 +595,9 @@ input::-webkit-inner-spin-button {
     margin-left: 0rem;
   }
 }
+
+.footer {
+  display: grid;
+
+}
+

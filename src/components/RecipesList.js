@@ -106,7 +106,7 @@ const RecipesList = ({
         <div className={className} id="recipes">
           <div></div>
           <section className="card-grid">
-            {filteredRecipes.length === 0 && <h1>Sorry, No recipes found</h1>}
+            {filteredRecipes.length === 0 && <h1 className="centerh1">Sorry, No recipes found</h1>}
             {filteredRecipes.length > 0 &&
               filteredRecipes.map((item, index) => {
                 const isHovered = hoveredCard === index;

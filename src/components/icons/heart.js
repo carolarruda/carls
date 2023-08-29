@@ -12,8 +12,8 @@ const Heart = ({ show }) => {
     viewBox="0 0 122.88 107.41"
     xmlSpace="preserve"
     style={show}
-    width="30px"
-    height="30px"
+    width="25px"
+    height="25px"
 
   >
     <style type="text/css">{`.st0{fill-rule:evenodd;clip-rule:evenodd;}`}</style>

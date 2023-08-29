@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../App";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
@@ -32,8 +33,13 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [terms, setTerms] = useState("");
+  
+  // eslint-disable-next-line no-unused-vars
+  const [loggedIn, setLoggedIn] = useContext(Context);
 
+  // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [users, setUsers] = useState("");
 
   const navigate = useNavigate();
@@ -89,12 +95,30 @@ const SignUp = () => {
 
         const data = await registerResponse.json();
         setStatus(registerResponse.status);
-        console.log(status);
         if (registerResponse.status === 201) {
           setUsers(data);
-          console.log("user was created");
-          console.log("user", users);
-          console.log("registered user", registerUser);
+          async function loginUser() {
+            try {
+              const loginResponse = await fetch(
+                "http://localhost:4000/login",
+                opts
+              );
+              const data = await loginResponse.json();
+              setStatus(loginResponse.status);
+              if (loginResponse.status === 200) {
+                setLoggedIn(true);
+
+                localStorage.setItem("token", data.data.token);
+                localStorage.setItem("username", data.data.user.firstName);
+                localStorage.setItem("userId", data.data.user.id);
+                setUsers(data.data.user);
+                navigate(`/home`);
+              }
+            } catch (error) {
+              console.error("Error occurred during login", error);
+            }
+          }
+          loginUser()
         }
       } catch (error) {
         console.error("Error occurred during register: ", error);
@@ -106,7 +130,7 @@ const SignUp = () => {
   return (
     <div className="background">
       <div className="lefty side">
-        <h1>Sign up</h1>
+        <h1 className="lefth1">Sign up</h1>
         <div className="register">
           <p className="undertext">Already have an account?</p>
           <button className="sign" onClick={handleGoToLogin}>

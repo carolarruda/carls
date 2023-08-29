@@ -8,8 +8,8 @@ const Edit = ({ show, fill }) => {
       viewBox="0 0 122.88 122.88"
       style={show}
       xmlSpace="preserve"
-      width="30px"
-      height="30px"
+      width="25px"
+      height="25px"
       fill={fill}
     >
       <style type="text/css">

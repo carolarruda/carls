@@ -100,7 +100,7 @@ const Login = ({ setUsers, users }) => {
             console.log("Please use register to create a new user");
           }
         } catch (error) {
-          console.error("Error occurred : ", error);
+          console.error("Error occurred during login", error);
         }
       } catch (error) {
         console.error("Error occurred during login: ", error);
@@ -112,7 +112,7 @@ const Login = ({ setUsers, users }) => {
   return (
     <div className="background">
       <div className="lefty side">
-        <h1>Sign in</h1>
+        <h1 className="lefth1">Sign in</h1>
         <div className="register">
           <p className="undertext">Don't have an account?</p>
           <button className="sign" onClick={handleGoToRegister}>

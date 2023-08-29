@@ -9,8 +9,8 @@
   .main-container {
     display: grid;
     grid-template-rows: 20px 1fr;
-
-    background-color: rgba(240, 248, 255);
+    align-content: center;
+    background-color: #fafafc;
   }
   
   #main-container-favourite {
@@ -30,18 +30,20 @@
   
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, min-content));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, min-content));
+    row-gap: 40px;
+    column-gap: 30px;
     justify-content: center;
     margin-top: 100px;
     margin-bottom: 50px;
     min-height: 550px;
+
   }
   
   .box {
-    min-width: 330px;
-    max-width: 330px;
-    height: 355px;
+    min-width: 310px;
+    max-width: 310px;
+    height: 310px;
     color: rgb(17, 12, 12);
     font-size: 20px;
     border-radius: 10px;
@@ -50,14 +52,15 @@
   }
   
   .box:hover .recipe-name {
-    color: rgb(100, 99, 99);
+    color: rgb(77, 76, 76);
   }
   
   .recipe-name {
     color: rgb(128, 128, 128);
     display: grid;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
+font-family: 'Montserrat', sans-serif;
   }
   
   .icons-container {
@@ -74,9 +77,9 @@
   }
   
   .recipe-photo {
-    min-width: 285px;
-    max-width: 285px;
-    height: 265px;
+    min-width: 245px;
+    max-width: 245px;
+    height: 245px;
     font-size: 20px;
     display: grid;
     place-self: center;

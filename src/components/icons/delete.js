@@ -8,7 +8,7 @@ const Delete = ({show, fill}) => {
          x="0px" 
          y="0px" 
         //  width="30px"
-         height="30px"
+         height="25px"
          viewBox="0 0 122.88 122.88" 
          enableBackground="new 0 0 122.88 122.88" 
          xmlSpace="preserve"
