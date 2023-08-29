@@ -39,6 +39,10 @@ export default function AccountMenu({username, setLoggedIn}) {
   const handleGoSettings = ()=> {
     navigate('/settings')
   }
+
+  const handleRecipesP = ()=> {
+    navigate('/personal')
+  }
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -95,7 +99,7 @@ export default function AccountMenu({username, setLoggedIn}) {
         <MenuItem onClick={handleClose}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleRecipesP}>
           <Avatar /> My recipes
         </MenuItem>
         <Divider />

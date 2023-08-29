@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import MenuPopupState from "./components/AccountMenu";
 import RecipesList from "./components/RecipesList";
 import Settings from "./components/Settings";
+import PersonalList from "./components/PersonalList";
 
 export const Context = React.createContext();
 
@@ -15,6 +16,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState();
   const [recipes, setRecipes] = useState("");
+  const [recipesP, setRecipesP] = useState("");
 
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
@@ -25,7 +27,21 @@ function App() {
   useEffect(() => {
     if (token) {
       setLoggedIn(true);
+      const opts = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      fetch(`http://localhost:4000/recipes/personal`, opts)
+        .then((res) => res.json())
+        .then((data) => {
+          setRecipesP(data.data.recipes);
+        })
+        .catch((error) =>
+          console.error("Error fetching personal recipes:", error)
+        );
     }
+
     fetch(`http://localhost:4000/recipes`)
       .then((res) => res.json())
       .then((data) => {
@@ -154,6 +170,23 @@ function App() {
           <Route
             path="/settings"
             element={<Settings handleTheme={handleTheme} />}
+          />
+          <Route
+            path="/personal"
+            element={
+              <PersonalList
+                setSearch={setSearch}
+                search={search}
+                className="main-container"
+                recipesP={recipesP}
+                setRecipesP={setRecipesP}
+                hoveredCard={hoveredCard}
+                theme={theme}
+                handleHoverIn={handleHoverIn}
+                handleHoverOut={handleHoverOut}
+                handleDelete={handleDelete}
+              />
+            }
           />
         </Routes>
       </div>

@@ -8,11 +8,11 @@ import Heart from "./icons/heart";
 import LikeRed from "./icons/likeRed";
 import "./styles/main.css";
 
-const RecipesList = ({
+const PersonalList = ({
   search,
   setSearch,
-  recipes,
-  setRecipes,
+  recipesP,
+  setRecipesP,
   className,
   hoveredCard,
   theme,
@@ -40,7 +40,7 @@ const RecipesList = ({
   }, []);
 
   const likeRecipe = (id) => {
-    const likedRecipe = recipes.map((item) => {
+    const likedRecipe = recipesP.map((item) => {
       if (item.id === id) {
         return {
           ...item,
@@ -51,7 +51,7 @@ const RecipesList = ({
       }
     });
 
-    setRecipes(likedRecipe);
+    setRecipesP(likedRecipe);
 
     const isRecipeLiked =
       likedRecipe.find((item) => item.id === id)?.liked || false;
@@ -89,14 +89,14 @@ const RecipesList = ({
     }
   };
 
-  let filteredRecipes;
+  let filteredRecipes
 
   if (search !== "") {
-    filteredRecipes = recipes.filter((recipe) => {
+    filteredRecipes = recipesP.filter((recipe) => {
       return recipe.title.toLowerCase().includes(search.toLowerCase());
     });
   } else {
-    filteredRecipes = recipes;
+    filteredRecipes = recipesP;
   }
 
   return (
@@ -201,4 +201,4 @@ const RecipesList = ({
   );
 };
 
-export default RecipesList;
+export default PersonalList;
