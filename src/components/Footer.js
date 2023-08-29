@@ -6,10 +6,12 @@ import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import "./style.css";
+import pic1 from "./images/a028b336ab264b7983e1c895ebb3e8bd-removebg-preview.png";
 
 export default function Footer() {
   return (
-    <Box className="footer"
+    <Box
+      className="footer"
       component="footer"
       sx={{
         display: "grid",
@@ -21,18 +23,18 @@ export default function Footer() {
         p: 6,
       }}
     >
-      <Container maxWidth="lg" >
-        <Grid container spacing={5}>
+      <Container maxWidth="lg">
+        <Grid container spacing={6}>
           <Grid item xs={12} sm={4}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               About Us
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              We are Carl's - the food plaza, dedicated to providing the best recipes to our
-              users.
+              We are Carl's - the food plaza, dedicated to providing the best
+              recipes to our users.
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3.5}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               Contact Us
             </Typography>
@@ -46,7 +48,7 @@ export default function Footer() {
               Phone: +1 234 567 8901
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={2.5}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               Follow Us
             </Typography>
@@ -64,6 +66,9 @@ export default function Footer() {
               <Twitter />
             </Link>
           </Grid>
+          <Grid item xs={8} sm={1.4}>
+            <img src={pic1} alt="logo" id="img-logo-footer"/>
+          </Grid>
         </Grid>
         <Box mt={5}>
           <Typography variant="body2" color="text.secondary" align="center">
@@ -72,7 +77,6 @@ export default function Footer() {
               Carl's
             </Link>{" "}
             {new Date().getFullYear()}
- 
           </Typography>
         </Box>
       </Container>

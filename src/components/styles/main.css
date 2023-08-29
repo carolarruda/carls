@@ -46,7 +46,7 @@
     height: 310px;
     color: rgb(17, 12, 12);
     font-size: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     display: grid;
     grid-template-rows: 35px 1fr 35px;
   }

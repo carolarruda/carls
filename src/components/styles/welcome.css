@@ -88,6 +88,11 @@ img {
   height: auto;
   display: block;
   transition: opacity 0.4s ease-in-out;
+  /* margin-left: 40px */
+}
+
+.carls-log0 {
+  justify-self: left;
 }
 
 .text-tag {

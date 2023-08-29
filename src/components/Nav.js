@@ -47,13 +47,10 @@ const Nav = ({ users, search, setSearch }) => {
           <li>
             <a href="about.asp">About</a>
           </li>
-
-          <SearchAppBar
-            className="remove-border"
-            search={search}
-            setSearch={setSearch}
-          />
         </ul>
+      </div>
+      <div className="remove-border">
+        <SearchAppBar search={search} setSearch={setSearch} />
       </div>
 
       <div className="right-nav">

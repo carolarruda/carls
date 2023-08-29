@@ -9,6 +9,7 @@ import MenuPopupState from "./components/AccountMenu";
 import RecipesList from "./components/RecipesList";
 import Settings from "./components/Settings";
 import PersonalList from "./components/PersonalList";
+import RecipeView from "./components/RecipeView";
 
 export const Context = React.createContext();
 
@@ -186,7 +187,15 @@ function App() {
                 handleHoverOut={handleHoverOut}
                 handleDelete={handleDelete}
               />
+
             }
+          />
+          <Route 
+          path="/recipes/:id"
+          element={
+            <RecipeView recipes={recipes}
+            setRecipes={setRecipes}/>
+          }
           />
         </Routes>
       </div>
