@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 
 import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,7 +59,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar({ search, setSearch }) {
   // const [search, setSearch]= useState("")
   const handleSearch = (e) => {
-    console.log(e.target.value);
     setSearch(e.target.value);
   };
   return (

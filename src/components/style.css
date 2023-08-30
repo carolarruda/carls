@@ -631,7 +631,7 @@ input::-webkit-inner-spin-button {
 
 .recipe-img-rv {
   width: 320px;
-  height: 450px;
+  height: 420px;
   object-fit: cover;
 }
 
@@ -781,14 +781,180 @@ input::-webkit-inner-spin-button {
 
 }
 
-.p-tag-instructions:active > span {
 
-  text-decoration:line-through;
-
-
-}
 .p-tag-instructions:hover > button {
   background-color: #d0e0f5;
   
 }
 
+
+.decor {
+  text-decoration: line-through;
+  color: #161a217e;
+}
+
+.decor:hover {
+  text-decoration: line-through;
+  color: #161a217e;
+}
+
+/* Account settings */
+
+.left-options-settings {
+margin-top: 20px;
+border-right: 3px solid #eeeeee;
+margin-bottom: 20px;
+margin-right: 20px;
+}
+
+.right-settings {
+  /* background-color: pink; */
+  margin-top: 30px;
+
+}
+
+
+
+.settings-grid {
+  margin-top: 70px;
+  min-height: 650px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: auto;
+  background-color: #fafafc;
+}
+
+.settings {
+  font-size: 13px;
+  color: #79859a;
+  border-radius: 20px;
+  height: 40px;
+  font-weight: 400;
+  font-family: 'Poppins';
+  margin-left: 20px;
+  margin-top: 5px;
+  border: none
+}
+
+.empty {
+  /* height: 40px; */
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.settings:hover {
+  color: #1963fd;
+  background-color: #e9f0ff;
+}
+
+.delete {
+  color: red;
+}
+
+.delete:hover {
+  color: red;
+}
+
+.option-setting-header{
+  font-size: 16px;
+}
+
+.pic-and-name{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: 2px solid #eeeeee;
+  border-radius: 20px;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.fullname  {
+  display: grid;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.fullname h2 {
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.edit {
+  max-width: 100px;
+  justify-self: right;
+}
+
+
+.personal-info h3 {
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 600;
+  align-self: center;
+}
+
+.personal-info{
+  margin-top: 20px;
+  display: grid;
+  /* grid-template-columns: auto 1fr; */
+  border: 2px solid #eeeeee;
+  border-radius: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  align-items: center;
+  align-content: center;
+  padding-left: 40px;
+}
+
+.personal-edit {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  align-items: center;
+  align-content: center;
+}
+
+.personal-edit button {
+  /* display: grid; */
+  justify-items: right;
+
+}
+
+.personal-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 30px;
+margin-top: 10px;
+margin-bottom: 20px;
+}
+
+.detail-topic {
+  font-size: 12px;
+  font-weight: 600;
+  color: #79859a;
+}
+
+.detail-user {
+  font-size: 12px;
+  font-weight: 600;
+
+}
+
+.pd-card {
+display: grid;
+row-gap: 5px;
+}
+
+.push-dow{
+  margin-top: 40px;
+  min-height: 650px;
+}
+
+.prep {
+  margin-top: 20px
+}
+
+.add-margin {
+  margin-top: 15px;
+}

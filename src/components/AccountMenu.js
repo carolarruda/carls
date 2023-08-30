@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-export default function AccountMenu({username, setLoggedIn}) {
+export default function AccountMenu({setLoggedIn}) {
+  const username = localStorage.getItem('username')
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -41,7 +42,7 @@ export default function AccountMenu({username, setLoggedIn}) {
   }
 
   const handleRecipesP = ()=> {
-    navigate('/personal')
+    navigate('/myrecipes')
   }
   return (
     <React.Fragment>

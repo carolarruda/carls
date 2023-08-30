@@ -15,7 +15,6 @@ const PersonalList = ({
   setRecipesP,
   className,
   hoveredCard,
-  theme,
   handleHoverIn,
   handleHoverOut,
   handleDelete,
@@ -28,9 +27,7 @@ const PersonalList = ({
     setWindowWidth(window.innerWidth);
   };
 
-  if (theme.length === 0) {
-    theme = "rgb(208, 224, 245)";
-  }
+  let theme = "rgb(208, 224, 245)";
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
@@ -89,7 +86,7 @@ const PersonalList = ({
     }
   };
 
-  let filteredRecipes
+  let filteredRecipes;
 
   if (search !== "") {
     filteredRecipes = recipesP.filter((recipe) => {
@@ -106,7 +103,9 @@ const PersonalList = ({
         <div className={className} id="recipes">
           <div></div>
           <section className="card-grid">
-            {filteredRecipes.length === 0 && <h1 className="centerh1">Sorry, No recipes found</h1>}
+            {filteredRecipes.length === 0 && (
+              <h1 className="centerh1">Sorry, No recipes found</h1>
+            )}
             {filteredRecipes.length > 0 &&
               filteredRecipes.map((item, index) => {
                 const isHovered = hoveredCard === index;

@@ -5,8 +5,40 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MailIcon from "@mui/icons-material/Mail";
+import { useEffect, useState } from "react";
 
 const RecipeView = ({ search, setSearch, recipes, setRecipes }) => {
+  const [decoration, setDecoration] = useState("");
+  const [recipe, setRecipe] = useState([]);
+
+  const params = useParams();
+
+  const handleDecor = (index) => {
+    setDecoration((prevDecorations) => ({
+      ...prevDecorations,
+      [index]: !prevDecorations[index],
+    }));
+  };
+
+  const [servings, setServings] = useState("");
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/recipes/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setRecipe(data.data.recipe);
+        setServings(data.data.recipe.servings);
+      })
+      .catch((error) => console.error("Error fetching recipe:", error));
+  }, []);
+
+  const handleServingsChange = (increment) => {
+    const newServings = servings + increment;
+    if (newServings > 0) {
+      setServings(newServings);
+    }
+  };
+
   const calcTime = () => {
     const recipe = recipes.find((recipe) => recipe.id.toString() === params.id);
 
@@ -25,7 +57,6 @@ const RecipeView = ({ search, setSearch, recipes, setRecipes }) => {
     return total;
   };
 
-  const params = useParams();
   return (
     <div>
       <Nav search={search} setSearch={setSearch} />
@@ -44,33 +75,68 @@ const RecipeView = ({ search, setSearch, recipes, setRecipes }) => {
                     <div className="ingredients-rc">
                       <h2>Ingredients</h2>
                       <div className="servings-rv">
-                        <button className="servings-button">-</button>
-                        <p className="number-servings-rc">{recipe.servings}</p>
-                        <button className="servings-button">+</button>
+                        <button
+                          className="servings-button"
+                          onClick={() => handleServingsChange(-1)}
+                        >
+                          -
+                        </button>
+                        <p className="number-servings-rc">{servings}</p>
+                        <button
+                          className="servings-button"
+                          onClick={() => handleServingsChange(1)}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                     <div className="ingredients-list-rc">
-                      {recipe.ingredients.split(";").map((line, index) => {
+                      {recipe.ingredients.split("\n").map((line, index) => {
                         if (line.length > 0) {
                           const parts = line.match(
-                            /(\d+(?:[\s\/_.\d]+)?)\s*(.+)/
+                            /(\d+(?:[\s/_.\d]+)?)\s*(.+)/
                           );
                           if (parts) {
-                            const numericPart = parts[1];
+                            let numericPart = parts[1];
+                            if (isNaN(numericPart)) {
+                              const [numerator, denominator] = numericPart
+                                .split("/")
+                                .map(Number);
+
+                              if (denominator !== 0) {
+                                numericPart = numerator / denominator;
+                              }
+                            }
+
                             const textPart = parts[2];
                             return (
                               <div key={index} className="p-tag-ingredient">
                                 <span className="numeric-part">
-                                  {numericPart}
+                                  {!isNaN(numericPart)
+                                    ? (
+                                        (numericPart * servings) /
+                                        recipe.servings
+                                      ).toFixed(
+                                        ((numericPart * servings) /
+                                          recipe.servings) %
+                                          1 ===
+                                          0
+                                          ? 0
+                                          : 2
+                                      )
+                                    : numericPart}
                                 </span>{" "}
                                 <p>{textPart}</p>
                               </div>
                             );
                           } else {
                             return (
-                              <p key={index} className="p-tag-ingredient">
-                                {line}
-                              </p>
+                              <div key={index} className="p-tag-ingredient">
+                                <span className="numeric-part"></span>
+                                <p key={index} className="p-tag-ingredient">
+                                  {line}
+                                </p>
+                              </div>
                             );
                           }
                         }
@@ -113,20 +179,24 @@ const RecipeView = ({ search, setSearch, recipes, setRecipes }) => {
                     <h2>Instructions</h2>
                   </div>
                   <div>
-                  {recipe.instructions.split(";").map(
-                    (line, index) =>
-                      line.length > 0 && (
-            
-                        <p className="p-tag-instructions" key={index}>
-                                        <button className="servings-button">{index +1}</button>
-                          <span>{line}</span>
-                        </p>
-                      )
-                  )}
+                    {recipe.instructions.split("\n").map(
+                      (line, index) =>
+                        line.length > 0 && (
+                          <p className="p-tag-instructions" key={index}>
+                            <button className="servings-button">
+                              {index + 1}
+                            </button>
+                            <span
+                              className={decoration[index] ? "decor" : ""}
+                              onClick={() => handleDecor(index)}
+                            >
+                              {line}
+                            </span>
+                          </p>
+                        )
+                    )}
                   </div>
-                  <div>
-
-                  </div>
+                  <div></div>
                 </div>
               </section>
             );

@@ -15,7 +15,6 @@ const RecipesList = ({
   setRecipes,
   className,
   hoveredCard,
-  theme,
   handleHoverIn,
   handleHoverOut,
   handleDelete,
@@ -28,9 +27,9 @@ const RecipesList = ({
     setWindowWidth(window.innerWidth);
   };
 
-  if (theme.length === 0) {
-    theme = "rgb(208, 224, 245)";
-  }
+
+    let theme = "rgb(208, 224, 245)";
+  
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
@@ -89,15 +88,29 @@ const RecipesList = ({
     }
   };
 
+  console.log(search);
   let filteredRecipes;
-
   if (search !== "") {
+    console.log("hey yu");
+
     filteredRecipes = recipes.filter((recipe) => {
-      return recipe.title.toLowerCase().includes(search.toLowerCase());
+      const titleMatch = recipes
+      // recipe.title.toLowerCase().includes(search.toLowerCase());
+      
+      const ingredientsMatch = recipe.ingredients
+        .toLowerCase()
+        .split(';')
+        .some((ingredient) => ingredient.includes(search.toLowerCase()));
+  
+      const courseTypeMatch = recipe.courseType.toLowerCase() === search.toLowerCase();
+
+  
+      return titleMatch || ingredientsMatch || courseTypeMatch;
     });
   } else {
     filteredRecipes = recipes;
   }
+  
 
   return (
     <div>
@@ -122,7 +135,7 @@ const RecipesList = ({
                   boxShadow: isHovered
                     ? "rgba(0, 0, 0, 0.24) 0px 3px 8px"
                     : "none",
-                  transform: isHovered ? "translateY(-5px)" : "translateY(0px)",
+                  transform: isHovered ? "translateY(0px)" : "translateY(0px)",
                   transition:
                     "background-color 0.3s, boxShadow 0.3s, transform 0.3s",
                 };

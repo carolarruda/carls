@@ -1,8 +1,13 @@
 import Nav from "./Nav";
-import FooterTwo from './FooterTwo'
+import FooterTwo from "./FooterTwo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/old.css";
+import { TextField } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
+import Button from "@mui/material/Button";
 
 const RecipeAdd = () => {
   const [title, setTitle] = useState("");
@@ -111,20 +116,38 @@ const RecipeAdd = () => {
       <Nav />
 
       <section className="form-container">
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        ></link>
         <div className="big-container" id="set-height">
           <form className="form-stack recipe-form" onSubmit={handleSubmit}>
             <div className="first-column">
               <div className="segment">
-                <label htmlFor="recipeTitle">Recipe Title</label>
-                <input type="text" value={title} onChange={handleTitle} />
+                <TextField
+                  margin="normal"
+                  width="50px"
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { fontSize: "14px" },
+                  }}
+                  type="text"
+                  label="Recipe Title"
+                  name="title"
+                  value={title}
+                  onChange={handleTitle}
+                />
               </div>
               <div className="segment">
-                <label htmlFor="image">Image url</label>
-                <input type="url" value={imageUrl} onChange={handlePhoto} />
+                <TextField
+                  margin="normal"
+                  width="50px"
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { fontSize: "15px" },
+                  }}
+                  type="text"
+                  label="Image url"
+                  name="title"
+                  value={imageUrl}
+                  onChange={handlePhoto}
+                />
               </div>
 
               <div className="inline">
@@ -178,82 +201,114 @@ const RecipeAdd = () => {
                 </div>
               </div>
               <div className="segment">
-                <label htmlFor="courses">Course</label>
-                <select
-                  defaultValue={"DEFAULT"}
-                  name="course"
-                  id="courses"
-                  style={{ fontSize: "9px" }}
-                  onChange={handleCourse}
-                >
-                  <option value="DEFAULT" disabled>
-                    Choose course
-                  </option>
-                  <option value="entree" checked={courseType === "entree"}>
-                    Entree
-                  </option>
-                  <option value="main" checked={courseType === "main"}>
-                    Main
-                  </option>
-                  <option value="dessert" checked={courseType === "dessert"}>
-                    Dessert
-                  </option>
-                </select>
+                <FormControl>
+                  <InputLabel htmlFor="courses" shrink={courseType !== ""}>
+                    Course
+                  </InputLabel>
+                  <Select
+                    defaultValue={"DEFAULT"}
+                    name="course"
+                    id="courses"
+                    style={{ fontSize: "15px" }}
+                    onChange={handleCourse}
+                    value={courseType}
+                    MenuProps={{
+                      style: { minHeight: "500px" },
+                    }}
+                  >
+                    <MenuItem
+                      value="DEFAULT"
+                      disabled
+                      style={{ fontSize: "10px" }}
+                    >
+                      Choose course
+                    </MenuItem>
+                    <MenuItem value="entree" style={{ fontSize: "10px" }}>
+                      Entree
+                    </MenuItem>
+                    <MenuItem value="main" style={{ fontSize: "10px" }}>
+                      Main
+                    </MenuItem>
+                    <MenuItem value="dessert" style={{ fontSize: "10px" }}>
+                      Dessert
+                    </MenuItem>
+                  </Select>
+                </FormControl>
               </div>
-              <div className="segment">
-                <label htmlFor="prepTime">Prep Time (mins)</label>
-                <input
+              <div className="segment prep">
+                <TextField
+                  label="Prep Time (mins)"
                   type="number"
-                  style={{ width: "50px" }}
                   onChange={handlePrep}
                   value={prepTime}
                 />
               </div>
-              <div className="segment">
-                <label htmlFor="cookTime">Cook Time (mins)</label>
-                <input
+              <div className="segment prep">
+                <TextField
+                  label="Cook Time (mins)"
                   type="number"
-                  style={{ width: "50px" }}
                   onChange={handleCook}
                   value={cookTime}
                 />
               </div>
-              <div className="segment">
-                <label htmlFor="numberServings">Servings</label>
-                <input
+              <div className="segment prep">
+                <TextField
+                  label="Servings"
                   type="number"
-                  style={{ width: "50px" }}
                   onChange={handleServings}
                   value={servings}
                 />
               </div>
             </div>
 
-            <div className="second-column segment">
-              <label htmlFor="recipeIngredients">Ingredients</label>
-              <textarea
+            <div className="second-column segment add-margin">
+              <TextField
+                label="Ingredients"
                 type="text"
+                multiline
+                minRows={22.4}
                 onChange={handleIngredients}
                 value={ingredients}
               />
             </div>
 
-            <div className="third-column segment">
-              <label htmlFor="recipeInstructions">Instructions</label>
-              <textarea
+            <div className="third-column segment add-margin">
+              <TextField
+                label="Instructions"
                 type="text"
+                multiline
+                minRows={22.4}
                 onChange={handleInstructions}
                 value={instructions}
               />
             </div>
 
-            <div className="fourth-column segment">
-              <label htmlFor="notes">Notes</label>
-              <textarea type="text" onChange={handleNotes} value={notes} />
+            <div className="fourth-column segment add-margin">
+              <TextField
+                label="Notes"
+                type="text"
+                multiline
+                minRows={10.4}
+                onChange={handleNotes}
+                value={notes}
+              />
             </div>
             <div className="fifth-column segment">
-              <button type="submit">Save</button>
-              <button onClick={handleCancel}>Cancel</button>
+              <LoadingButton
+                size="small"
+                color="primary"
+                // onClick={handleClick}
+                // loading={loading}
+                loadingPosition="start"
+                startIcon={<SaveIcon />}
+                variant="contained"
+                type="submit"
+              >
+                <span>Save</span>
+              </LoadingButton>
+              <Button variant="outlined" onClick={handleCancel}>
+                Cancel
+              </Button>
             </div>
           </form>
         </div>

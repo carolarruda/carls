@@ -7,9 +7,11 @@ import RecipeAdd from "./components/RecipeAdd";
 import React, { useEffect, useState } from "react";
 import MenuPopupState from "./components/AccountMenu";
 import RecipesList from "./components/RecipesList";
-import Settings from "./components/Settings";
 import PersonalList from "./components/PersonalList";
 import RecipeView from "./components/RecipeView";
+import AccountSettings from "./components/AccountSettings";
+import Album from "./components/Album";
+import MyRecipes from "./components/MyRecipes";
 
 export const Context = React.createContext();
 
@@ -50,20 +52,6 @@ function App() {
       })
       .catch((error) => console.error("Error fetching recipes:", error));
   }, [token]);
-
-  const [theme, setTheme] = useState(() => {
-    const localValue = localStorage.getItem("THEME");
-    if (localValue == null) return [];
-    return JSON.parse(localValue);
-  });
-
-  const handleTheme = (e) => {
-    setTheme(e.target.value);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("THEME", JSON.stringify(theme));
-  }, [theme]);
 
   const handleHoverIn = (index, isSecondCard) => {
     if (isSecondCard) {
@@ -128,7 +116,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<SignUp />} />
-          <Route path="/test" element={<MenuPopupState users={users} />} />
+
           <Route
             path="/login"
             element={
@@ -152,16 +140,20 @@ function App() {
           />
           <Route path="/add" element={<RecipeAdd />} />
           <Route
+            path="/recipes/:id"
+            element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
+          />
+          <Route path="/settings" element={<AccountSettings />} />
+          <Route
             path="/recipes"
             element={
-              <RecipesList
+              <Album
                 setSearch={setSearch}
                 search={search}
                 className="main-container"
                 recipes={recipes}
                 setRecipes={setRecipes}
                 hoveredCard={hoveredCard}
-                theme={theme}
                 handleHoverIn={handleHoverIn}
                 handleHoverOut={handleHoverOut}
                 handleDelete={handleDelete}
@@ -169,33 +161,19 @@ function App() {
             }
           />
           <Route
-            path="/settings"
-            element={<Settings handleTheme={handleTheme} />}
-          />
-          <Route
-            path="/personal"
+            path="/myrecipes"
             element={
-              <PersonalList
+              <MyRecipes
                 setSearch={setSearch}
                 search={search}
-                className="main-container"
                 recipesP={recipesP}
                 setRecipesP={setRecipesP}
-                hoveredCard={hoveredCard}
-                theme={theme}
-                handleHoverIn={handleHoverIn}
-                handleHoverOut={handleHoverOut}
-                handleDelete={handleDelete}
               />
-
             }
           />
-          <Route 
-          path="/recipes/:id"
-          element={
-            <RecipeView recipes={recipes}
-            setRecipes={setRecipes}/>
-          }
+                    <Route
+            path="/myrecipes/:id"
+            element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
           />
         </Routes>
       </div>
