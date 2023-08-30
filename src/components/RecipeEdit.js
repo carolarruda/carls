@@ -1,7 +1,7 @@
 import Nav from "./Nav";
 import FooterTwo from "./FooterTwo";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./styles/old.css";
 import { TextField } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
@@ -9,7 +9,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
-const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
+const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -23,6 +23,83 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
+  const params = useParams();
+
+
+
+  useEffect(() => {
+    const fetchInitialValue = () => {
+      fetch(`http://localhost:4000/recipes/${params.id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setTitle(data.data.recipe.title || "");
+          setImageUrl(data.data.recipe.imageUrl || "");
+          setRating(data.data.recipe.rating || 0);
+          setCourseType(data.data.recipe.courseType || "");
+          setPrepTime(data.data.recipe.prepTime || 0);
+          setCookTime(data.data.recipe.cookTime || 0);
+          setServings(data.data.recipe.servings || 0);
+          setIngredients(data.data.recipe.ingredients || "") ;
+          setInstructions(data.data.recipe.instructions || "");
+          setNotes(data.data.recipe.notes || "");
+        })
+        .catch((error) => {
+          console.error("Error fetching initial value:", error);
+        });
+    };
+
+    fetchInitialValue();
+  }, [params.id]);
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const editedRecipe = {
+      title,
+      imageUrl,
+      rating,
+      courseType,
+      prepTime,
+      cookTime,
+      servings,
+      ingredients,
+      instructions,
+      notes,
+
+    };
+
+    const postOpts = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(editedRecipe),
+    };
+
+    fetch(`http://localhost:4000/recipes/${params.id}`, postOpts)
+      .then((res) => res.json())
+      .then((data) => {
+        fetch(`http://localhost:4000/recipes`)
+          .then((res) => res.json())
+          .then((data) => {
+            setRecipes(data.data.recipes);
+            const opts = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            };
+            fetch(`http://localhost:4000/recipes/personal`, opts)
+              .then((res) => res.json())
+              .then((data) => setRecipesP(data.data.recipes));
+              navigate('/myrecipes')
+          });
+      });
+  }
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -63,53 +140,7 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const handleNotes = (e) => {
     setNotes(e.target.value);
   };
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const newRecipe = {
-      title,
-      imageUrl,
-      rating,
-      courseType,
-      prepTime,
-      cookTime,
-      servings,
-      ingredients,
-      instructions,
-      notes,
-    };
-    const opts = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newRecipe),
-    };
-
-    fetch(`http://localhost:4000/recipes`, opts)
-      .then((res) => res.json())
-      .then((data) => {
-        fetch(`http://localhost:4000/recipes`)
-          .then((res) => res.json())
-          .then((data) => {
-            setRecipes(data.data.recipes);
-            const opts = {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            };
-            fetch(`http://localhost:4000/recipes/personal`, opts)
-              .then((res) => res.json())
-              .then((data) => setRecipesP(data.data.recipes));
-            navigate("/myrecipes");
-          });
-      });
-  }
-
-  const handleCancel = () => {
-    navigate(-1);
-  };
+  
 
   return (
     <div>
@@ -318,4 +349,4 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   );
 };
 
-export default RecipeAdd;
+export default RecipeEdit;

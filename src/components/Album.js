@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -15,6 +16,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import FooterTwo from "./FooterTwo";
+import { CSSTransition } from "react-transition-group";
 
 const defaultTheme = createTheme();
 
@@ -136,7 +138,7 @@ export default function Album({ search, setSearch, recipes, setRecipes }) {
                           </Typography>
                         </CardContent>
                       </Link>
-                      <CardActions>
+                      <CardActions sx={{ marginTop: "auto" }}>
                         <Button size="small" sx={{ color: "#191d3a" }}>
                           Comment
                         </Button>

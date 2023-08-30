@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,10 +11,9 @@ import Nav from "./Nav";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import FooterTwo from "./FooterTwo";
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -22,8 +21,15 @@ export default function MyRecipes({
   search,
   setSearch,
   recipesP,
+
   setRecipesP,
+  handleDelete,
 }) {
+  const navigate = useNavigate();
+
+  const handleEdit = (id) => {
+    navigate(`/edit/${id}`);
+  };
   const [isLiked, setIsLiked] = useState("");
 
   const likeRecipe = (id) => {
@@ -141,15 +147,21 @@ export default function MyRecipes({
                           </Typography>
                         </CardContent>
                       </Link>
-                      <CardActions>
-                        <Button size="small" sx={{ color: "#191d3a" }}>
+                      <CardActions sx={{ marginTop: "auto" }}>
+                        <Button
+                          size="small"
+                          sx={{ color: "#191d3a" }}
+                          onClick={()=> handleEdit(card.id)}
+                        >
                           Edit
                         </Button>
-                        <Button size="small" sx={{ color: "#191d3a" }}>
+                        <Button
+                          size="small"
+                          sx={{ color: "#191d3a" }}
+                          onClick={() => handleDelete(card.id)}
+                        >
                           Delete
                         </Button>
-
-
                       </CardActions>
                     </Card>
                   </Grid>

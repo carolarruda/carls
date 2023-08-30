@@ -705,9 +705,10 @@ input::-webkit-inner-spin-button {
 
 .p-tag-ingredient {
   display: grid;
-  grid-template-columns: 1fr 7fr;
+  grid-template-columns: auto 1fr;
   margin-bottom: 10px;
   line-height: 20px;
+  column-gap: 5px;
 }
 
 .numeric-part {
@@ -958,3 +959,4 @@ row-gap: 5px;
 .add-margin {
   margin-top: 15px;
 }
+
