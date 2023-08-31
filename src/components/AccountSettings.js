@@ -4,14 +4,12 @@ import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
-import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteAccount from "./DeleteAccount";
 
 const AccountSettings = ({ user, search, setSearch }) => {
   const username = localStorage.getItem("username");
-  // const userId = localStorage.getItem("userId");
-  // const token = localStorage.getItem("token");
+
 
   return (
     <div>

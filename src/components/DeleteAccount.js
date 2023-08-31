@@ -9,10 +9,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../App";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function DeleteAccount() {
-
   const [loggedIn, setLoggedIn] = useContext(Context);
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -21,12 +23,18 @@ export default function DeleteAccount() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClick = () => {
+    setLoading(true);
   };
 
   const handleDeleteAccount = () => {
@@ -84,12 +92,50 @@ export default function DeleteAccount() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button
+            autoFocus
+            sx={{
+              color: "#191d3a",
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              border: "none",
+              "&:hover": {
+                backgroundColor: "#f6fafd",
+                boxShadow: "none",
+                border: "none",
+              },
+            }}
+            onClick={handleClose}
+          >
             Cancel
           </Button>
-          <Button onClick={handleDeleteAccount} autoFocus>
-            Delete
-          </Button>
+
+          <LoadingButton
+            size="small"
+            sx={{
+              color: "#191d3a",
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              border: "none",
+              "&:hover": {
+                backgroundColor: "#f6fafd",
+                boxShadow: "none",
+                border: "none",
+              },
+            }}
+            color="primary"
+            onClick={() => {
+              handleDeleteAccount();
+              handleClick();
+            }}
+            loading={loading}
+            loadingPosition="start"
+            startIcon={<DeleteIcon />}
+            variant="contained"
+            type="submit"
+          >
+            <span>Delete</span>
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </div>
