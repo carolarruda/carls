@@ -24,7 +24,6 @@ import Box from "@mui/material/Box";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 
-
 const defaultTheme = createTheme();
 
 export default function Album({
@@ -93,21 +92,30 @@ export default function Album({
       const titleMatch = recipe.title
         .toLowerCase()
         .includes(search.toLowerCase());
-  
+
       const ingredientsMatch = recipe.ingredients
         .toLowerCase()
         .split(";")
         .some((ingredient) => ingredient.includes(search.toLowerCase()));
-  
+
       const courseTypeMatch = recipe.courseType
         .toLowerCase()
         .includes(search.toLowerCase());
-  
+
       const creatorFirstLastMatch =
-        recipe.user.profile.firstName.toLowerCase().includes(search.toLowerCase()) ||
-        recipe.user.profile.lastName.toLowerCase().includes(search.toLowerCase());
-  
-      return titleMatch || ingredientsMatch || courseTypeMatch || creatorFirstLastMatch;
+        recipe.user.profile.firstName
+          .toLowerCase()
+          .includes(search.toLowerCase()) ||
+        recipe.user.profile.lastName
+          .toLowerCase()
+          .includes(search.toLowerCase());
+
+      return (
+        titleMatch ||
+        ingredientsMatch ||
+        courseTypeMatch ||
+        creatorFirstLastMatch
+      );
     });
   } else {
     filteredRecipes = recipes;
@@ -141,7 +149,7 @@ export default function Album({
                           sx={{
                             // 16:9
                             pt: "60.25%",
-                            paddingBottom: "0px"
+                            paddingBottom: "0px",
                           }}
                           image={card.imageUrl}
                         />
@@ -149,14 +157,21 @@ export default function Album({
                           sx={{
                             flexGrow: 1,
                             paddingBottom: "0px",
-             
+                
                           }}
                         >
                           <Typography
                             gutterBottom
                             variant="h5"
                             component="h2"
-                            style={{ fontSize: "1.2rem" }}
+                            sx={{
+                              fontSize: "1.2rem",
+                              display: "flex",
+                              flexDirection: "column",
+                              height: "3.6rem", // Adjust as needed
+                              justifyContent: "space-between",
+                              overflow: "hidden",
+                            }}
                           >
                             {card.title}
                           </Typography>
@@ -166,13 +181,14 @@ export default function Album({
                               display: "grid",
                               justifyContent: "space-between",
                               alignContent: "center",
+              
                             }}
                           >
                             <div
                               style={{
                                 display: "flex",
                                 alignContent: "center",
-                                paddingBottom: "0px"
+                                paddingBottom: "0px",
                               }}
                             >
                               <Avatar
@@ -223,11 +239,11 @@ export default function Album({
                       </Link>
                       <CardActions
                         sx={{
-                          marginTop: "0px", // Adjust the margin here to reduce the space
+                  
                           display: "grid",
-                          gridTemplateColumns: "1fr 1fr 1fr",
-                          justifyContent: "space-between",
-                          alignContent: "center",
+                          gridTemplateColumns: '1fr 1fr 1fr',
+                       
+                       
                         }}
                       >
                         <Button size="small" sx={{ color: "#191d3a" }}>
