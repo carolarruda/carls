@@ -93,17 +93,21 @@ export default function Album({
       const titleMatch = recipe.title
         .toLowerCase()
         .includes(search.toLowerCase());
-
+  
       const ingredientsMatch = recipe.ingredients
         .toLowerCase()
         .split(";")
         .some((ingredient) => ingredient.includes(search.toLowerCase()));
-
+  
       const courseTypeMatch = recipe.courseType
         .toLowerCase()
         .includes(search.toLowerCase());
-
-      return titleMatch || ingredientsMatch || courseTypeMatch;
+  
+      const creatorFirstLastMatch =
+        recipe.user.profile.firstName.toLowerCase().includes(search.toLowerCase()) ||
+        recipe.user.profile.lastName.toLowerCase().includes(search.toLowerCase());
+  
+      return titleMatch || ingredientsMatch || courseTypeMatch || creatorFirstLastMatch;
     });
   } else {
     filteredRecipes = recipes;

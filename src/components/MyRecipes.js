@@ -98,8 +98,11 @@ export default function MyRecipes({
       const courseTypeMatch = recipe.courseType
         .toLowerCase()
         .includes(search.toLowerCase());
+      const creatorFirst = recipe.user.firstName
+        .toLowerCase()
+        .includes(search.toLowerCase());
 
-      return titleMatch || ingredientsMatch || courseTypeMatch;
+      return titleMatch || ingredientsMatch || courseTypeMatch || creatorFirst;
     });
   } else {
     filteredRecipes = recipesP;
