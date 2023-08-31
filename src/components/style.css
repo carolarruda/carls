@@ -965,3 +965,7 @@ row-gap: 5px;
 .instruction-list {
   margin-top: 70px;
 }
+
+.css-1waasse-MuiCardContent-root:last-child {
+  padding-bottom: 0 !important;
+}

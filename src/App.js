@@ -1,19 +1,18 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
 import Home from "./components/Home";
 import RecipeAdd from "./components/RecipeAdd";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
-import Album from "./components/Album";
-import MyRecipes from "./components/MyRecipes";
 import RecipeUpdate from "./components/RecipeUpdate";
 
 export const Context = React.createContext();
 const LazyAlbum = lazy(() => import("./components/Album"));
 const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
+const LazySignUp = lazy(() => import("./components/SignUp"));
+const LazyLogin = lazy(() => import("./components/Login"));
+const lazyHome = lazy(() => import("./components/Home"));
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,6 +21,25 @@ function App() {
   const [recipesP, setRecipesP] = useState("");
 
   const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+
+  
+  const [user, setuser] = useState("");
+
+  useEffect(() => {
+    const opts = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`http://localhost:4000/users/${userId}`, opts)
+      .then((res) => res.json())
+      .then((data) => {
+        setuser(data.data.user);
+      })
+      .catch((error) => console.error("Error fetching user:", error));
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -94,16 +112,25 @@ function App() {
     <Context.Provider value={[loggedIn, setLoggedIn]}>
       <div className="App">
         <Routes>
-          <Route path="/" element={<SignUp />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazySignUp />
+              </Suspense>
+            }
+          />
 
           <Route
             path="/login"
             element={
-              <Login
-                setUsers={setUsers}
-                users={users}
-                setLoggedIn={setLoggedIn}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyLogin
+                  setUsers={setUsers}
+                  users={users}
+                  setLoggedIn={setLoggedIn}
+                />
+              </Suspense>
             }
           />
           <Route
@@ -143,7 +170,7 @@ function App() {
             path="/recipes/:id"
             element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
           />
-          <Route path="/settings" element={<AccountSettings />} />
+          <Route path="/settings" element={<AccountSettings  user={user}/>} />
           <Route
             path="/recipes"
             element={
@@ -155,6 +182,7 @@ function App() {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   handleDelete={handleDelete}
+                  user={user}
                 />
               </Suspense>
             }

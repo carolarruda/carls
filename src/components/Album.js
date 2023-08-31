@@ -17,10 +17,23 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import FooterTwo from "./FooterTwo";
 import { CSSTransition } from "react-transition-group";
+import Tooltip from "@mui/material/Tooltip";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+
 
 const defaultTheme = createTheme();
 
-export default function Album({ search, setSearch, recipes, setRecipes }) {
+export default function Album({
+  search,
+  setSearch,
+  recipes,
+  setRecipes,
+  user,
+}) {
   const [isLiked, setIsLiked] = useState("");
 
   const likeRecipe = (id) => {
@@ -124,10 +137,17 @@ export default function Album({ search, setSearch, recipes, setRecipes }) {
                           sx={{
                             // 16:9
                             pt: "60.25%",
+                            paddingBottom: "0px"
                           }}
                           image={card.imageUrl}
                         />
-                        <CardContent sx={{ flexGrow: 1 }}>
+                        <CardContent
+                          sx={{
+                            flexGrow: 1,
+                            paddingBottom: "0px",
+             
+                          }}
+                        >
                           <Typography
                             gutterBottom
                             variant="h5"
@@ -136,9 +156,76 @@ export default function Album({ search, setSearch, recipes, setRecipes }) {
                           >
                             {card.title}
                           </Typography>
+                          <CardActions
+                            sx={{
+                              marginTop: "auto",
+                              display: "grid",
+                              justifyContent: "space-between",
+                              alignContent: "center",
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                alignContent: "center",
+                                paddingBottom: "0px"
+                              }}
+                            >
+                              <Avatar
+                                sx={{
+                                  width: 32,
+                                  height: 32,
+                                  backgroundColor: "#eeeeee",
+                                  color: "#161a21",
+                                  fontSize: "14px",
+                                  marginBottom: "auto",
+                                  marginRight: "8px",
+                                }}
+                              >
+                                {card.user.profile.firstName[0]}
+                                {card.user.profile.lastName[0]}
+                              </Avatar>
+                              <PersonAddIcon
+                                sx={{
+                                  display: "grid",
+                                  width: 22,
+                                  height: 22,
+                                  backgroundColor: "#eeeeee",
+                                  color: "#161a21",
+                                  fontSize: "14px",
+                                  marginBottom: "auto",
+                                  borderRadius: "50%",
+                                  marginLeft: "8px",
+                                  alignSelf: "center",
+                                  marginTop: "5px",
+                                }}
+                              />
+                              <BookmarkIcon
+                                sx={{
+                                  width: 22,
+                                  height: 22,
+                                  backgroundColor: "#eeeeee",
+                                  color: "#161a21",
+                                  fontSize: "14px",
+                                  marginBottom: "auto",
+                                  marginLeft: "8px",
+                                  borderRadius: "50%",
+                                  marginTop: "5px",
+                                }}
+                              />
+                            </div>
+                          </CardActions>
                         </CardContent>
                       </Link>
-                      <CardActions sx={{ marginTop: "auto" }}>
+                      <CardActions
+                        sx={{
+                          marginTop: "0px", // Adjust the margin here to reduce the space
+                          display: "grid",
+                          gridTemplateColumns: "1fr 1fr 1fr",
+                          justifyContent: "space-between",
+                          alignContent: "center",
+                        }}
+                      >
                         <Button size="small" sx={{ color: "#191d3a" }}>
                           Comment
                         </Button>

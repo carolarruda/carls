@@ -8,27 +8,12 @@ import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteAccount from './DeleteAccount'
 
-const AccountSettings = () => {
+const AccountSettings = ({user}) => {
   const username = localStorage.getItem("username");
-  const userId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
+  // const userId = localStorage.getItem("userId");
+  // const token = localStorage.getItem("token");
 
-  const [user, setuser] = useState("");
 
-  useEffect(() => {
-    const opts = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    fetch(`http://localhost:4000/users/${userId}`, opts)
-      .then((res) => res.json())
-      .then((data) => {
-        setuser(data.data.user);
-      })
-      .catch((error) => console.error("Error fetching user:", error));
-  }, [userId, token]);
 
   return (
     <div>
