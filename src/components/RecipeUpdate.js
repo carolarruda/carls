@@ -9,7 +9,14 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
-const RecipeUpdate = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
+const RecipeUpdate = ({
+  recipes,
+  recipesP,
+  setRecipes,
+  setRecipesP,
+  search,
+  setSearch,
+}) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -24,6 +31,12 @@ const RecipeUpdate = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
 
   const navigate = useNavigate();
   const params = useParams();
+
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = () => {
+    setLoading(true);
+  };
 
   useEffect(() => {
     const fetchInitialValue = () => {
@@ -80,6 +93,7 @@ const RecipeUpdate = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
           .then((res) => res.json())
           .then((data) => {
             setRecipes(data.data.recipes);
+
             const opts = {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -140,7 +154,7 @@ const RecipeUpdate = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
 
   return (
     <div>
-      <Nav />
+      <Nav search={search} setSearch={setSearch} />
 
       <section className="form-container">
         <div className="big-container" id="set-height">
@@ -324,8 +338,9 @@ const RecipeUpdate = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
               <LoadingButton
                 size="small"
                 color="primary"
-                // onClick={handleClick}
-                // loading={loading}
+                onClick={handleClick}
+                // onSubmit={handleClick}
+                loading={loading}
                 loadingPosition="start"
                 startIcon={<SaveIcon />}
                 variant="contained"

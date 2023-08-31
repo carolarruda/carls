@@ -97,7 +97,6 @@ const Login = ({ setUsers, users }) => {
             setRedTwo("red");
             setShake(sk);
             setShakeTwo(sk);
-            console.log("Please use register to create a new user");
           }
         } catch (error) {
           console.error("Error occurred during login", error);

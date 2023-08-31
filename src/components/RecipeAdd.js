@@ -9,7 +9,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
-const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
+const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP, search, setSearch }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -23,6 +23,13 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false);
+
+  const  handleClick= ()=> {
+
+    setLoading(true);
+  }
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -116,7 +123,7 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
 
   return (
     <div>
-      <Nav />
+      <Nav search={search} setSearch={setSearch}/>
 
       <section className="form-container">
         <div className="big-container" id="set-height">
@@ -300,8 +307,8 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
               <LoadingButton
                 size="small"
                 color="primary"
-                // onClick={handleClick}
-                // loading={loading}
+                onClick={handleClick}
+                loading={loading}
                 loadingPosition="start"
                 startIcon={<SaveIcon />}
                 variant="contained"

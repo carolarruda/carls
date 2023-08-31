@@ -168,7 +168,7 @@ export default function Album({
                               fontSize: "1.2rem",
                               display: "flex",
                               flexDirection: "column",
-                              height: "3.6rem", // Adjust as needed
+                              height: "3.6rem", 
                               justifyContent: "space-between",
                               overflow: "hidden",
                             }}

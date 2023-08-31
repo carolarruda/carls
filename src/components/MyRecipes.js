@@ -14,6 +14,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import FooterTwo from "./FooterTwo";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const defaultTheme = createTheme();
 
@@ -26,6 +29,11 @@ export default function MyRecipes({
   handleDelete,
 }) {
   const navigate = useNavigate();
+  const [loadingStates, setLoadingStates] = useState({});
+
+  const handleClick = (id) => {
+    setLoadingStates((prevState) => ({ ...prevState, [id]: true }));
+  };
 
   const handleEdit = (id) => {
     navigate(`/edit/${id}`);
@@ -98,11 +106,21 @@ export default function MyRecipes({
       const courseTypeMatch = recipe.courseType
         .toLowerCase()
         .includes(search.toLowerCase());
-      const creatorFirst = recipe.user.firstName
-        .toLowerCase()
-        .includes(search.toLowerCase());
 
-      return titleMatch || ingredientsMatch || courseTypeMatch || creatorFirst;
+      const creatorFirstLastMatch =
+        recipe.user.profile.firstName
+          .toLowerCase()
+          .includes(search.toLowerCase()) ||
+        recipe.user.profile.lastName
+          .toLowerCase()
+          .includes(search.toLowerCase());
+
+      return (
+        titleMatch ||
+        ingredientsMatch ||
+        courseTypeMatch ||
+        creatorFirstLastMatch
+      );
     });
   } else {
     filteredRecipes = recipesP;
@@ -154,17 +172,36 @@ export default function MyRecipes({
                         <Button
                           size="small"
                           sx={{ color: "#191d3a" }}
-                          onClick={()=> handleEdit(card.id)}
+                          onClick={() => handleEdit(card.id)}
                         >
                           Edit
                         </Button>
-                        <Button
+                        <LoadingButton
                           size="small"
-                          sx={{ color: "#191d3a" }}
-                          onClick={() => handleDelete(card.id)}
+                          sx={{
+                            color: "#191d3a",
+                            backgroundColor: "transparent",
+                            boxShadow: "none",
+                            border: "none",
+                            "&:hover": {
+                              backgroundColor: "#f6fafd",
+                              boxShadow: "none",
+                              border: "none",
+                            },
+                          }}
+                          color="primary"
+                          onClick={() => {
+                            handleDelete(card.id);
+                            handleClick(card.id);
+                          }}
+                          loading={loadingStates[card.id] || false}
+                          loadingPosition="start"
+                          startIcon={<DeleteIcon />}
+                          variant="contained"
+                          type="submit"
                         >
-                          Delete
-                        </Button>
+                          <span>Delete</span>
+                        </LoadingButton>
                       </CardActions>
                     </Card>
                   </Grid>

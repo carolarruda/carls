@@ -12,7 +12,7 @@ const LazyAlbum = lazy(() => import("./components/Album"));
 const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
 const LazySignUp = lazy(() => import("./components/SignUp"));
 const LazyLogin = lazy(() => import("./components/Login"));
-const lazyHome = lazy(() => import("./components/Home"));
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,6 +22,7 @@ function App() {
 
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
+
 
   
   const [user, setuser] = useState("");
@@ -69,6 +70,7 @@ function App() {
 
   const handleDelete = (id) => {
     setRecipes(filteredRecipes);
+
     const opts = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -152,6 +154,8 @@ function App() {
                 setRecipes={setRecipes}
                 recipesP={recipesP}
                 setRecipesP={setRecipesP}
+                search={search}
+                setSearch={setSearch}
               />
             }
           />
@@ -163,6 +167,8 @@ function App() {
                 setRecipes={setRecipes}
                 recipesP={recipesP}
                 setRecipesP={setRecipesP}
+                search={search}
+                setSearch={setSearch}
               />
             }
           />
@@ -170,7 +176,8 @@ function App() {
             path="/recipes/:id"
             element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
           />
-          <Route path="/settings" element={<AccountSettings  user={user}/>} />
+          <Route path="/settings" element={<AccountSettings  user={user}      search={search}
+                setSearch={setSearch}/>} />
           <Route
             path="/recipes"
             element={

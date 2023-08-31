@@ -10,9 +10,8 @@
   grid-template-columns: 4fr 5fr 4fr;
   column-gap: 2rem;
   row-gap: 1rem;
-  row-gap: 1rem;
-  margin-left: 20px;
-  margin-right: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
   padding: 40px;
 }
 
@@ -22,7 +21,6 @@
   border-radius: 20px;
   width: 100%;
   height: 100%;
-
   justify-self: center;
   background-color: #ffffff;
 }
@@ -96,7 +94,7 @@ img {
 }
 
 .text-tag {
-  font-size: 19px;
+  font-size: 16px;
   font-family: Inter, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-weight: 500;
   padding-left: 20px;
@@ -119,7 +117,7 @@ img {
 }
 
 .info-card:nth-child(2) {
-  height: 350px;
+  height: 320px;
 }
 
 .info-card:nth-child(3) {
@@ -141,7 +139,9 @@ img {
 }
 
 .info-card {
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
+  /* padding: 10px; */
+  padding-bottom: 10px;
 }
 
 .column-one {
@@ -150,7 +150,7 @@ img {
 }
 
 .one {
-  min-height: 400px;
+  min-height: 360px;
 }
 
 .four {
@@ -174,11 +174,11 @@ img {
 }
 
 .three {
-  min-height: 380px;
+  min-height: 320px;
 }
 
 .five {
-  min-height: 450px;
+  min-height: 420px;
 }
 
 .six {
@@ -186,11 +186,11 @@ img {
 }
 
 .special {
-  font-size: 22px;
+  font-size: 19px;
 }
 
 .specialy {
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .larger {
