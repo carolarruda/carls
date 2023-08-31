@@ -6,10 +6,73 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteAccount from "./DeleteAccount";
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const AccountSettings = ({ user, search, setSearch }) => {
   const username = localStorage.getItem("username");
+  const token = localStorage.getItem("token");
+  const [file, setFile] = useState();
+  const [image, setImage] = useState("");
 
+  const navigate = useNavigate();
+
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const opts = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`http://localhost:4000/users/avatar/${userId}`, opts)
+      .then((res) => res.json())
+      .then((data) => {
+        setImage(data.data.avatar);
+        console.log(data.data.avatar);
+      })
+      .catch((error) => console.error("Error fetching user:", error));
+  }, [token, userId]);
+
+  const handleImageUpload = async (files) => {
+    const image = files[0];
+
+    if (image) {
+      const formData = new FormData();
+      formData.append("image", image);
+
+      if (image) {
+        const formData = new FormData();
+        formData.append("upload", image);
+
+        try {
+          const response = await fetch(
+            `http://localhost:4000/users/${user.id}/upload`,
+            {
+              method: "POST",
+              body: formData,
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          if (response.ok) {
+            console.log("Image uploaded successfully");
+            navigate(0);
+
+            console.log("Image URL:", image);
+          } else {
+            console.error("Image upload failed");
+          }
+        } catch (error) {
+          console.error("Error uploading image:", error.message);
+        }
+      }
+    }
+  };
 
   return (
     <div>
@@ -33,20 +96,48 @@ const AccountSettings = ({ user, search, setSearch }) => {
                 textAlign: "center",
               }}
             >
-              <Tooltip title="Avatar">
-                <IconButton size="small" sx={{ ml: 2 }} aria-haspopup="true">
-                  <Avatar
-                    sx={{
+              <label htmlFor="image-upload">
+                {user.avatar ? (
+                  <img
+                    src={image}
+                    alt="Profile"
+                    style={{
                       width: 82,
                       height: 82,
                       backgroundColor: "#eeeeee",
                       color: "#161a21",
                     }}
+                  />
+                ) : (
+                  <Avatar
+                    sx={{
+                      width: 82,
+                      height: 82,
+                      backgroundImage: `url(${image})`,
+                      backgroundSize: "cover",
+                      backgroundColor: "#eeeeee",
+                      color: "#161a21",
+                    }}
                   >
-                    {username[0]}
+                    <CloudUploadIcon
+                      sx={{
+                        width: 25,
+                        height: 25,
+                        backgroundColor: "transparent",
+                        color: "white",
+                        marginTop: "40px",
+                        marginLeft: "40px",
+                      }}
+                    />
                   </Avatar>
-                </IconButton>
-              </Tooltip>
+                )}
+              </label>
+              <input
+                type="file"
+                id="image-upload"
+                style={{ display: "none" }}
+                onChange={(e) => handleImageUpload(e.target.files)}
+              />
             </Box>
             <div className="fullname">
               <h2>
