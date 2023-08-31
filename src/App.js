@@ -4,14 +4,16 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import RecipeAdd from "./components/RecipeAdd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import Album from "./components/Album";
 import MyRecipes from "./components/MyRecipes";
-import RecipeEdit from "./components/RecipeEdit";
+import RecipeUpdate from "./components/RecipeUpdate";
 
 export const Context = React.createContext();
+const LazyAlbum = lazy(() => import("./components/Album"));
+const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -48,13 +50,6 @@ function App() {
   }, [token]);
 
   const handleDelete = (id) => {
-    const filteredRecipes = recipes.filter((recipe) => {
-      if (recipe.id !== id) {
-        return recipe;
-      } else {
-        return null;
-      }
-    });
     setRecipes(filteredRecipes);
     const opts = {
       headers: {
@@ -136,7 +131,7 @@ function App() {
           <Route
             path="/edit/:id"
             element={
-              <RecipeEdit
+              <RecipeUpdate
                 recipes={recipes}
                 setRecipes={setRecipes}
                 recipesP={recipesP}
@@ -152,32 +147,36 @@ function App() {
           <Route
             path="/recipes"
             element={
-              <Album
-                setSearch={setSearch}
-                search={search}
-                className="main-container"
-                recipes={recipes}
-                setRecipes={setRecipes}
-                handleDelete={handleDelete}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyAlbum
+                  setSearch={setSearch}
+                  search={search}
+                  className="main-container"
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  handleDelete={handleDelete}
+                />
+              </Suspense>
             }
           />
           <Route
             path="/myrecipes"
             element={
-              <MyRecipes
-                setSearch={setSearch}
-                search={search}
-                recipesP={recipesP}
-                setRecipesP={setRecipesP}
-                setRecipes={setRecipes}
-                handleDelete={handleDelete}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyMyRecipes
+                  setSearch={setSearch}
+                  search={search}
+                  recipesP={recipesP}
+                  setRecipesP={setRecipesP}
+                  setRecipes={setRecipes}
+                  handleDelete={handleDelete}
+                />
+              </Suspense>
             }
           />
           <Route
             path="/myrecipes/:id"
-            element={<RecipeView recipes={recipes}  setRecipes={setRecipes} />}
+            element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
           />
         </Routes>
       </div>

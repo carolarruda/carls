@@ -152,16 +152,16 @@ const RecipeView = ({ search, setSearch }) => {
           </div>
           <div className="time-rc">
             <div>
-              Total <span>{calcTime()}</span>
+              Total <span>{calcTime()} mins</span>
             </div>
             <div>
-              Prep <span>{recipe.prepTime}</span>
+              Prep <span>{recipe.prepTime} mins</span>
             </div>
             <div>
-              Cook <span>{recipe.cookTime}</span>
+              Cook <span>{recipe.cookTime} mins</span>
             </div>
           </div>
-          <div className="ingredients-rc">
+          <div className="ingredients-rc instruction-list">
             <h2>Instructions</h2>
           </div>
           <div>

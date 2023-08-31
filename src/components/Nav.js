@@ -58,7 +58,7 @@ const Nav = ({ users, search, setSearch }) => {
           <div className="profile">
             <p>Welcome back, {username}</p>
             <div>
-              <AccountMenu username={username} setLoggedIn={setLoggedIn} />
+              <AccountMenu username={username}  />
             </div>
           </div>
         ) : (

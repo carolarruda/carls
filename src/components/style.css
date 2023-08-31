@@ -641,6 +641,8 @@ input::-webkit-inner-spin-button {
   font-size: 45px;
   color: black;
   max-width: 450px;
+  /* margin-top: 10px; */
+  margin-bottom: 10px;
 }
 
 .recipe-right div {
@@ -960,3 +962,6 @@ row-gap: 5px;
   margin-top: 15px;
 }
 
+.instruction-list {
+  margin-top: 70px;
+}

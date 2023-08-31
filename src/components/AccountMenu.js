@@ -12,14 +12,20 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useNavigate } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Context } from "../App";
+import { useContext } from "react";
 
 
-export default function AccountMenu({setLoggedIn}) {
+export default function AccountMenu() {
+  const [loggedIn, setLoggedIn] = useContext(Context);
   const username = localStorage.getItem('username')
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  // if(username === null) {
+  //   username = ''
+  // }
 
   const handleLogOut = ()=> {
     setLoggedIn(false);
@@ -57,7 +63,7 @@ export default function AccountMenu({setLoggedIn}) {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32, backgroundColor: '#eeeeee', color: '#161a21'}}>{username[0]}</Avatar>
+            <Avatar sx={{ width: 32, height: 32, backgroundColor: '#eeeeee', color: '#161a21'}}>{username[0] || ''}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>

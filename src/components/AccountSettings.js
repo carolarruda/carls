@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteAccount from './DeleteAccount'
 
 const AccountSettings = () => {
   const username = localStorage.getItem("username");
@@ -38,9 +39,8 @@ const AccountSettings = () => {
           <button className="course-type settings">Preferences</button>
           <button className="course-type settings">Notifications</button>
           <div className="empty"></div>
-          <button className="course-type settings delete">
-            Delete Account
-          </button>
+
+          <DeleteAccount/>
         </section>
         <section className="right-settings">
           <h2 className="option-setting-header">My Profile</h2>

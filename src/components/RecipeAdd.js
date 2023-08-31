@@ -41,7 +41,10 @@ const RecipeAdd = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   };
 
   const handlePrep = (e) => {
-    setPrepTime(Number(e.target.value));
+    if (e.target.value > 0) {
+      setPrepTime(Number(e.target.value));
+    }
+
   };
 
   const handleCook = (e) => {

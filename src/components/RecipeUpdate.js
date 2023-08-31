@@ -9,7 +9,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
-const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
+const RecipeUpdate = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -25,8 +25,6 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const navigate = useNavigate();
   const params = useParams();
 
-
-
   useEffect(() => {
     const fetchInitialValue = () => {
       fetch(`http://localhost:4000/recipes/${params.id}`)
@@ -39,7 +37,7 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
           setPrepTime(data.data.recipe.prepTime || 0);
           setCookTime(data.data.recipe.cookTime || 0);
           setServings(data.data.recipe.servings || 0);
-          setIngredients(data.data.recipe.ingredients || "") ;
+          setIngredients(data.data.recipe.ingredients || "");
           setInstructions(data.data.recipe.instructions || "");
           setNotes(data.data.recipe.notes || "");
         })
@@ -50,7 +48,6 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
 
     fetchInitialValue();
   }, [params.id]);
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +62,6 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
       ingredients,
       instructions,
       notes,
-
     };
 
     const postOpts = {
@@ -91,15 +87,16 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
             };
             fetch(`http://localhost:4000/recipes/personal`, opts)
               .then((res) => res.json())
-              .then((data) => setRecipesP(data.data.recipes));
-              navigate('/myrecipes')
+              .then((data) => {
+                setRecipesP(data.data.recipes);
+                navigate("/myrecipes");
+              });
           });
       });
   }
   const handleCancel = () => {
     navigate(-1);
   };
-
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -140,7 +137,6 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   const handleNotes = (e) => {
     setNotes(e.target.value);
   };
-  
 
   return (
     <div>
@@ -349,4 +345,4 @@ const RecipeEdit = ({ recipes, recipesP, setRecipes, setRecipesP }) => {
   );
 };
 
-export default RecipeEdit;
+export default RecipeUpdate;
