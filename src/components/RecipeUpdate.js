@@ -355,7 +355,7 @@ const RecipeUpdate = ({
           </form>
         </div>
       </section>
-      <FooterTwo />
+
     </div>
   );
 };

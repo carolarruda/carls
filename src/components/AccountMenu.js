@@ -23,9 +23,6 @@ export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  // if(username === null) {
-  //   username = ''
-  // }
 
   const handleLogOut = ()=> {
     setLoggedIn(false);
