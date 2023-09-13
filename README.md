@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Recipe Web Sharing App - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend repository for the Recipe Web App, I named it Carls - the food plaza, the app provides users with an intuitive interface to explore, create, update and delete personal recipes as well as share them in the platform.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication:** Secure user authentication that allows users to sign up, log in, and maintain personalized profiles.
+- **Recipe Creation:** An easy-to-use form for users to add their own recipes, complete with ingredients, instructions, and images.
+- **Recipe Modification:** Users can edit and update their own recipes as well as delete recipes they no longer want to share.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React:** The frontend is built using the React JavaScript library, providing a dynamic and responsive user interface.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Material UI:** Material UI is used for parts of the styling the application, providing a modern and visually appealing user experience.
 
-### `npm test`
+- **Fetch API:** The Fetch API is utilized for making RESTful API requests to the backend, enabling seamless communication between the frontend and backend.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **CSS:** Cascading Style Sheets are used for most of the styling of the application.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To set up the frontend locally, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone this repository to your local machine.
+2. Install the required dependencies using `npm install`.
+3. Start the development server using `npm start`.
+4. Open your web browser and navigate to the provided development server URL.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+- Browse through the existing recipes without creating an account.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Sign up for an account to start adding your own recipes and interacting with other users.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Create, edit, or delete your recipes through RESTful API endpoints, making the use of the interaction with the backend and share your culinary creations with others.

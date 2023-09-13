@@ -43,10 +43,10 @@ const Login = ({ setUsers, users }) => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setLoggedIn(false);
-  //   localStorage.clear();
-  // }, [setLoggedIn]);
+  useEffect(() => {
+    setLoggedIn(false);
+    localStorage.clear();
+  }, [setLoggedIn]);
 
   const handleGoToRegister = (e) => {
     navigate("/");

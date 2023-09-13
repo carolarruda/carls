@@ -3,7 +3,7 @@
 .section {
   background-color: #fafafc;
   display: grid;
-  padding-top: 200px;
+  padding-top: 400px;
 }
 .welcome-info {
   display: grid;
@@ -54,7 +54,7 @@
   color: #000000;
   font-family: "Helvetica";
   width: 600px;
-  padding-bottom: 200px;
+  padding-bottom: 400px;
 }
 
 h2 {

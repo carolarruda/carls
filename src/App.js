@@ -6,6 +6,7 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import RecipeUpdate from "./components/RecipeUpdate";
+import { useNavigate } from "react-router-dom";
 
 export const Context = React.createContext();
 const LazyAlbum = lazy(() => import("./components/Album"));
@@ -13,34 +14,15 @@ const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
 const LazySignUp = lazy(() => import("./components/SignUp"));
 const LazyLogin = lazy(() => import("./components/Login"));
 
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState();
   const [recipes, setRecipes] = useState("");
   const [recipesP, setRecipesP] = useState("");
-
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
-
-
-  
   const [user, setuser] = useState("");
-
-  useEffect(() => {
-    const opts = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    fetch(`http://localhost:4000/users/${userId}`, opts)
-      .then((res) => res.json())
-      .then((data) => {
-        setuser(data.data.user);
-      })
-      .catch((error) => console.error("Error fetching user:", error));
-  }, []);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (token) {
@@ -64,9 +46,24 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data.data);
+   
       })
       .catch((error) => console.error("Error fetching recipes:", error));
-  }, [token]);
+    const opts = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`http://localhost:4000/users/${userId}`, opts)
+      .then((res) => res.json())
+      .then((data) => {
+        setuser(data.data.user);
+      })
+      .catch((error) => console.error("Error fetching user:", error));
+  }, [token, userId]);
+
+  useEffect(() => {}, [token]);
 
   const handleDelete = (id) => {
     setRecipes(filteredRecipes);
@@ -77,38 +74,30 @@ function App() {
       },
       method: "DELETE",
     };
-    return fetch(`http://localhost:4000/recipes/${id}`, opts)
-      .then((response) => response.json())
-      .then(() => {
-        const opts = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        fetch(`http://localhost:4000/recipes/personal`, opts)
-          .then((res) => res.json())
-          .then((data) => {
-            setRecipesP(data.data.recipes);
-          });
-      });
+    return fetch(`http://localhost:4000/recipes/${id}`, opts).then(
+      (response) => {
+        response.json();
+        navigate(0);
+      }
+    );
+    // .then(() => {
+    //   const opts = {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   };
+    //   fetch(`http://localhost:4000/recipes/personal`, opts)
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       setRecipesP(data.data.recipes);
+    //     });
+    // });
   };
 
   const [search, setSearch] = useState("");
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value;
-    setSearch(searchTerm);
-    if (searchTerm.length === 0) {
-      setFilteredRecipes(recipes);
-    } else {
-      const filteredRecipes = recipes.filter((recipe) => {
-        return recipe.title.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-      setFilteredRecipes(filteredRecipes);
-    }
-    return null;
-  };
+
 
   return (
     <Context.Provider value={[loggedIn, setLoggedIn]}>
@@ -176,8 +165,16 @@ function App() {
             path="/recipes/:id"
             element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
           />
-          <Route path="/settings" element={<AccountSettings  user={user}      search={search}
-                setSearch={setSearch}/>} />
+          <Route
+            path="/settings"
+            element={
+              <AccountSettings
+                user={user}
+                search={search}
+                setSearch={setSearch}
+              />
+            }
+          />
           <Route
             path="/recipes"
             element={

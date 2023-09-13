@@ -31,7 +31,9 @@ const Nav = ({ users, search, setSearch }) => {
   return (
     <nav className="nav">
       <div className="logo">
-        <img className="carls-log0" src={pic} alt=" " />
+        {/* <img className="carls-log0" src={pic} alt=" " /> */}
+        <h1 className="brand">Carl's </h1>
+        <h2 className="brand p3">the food plaza</h2>
       </div>
       <div>
         <ul className="options">

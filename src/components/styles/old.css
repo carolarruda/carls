@@ -15,9 +15,9 @@
   /* form itselff */
   .big-container {
     border: solid 1px transparent;
-    background-color: #f4f9fc;
+
     width: 100vw;
-    min-height: 100vh;
+    min-height: 1600px;
     display: grid;
     padding: 20px;
     justify-content: center;
