@@ -9,6 +9,8 @@
 * {
   max-width: 100%;
   margin: 0 auto;
+  scroll-behavior: smooth;
+
 }
 
 .brand {
@@ -342,7 +344,8 @@ input::-webkit-inner-spin-button {
   color: #b5b9bc;
   align-self: center;
   font-family: "Poppins", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .options li a {

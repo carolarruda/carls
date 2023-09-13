@@ -47,7 +47,7 @@ const Nav = ({ users, search, setSearch }) => {
             <a href="contact.asp">Blog</a>
           </li>
           <li>
-            <a href="about.asp">About</a>
+            <a href="#about">About</a>
           </li>
         </ul>
       </div>

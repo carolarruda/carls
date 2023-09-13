@@ -10,11 +10,12 @@ const Home = ({ users, setSearch, search }) => {
     <div className="background home-grid">
       <Nav users={users}  search={search} setSearch={setSearch}/>
       <section className="main-home">
-        <section className="caroussel">
-          <Caroussel blogs={blogs} />
-        </section>
+      
         <section className="welcome">
           <Welcome />
+        </section>
+        <section className="caroussel">
+          <Caroussel blogs={blogs} />
         </section>
         <section className="footer">
         <Footer/>

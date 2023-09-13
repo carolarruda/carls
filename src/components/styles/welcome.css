@@ -1,10 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
 
-.section {
-  background-color: #fafafc;
+.welcome {
+
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section h1 {
+
   display: grid;
   padding-top: 400px;
+
+
 }
+
+.smaller-text {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.backImage {
+  background-image: url('https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #c4d6d6;
+  background-size: cover;
+}
+
+
 .welcome-info {
   display: grid;
   grid-template-columns: 4fr 5fr 4fr;
@@ -13,6 +38,8 @@
   margin-left: 100px;
   margin-right: 100px;
   padding: 40px;
+  margin-top: 300px;
+  margin-bottom: 300px;
 }
 
 .info-card {

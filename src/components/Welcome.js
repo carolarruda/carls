@@ -9,10 +9,16 @@ import pic6 from "./images/3759999.jpg";
 const Welcome = () => {
   return (
     <div className="section">
-      <h1 className="header">
-        Welcome to Carl's - where food stories come to life!{" "}
-      </h1>
-      <section className="welcome-info">
+      <div className="backImage">
+        <h1 className="header">
+          Welcome to Carl's - where food stories come to life!{" "}
+          <span className="smaller-text">        Connecting with other foodies has never been easier. Find others that share the same passion, connect or simply browse and find your next creation!</span>
+        </h1>
+
+      </div>
+
+      <section className="welcome-info" id="about">
+        
         <div className="column-one">
           <div className="info-card one">
             <h2 className="larger">Share Your Culinary Creations</h2>
