@@ -5,6 +5,7 @@ This is the frontend repository for the Recipe Web App, I named it Carls - the f
 ![LandingPage](https://github.com/carolarruda/carls/blob/main/src/blob/landingPageHero.png?raw=true)
 ![Login](https://github.com/carolarruda/carls/blob/main/src/gifs/login.gif?raw=true)
 ![viewRecipe](https://github.com/carolarruda/carls/blob/main/src/gifs/viewRecipe.gif?raw=true)
+![upload](https://github.com/carolarruda/carls/blob/main/src/gifs/updatepicture.gif?raw=true)
 
 
 ## Features
