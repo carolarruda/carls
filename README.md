@@ -2,6 +2,8 @@
 
 This is the frontend repository for the Recipe Web App, I named it Carls - the food plaza, the app provides users with an intuitive interface to explore, create, update and delete personal recipes as well as share them in the platform.
 
+![LandingPage](https://github.com/carolarruda/carls/blob/main/src/blob/landingPageHero.png?raw=true)
+
 ## Features
 
 - **User Authentication:** Secure user authentication that allows users to sign up, log in, and maintain personalized profiles.
