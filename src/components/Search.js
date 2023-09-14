@@ -10,14 +10,11 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-
-  //   borderRadius: theme.shape.borderRadius,
   backgroundColor: "rgb(22, 26, 33)",
   "&:hover": {
     backgroundColor: "rgba(22, 26, 33, 0.35)",
   },
   marginLeft: 0,
-
   width: "90%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),

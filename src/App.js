@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import RecipeAdd from "./components/RecipeAdd";
+import Blog from "./components/Blog";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
@@ -21,8 +22,8 @@ function App() {
   const [recipesP, setRecipesP] = useState("");
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
-  const [user, setuser] = useState("");
-  const navigate = useNavigate()
+  const [user, setUser] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -40,13 +41,18 @@ function App() {
         .catch((error) =>
           console.error("Error fetching personal recipes:", error)
         );
+      fetch(`http://localhost:4000/users/${userId}`, opts)
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data.data.user);
+        })
+        .catch((error) => console.error("Error fetching user:", error));
     }
 
     fetch(`http://localhost:4000/recipes`)
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data.data);
-   
       })
       .catch((error) => console.error("Error fetching recipes:", error));
     const opts = {
@@ -54,13 +60,6 @@ function App() {
         Authorization: `Bearer ${token}`,
       },
     };
-
-    fetch(`http://localhost:4000/users/${userId}`, opts)
-      .then((res) => res.json())
-      .then((data) => {
-        setuser(data.data.user);
-      })
-      .catch((error) => console.error("Error fetching user:", error));
   }, [token, userId]);
 
   useEffect(() => {}, [token]);
@@ -96,8 +95,6 @@ function App() {
 
   const [search, setSearch] = useState("");
   const [filteredRecipes, setFilteredRecipes] = useState([]);
-
-
 
   return (
     <Context.Provider value={[loggedIn, setLoggedIn]}>
@@ -210,6 +207,7 @@ function App() {
             path="/myrecipes/:id"
             element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
           />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </div>
     </Context.Provider>

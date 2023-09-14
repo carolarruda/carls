@@ -43,11 +43,12 @@ const Nav = ({ users, search, setSearch }) => {
           <li>
             <a href="/recipes">Recipes</a>
           </li>
-          <li>
-            <a href="contact.asp">Blog</a>
-          </li>
+
           <li>
             <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="blog">Blog</a>
           </li>
         </ul>
       </div>
@@ -60,7 +61,7 @@ const Nav = ({ users, search, setSearch }) => {
           <div className="profile">
             <p>Welcome back, {username}</p>
             <div>
-              <AccountMenu username={username}  />
+              <AccountMenu username={username} />
             </div>
           </div>
         ) : (

@@ -1,15 +1,59 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
 
 .welcome {
+background-color: #e2f2f59c;
+}
 
-  background-position: center;
-  background-repeat: no-repeat;
+.signupBtn {
+  width: 130px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  gap: 9px;
+  color: white;
+  background: linear-gradient(to left,rgb(254, 184, 3),rgb(166, 130, 45));
+  position: relative;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+  margin-top: 30px;
+}
+
+.arrow {
+  position: absolute;
+  right: 7.5px;
+  background-color: rgb(255, 255, 255);
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.signupBtn:hover .arrow {
+  animation: slide-in-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .section h1 {
 
   display: grid;
-  padding-top: 400px;
+  padding-top: 200px;
 
 
 }
@@ -38,8 +82,8 @@
   margin-left: 100px;
   margin-right: 100px;
   padding: 40px;
-  margin-top: 300px;
-  margin-bottom: 300px;
+  padding-top: 300px;
+  padding-bottom: 200px;
 }
 
 .info-card {

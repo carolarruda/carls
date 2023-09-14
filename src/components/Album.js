@@ -31,7 +31,6 @@ export default function Album({
   setSearch,
   recipes,
   setRecipes,
-  user,
 }) {
   const [isLiked, setIsLiked] = useState("");
 

@@ -9,13 +9,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 70px;
-    /* padding-left: 50px; */
   }
   
-  /* form itselff */
   .big-container {
     border: solid 1px transparent;
-
     width: 100vw;
     min-height: 1600px;
     display: grid;
@@ -23,7 +20,6 @@
     justify-content: center;
   }
   
-  /* form items */
   
   .form-stack.recipe-form {
     display: flex;

@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 const defaultTheme = createTheme();
 
@@ -25,16 +25,15 @@ export default function MyRecipes({
   search,
   setSearch,
   recipesP,
-
   setRecipesP,
   handleDelete,
 }) {
   const navigate = useNavigate();
   const [loadingStates, setLoadingStates] = useState({});
 
-  const handleRecipe = ()=> {
-navigate('/add')
-  }
+  const handleRecipe = () => {
+    navigate("/add");
+  };
 
   const handleClick = (id) => {
     setLoadingStates((prevState) => ({ ...prevState, [id]: true }));
@@ -215,26 +214,25 @@ navigate('/add')
           </Grid>
         </Container>
         <div className="corner-right">
-   
-          <AddIcon 
-          onClick={()=> navigate('/add')}
-             sx={{
+          <AddIcon
+            onClick={() => navigate("/add")}
+            sx={{
               color: "#626989",
               backgroundColor: "transparent",
               boxShadow: "none",
               border: "none",
               width: 40,
-              height:40,
+              height: 40,
               "&:hover": {
-          
                 boxShadow: "none",
                 border: "none",
                 backgroundColor: "#eeeeee",
-                borderRadius:'50%',
-                alignSelf: 'center'
+                borderRadius: "50%",
+                alignSelf: "center",
               },
             }}
-          /> <div className="div">New Recipe</div>
+          />{" "}
+          <div className="div">New Recipe</div>
         </div>
       </main>
       <FooterTwo />

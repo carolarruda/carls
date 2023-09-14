@@ -13,12 +13,12 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 const AccountSettings = ({ search, setSearch }) => {
   const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('');
 
   const [image, setImage] = useState("");
 
   const navigate = useNavigate();
-  console.log(user);
+
 
   const userId = localStorage.getItem("userId");
 

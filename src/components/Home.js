@@ -8,17 +8,13 @@ import Footer from "./Footer";
 const Home = ({ users, setSearch, search }) => {
   return (
     <div className="background home-grid">
-      <Nav users={users}  search={search} setSearch={setSearch}/>
+      <Nav users={users} search={search} setSearch={setSearch} />
       <section className="main-home">
-      
         <section className="welcome">
           <Welcome />
         </section>
-        <section className="caroussel">
-          <Caroussel blogs={blogs} />
-        </section>
         <section className="footer">
-        <Footer/>
+          <Footer />
         </section>
       </section>
     </div>
