@@ -36,5 +36,3 @@ To set up the frontend locally, follow these steps:
 - Sign up for an account to start adding your own recipes and interacting with other users.
 
 - Create, edit, or delete your recipes through RESTful API endpoints, making the use of the interaction with the backend and share your culinary creations with others.
-
-![alt text](https://github.com/[carolarruda]/[carls]/main/blob/landingPageHero.png?raw=true)
