@@ -47,6 +47,8 @@ function App() {
           setUser(data.data.user);
         })
         .catch((error) => console.error("Error fetching user:", error));
+    }  else {
+      setLoggedIn(false);
     }
 
     fetch(`http://localhost:4000/recipes`)
@@ -60,6 +62,8 @@ function App() {
         Authorization: `Bearer ${token}`,
       },
     };
+  
+
   }, [token, userId]);
 
   useEffect(() => {}, [token]);

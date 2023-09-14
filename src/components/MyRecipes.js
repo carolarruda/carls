@@ -137,7 +137,7 @@ export default function MyRecipes({
       <main className="push-dow">
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={3}>
-            {filteredRecipes.length > 0 &&
+            {filteredRecipes && filteredRecipes.length > 0 &&
               filteredRecipes.map((card, index) => {
                 return (
                   <Grid item key={card.id} xs={15} sm={6} md={4}>
