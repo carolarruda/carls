@@ -2,7 +2,6 @@
 
 This is the frontend repository for the Recipe Web App Carls - the food plaza. The app provides users an intuitive interface to explore, create, update and delete personal recipes as well as share them in the platform.
 
-![LandingPage](https://github.com/carolarruda/carls/blob/main/src/blob/landingPageHero.png?raw=true)
 ![Login](https://github.com/carolarruda/carls/blob/main/src/gifs/login.gif?raw=true)
 ![viewRecipe](https://github.com/carolarruda/carls/blob/main/src/gifs/viewRecipe.gif?raw=true)
 ![search](https://github.com/carolarruda/carls/blob/main/src/gifs/search.gif?raw=true)
