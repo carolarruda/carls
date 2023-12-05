@@ -89,7 +89,7 @@ const SignUp = () => {
     async function registerUser() {
       try {
         const registerResponse = await fetch(
-          "http://localhost:4000/users",
+          "https://node-mysql-api-0zxf.onrender.com/users",
           opts
         );
 
@@ -100,7 +100,7 @@ const SignUp = () => {
           async function loginUser() {
             try {
               const loginResponse = await fetch(
-                "http://localhost:4000/login",
+                "https://node-mysql-api-0zxf.onrender.com/login",
                 opts
               );
               const data = await loginResponse.json();

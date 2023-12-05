@@ -22,7 +22,7 @@ const RecipeView = ({ search, setSearch }) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/recipes/${params.id}`)
+    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setRecipe(data.data.recipe);

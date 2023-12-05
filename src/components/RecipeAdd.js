@@ -102,10 +102,10 @@ const RecipeAdd = ({
       body: JSON.stringify(newRecipe),
     };
 
-    fetch(`http://localhost:4000/recipes`, opts)
+    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`, opts)
       .then((res) => res.json())
       .then((data) => {
-        fetch(`http://localhost:4000/recipes`)
+        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
           .then((res) => res.json())
           .then((data) => {
             setRecipes(data.data.recipes);
@@ -114,7 +114,7 @@ const RecipeAdd = ({
                 Authorization: `Bearer ${token}`,
               },
             };
-            fetch(`http://localhost:4000/recipes/personal`, opts)
+            fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
               .then((res) => res.json())
               .then((data) => setRecipesP(data.data.recipes));
             navigate("/myrecipes");

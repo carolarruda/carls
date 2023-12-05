@@ -33,7 +33,7 @@ function App() {
           Authorization: `Bearer ${token}`,
         },
       };
-      fetch(`http://localhost:4000/recipes/personal`, opts)
+      fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
         .then((res) => res.json())
         .then((data) => {
           setRecipesP(data.data.recipes);
@@ -41,7 +41,7 @@ function App() {
         .catch((error) =>
           console.error("Error fetching personal recipes:", error)
         );
-      fetch(`http://localhost:4000/users/${userId}`, opts)
+      fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
         .then((res) => res.json())
         .then((data) => {
           setUser(data.data.user);
@@ -51,7 +51,7 @@ function App() {
       setLoggedIn(false);
     }
 
-    fetch(`http://localhost:4000/recipes`)
+    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data.data);
@@ -77,7 +77,7 @@ function App() {
       },
       method: "DELETE",
     };
-    return fetch(`http://localhost:4000/recipes/${id}`, opts).then(
+    return fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${id}`, opts).then(
       (response) => {
         response.json();
         navigate(0);
@@ -89,7 +89,7 @@ function App() {
     //       Authorization: `Bearer ${token}`,
     //     },
     //   };
-    //   fetch(`http://localhost:4000/recipes/personal`, opts)
+    //   fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
     //     .then((res) => res.json())
     //     .then((data) => {
     //       setRecipesP(data.data.recipes);

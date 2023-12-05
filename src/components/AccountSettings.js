@@ -29,7 +29,7 @@ const AccountSettings = ({ search, setSearch }) => {
       },
     };
 
-    fetch(`http://localhost:4000/users/avatar/${userId}`, opts)
+    fetch(`https://node-mysql-api-0zxf.onrender.com/users/avatar/${userId}`, opts)
       .then((res) => res.json())
       .then((data) => {
         setImage(data.data.avatar);
@@ -52,7 +52,7 @@ const AccountSettings = ({ search, setSearch }) => {
 
         try {
           const response = await fetch(
-            `http://localhost:4000/users/${user.id}/upload`,
+            `https://node-mysql-api-0zxf.onrender.com/users/${user.id}/upload`,
             {
               method: "POST",
               body: formData,

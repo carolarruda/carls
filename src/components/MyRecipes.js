@@ -62,7 +62,7 @@ export default function MyRecipes({
       likedRecipe.find((item) => item.id === id)?.liked || false;
     setIsLiked(isRecipeLiked);
 
-    const url = `http://localhost:4000/recipes/${id}`;
+    const url = `https://node-mysql-api-0zxf.onrender.com/recipes/${id}`;
 
     if (isLiked) {
       const dislike = {

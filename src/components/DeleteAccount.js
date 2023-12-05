@@ -45,7 +45,7 @@ export default function DeleteAccount() {
       },
       method: "DELETE",
     };
-    fetch(`http://localhost:4000/users/${userId}`, opts)
+    fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
       .then((response) => response.json())
       .then((data) => {
         localStorage.clear();

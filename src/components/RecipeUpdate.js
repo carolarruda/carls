@@ -40,7 +40,7 @@ const RecipeUpdate = ({
 
   useEffect(() => {
     const fetchInitialValue = () => {
-      fetch(`http://localhost:4000/recipes/${params.id}`)
+      fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
         .then((response) => response.json())
         .then((data) => {
           setTitle(data.data.recipe.title || "");
@@ -86,10 +86,10 @@ const RecipeUpdate = ({
       body: JSON.stringify(editedRecipe),
     };
 
-    fetch(`http://localhost:4000/recipes/${params.id}`, postOpts)
+    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`, postOpts)
       .then((res) => res.json())
       .then((data) => {
-        fetch(`http://localhost:4000/recipes`)
+        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
           .then((res) => res.json())
           .then((data) => {
             setRecipes(data.data.recipes);
@@ -99,7 +99,7 @@ const RecipeUpdate = ({
                 Authorization: `Bearer ${token}`,
               },
             };
-            fetch(`http://localhost:4000/recipes/personal`, opts)
+            fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
               .then((res) => res.json())
               .then((data) => {
                 setRecipesP(data.data.recipes);
