@@ -1,8 +1,12 @@
 # Recipe Web Sharing App - Frontend
 
-This is the frontend repository for the Recipe Web App, I named it Carls - the food plaza, the app provides users with an intuitive interface to explore, create, update and delete personal recipes as well as share them in the platform.
+This is the frontend repository for the Recipe Web App Carls - the food plaza. The app provides users an intuitive interface to explore, create, update and delete personal recipes as well as share them in the platform.
 
-![LandingPage](https://github.com/carolarruda/carls/blob/main/src/blob/landingPageHero.png?raw=true)
+![Login](https://github.com/carolarruda/carls/blob/main/src/gifs/login.gif?raw=true)
+![viewRecipe](https://github.com/carolarruda/carls/blob/main/src/gifs/viewRecipe.gif?raw=true)
+![search](https://github.com/carolarruda/carls/blob/main/src/gifs/search.gif?raw=true)
+![upload](https://github.com/carolarruda/carls/blob/main/src/gifs/updatepicture.gif?raw=true)
+
 
 ## Features
 
@@ -14,7 +18,7 @@ This is the frontend repository for the Recipe Web App, I named it Carls - the f
 
 - **React:** The frontend is built using the React JavaScript library, providing a dynamic and responsive user interface.
 
-- **Material UI:** Material UI is used for parts of the styling the application, providing a modern and visually appealing user experience.
+- **Material UI:** Material UI is used for parts of the styling, providing a modern and visually appealing aesthetic.
 
 - **Fetch API:** The Fetch API is utilized for making RESTful API requests to the backend, enabling seamless communication between the frontend and backend.
 
