@@ -49,7 +49,7 @@ const Login = ({ setUsers, users }) => {
   }, [setLoggedIn]);
 
   const handleGoToRegister = (e) => {
-    navigate("/");
+    navigate("/sign");
   };
 
   const hanldeEmail = (e) => {

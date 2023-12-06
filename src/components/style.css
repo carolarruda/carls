@@ -27,10 +27,11 @@
 
 .background {
   background-color: #f4f9fc;
-  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .side {
