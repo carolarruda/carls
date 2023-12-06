@@ -1,16 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Josefin+Sans:ital,wght@0,100;0,400;1,600;1,700&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&family=Poppins:wght@100;400;700&family=Raleway:wght@200;300;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&family=Poppins:wght@100;400;700&family=Raleway:wght@200;300;500&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400&family=Poppins:wght@100;400;700&family=Raleway:wght@200;300;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400&family=Poppins:wght@100;400;700&family=Raleway:wght@200;300;500&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Raleway:wght@200;300;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Raleway:wght@200;300;500&display=swap");
 
 * {
   max-width: 100%;
   margin: 0 auto;
   scroll-behavior: smooth;
-
 }
 
 .brand {
@@ -28,11 +27,10 @@
 
 .background {
   background-color: #f4f9fc;
-  width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .side {
@@ -44,7 +42,7 @@
 .side {
   font-size: 10px;
   background-color: #f4f9fc;
-  padding: 20px;
+
   min-height: 150px;
 }
 
@@ -54,34 +52,40 @@
 
 .righty {
   height: 100%;
-  width: 80%;
+  width: 100%;
   display: grid;
   background-image: url("../components/images/signUp1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   justify-self: right;
+  @media (max-width: 450px) {
+    display: none;
+  }
+
 }
 
 .righty.log {
   height: 100%;
-  width: 80%;
   display: grid;
   background-image: url("../components/images/login1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   justify-self: right;
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
 
 .lefty {
-  height: 50%;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  justify-self: end;
+  justify-self: center;
   align-content: center;
   display: grid;
   grid-template-rows: min-content min-content min-content;
+  min-width: 350px;
 }
 
 .lefty h1,
@@ -282,108 +286,15 @@ input::-webkit-inner-spin-button {
   background-color: inherit;
 }
 
-.nav {
-  background-color: #161a21;
-  position: fixed;
-  top: 0px;
-  overflow: hidden;
-  width: 100%;
-  height: 70px;
-  display: grid;
-  grid-template-columns: 0.5fr 2fr 1.2fr 1fr;
-  z-index: 100;
-  align-content: center;
-}
 
 .main-home {
   margin-top: 70px;
   width: 100%;
 }
 
-.carls-log0 {
-  object-fit: contain;
-  height: 100px;
-  margin-left: 10px;
-}
 
-.nav div {
-  display: grid;
-  align-content: center;
-}
 
-.options {
-  display: grid;
-  grid-template-columns: repeat(6, 100px);
-  justify-content: left;
-  padding: 0px;
-}
 
-.options li {
-  list-style-type: none;
-
-  display: grid;
-  justify-content: center;
-  height: 90px;
-}
-
-.options li a,
-.options li a:after,
-.options li a:before {
-  transition: all 0.5s;
-}
-.options li a:hover {
-  color: #555;
-}
-
-.options li a {
-  text-decoration: none;
-  color: #b5b9bc;
-  align-self: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.options li a {
-  position: relative;
-}
-.options li a:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 0%;
-  content: ".";
-  color: transparent;
-  background: #aaa;
-  height: 1px;
-}
-.options li a:hover:after {
-  width: 100%;
-}
-
-.options li a {
-  transition: all 2s;
-}
-
-.options li a:after {
-  text-align: left;
-  content: ".";
-  margin: 0;
-  opacity: 0;
-}
-.options li a:hover {
-  color: #fff;
-  z-index: 1;
-}
-.options li a:hover:after {
-  z-index: -10;
-  animation: fill 1s forwards;
-  -webkit-animation: fill 1s forwards;
-  -moz-animation: fill 1s forwards;
-  opacity: 1;
-}
 
 .image {
   width: 100px;
@@ -613,10 +524,7 @@ input::-webkit-inner-spin-button {
   align-self: flex-start;
 }
 
-.remove-border {
-  display: grid;
-  justify-content: right;
-}
+
 
 /* recipe view css */
 
@@ -659,8 +567,6 @@ input::-webkit-inner-spin-button {
   /* margin-top: 10px; */
   margin-bottom: 10px;
 }
-
-
 
 .ingredients-rc {
   display: grid;

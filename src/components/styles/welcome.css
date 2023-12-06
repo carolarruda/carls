@@ -147,22 +147,8 @@ h2 {
   overflow: hidden;
 }
 
-img {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  align-self: center;
-  justify-self: center;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.4s ease-in-out;
-  /* margin-left: 40px */
-}
 
-.carls-log0 {
-  justify-self: left;
-}
+
 
 .text-tag {
   font-size: 16px;

@@ -89,7 +89,7 @@ const Login = ({ setUsers, users }) => {
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);
             setUsers(data.data.user);
-            navigate(`/home`);
+            navigate(`/`);
           } else if (loginResponse.status === 400) {
             setFailed(true);
             setWrong(true);

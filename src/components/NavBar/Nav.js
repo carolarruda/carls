@@ -31,11 +31,11 @@ const Nav = ({ users, search, setSearch }) => {
 
   return (
     <nav className={classes.nav}>
-      <div className="logo">
+      <div>
         <img className={classes.carlsLogo} src={pic} alt=" " />
       </div>
       <div>
-        <ul className="options">
+        <ul className={classes.options}>
           <li>
             <Link to={{ pathname: "/" }} reloadDocument>
               Home
@@ -59,7 +59,7 @@ const Nav = ({ users, search, setSearch }) => {
           </li>
         </ul>
       </div>
-      <div className="remove-border">
+      <div>
         <SearchAppBar search={search} setSearch={setSearch} />
       </div>
 
