@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "./NavBar/Nav";
 import FooterTwo from "./FooterTwo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

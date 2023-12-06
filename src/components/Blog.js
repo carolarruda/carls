@@ -1,6 +1,6 @@
 import Caroussel from "./Caroussel";
 import { blogs } from "./Data";
-import Nav from "./Nav";
+import Nav from "./NavBar/Nav";
 import FooterTwo from "./FooterTwo";
 const Blog = (users, setSearch, search) => {
   return (

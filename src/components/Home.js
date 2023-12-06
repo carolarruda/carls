@@ -1,8 +1,7 @@
-import Caroussel from "./Caroussel";
 import Welcome from "./Welcome";
-import Nav from "./Nav";
+import Nav from "./NavBar/Nav";
 import "./style.css";
-import { blogs } from "./Data";
+
 import Footer from "./Footer";
 
 const Home = ({ users, setSearch, search }) => {

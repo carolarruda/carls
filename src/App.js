@@ -105,7 +105,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route
-            path="/"
+            path="/sign"
             element={
               <Suspense fallback={<div>Loading...</div>}>
                 <LazySignUp />
@@ -126,7 +126,7 @@ function App() {
             }
           />
           <Route
-            path="/home"
+            path="/"
             element={
               <Home
                 users={users}
