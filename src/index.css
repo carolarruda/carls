@@ -15,8 +15,6 @@ code {
 
 
 .section-wrapper {
-  position: relative;
-  z-index: 60;
   max-width: 1150px;
   margin: auto;
   padding: 9.6rem;
