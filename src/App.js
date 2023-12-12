@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
 import RecipeAdd from "./components/RecipeAdd";
-import Blog from "./components/Blog";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
