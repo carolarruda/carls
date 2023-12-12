@@ -13,6 +13,10 @@
   align-content: center;
 }
 
+.maxWidth {
+  max-width: 100px
+}
+
 .nav div {
     display: grid;
     align-content: center;

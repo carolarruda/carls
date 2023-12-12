@@ -1,21 +1,26 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import Nav from "./components/NavBar/Nav";
+import LandingPage from "./components/pages/LandingPage";
+import RecipesPage from "./components/pages/RecipesPage";
 import RecipeAdd from "./components/RecipeAdd";
 import Blog from "./components/Blog";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import RecipeUpdate from "./components/RecipeUpdate";
+import BlogPage from "./components/pages/BlogPage";
 import { useNavigate } from "react-router-dom";
 
 export const Context = React.createContext();
-const LazyAlbum = lazy(() => import("./components/Album"));
+
 const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
 const LazySignUp = lazy(() => import("./components/SignUp"));
 const LazyLogin = lazy(() => import("./components/Login"));
 
 function App() {
+  const [searchRecipe, setSearchRecipe] = useState("");
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState();
   const [recipes, setRecipes] = useState("");
@@ -47,7 +52,7 @@ function App() {
           setUser(data.data.user);
         })
         .catch((error) => console.error("Error fetching user:", error));
-    }  else {
+    } else {
       setLoggedIn(false);
     }
 
@@ -62,8 +67,6 @@ function App() {
         Authorization: `Bearer ${token}`,
       },
     };
-  
-
   }, [token, userId]);
 
   useEffect(() => {}, [token]);
@@ -77,12 +80,13 @@ function App() {
       },
       method: "DELETE",
     };
-    return fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${id}`, opts).then(
-      (response) => {
-        response.json();
-        navigate(0);
-      }
-    );
+    return fetch(
+      `https://node-mysql-api-0zxf.onrender.com/recipes/${id}`,
+      opts
+    ).then((response) => {
+      response.json();
+      navigate(0);
+    });
     // .then(() => {
     //   const opts = {
     //     headers: {
@@ -102,120 +106,127 @@ function App() {
 
   return (
     <Context.Provider value={[loggedIn, setLoggedIn]}>
-      <div className="App">
-        <Routes>
-          <Route
-            path="/sign"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <LazySignUp />
-              </Suspense>
-            }
-          />
+      <SearchContext.Provider value={[searchRecipe, setSearchRecipe]}>
+        <div className="App">
+          <Routes>
+            <Route
+              path="/sign"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <LazySignUp />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/login"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <LazyLogin
-                  setUsers={setUsers}
-                  users={users}
-                  setLoggedIn={setLoggedIn}
-                />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <Home
+            <Route
+              path="/login"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <LazyLogin
+                    setUsers={setUsers}
+                    users={users}
+                    setLoggedIn={setLoggedIn}
+                  />
+                </Suspense>
+              }
+            />
+
+            <Route path="/" element={<Nav />}>
+              <Route
+                index
                 users={users}
                 setLoggedIn={setLoggedIn}
                 search={search}
                 setSearch={setSearch}
+                element={<LandingPage />}
               />
-            }
-          />
-          <Route
-            path="/add"
-            element={
-              <RecipeAdd
-                recipes={recipes}
-                setRecipes={setRecipes}
-                recipesP={recipesP}
-                setRecipesP={setRecipesP}
-                search={search}
-                setSearch={setSearch}
-              />
-            }
-          />
-          <Route
-            path="/edit/:id"
-            element={
-              <RecipeUpdate
-                recipes={recipes}
-                setRecipes={setRecipes}
-                recipesP={recipesP}
-                setRecipesP={setRecipesP}
-                search={search}
-                setSearch={setSearch}
-              />
-            }
-          />
-          <Route
-            path="/recipes/:id"
-            element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
-          />
-          <Route
-            path="/settings"
-            element={
-              <AccountSettings
-                user={user}
-                search={search}
-                setSearch={setSearch}
-              />
-            }
-          />
-          <Route
-            path="/recipes"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <LazyAlbum
-                  setSearch={setSearch}
-                  search={search}
-                  className="main-container"
+            </Route>
+            <Route
+              path="/add"
+              element={
+                <RecipeAdd
                   recipes={recipes}
                   setRecipes={setRecipes}
-                  handleDelete={handleDelete}
-                  user={user}
-                />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/myrecipes"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <LazyMyRecipes
-                  setSearch={setSearch}
-                  search={search}
                   recipesP={recipesP}
                   setRecipesP={setRecipesP}
-                  setRecipes={setRecipes}
-                  handleDelete={handleDelete}
+                  search={search}
+                  setSearch={setSearch}
                 />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/myrecipes/:id"
-            element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
-          />
-          <Route path="/blog" element={<Blog />} />
-        </Routes>
-      </div>
+              }
+            />
+            <Route
+              path="/edit/:id"
+              element={
+                <RecipeUpdate
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  recipesP={recipesP}
+                  setRecipesP={setRecipesP}
+                  search={search}
+                  setSearch={setSearch}
+                />
+              }
+            />
+            <Route
+              path="/recipes/:id"
+              element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
+            />
+            <Route
+              path="/settings"
+              element={
+                <AccountSettings
+                  user={user}
+                  search={search}
+                  setSearch={setSearch}
+                />
+              }
+            />
+
+            <Route path="/recipes" element={<Nav />}>
+              <Route
+                index
+                element={
+                  <RecipesPage
+                    setSearch={setSearch}
+                    search={search}
+                    recipes={recipes}
+                    setRecipes={setRecipes}
+                    handleDelete={handleDelete}
+                    user={user}
+                  />
+                }
+              />
+            </Route>
+            <Route path="/blog" element={<Nav />}>
+              <Route index element={<BlogPage />} />
+            </Route>
+
+            <Route
+              path="/myrecipes"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <LazyMyRecipes
+                    setSearch={setSearch}
+                    search={search}
+                    recipesP={recipesP}
+                    setRecipesP={setRecipesP}
+                    setRecipes={setRecipes}
+                    handleDelete={handleDelete}
+                  />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/myrecipes/:id"
+              element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
+            />
+          </Routes>
+        </div>
+      </SearchContext.Provider>
     </Context.Provider>
   );
 }
 
 export default App;
+
+export const SearchContext = React.createContext();

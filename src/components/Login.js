@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../App";
 import Typography from "@mui/material/Typography";
 
-
 import Link from "@mui/material/Link";
 
 import Grid from "@mui/material/Grid";
@@ -76,11 +75,14 @@ const Login = ({ setUsers, users }) => {
 
     async function loginUser() {
       try {
-        const loginResponse = await fetch("https://node-mysql-api-0zxf.onrender.com/login", opts);
+        const loginResponse = await fetch(
+          "https://node-mysql-api-0zxf.onrender.com/login",
+          opts
+        );
 
         const data = await loginResponse.json();
         setStatus(loginResponse.status);
-        console.log(status);
+
         try {
           if (loginResponse.status === 200) {
             setLoggedIn(true);
