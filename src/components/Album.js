@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 
 import { useEffect, useState } from "react";
@@ -8,30 +9,21 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Nav from "./Nav";
+import Nav from "./NavBar/Nav";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
-import FooterTwo from "./FooterTwo";
-import { CSSTransition } from "react-transition-group";
-import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Box from "@mui/material/Box";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { useContext } from "react";
+import { SearchContext } from "../App";
 
 const defaultTheme = createTheme();
 
-export default function Album({
-  search,
-  setSearch,
-  recipes,
-  setRecipes,
-}) {
+export default function Album({ search, setSearch, recipes, setRecipes, user }) {
+  const [searchRecipe, setSearchRecipe] = useContext(SearchContext);
   const [isLiked, setIsLiked] = useState("");
 
   const likeRecipe = (id) => {
@@ -86,28 +78,30 @@ export default function Album({
 
   let filteredRecipes;
 
-  if (search !== "") {
+  console.log(searchRecipe);
+
+  if (searchRecipe !== "") {
     filteredRecipes = recipes.filter((recipe) => {
       const titleMatch = recipe.title
         .toLowerCase()
-        .includes(search.toLowerCase());
+        .includes(searchRecipe.toLowerCase());
 
       const ingredientsMatch = recipe.ingredients
         .toLowerCase()
         .split(";")
-        .some((ingredient) => ingredient.includes(search.toLowerCase()));
+        .some((ingredient) => ingredient.includes(searchRecipe.toLowerCase()));
 
       const courseTypeMatch = recipe.courseType
         .toLowerCase()
-        .includes(search.toLowerCase());
+        .includes(searchRecipe.toLowerCase());
 
       const creatorFirstLastMatch =
         recipe.user.profile.firstName
           .toLowerCase()
-          .includes(search.toLowerCase()) ||
+          .includes(searchRecipe.toLowerCase()) ||
         recipe.user.profile.lastName
           .toLowerCase()
-          .includes(search.toLowerCase());
+          .includes(searchRecipe.toLowerCase());
 
       return (
         titleMatch ||
@@ -123,7 +117,6 @@ export default function Album({
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <Nav search={search} setSearch={setSearch} />
       <main className="push-dow">
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={3}>
@@ -156,7 +149,6 @@ export default function Album({
                           sx={{
                             flexGrow: 1,
                             paddingBottom: "0px",
-                
                           }}
                         >
                           <Typography
@@ -167,7 +159,7 @@ export default function Album({
                               fontSize: "1.2rem",
                               display: "flex",
                               flexDirection: "column",
-                              height: "3.6rem", 
+                              height: "3.6rem",
                               justifyContent: "space-between",
                               overflow: "hidden",
                             }}
@@ -180,7 +172,6 @@ export default function Album({
                               display: "grid",
                               justifyContent: "space-between",
                               alignContent: "center",
-              
                             }}
                           >
                             <div
@@ -238,11 +229,8 @@ export default function Album({
                       </Link>
                       <CardActions
                         sx={{
-                  
                           display: "grid",
-                          gridTemplateColumns: '1fr 1fr 1fr',
-                       
-                       
+                          gridTemplateColumns: "1fr 1fr 1fr",
                         }}
                       >
                         <Button size="small" sx={{ color: "#191d3a" }}>
@@ -254,11 +242,6 @@ export default function Album({
                         <Button size="small" sx={{ color: "#191d3a" }}>
                           Like
                         </Button>
-                        {/* <FavoriteBorderIcon
-                          sx={{ color: "#191d3a", width: "20px" }}
-                        />
-                        <FavoriteIcon sx={{ color: "red", width: "20px" }} />
-              */}
                       </CardActions>
                     </Card>
                   </Grid>
@@ -267,7 +250,6 @@ export default function Album({
           </Grid>
         </Container>
       </main>
-      <FooterTwo />
     </ThemeProvider>
   );
 }

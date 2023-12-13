@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-
 import Toolbar from "@mui/material/Toolbar";
-
 import InputBase from "@mui/material/InputBase";
-
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { SearchContext } from "../App";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -54,9 +55,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar({ search, setSearch }) {
-  // const [search, setSearch]= useState("")
+
+  const nav = useNavigate()
+  const [searchRecipe, setSearchRecipe] = useContext(SearchContext);
+
   const handleSearch = (e) => {
-    setSearch(e.target.value);
+    nav('/recipes')
+    setSearchRecipe(e.target.value);
+ 
   };
   return (
     <Toolbar
@@ -75,6 +81,7 @@ export default function SearchAppBar({ search, setSearch }) {
           inputProps={{ "aria-label": "search" }}
           value={search}
           onChange={handleSearch}
+    
         />
       </Search>
     </Toolbar>

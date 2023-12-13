@@ -1,0 +1,174 @@
+.nav {
+  background-color: #161a21;
+  position: fixed;
+  top: 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  align-content: center;
+}
+
+.maxWidth {
+  max-width: 100px
+}
+
+.nav div {
+    display: grid;
+    align-content: center;
+  }
+  
+
+.carlsLogo {
+  object-fit: contain;
+  height: 100px;
+  margin-left: 10px;
+
+}
+
+.logButtonHome {
+  background-color: #191d3a;
+  color: #ffffff;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  width: 100%;
+  justify-self: center;
+  height: 100%;
+}
+
+.logButtonHome {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+.logButton:hover {
+  transform: translateY(-5px);
+  transition: background;
+  transition: background 0.5s;
+  transition: transform 0.3s;
+}
+
+.rightNav {
+  display: grid;
+  justify-items: right;
+  padding-right: 20px;
+}
+
+.options li a:hover:after {
+    width: 100%;
+  }
+
+  .options li a {
+    transition: all 2s;
+  }
+  
+  .options li a:after {
+    text-align: left;
+    content: ".";
+    margin: 0;
+    opacity: 0;
+  }
+  .options li a:hover {
+    color: #fff;
+    z-index: 1;
+  }
+  .options li a:hover:after {
+    z-index: -10;
+    animation: fill 1s forwards;
+    -webkit-animation: fill 1s forwards;
+    -moz-animation: fill 1s forwards;
+    opacity: 1;
+  }
+
+  .options li a,
+.options li a:after,
+.options li a:before {
+  transition: all 0.5s;
+}
+.options li a:hover {
+  color: #555;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    justify-content: left;
+    padding: 0px;
+  }
+  
+  .options li {
+    list-style-type: none;
+  
+    display: grid;
+    justify-content: center;
+    height: 90px;
+  }
+  
+  .options li a,
+  .options li a:after,
+  .options li a:before {
+    transition: all 0.5s;
+  }
+  .options li a:hover {
+    color: #555;
+  }
+  
+  .options li a {
+    text-decoration: none;
+    color: #b5b9bc;
+    align-self: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .options li a {
+    position: relative;
+  }
+  .options li a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: ".";
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+  }
+  .options li a:hover:after {
+    width: 100%;
+  }
+  
+  .options li a {
+    transition: all 2s;
+  }
+  
+  .options li a:after {
+    text-align: left;
+    content: ".";
+    margin: 0;
+    opacity: 0;
+  }
+  .options li a:hover {
+    color: #fff;
+    z-index: 1;
+  }
+  .options li a:hover:after {
+    z-index: -10;
+    animation: fill 1s forwards;
+    -webkit-animation: fill 1s forwards;
+    -moz-animation: fill 1s forwards;
+    opacity: 1;
+  }
+

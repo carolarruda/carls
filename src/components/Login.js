@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../App";
 import Typography from "@mui/material/Typography";
-
 
 import Link from "@mui/material/Link";
 
@@ -49,7 +49,7 @@ const Login = ({ setUsers, users }) => {
   }, [setLoggedIn]);
 
   const handleGoToRegister = (e) => {
-    navigate("/");
+    navigate("/sign");
   };
 
   const hanldeEmail = (e) => {
@@ -76,11 +76,14 @@ const Login = ({ setUsers, users }) => {
 
     async function loginUser() {
       try {
-        const loginResponse = await fetch("https://node-mysql-api-0zxf.onrender.com/login", opts);
+        const loginResponse = await fetch(
+          "https://node-mysql-api-0zxf.onrender.com/login",
+          opts
+        );
 
         const data = await loginResponse.json();
         setStatus(loginResponse.status);
-        console.log(status);
+
         try {
           if (loginResponse.status === 200) {
             setLoggedIn(true);
@@ -89,7 +92,7 @@ const Login = ({ setUsers, users }) => {
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);
             setUsers(data.data.user);
-            navigate(`/home`);
+            navigate(`/`);
           } else if (loginResponse.status === 400) {
             setFailed(true);
             setWrong(true);

@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "./NavBar/Nav";
 import FooterTwo from "./FooterTwo";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";

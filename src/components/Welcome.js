@@ -22,6 +22,7 @@ const Welcome = () => {
   return (
     <div className="section">
       <div className="backImage">
+        <div className="section-wrapper">
         <h1 className="header">
           Welcome to Carl's - where food stories come to life!{" "}
           <span className="smaller-text">
@@ -60,6 +61,8 @@ const Welcome = () => {
             </button>
           )}
         </h1>
+        </div>
+      
       </div>
 
       <section className="welcome-info" id="about">
