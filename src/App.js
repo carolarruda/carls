@@ -4,13 +4,13 @@ import { Routes, Route } from "react-router-dom";
 import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
-import RecipeAdd from "./components/RecipeAdd";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import RecipeUpdate from "./components/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
 import { useNavigate } from "react-router-dom";
+import AddRecipePage from "./components/pages/AddRecipePage";
 
 export const Context = React.createContext();
 
@@ -142,8 +142,7 @@ function App() {
               />
             </Route>
             <Route path="/add" element={<Nav />}>
-
-            <Route
+              <Route
                 index
                 recipes={recipes}
                 setRecipes={setRecipes}
@@ -151,22 +150,10 @@ function App() {
                 setRecipesP={setRecipesP}
                 search={search}
                 setSearch={setSearch}
-                element={<RecipeAdd />}
+                element={<AddRecipePage />}
               />
             </Route>
-            <Route
-              path="/add"
-              element={
-                <RecipeAdd
-                  recipes={recipes}
-                  setRecipes={setRecipes}
-                  recipesP={recipesP}
-                  setRecipesP={setRecipesP}
-                  search={search}
-                  setSearch={setSearch}
-                />
-              }
-            />
+
             <Route
               path="/edit/:id"
               element={

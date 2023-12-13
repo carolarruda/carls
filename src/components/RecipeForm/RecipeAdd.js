@@ -1,8 +1,6 @@
-import Nav from "./NavBar/Nav";
-import FooterTwo from "./Footer/FooterTwo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/old.css";
+import "../styles/old.css";
 import { TextField } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -10,12 +8,9 @@ import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
 const RecipeAdd = ({
-  recipes,
-  recipesP,
   setRecipes,
   setRecipesP,
-  search,
-  setSearch,
+
 }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -128,8 +123,6 @@ const RecipeAdd = ({
 
   return (
     <div>
-      <Nav search={search} setSearch={setSearch} />
-
       <section className="form-container">
         <div className="big-container" id="set-height">
           <form className="form-stack recipe-form" onSubmit={handleSubmit}>

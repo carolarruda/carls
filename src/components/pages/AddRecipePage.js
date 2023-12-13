@@ -1,13 +1,12 @@
-import Blog from "../Blog/Blog";
+import RecipeAdd from "../RecipeForm/RecipeAdd";
 import FooterTwo from "../Footer/FooterTwo";
-
 import classes from "./pages.module.css";
 
 const AddRecipePage = () => {
   return (
     <>
       <div className={classes.grid}>
-        <Blog />
+        <RecipeAdd />
       </div>
       <FooterTwo />
     </>
