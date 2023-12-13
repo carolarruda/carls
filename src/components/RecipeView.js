@@ -1,5 +1,5 @@
 import Nav from "./NavBar/Nav";
-import StickyFooter from "./FooterTwo";
+import StickyFooter from "./Footer/FooterTwo";
 import { useParams } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";

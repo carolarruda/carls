@@ -1,5 +1,5 @@
 import Nav from "./NavBar/Nav";
-import FooterTwo from "./FooterTwo";
+import FooterTwo from "./Footer/FooterTwo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/old.css";

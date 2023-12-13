@@ -5,8 +5,8 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box } from "@mui/material";
-import "./style.css";
-import pic1 from "./images/a028b336ab264b7983e1c895ebb3e8bd-removebg-preview.png";
+import "../style.css";
+import pic1 from "../images/a028b336ab264b7983e1c895ebb3e8bd-removebg-preview.png";
 
 export default function Footer() {
   return (

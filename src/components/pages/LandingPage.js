@@ -1,11 +1,16 @@
-import Footer from "../Footer";
-import Welcome from "../Welcome";
+import Footer from "../Footer/Footer";
+import Hero from "../Hero/Hero";
+import Info from "../Hero/Info";
+import classes from "../Hero/HeroAndInfo.module.css";
 
 const LandingPage = () => {
   return (
     <>
       <div>
-        <Welcome />
+        <div className={classes.section}>
+          <Hero />
+          <Info />
+        </div>
         <Footer />
       </div>
     </>

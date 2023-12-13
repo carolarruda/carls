@@ -1,5 +1,5 @@
 import Nav from "./NavBar/Nav";
-import FooterTwo from "./FooterTwo";
+import FooterTwo from "./Footer/FooterTwo";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";

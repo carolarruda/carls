@@ -1,12 +1,12 @@
-import Album from "../Album";
-import FooterTwo from "../FooterTwo";
+import FooterTwo from "../Footer/FooterTwo";
 import classes from "./pages.module.css";
+import PublicRecipes from "../PublicRecipes/PublicRecipes";
 
 const RecipesPage = ({ recipes, setSearch, search, setRecipes }) => {
   return (
     <>
       <div className={classes.grid}>
-        <Album
+        <PublicRecipes
           recipes={recipes}
           setSearch={setSearch}
           search={search}

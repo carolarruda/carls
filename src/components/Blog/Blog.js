@@ -1,5 +1,5 @@
 import Caroussel from "./Caroussel";
-import { blogs } from "./Data";
+import { blogs } from "../Data";
 
 const Blog = (users, setSearch, search) => {
   return (

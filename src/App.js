@@ -141,6 +141,19 @@ function App() {
                 element={<LandingPage />}
               />
             </Route>
+            <Route path="/add" element={<Nav />}>
+
+            <Route
+                index
+                recipes={recipes}
+                setRecipes={setRecipes}
+                recipesP={recipesP}
+                setRecipesP={setRecipesP}
+                search={search}
+                setSearch={setSearch}
+                element={<RecipeAdd />}
+              />
+            </Route>
             <Route
               path="/add"
               element={

@@ -3,7 +3,7 @@ import FooterTwo from "../Footer/FooterTwo";
 
 import classes from "./pages.module.css";
 
-const BlogPage = () => {
+const AddRecipePage = () => {
   return (
     <>
       <div className={classes.grid}>
@@ -14,4 +14,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default AddRecipePage;
