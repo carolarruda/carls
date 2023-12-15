@@ -116,7 +116,16 @@ const PublicRecipes = ({ search, setSearch, recipes, setRecipes, user })=> {
       <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
         <main className="push-dow">
-          <Container sx={{ py: 8 }} maxWidth="md">
+          <Container 
+          
+          sx={{
+            // 16:9
+            pt: "60.25%",
+            paddingBottom: "0px",
+            paddingTop: "0px",
+            py: 8 
+          }}
+           maxWidth="md">
             <Grid container spacing={3}>
               {filteredRecipes.length > 0 &&
                 filteredRecipes.map((card, index) => {

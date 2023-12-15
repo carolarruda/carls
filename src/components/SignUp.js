@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../App";
+import { LoggedInUser } from "../App";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
@@ -18,7 +18,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="http://localhost:3000/">
         Carls
       </Link>{" "}
       {new Date().getFullYear()}
@@ -35,7 +35,7 @@ const SignUp = () => {
   const [terms, setTerms] = useState("");
   
   // eslint-disable-next-line no-unused-vars
-  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
 
   // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState("");

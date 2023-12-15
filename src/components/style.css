@@ -858,7 +858,7 @@ input::-webkit-inner-spin-button {
 
 .push-dow {
   display: grid;
-  margin-top: 40px;
+
   min-height: 650px;
 }
 

@@ -1,19 +1,19 @@
 import classes from "./HeroAndInfo.module.css";
 import { useContext } from "react";
-import { Context } from "../../App";
+import { LoggedInUser } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
     
     const navigate = useNavigate();
     // eslint-disable-next-line no-unused-vars
-    const [loggedIn, setLoggedIn] = useContext(Context);
+    const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   
     const handleBrowse = () => {
       navigate("/recipes");
     };
     const handleSign = () => {
-      navigate("/");
+      navigate("/login");
     };
 
     return (

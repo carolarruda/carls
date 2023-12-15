@@ -9,6 +9,10 @@
   margin: 0;
   padding: 0px 9.6rem;
   justify-content: center;
+  @media (max-width:450px){
+    justify-content: space-between;
+    padding: 0px 1.5rem 0px 0.8rem;
+  }
 }
 
 
@@ -31,6 +35,7 @@
   height: 100%;
   width: 100px;
   object-position: left;
+
 }
 
 .logButtonHome {

@@ -12,7 +12,7 @@ import BlogPage from "./components/pages/BlogPage";
 import { useNavigate } from "react-router-dom";
 import AddRecipePage from "./components/pages/AddRecipePage";
 
-export const Context = React.createContext();
+export const LoggedInUser = React.createContext();
 
 const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
 const LazySignUp = lazy(() => import("./components/SignUp"));
@@ -105,7 +105,7 @@ function App() {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   return (
-    <Context.Provider value={[loggedIn, setLoggedIn]}>
+    <LoggedInUser.Provider value={[loggedIn, setLoggedIn]}>
       <SearchContext.Provider value={[searchRecipe, setSearchRecipe]}>
         <div className="App">
           <Routes>
@@ -223,7 +223,7 @@ function App() {
           </Routes>
         </div>
       </SearchContext.Provider>
-    </Context.Provider>
+    </LoggedInUser.Provider>
   );
 }
 

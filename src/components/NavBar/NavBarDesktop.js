@@ -2,13 +2,13 @@ import classes from "./Nav.module.css";
 /* eslint-disable no-unused-vars */
 import { useNavigate, Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import { Context } from "../../App";
+import { LoggedInUser } from "../../App";
 import AccountMenu from "../AccountMenu";
 import SearchAppBar from "../Search";
 import { useMediaQuery } from "@mui/material";
 
 const NavBarDesktop = () => {
-  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
 

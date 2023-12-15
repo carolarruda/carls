@@ -13,11 +13,11 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Context } from "../App";
+import { LoggedInUser } from "../App";
 import { useContext } from "react";
 
 export default function AccountMenu() {
-  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);

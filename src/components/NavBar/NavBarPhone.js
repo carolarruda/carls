@@ -13,13 +13,18 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Context } from "../../App";
+import { LoggedInUser } from "../../App";
 import { useContext } from "react";
 import classes from "./Nav.module.css";
 import { useMediaQuery } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import CollectionsIcon from "@mui/icons-material/Collections";
+import InfoIcon from "@mui/icons-material/Info";
+import BookIcon from "@mui/icons-material/Book";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const NavBarPhone = () => {
-  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -48,7 +53,7 @@ const NavBarPhone = () => {
   const handleRecipesP = () => {
     navigate("/myrecipes");
   };
-  const isPhone = useMediaQuery("(max-width:860px)"); 
+  const isPhone = useMediaQuery("(max-width:860px)");
   if (!isPhone) {
     return null;
   }
@@ -67,14 +72,25 @@ const NavBarPhone = () => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar
-              sx={{
-                backgroundColor: "#eeeeee",
-                color: "#161a21",
-              }}
-            >
-              {username[0] || ""}
-            </Avatar>
+            {loggedIn && (
+              <Avatar
+                sx={{
+                  backgroundColor: "#eeeeee",
+                  color: "#161a21",
+                }}
+              >
+                {username[0] || ""}
+              </Avatar>
+            )}
+            {!loggedIn && (
+              <MenuIcon
+                sx={{
+                  color: "#eeeeee",
+                  width: 32,
+                  height: 32,
+                }}
+              />
+            )}
           </IconButton>
         </Tooltip>
       </Box>
@@ -119,49 +135,70 @@ const NavBarPhone = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleRecipesP}>
-          <Avatar /> My recipes
-        </MenuItem>
+        {loggedIn && (
+          <>
+            <MenuItem onClick={handleClose}>
+              <Avatar /> Profile
+            </MenuItem>
+            <MenuItem onClick={handleRecipesP}>
+              <Avatar /> My recipes
+            </MenuItem>
+          </>
+        )}
+
         <Divider />
         <MenuItem onClick={handleNewRecipe}>
           <ListItemIcon>
-            <AddIcon fontSize="small" />
+            <HomeIcon fontSize="small" />
           </ListItemIcon>
-          Add a new recipe
+          Home
         </MenuItem>
         <MenuItem onClick={handleNewRecipe}>
           <ListItemIcon>
-            <AddIcon fontSize="small" />
+            <CollectionsIcon fontSize="small" />
           </ListItemIcon>
-          Add a new recipe
+          Recipes
         </MenuItem>
         <MenuItem onClick={handleNewRecipe}>
           <ListItemIcon>
-            <AddIcon fontSize="small" />
+            <InfoIcon fontSize="small" />
           </ListItemIcon>
-          Add a new recipe
+          About
         </MenuItem>
         <MenuItem onClick={handleNewRecipe}>
           <ListItemIcon>
-            <FavoriteIcon fontSize="small" />
+            <BookIcon fontSize="small" />
           </ListItemIcon>
-          Favorites
+          Blog
         </MenuItem>
-        <MenuItem onClick={handleGoSettings}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleLogOut}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
+        {loggedIn && (
+          <>
+            <MenuItem onClick={handleNewRecipe}>
+              <ListItemIcon>
+                <AddIcon fontSize="small" />
+              </ListItemIcon>
+              Add a new recipe
+            </MenuItem>
+            <MenuItem onClick={handleNewRecipe}>
+              <ListItemIcon>
+                <FavoriteIcon fontSize="small" />
+              </ListItemIcon>
+              Favorites
+            </MenuItem>
+            <MenuItem onClick={handleGoSettings}>
+              <ListItemIcon>
+                <Settings fontSize="small" />
+              </ListItemIcon>
+              Settings
+            </MenuItem>
+            <MenuItem onClick={handleLogOut}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Logout
+            </MenuItem>
+          </>
+        )}
       </Menu>
     </div>
   );

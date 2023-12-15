@@ -8,14 +8,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../App";
+import { LoggedInUser } from "../App";
 import { useContext, useState } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function DeleteAccount() {
-  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));

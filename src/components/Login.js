@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../App";
+import { LoggedInUser } from "../App";
 import Typography from "@mui/material/Typography";
 
 import Link from "@mui/material/Link";
@@ -18,7 +18,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="http://localhost:3000/">
         Carls
       </Link>{" "}
       {new Date().getFullYear()}
@@ -30,7 +30,7 @@ const Login = ({ setUsers, users }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [status, setStatus] = useState("");
   const [failed, setFailed] = useState(false);
   const [wrong, setWrong] = useState(false);
