@@ -48,7 +48,7 @@ const NavBarPhone = () => {
   const handleRecipesP = () => {
     navigate("/myrecipes");
   };
-  const isPhone = useMediaQuery("(max-width:600px)"); 
+  const isPhone = useMediaQuery("(max-width:860px)"); 
   if (!isPhone) {
     return null;
   }

@@ -80,6 +80,7 @@ export default function Footer() {
           </Typography>
         </Box>
       </Container>
+      
     </Box>
   );
 }

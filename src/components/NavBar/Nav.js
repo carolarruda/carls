@@ -4,14 +4,11 @@ import NavBarDesktop from "./NavBarDesktop";
 import NavBarPhone from "./NavBarPhone";
 import pic from "../images/roundLogoDark.png";
 
-
 const Nav = () => {
   return (
     <>
       <nav className={classes.nav}>
-        <div>
-          <img className={classes.carlsLogo} src={pic} alt=" " />
-        </div>
+        <img className={classes.carlsLogo} src={pic} alt="logo" />
         <NavBarDesktop />
         <NavBarPhone />
       </nav>
