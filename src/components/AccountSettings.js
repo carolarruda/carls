@@ -1,12 +1,10 @@
 import Nav from "./NavBar/Nav";
 import FooterTwo from "./Footer/FooterTwo";
-import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteAccount from "./DeleteAccount";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 

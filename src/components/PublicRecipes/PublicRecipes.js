@@ -115,7 +115,7 @@ const PublicRecipes = ({ search, setSearch, recipes, setRecipes, user })=> {
     return (
       <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
-        <main className="push-dow">
+        <main className="section-wrapper-speciel">
           <Container 
           
           sx={{

@@ -21,6 +21,12 @@ code {
     overflow: hidden;
 }
 
+.section-wrapper-speciel {
+  max-width: 1150px;
+  margin: auto;
+
+  padding: 6.6rem;
+}
 .nav-wrapper {
   max-width: 1150px;
   margin: auto;

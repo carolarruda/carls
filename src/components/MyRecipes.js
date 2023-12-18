@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import FooterTwo from "./Footer/FooterTwo";
 import { useNavigate } from "react-router-dom";
 import LoadingButton from "@mui/lab/LoadingButton";
-import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -31,9 +30,6 @@ export default function MyRecipes({
   const navigate = useNavigate();
   const [loadingStates, setLoadingStates] = useState({});
 
-  const handleRecipe = () => {
-    navigate("/add");
-  };
 
   const handleClick = (id) => {
     setLoadingStates((prevState) => ({ ...prevState, [id]: true }));
@@ -42,57 +38,57 @@ export default function MyRecipes({
   const handleEdit = (id) => {
     navigate(`/edit/${id}`);
   };
-  const [isLiked, setIsLiked] = useState("");
+  // const [isLiked, setIsLiked] = useState("");
 
-  const likeRecipe = (id) => {
-    const likedRecipe = recipesP.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          liked: !item.liked,
-        };
-      } else {
-        return item;
-      }
-    });
+  // const likeRecipe = (id) => {
+  //   const likedRecipe = recipesP.map((item) => {
+  //     if (item.id === id) {
+  //       return {
+  //         ...item,
+  //         liked: !item.liked,
+  //       };
+  //     } else {
+  //       return item;
+  //     }
+  //   });
 
-    setRecipesP(likedRecipe);
+  //   setRecipesP(likedRecipe);
 
-    const isRecipeLiked =
-      likedRecipe.find((item) => item.id === id)?.liked || false;
-    setIsLiked(isRecipeLiked);
+  //   const isRecipeLiked =
+  //     likedRecipe.find((item) => item.id === id)?.liked || false;
+  //   setIsLiked(isRecipeLiked);
 
-    const url = `https://node-mysql-api-0zxf.onrender.com/recipes/${id}`;
+  //   const url = `https://node-mysql-api-0zxf.onrender.com/recipes/${id}`;
 
-    if (isLiked) {
-      const dislike = {
-        liked: false,
-      };
+  //   if (isLiked) {
+  //     const dislike = {
+  //       liked: false,
+  //     };
 
-      const optLike = {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dislike),
-      };
+  //     const optLike = {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(dislike),
+  //     };
 
-      fetch(url, optLike).then((response) => response.json());
-    } else {
-      const LikedRecipe = {
-        liked: true,
-      };
+  //     fetch(url, optLike).then((response) => response.json());
+  //   } else {
+  //     const LikedRecipe = {
+  //       liked: true,
+  //     };
 
-      const optLike = {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(LikedRecipe),
-      };
-      fetch(url, optLike).then((response) => response.json());
-    }
-  };
+  //     const optLike = {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(LikedRecipe),
+  //     };
+  //     fetch(url, optLike).then((response) => response.json());
+  //   }
+  // };
 
   let filteredRecipes;
 
@@ -134,7 +130,7 @@ export default function MyRecipes({
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Nav search={search} setSearch={setSearch} />
-      <main className="push-dow">
+      <main className="section-wrapper-speciel">
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={3}>
             {filteredRecipes && filteredRecipes.length > 0 &&
