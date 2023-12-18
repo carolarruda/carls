@@ -80,7 +80,7 @@ const AccountSettings = ({ search, setSearch }) => {
   return (
     <div>
       <Nav search={search} setSearch={setSearch} />
-      <div className="settings-grid">
+      <div className="settings-grid section-wrapper">
         <section className="left-options-settings">
           <button className="course-type settings">My Profile</button>
           <button className="course-type settings">Preferences</button>

@@ -1,100 +1,93 @@
 /* Form and Edit recipe and website*/
 
-
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
 
-.form-container {
-    display: grid;
-    place-content: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 70px;
+.big-container {
+  border: solid 1px transparent;
+  display: grid;
+  padding: 20px;
+  min-height: auto;
+  justify-content: center;
+}
+
+.form-stack.recipe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @media (max-width: 450px) {
+    display: block;
+    width: 100%;
   }
-  
-  .big-container {
-    border: solid 1px transparent;
-    width: 100vw;
-    min-height: 1600px;
-    display: grid;
-    padding: 20px;
-    justify-content: center;
-  }
-  
-  
-  .form-stack.recipe-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .segment {
-    display: grid;
-    row-gap: 10px;
-  }
-  
-  .recipe-form label {
-    font-weight: 600;
-    font-size: 11px;
-    color: black;
-    font-family: 'DM Sans';
-  }
-  
-  .rating label {
-    float: right;
-    position: relative;
-    height: 40px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    padding-top: 8px;
-  }
-  
-  .rating label:not(:first-of-type) {
-    padding-right: 2px;
-  }
-  .rating label:before {
-    content: "\2605";
-    font-size: 20px;
-    color: #c1c1c1;
-    line-height: 1;
-    align-items: center;
-  }
-  .rating input {
-    display: none;
-  }
-  .rating input:checked ~ label:before,
-  .rating:not(:checked) > label:hover:before,
-  .rating:not(:checked) > label:hover ~ label:before {
-    color: rgb(254, 217, 9);
-  }
-  
-  .inline {
-    display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    align-items: center;
-  }
-  
-  .segment,
-  .inline {
-    padding-top: 12px;
-  }
-  
-  .second-column,
-  .third-column,
-  .fourth-column {
-    display: grid;
-    grid-template-rows: 12px 1fr;
-  }
-  
-  .courses {
-    font-size: 10px;
-  }
-  
-  .fifth-column input {
-    height: 25px;
-  }
-  .fifth-column {
-    padding-top: 35px;
-    display: grid;
-    grid-template-rows: 30px 30px;
-  }
+}
+
+.segment {
+  display: grid;
+  row-gap: 10px;
+}
+
+.recipe-form label {
+  font-weight: 600;
+  font-size: 11px;
+  color: black;
+  font-family: "DM Sans";
+}
+
+.rating label {
+  float: right;
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.rating label:not(:first-of-type) {
+  padding-right: 2px;
+}
+.rating label:before {
+  content: "\2605";
+  font-size: 20px;
+  color: #c1c1c1;
+  line-height: 1;
+  align-items: center;
+}
+.rating input {
+  display: none;
+}
+.rating input:checked ~ label:before,
+.rating:not(:checked) > label:hover:before,
+.rating:not(:checked) > label:hover ~ label:before {
+  color: rgb(254, 217, 9);
+}
+
+.inline {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+}
+
+.segment,
+.inline {
+  padding-top: 12px;
+}
+
+.second-column,
+.third-column,
+.fourth-column {
+  display: grid;
+}
+
+.courses {
+  font-size: 10px;
+}
+
+.fifth-column input {
+  height: 25px;
+}
+.fifth-column {
+  padding-top: 35px;
+  display: grid;
+  grid-template-rows: 30px 30px;
+}

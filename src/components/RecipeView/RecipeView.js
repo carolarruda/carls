@@ -50,7 +50,7 @@ const RecipeView = ({ search, setSearch }) => {
 
   return (
     <div>
-      <section className="recipe-view-main section-wrapper">
+      <section className="recipe-view-main section-wrapper recipe">
         <div className="recipe-left">
           <div>
             <div className="hide">

@@ -7,11 +7,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
-const RecipeAdd = ({
-  setRecipes,
-  setRecipesP,
-
-}) => {
+const RecipeAdd = ({ setRecipes, setRecipesP }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -109,7 +105,10 @@ const RecipeAdd = ({
                 Authorization: `Bearer ${token}`,
               },
             };
-            fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
+            fetch(
+              `https://node-mysql-api-0zxf.onrender.com/recipes/personal`,
+              opts
+            )
               .then((res) => res.json())
               .then((data) => setRecipesP(data.data.recipes));
             navigate("/myrecipes");
@@ -124,7 +123,7 @@ const RecipeAdd = ({
   return (
     <div>
       <section className="form-container">
-        <div className="big-container" id="set-height">
+        <div className="big-container">
           <form className="form-stack recipe-form" onSubmit={handleSubmit}>
             <div className="first-column">
               <div className="segment">

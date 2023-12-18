@@ -37,7 +37,7 @@ code {
   }
 }
 @media (max-width: 450px) {
-  .section-wrapper {
+  .recipe {
     padding: 2.2rem 1.4rem;
     margin: 0px;
 

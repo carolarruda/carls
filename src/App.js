@@ -221,10 +221,20 @@ function App() {
                 </Suspense>
               }
             />
-            <Route
-              path="/myrecipes/:id"
-              element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
-            />
+              <Route path="/myrecipes/:id" element={<Nav />}>
+              <Route
+                index
+                element={
+                  <RecipeView
+                    recipes={recipes}
+                    setRecipes={setRecipes}
+                    handleDelete={handleDelete}
+                    user={user}
+                  />
+                }
+              />
+            </Route>
+       
           </Routes>
         </div>
       </SearchContext.Provider>
