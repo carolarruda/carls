@@ -8,20 +8,16 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import AddIcon from "@mui/icons-material/Add";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { LoggedInUser } from "../../App";
 import { useContext } from "react";
 import classes from "./Nav.module.css";
 import { useMediaQuery } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import InfoIcon from "@mui/icons-material/Info";
-import BookIcon from "@mui/icons-material/Book";
+import { loggedOptions, menuOptions, menuItems } from "./menuLists";
 import MenuIcon from "@mui/icons-material/Menu";
+
+
 
 const NavBarPhone = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -30,59 +26,9 @@ const NavBarPhone = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const menuItems = [
-    {
-      nameTag: "Profile",
-      icon: <Avatar />,
-      path: "/settings",
-    },
-    {
-      nameTag: "My recipes",
-      icon: <Avatar />,
-      path: "/myrecipes",
-    },
-  ];
 
-  const menuOptions = [
-    {
-      nameTag: "Home",
-      icon: <HomeIcon fontSize="small" />,
-      path: "/",
-    },
-    {
-      nameTag: "Recipes",
-      icon: <CollectionsIcon fontSize="small" />,
-      path: "/recipes",
-    },
-    {
-      nameTag: "About",
-      icon: <InfoIcon fontSize="small" />,
-      path: "/",
-    },
-    {
-      nameTag: "Blog",
-      icon: <BookIcon fontSize="small" />,
-      path: "/blog",
-    },
-  ];
 
-  const loggedOptions = [
-    {
-      nameTag: "Add recipe",
-      icon: <AddIcon fontSize="small" />,
-      path: "/add",
-    },
-    {
-      nameTag: "Favorites",
-      icon: <FavoriteIcon fontSize="small" />,
-      path: "/",
-    },
-    {
-      nameTag: "Settings",
-      icon: <Settings fontSize="small" />,
-      path: "/settings",
-    },
-  ];
+
 
   const handleLogOut = () => {
     setLoggedIn(false);
@@ -90,14 +36,12 @@ const NavBarPhone = () => {
     navigate(`/`);
   };
 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
 
   const isPhone = useMediaQuery("(max-width:860px)");
   if (!isPhone) {
@@ -186,6 +130,7 @@ const NavBarPhone = () => {
             {menuItems.map((item) => {
               return (
                 <MenuItem
+                  key={item.nameTag}
                   onClick={() => {
                     navigate(item.path);
                   }}
@@ -202,6 +147,7 @@ const NavBarPhone = () => {
         {menuOptions.map((item) => {
           return (
             <MenuItem
+              key={item.nameTag}
               onClick={() => {
                 navigate(item.path);
               }}
@@ -217,6 +163,7 @@ const NavBarPhone = () => {
             {loggedOptions.map((item) => {
               return (
                 <MenuItem
+                  key={item.nameTag}
                   onClick={() => {
                     navigate(item.path);
                   }}

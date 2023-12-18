@@ -1,7 +1,7 @@
 import Caroussel from "./Caroussel";
 import { blogs } from "../Data";
 
-const Blog = (users, setSearch, search) => {
+const Blog = () => {
   return (
     <div>
       <section className="caroussel">

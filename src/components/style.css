@@ -474,6 +474,9 @@ input::-webkit-inner-spin-button {
   left: 50%;
   align-items: center;
   justify-items: center;
+  @media(max-width:450px){
+    left: 35%;
+  }
 }
 
 .pagination-dot {

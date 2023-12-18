@@ -3,7 +3,7 @@ import classes from "./Nav.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { LoggedInUser } from "../../App";
-import AccountMenu from "../AccountMenu";
+import AccountMenu from "./AccountMenu";
 import SearchAppBar from "../Search";
 import { useMediaQuery } from "@mui/material";
 

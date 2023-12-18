@@ -8,13 +8,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import AddIcon from "@mui/icons-material/Add";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { LoggedInUser } from "../App";
+import { LoggedInUser } from "../../App";
 import { useContext } from "react";
+import { menuItems, loggedOptions } from "./menuLists";
 
 export default function AccountMenu() {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -60,7 +58,6 @@ export default function AccountMenu() {
           >
             <Avatar
               sx={{
-
                 backgroundColor: "#eeeeee",
                 color: "#161a21",
               }}
@@ -76,7 +73,6 @@ export default function AccountMenu() {
         open={open}
         onClose={handleClose}
         onClick={handleClose}
-        
         PaperProps={{
           elevation: 0,
           sx: {
@@ -100,50 +96,55 @@ export default function AccountMenu() {
               height: 10,
               bgcolor: "background.paper",
               transform: "translateY(-50%) rotate(45deg)",
-
             },
           },
         }}
-    transformOrigin={{
-    vertical: 'top',
-    horizontal: 'right',
-  }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+          vertical: "bottom",
+          horizontal: "right",
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleRecipesP}>
-          <Avatar /> My recipes
-        </MenuItem>
+        <div>
+          {menuItems.map((item) => {
+            return (
+              <MenuItem
+                key={item.nameTag}
+                onClick={() => {
+                  navigate(item.path);
+                }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                {item.nameTag}
+              </MenuItem>
+            );
+          })}
+        </div>
         <Divider />
-        <MenuItem onClick={handleNewRecipe}>
-          <ListItemIcon>
-            <AddIcon fontSize="small" />
-          </ListItemIcon>
-          Add a new recipe
-        </MenuItem>
-        <MenuItem onClick={handleNewRecipe}>
-          <ListItemIcon>
-            <FavoriteIcon fontSize="small" />
-          </ListItemIcon>
-          Favorites
-        </MenuItem>
-        <MenuItem onClick={handleGoSettings}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleLogOut}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
+        <div>
+          {loggedOptions.map((item) => {
+            return (
+              <MenuItem
+                key={item.nameTag}
+                onClick={() => {
+                  navigate(item.path);
+                }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                {item.nameTag}
+              </MenuItem>
+            );
+          })}
+          <MenuItem onClick={handleLogOut}>
+            <ListItemIcon>
+              <Logout fontSize="small" />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </div>
       </Menu>
     </React.Fragment>
   );

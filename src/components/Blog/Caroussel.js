@@ -4,16 +4,28 @@ const Caroussel = ({ blogs }) => {
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   let timer = null;
-  useEffect(() => {
-   
-    timer =
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      autoPlay &&
-      setTimeout(() => {
-        slideRight();
-      }, 3500);
-  });
 
+  
+
+  useEffect(() => {
+    let timer = null;
+
+    const handleSlide = () => {
+      if (autoPlay) {
+        timer = setTimeout(() => {
+          slideRight();
+        }, 3500);
+      }
+    };
+
+    handleSlide();
+
+    return () => {
+      clearTimeout(timer);
+    };
+
+  }, [autoPlay, current]);
+  
   const slideLeft = () => {
     setCurrent(current === 0 ? blogs.length - 1 : current - 1);
   };
@@ -22,11 +34,14 @@ const Caroussel = ({ blogs }) => {
     setCurrent(current === blogs.length - 1 ? 0 : current + 1);
   };
 
+
   return (
     <div
       className="carousselio"
-      onMouseEnter={() => {setAutoPlay(false);
-      clearTimeout(timer)}}
+      onMouseEnter={() => {
+        setAutoPlay(false);
+        clearTimeout(timer);
+      }}
       onMouseLeave={() => setAutoPlay(true)}
     >
       <div className="caroussel-wrapper">
@@ -45,7 +60,6 @@ const Caroussel = ({ blogs }) => {
                 <h3 className="card-title">{blog.title}</h3>
               </div>
               <div className="card-overlay">
-     
                 <button className="card-title log-but">Checkout Recipes</button>
               </div>
             </div>
