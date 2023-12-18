@@ -30,15 +30,67 @@ const NavBarPhone = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const menuItems = [
+    {
+      nameTag: "Profile",
+      icon: <Avatar />,
+      path: "/settings",
+    },
+    {
+      nameTag: "My recipes",
+      icon: <Avatar />,
+      path: "/myrecipes",
+    },
+  ];
+
+  const menuOptions = [
+    {
+      nameTag: "Home",
+      icon: <HomeIcon fontSize="small" />,
+      path: "/",
+    },
+    {
+      nameTag: "Recipes",
+      icon: <CollectionsIcon fontSize="small" />,
+      path: "/recipes",
+    },
+    {
+      nameTag: "About",
+      icon: <InfoIcon fontSize="small" />,
+      path: "/",
+    },
+    {
+      nameTag: "Blog",
+      icon: <BookIcon fontSize="small" />,
+      path: "/blog",
+    },
+  ];
+
+  const loggedOptions = [
+    {
+      nameTag: "Add recipe",
+      icon: <AddIcon fontSize="small" />,
+      path: "/add",
+    },
+    {
+      nameTag: "Favorites",
+      icon: <FavoriteIcon fontSize="small" />,
+      path: "/",
+    },
+    {
+      nameTag: "Settings",
+      icon: <Settings fontSize="small" />,
+      path: "/settings",
+    },
+  ];
+
   const handleLogOut = () => {
     setLoggedIn(false);
     localStorage.clear();
     navigate(`/`);
   };
 
-  const handleNewRecipe = () => {
-    navigate("/add");
-  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -46,13 +98,7 @@ const NavBarPhone = () => {
     setAnchorEl(null);
   };
 
-  const handleGoSettings = () => {
-    navigate("/settings");
-  };
 
-  const handleRecipesP = () => {
-    navigate("/myrecipes");
-  };
   const isPhone = useMediaQuery("(max-width:860px)");
   if (!isPhone) {
     return null;
@@ -136,68 +182,57 @@ const NavBarPhone = () => {
         }}
       >
         {loggedIn && (
-          <>
-            <MenuItem onClick={handleClose}>
-              <Avatar /> Profile
-            </MenuItem>
-            <MenuItem onClick={handleRecipesP}>
-              <Avatar /> My recipes
-            </MenuItem>
-          </>
+          <div>
+            {menuItems.map((item) => {
+              return (
+                <MenuItem
+                  onClick={() => {
+                    navigate(item.path);
+                  }}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  {item.nameTag}
+                </MenuItem>
+              );
+            })}
+          </div>
         )}
 
         <Divider />
-        <MenuItem onClick={handleNewRecipe}>
-          <ListItemIcon>
-            <HomeIcon fontSize="small" />
-          </ListItemIcon>
-          Home
-        </MenuItem>
-        <MenuItem onClick={handleNewRecipe}>
-          <ListItemIcon>
-            <CollectionsIcon fontSize="small" />
-          </ListItemIcon>
-          Recipes
-        </MenuItem>
-        <MenuItem onClick={handleNewRecipe}>
-          <ListItemIcon>
-            <InfoIcon fontSize="small" />
-          </ListItemIcon>
-          About
-        </MenuItem>
-        <MenuItem onClick={handleNewRecipe}>
-          <ListItemIcon>
-            <BookIcon fontSize="small" />
-          </ListItemIcon>
-          Blog
-        </MenuItem>
+        {menuOptions.map((item) => {
+          return (
+            <MenuItem
+              onClick={() => {
+                navigate(item.path);
+              }}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              {item.nameTag}
+            </MenuItem>
+          );
+        })}
+
         {loggedIn && (
-          <>
-            <MenuItem onClick={handleNewRecipe}>
-              <ListItemIcon>
-                <AddIcon fontSize="small" />
-              </ListItemIcon>
-              Add a new recipe
-            </MenuItem>
-            <MenuItem onClick={handleNewRecipe}>
-              <ListItemIcon>
-                <FavoriteIcon fontSize="small" />
-              </ListItemIcon>
-              Favorites
-            </MenuItem>
-            <MenuItem onClick={handleGoSettings}>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
+          <div>
+            {loggedOptions.map((item) => {
+              return (
+                <MenuItem
+                  onClick={() => {
+                    navigate(item.path);
+                  }}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  {item.nameTag}
+                </MenuItem>
+              );
+            })}
             <MenuItem onClick={handleLogOut}>
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
               Logout
             </MenuItem>
-          </>
+          </div>
         )}
       </Menu>
     </div>

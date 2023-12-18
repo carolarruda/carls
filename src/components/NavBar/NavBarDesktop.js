@@ -62,18 +62,20 @@ const NavBarDesktop = () => {
 
       <SearchAppBar />
 
-      {loggedIn ? (
-        <div className="profile">
-          <p>Welcome back, {username}</p>
-          <div className={classes.maxWidth}>
-            <AccountMenu username={username} />
-          </div>
-        </div>
-      ) : (
-        <button className={classes.logButtonHome} onClick={handleSign}>
-          Sign In
-        </button>
-      )}
+      <div className="profile">
+        {loggedIn ? (
+          <>
+            <p>Welcome back, {username}</p>
+            <div className={classes.maxWidth}>
+              <AccountMenu username={username} />
+            </div>
+          </>
+        ) : (
+          <button className={classes.logButtonHome} onClick={handleSign}>
+            Sign In
+          </button>
+        )}
+      </div>
     </>
   );
 };
