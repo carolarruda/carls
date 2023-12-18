@@ -27,9 +27,6 @@ const NavBarPhone = () => {
   const open = Boolean(anchorEl);
 
 
-
-
-
   const handleLogOut = () => {
     setLoggedIn(false);
     localStorage.clear();

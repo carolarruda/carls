@@ -18,7 +18,7 @@ code {
   max-width: 1150px;
   margin: auto;
   padding: 9.6rem;
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .nav-wrapper {
@@ -32,6 +32,13 @@ code {
 @media (max-width: 768px) {
   .section-wrapper {
     padding: 7.2rem 1.4rem;
+    margin: 0px;
+
+  }
+}
+@media (max-width: 450px) {
+  .section-wrapper {
+    padding: 2.2rem 1.4rem;
     margin: 0px;
 
   }

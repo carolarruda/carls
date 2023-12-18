@@ -5,7 +5,7 @@ import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import RecipeView from "./components/RecipeView";
+import RecipeView from "./components/RecipeView/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import RecipeUpdate from "./components/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
@@ -167,10 +167,15 @@ function App() {
                 />
               }
             />
-            <Route
-              path="/recipes/:id"
-              element={<RecipeView recipes={recipes} setRecipes={setRecipes} />}
-            />
+            <Route path="/recipes/:id" element={<Nav />}>
+              <Route
+                index
+                recipes={recipes}
+                setRecipes={setRecipes}
+                element={<RecipeView />}
+              />
+            </Route>
+
             <Route
               path="/settings"
               element={

@@ -1,5 +1,5 @@
-import Nav from "./NavBar/Nav";
-import StickyFooter from "./Footer/FooterTwo";
+import Nav from "../NavBar/Nav";
+import StickyFooter from "../Footer/FooterTwo";
 import { useParams } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
@@ -50,10 +50,40 @@ const RecipeView = ({ search, setSearch }) => {
 
   return (
     <div>
-      <Nav search={search} setSearch={setSearch} />
-      <section className="recipe-view-main">
+      <section className="recipe-view-main section-wrapper">
         <div className="recipe-left">
           <div>
+            <div className="hide">
+              <h1 className="recipe-title-rv ">{recipe.title}</h1>
+
+              <div className="tags-rc">
+                <button className="course-type">{recipe.courseType}</button>
+                <div className="course-type icons">
+                  <FacebookIcon />
+                </div>
+                <div className="course-type icons">
+                  <PinterestIcon />
+                </div>
+                <div className="course-type icons">
+                  <TwitterIcon />
+                </div>
+                <div className="course-type icons">
+                  <MailIcon />
+                </div>
+              </div>
+              <div className="time-rc">
+                <div>
+                  Total <span>{calcTime()} mins</span>
+                </div>
+                <div>
+                  Prep <span>{recipe.prepTime} mins</span>
+                </div>
+                <div>
+                  Cook <span>{recipe.cookTime} mins</span>
+                </div>
+              </div>
+            </div>
+
             <img
               src={recipe.imageUrl}
               alt={recipe.title}
@@ -103,8 +133,7 @@ const RecipeView = ({ search, setSearch }) => {
                                   (numericPart * servings) /
                                   recipe.servings
                                 ).toFixed(
-                                  ((numericPart * servings) /
-                                    recipe.servings) %
+                                  ((numericPart * servings) / recipe.servings) %
                                     1 ===
                                     0
                                     ? 0
@@ -132,35 +161,37 @@ const RecipeView = ({ search, setSearch }) => {
           </div>
         </div>
         <div className="recipe-right">
-          <div>
-            <h1 className="recipe-title-rv">{recipe.title}</h1>
+          <div className="forDeskTop">
+            <h1 className="recipe-title-rv ">{recipe.title}</h1>
+
+            <div className="tags-rc">
+              <button className="course-type">{recipe.courseType}</button>
+              <div className="course-type icons">
+                <FacebookIcon />
+              </div>
+              <div className="course-type icons">
+                <PinterestIcon />
+              </div>
+              <div className="course-type icons">
+                <TwitterIcon />
+              </div>
+              <div className="course-type icons">
+                <MailIcon />
+              </div>
+            </div>
+            <div className="time-rc">
+              <div>
+                Total <span>{calcTime()} mins</span>
+              </div>
+              <div>
+                Prep <span>{recipe.prepTime} mins</span>
+              </div>
+              <div>
+                Cook <span>{recipe.cookTime} mins</span>
+              </div>
+            </div>
           </div>
-          <div className="tags-rc">
-            <button className="course-type">{recipe.courseType}</button>
-            <div className="course-type icons">
-              <FacebookIcon />
-            </div>
-            <div className="course-type icons">
-              <PinterestIcon />
-            </div>
-            <div className="course-type icons">
-              <TwitterIcon />
-            </div>
-            <div className="course-type icons">
-              <MailIcon />
-            </div>
-          </div>
-          <div className="time-rc">
-            <div>
-              Total <span>{calcTime()} mins</span>
-            </div>
-            <div>
-              Prep <span>{recipe.prepTime} mins</span>
-            </div>
-            <div>
-              Cook <span>{recipe.cookTime} mins</span>
-            </div>
-          </div>
+
           <div className="ingredients-rc instruction-list">
             <h2>Instructions</h2>
           </div>
@@ -170,9 +201,7 @@ const RecipeView = ({ search, setSearch }) => {
                 (line, index) =>
                   line.length > 0 && (
                     <p className="p-tag-instructions" key={index}>
-                      <button className="servings-button">
-                        {index + 1}
-                      </button>
+                      <button className="servings-button">{index + 1}</button>
                       <span
                         className={decoration[index] ? "decor" : ""}
                         onClick={() => handleDecor(index)}
