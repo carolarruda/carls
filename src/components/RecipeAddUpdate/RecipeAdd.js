@@ -30,7 +30,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
     rating: "",
     courseType: "",
     prepTime: "",
-    cokkTime: "",
+    cookTime: "",
     servings: "",
     ingredients: "",
     instructions: "",
@@ -38,69 +38,22 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
   });
 
   const handleChange = (e) => {
-    setForm.label(e.target.value);
+    const { name, value } = e.target;
+    const updatedValue = e.target.type === 'number' || e.target.type === 'radio' ? Number(value) : value;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: updatedValue,
+    }));
   };
 
   const handleClick = () => {
     setLoading(true);
   };
 
-  const handleTitle = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handlePhoto = (e) => {
-    setImageUrl(e.target.value);
-  };
-
-  const handleRating = (e) => {
-    setRating(Number(e.target.value));
-  };
-
-  const handleCourse = (e) => {
-    setCourseType(e.target.value);
-  };
-
-  const handlePrep = (e) => {
-    if (e.target.value > 0) {
-      setPrepTime(Number(e.target.value));
-    }
-  };
-
-  const handleCook = (e) => {
-    setCookTime(Number(e.target.value));
-  };
-
-  const handleServings = (e) => {
-    setServings(Number(e.target.value));
-  };
-
-  const handleIngredients = (e) => {
-    setIngredients(e.target.value);
-  };
-
-  const handleInstructions = (e) => {
-    setInstructions(e.target.value);
-  };
-
-  const handleNotes = (e) => {
-    setNotes(e.target.value);
-  };
-
   function handleSubmit(e) {
     e.preventDefault();
-    const newRecipe = {
-      title,
-      imageUrl,
-      rating,
-      courseType,
-      prepTime,
-      cookTime,
-      servings,
-      ingredients,
-      instructions,
-      notes,
-    };
+    const newRecipe = { ...form };
+    console.log(newRecipe);
     const opts = {
       method: "POST",
       headers: {
@@ -145,6 +98,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
             <div>
               <div className={classes.segment}>
                 <TextField
+                required
                   margin="normal"
                   width="50px"
                   InputLabelProps={{
@@ -154,7 +108,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                   type="text"
                   label="Recipe Title"
                   name="title"
-                  value={value}
+                  value={form.name}
                   onChange={handleChange}
                 />
               </div>
@@ -168,9 +122,9 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                   }}
                   type="text"
                   label="Image url"
-                  name="title"
-                  value={imageUrl}
-                  onChange={handlePhoto}
+                  name="imageUrl"
+                  value={form.name}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -182,7 +136,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                     id="star5"
                     name="rating"
                     value="5"
-                    onChange={handleRating}
+                    onChange={handleChange}
                     checked={rating === 5}
                   />
                   <label htmlFor="star5"></label>
@@ -191,7 +145,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                     id="star4"
                     name="rating"
                     value="4"
-                    onChange={handleRating}
+                    onChange={handleChange}
                     checked={rating === 4}
                   />
                   <label htmlFor="star4"></label>
@@ -200,7 +154,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                     id="star3"
                     name="rating"
                     value="3"
-                    onChange={handleRating}
+                    onChange={handleChange}
                     checked={rating === 3}
                   />
                   <label htmlFor="star3"></label>
@@ -209,7 +163,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                     id="star2"
                     name="rating"
                     value="2"
-                    onChange={handleRating}
+                    onChange={handleChange}
                     checked={rating === 2}
                   />
                   <label htmlFor="star2"></label>
@@ -218,7 +172,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                     id="star1"
                     name="rating"
                     value="1"
-                    onChange={handleRating}
+                    onChange={handleChange}
                     checked={rating === 1}
                   />
                   <label htmlFor="star1"></label>
@@ -226,16 +180,14 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
               </div>
               <div className={classes.segment}>
                 <FormControl>
-                  <InputLabel htmlFor="courses" shrink={courseType !== ""}>
-                    Course
-                  </InputLabel>
+                  <InputLabel htmlFor="course">Course</InputLabel>
                   <Select
                     defaultValue={"DEFAULT"}
-                    name="course"
-                    id="courses"
+                    name="courseType"
+                    id="course"
                     style={{ fontSize: "15px" }}
-                    onChange={handleCourse}
-                    value={courseType}
+                    onChange={handleChange}
+                    value={form.name}
                     MenuProps={{
                       style: { minHeight: "500px" },
                     }}
@@ -263,36 +215,40 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                 <TextField
                   label="Prep Time (mins)"
                   type="number"
-                  onChange={handlePrep}
-                  value={prepTime}
+                  name="prepTime"
+                  onChange={handleChange}
+                  value={form.name}
                 />
               </div>
               <div className={classes.segment}>
                 <TextField
                   label="Cook Time (mins)"
                   type="number"
-                  onChange={handleCook}
-                  value={cookTime}
+                  name="cookTime"
+                  onChange={handleChange}
+                  value={form.name}
                 />
               </div>
               <div className={classes.segment}>
                 <TextField
                   label="Servings"
                   type="number"
-                  onChange={handleServings}
-                  value={servings}
+                  name="servings"
+                  onChange={handleChange}
+                  value={form.name}
                 />
               </div>
             </div>
 
-            <div >
+            <div>
               <TextField
                 label="Ingredients"
                 type="text"
                 multiline
+                name="ingredients"
                 minRows={22.4}
-                onChange={handleIngredients}
-                value={ingredients}
+                onChange={handleChange}
+                value={form.name}
               />
             </div>
 
@@ -302,19 +258,21 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                 type="text"
                 multiline
                 minRows={22.4}
-                onChange={handleInstructions}
-                value={instructions}
+                name="instructions"
+                onChange={handleChange}
+                value={form.name}
               />
             </div>
 
-            <div >
+            <div>
               <TextField
                 label="Notes"
                 type="text"
                 multiline
                 minRows={10.4}
-                onChange={handleNotes}
-                value={notes}
+                onChange={handleChange}
+                name="notes"
+                value={form.name}
               />
             </div>
             <div className={`${classes.segment} ${classes.buttons}`}>
