@@ -25,45 +25,9 @@
   margin-bottom: 0px;
 }
 
-.background {
-  background-color: #f4f9fc;
-  width: 100vw;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow: auto;
-}
 
-.side {
-  background-color: #ffefce;
-  width: 60%;
-  align-self: center;
-}
 
-.side {
-  font-size: 10px;
-  background-color: #f4f9fc;
 
-  min-height: 150px;
-}
-
-.lefty {
-  font-size: 12px;
-}
-
-.righty {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  background-image: url("../components/images/signUp1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  justify-self: right;
-  @media (max-width: 450px) {
-    display: none;
-  }
-}
 
 .righty.log {
   height: 100%;
@@ -78,22 +42,10 @@
   }
 }
 
-.lefty {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  justify-self: center;
-  align-content: center;
-  display: grid;
-  grid-template-rows: min-content min-content min-content;
-  min-width: 350px;
-}
 
-.lefty h1,
-.register,
-.formy {
-  margin-left: 40px;
-  margin-right: 40px;
-}
+
+
+
 
 .terms {
   display: grid;
@@ -109,52 +61,19 @@
   margin: 0;
 }
 
-h1 {
-  color: #191d3a;
-  font-size: 20px;
-}
 
-.lefth1 {
-  text-align: left;
-}
 
 .centerh1 {
   text-align: center;
 }
 
-.undertext {
-  color: #cacaca;
-  text-align: left;
-  align-self: center;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  font-size: 0.7rem;
-}
 
-.sign {
-  text-decoration: underline;
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  cursor: pointer;
-  color: #e1bb84;
-  font-weight: 600;
-  font-family: "Montserrat", sans-serif;
-  align-self: center;
-  font-size: 0.7rem;
-}
 
-.register,
-.login {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
 
-.formy {
-  display: grid;
-  text-align: left;
-  grid-template-rows: repeat(11, 50px) 30px 50px;
-}
+
+
+
+
 .fullname {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -165,45 +84,8 @@ h1 {
   grid-template-rows: 1fr 1fr;
 }
 
-.formy.log {
-  display: grid;
-  text-align: left;
-  grid-template-rows: repeat(6, 45px) 20px 45px;
-}
 
-.formy label {
-  text-align: left;
-  align-self: end;
-  padding-left: 4px;
-  padding-bottom: 4px;
-  font-weight: 600;
-  color: #565656;
-}
 
-.formy input {
-  padding-left: 10px;
-  color: #afaeae;
-  font-weight: 600;
-  font-weight: 500;
-  border: 1.5px solid #d6d5d5;
-  border-radius: 10px;
-  background-color: #f9fbfc;
-  font-size: 10px;
-}
-
-.log-but {
-  background-color: #191d3a;
-  color: #ffffff;
-  border: none;
-  text-align: center;
-  cursor: pointer;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  border-radius: 10px;
-  width: 100%;
-  justify-self: center;
-  height: 100%;
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -254,11 +136,7 @@ input::-webkit-inner-spin-button {
   font-size: 14px;
 }
 
-.error {
-  font-size: 13px;
-  color: red;
-  align-self: center;
-}
+
 
 @keyframes shake {
   0% {
@@ -561,7 +439,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
   height: 420px;
   object-fit: cover;
-  @media (max-width:450px) {
+  @media (max-width: 450px) {
     margin-top: 20px;
   }
 }
@@ -741,9 +619,8 @@ input::-webkit-inner-spin-button {
   grid-template-columns: 1fr auto;
   grid-template-rows: auto;
   background-color: #fafafc;
-  @media(max-width:450px){
+  @media (max-width: 450px) {
     grid-template-columns: 1fr;
-
   }
 }
 

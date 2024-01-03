@@ -16,8 +16,8 @@ import PersonalRecipesPage from "./components/pages/PersonalRecipesPage";
 export const LoggedInUser = React.createContext();
 
 const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
-const LazySignUp = lazy(() => import("./components/SignUp"));
-const LazyLogin = lazy(() => import("./components/Login"));
+const LazySignUp = lazy(() => import("./components/Sign And Log/SignUp"));
+const LazyLogin = lazy(() => import("./components/Sign And Log/Login"));
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState("");
