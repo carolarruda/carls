@@ -4,17 +4,17 @@ import PublicRecipes from "../PublicRecipes/PublicRecipes";
 
 const RecipesPage = ({ recipes, setSearch, search, setRecipes }) => {
   return (
-    <>
-      <div className={classes.grid}>
+    <main className={classes.main}>
+
         <PublicRecipes
           recipes={recipes}
           setSearch={setSearch}
           search={search}
           setRecipes={setRecipes}
         />
-      </div>
+
       <FooterTwo />
-    </>
+    </main>
   );
 };
 

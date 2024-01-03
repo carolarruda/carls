@@ -19,9 +19,9 @@ export default function FooterTwo() {
       <Container maxWidth="sm">
         <Typography variant="body2" color="text.secondary" align="center">
           {"Copyright © "}
-          <Link color="inherit" href="https://your-website.com/">
-            Carl's
-          </Link>{" "}
+          <Link color="inherit" href="http://localhost:3000/">
+        Carl's
+      </Link>{" "}
           {new Date().getFullYear()}
           {"."}
         </Typography>

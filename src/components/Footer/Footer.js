@@ -14,6 +14,7 @@ export default function Footer() {
       className="footer"
       component="footer"
       sx={{
+        marginTop: "auto",
         display: "grid",
         placeItems: "end",
         backgroundColor: (theme) =>
@@ -67,20 +68,19 @@ export default function Footer() {
             </Link>
           </Grid>
           <Grid item xs={8} sm={1.4}>
-            <img src={pic1} alt="logo" id="img-logo-footer"/>
+            <img src={pic1} alt="logo" id="img-logo-footer" />
           </Grid>
         </Grid>
         <Box mt={5}>
           <Typography variant="body2" color="text.secondary" align="center">
             {"Copyright © "}
-            <Link color="inherit" href="https://your-website.com/">
+            <Link color="inherit" href="http://localhost:3000/">
               Carl's
             </Link>{" "}
             {new Date().getFullYear()}
           </Typography>
         </Box>
       </Container>
-      
     </Box>
   );
 }

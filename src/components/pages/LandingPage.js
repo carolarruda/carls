@@ -5,15 +5,13 @@ import classes from "../Hero/HeroAndInfo.module.css";
 
 const LandingPage = () => {
   return (
-    <>
-      <div>
-        <div className={classes.section}>
-          <Hero />
-          <Info />
-        </div>
-        <Footer />
+    <main className={classes.main}>
+      <div className={classes.section}>
+        <Hero />
+        <Info />
       </div>
-    </>
+      <Footer />
+    </main>
   );
 };
 

@@ -25,7 +25,7 @@ const Caroussel = ({ blogs }) => {
     };
 
   }, [autoPlay, current]);
-  
+
   const slideLeft = () => {
     setCurrent(current === 0 ? blogs.length - 1 : current - 1);
   };

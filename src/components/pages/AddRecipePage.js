@@ -4,12 +4,12 @@ import classes from "./pages.module.css";
 
 const AddRecipePage = () => {
   return (
-    <>
+    <main className={classes.main}>
       <div className={classes.grid}>
         <RecipeAdd />
       </div>
       <FooterTwo />
-    </>
+    </main>
   );
 };
 

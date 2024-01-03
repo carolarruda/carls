@@ -19,7 +19,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="http://localhost:3000/">
-        Carls
+        Carl's
       </Link>{" "}
       {new Date().getFullYear()}
     </Typography>

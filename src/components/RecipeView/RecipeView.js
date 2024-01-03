@@ -49,7 +49,7 @@ const RecipeView = ({ search, setSearch }) => {
 
   return (
     <div>
-      <section className="recipe-view-main section-wrapper recipe">
+      <section className="recipe-view-main recipe-view-wrapper recipe">
         <div className="recipe-left">
           <div>
             <div className="hide">
@@ -213,8 +213,6 @@ const RecipeView = ({ search, setSearch }) => {
           </div>
         </div>
       </section>
-
-      <StickyFooter />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Nav from "./NavBar/Nav";
 import FooterTwo from "./Footer/FooterTwo";
 import Avatar from "@mui/material/Avatar";

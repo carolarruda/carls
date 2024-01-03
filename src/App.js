@@ -11,7 +11,8 @@ import RecipeUpdate from "./components/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
 import { useNavigate } from "react-router-dom";
 import AddRecipePage from "./components/pages/AddRecipePage";
-
+import RecipeViewPage from "./components/pages/RecipeViewPage";
+import PersonalRecipesPage from "./components/pages/PersonalRecipesPage";
 export const LoggedInUser = React.createContext();
 
 const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
@@ -168,12 +169,17 @@ function App() {
               }
             />
             <Route path="/recipes/:id" element={<Nav />}>
-              <Route
+            <Route
                 index
-                recipes={recipes}
-                setRecipes={setRecipes}
-                element={<RecipeView />}
-              />
+                element={
+                  <RecipeViewPage
+                    recipes={recipes}
+                    setRecipes={setRecipes}
+                    handleDelete={handleDelete}
+                    user={user}
+                  />
+                }
+              />           
             </Route>
 
             <Route
@@ -206,26 +212,24 @@ function App() {
               <Route index element={<BlogPage />} />
             </Route>
 
-            <Route
-              path="/myrecipes"
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <LazyMyRecipes
-                    setSearch={setSearch}
-                    search={search}
-                    recipesP={recipesP}
+              <Route path="/myrecipes" element={<Nav />}>
+              <Route
+                index
+                element={
+                  <PersonalRecipesPage
+                   recipesP={recipesP}
                     setRecipesP={setRecipesP}
                     setRecipes={setRecipes}
                     handleDelete={handleDelete}
                   />
-                </Suspense>
-              }
-            />
+                }
+              />
+            </Route>
               <Route path="/myrecipes/:id" element={<Nav />}>
               <Route
                 index
                 element={
-                  <RecipeView
+                  <RecipeViewPage
                     recipes={recipes}
                     setRecipes={setRecipes}
                     handleDelete={handleDelete}

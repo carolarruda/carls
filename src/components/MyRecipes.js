@@ -30,7 +30,6 @@ export default function MyRecipes({
   const navigate = useNavigate();
   const [loadingStates, setLoadingStates] = useState({});
 
-
   const handleClick = (id) => {
     setLoadingStates((prevState) => ({ ...prevState, [id]: true }));
   };
@@ -90,51 +89,23 @@ export default function MyRecipes({
   //   }
   // };
 
-  let filteredRecipes;
-
-  if (search !== "") {
-    filteredRecipes = recipesP.filter((recipe) => {
-      const titleMatch = recipe.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      const ingredientsMatch = recipe.ingredients
-        .toLowerCase()
-        .split(";")
-        .some((ingredient) => ingredient.includes(search.toLowerCase()));
-
-      const courseTypeMatch = recipe.courseType
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      const creatorFirstLastMatch =
-        recipe.user.profile.firstName
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        recipe.user.profile.lastName
-          .toLowerCase()
-          .includes(search.toLowerCase());
-
-      return (
-        titleMatch ||
-        ingredientsMatch ||
-        courseTypeMatch ||
-        creatorFirstLastMatch
-      );
-    });
-  } else {
-    filteredRecipes = recipesP;
-  }
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <Nav search={search} setSearch={setSearch} />
-      <main className="section-wrapper-speciel">
-        <Container sx={{ py: 8 }} maxWidth="md">
+
+      <main>
+        <Container
+          sx={{
+            display: "grid",
+            justifyItems: "center",
+            py: 8,
+          }}
+          maxWidth="md"
+        >
           <Grid container spacing={3}>
-            {filteredRecipes && filteredRecipes.length > 0 &&
-              filteredRecipes.map((card, index) => {
+            {recipesP &&
+              recipesP.length > 0 &&
+              recipesP.map((card, index) => {
                 return (
                   <Grid item key={card.id} xs={15} sm={6} md={4}>
                     <Card
