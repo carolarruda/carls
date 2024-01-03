@@ -1,16 +1,15 @@
-/* Form and Edit recipe and website*/
-
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
-
-.big-container {
+.bigContainer {
   border: solid 1px transparent;
   display: grid;
   padding: 20px;
   min-height: auto;
   justify-content: center;
+  @media (max-width: 500px) {
+    display: block;
+  }
 }
 
-.form-stack.recipe-form {
+.recipeForm {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -21,16 +20,16 @@
   }
 }
 
-.segment {
-  display: grid;
-  row-gap: 10px;
-}
-
-.recipe-form label {
+.recipeForm label {
   font-weight: 600;
   font-size: 11px;
   color: black;
   font-family: "DM Sans";
+}
+
+.segment {
+  display: grid;
+  row-gap: 10px;
 }
 
 .rating label {
@@ -62,32 +61,32 @@
   color: rgb(254, 217, 9);
 }
 
+
 .inline {
-  display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  align-items: center;
-}
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    align-items: center;
+  }
 
 .segment,
 .inline {
   padding-top: 12px;
 }
 
-.second-column,
-.third-column,
-.fourth-column {
-  display: grid;
+.recipeForm label {
+  font-weight: 600;
+  font-size: 11px;
+  color: black;
+  font-family: "DM Sans";
 }
 
-.courses {
-  font-size: 10px;
+.buttons {
+    padding-top: 35px;
+    display: grid;
+    grid-template-rows: 30px 30px;
 }
 
-.fifth-column input {
-  height: 25px;
-}
-.fifth-column {
-  padding-top: 35px;
-  display: grid;
-  grid-template-rows: 30px 30px;
+.buttons input {
+    height: 25px;
+ 
 }

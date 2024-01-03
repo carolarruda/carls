@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/old.css";
+import Nav from "../NavBar/Nav";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
+import classes from "./Form.module.css";
 
-const RecipeAdd = ({ setRecipes, setRecipesP }) => {
+const RecipeUpdate = ({ setRecipes, setRecipesP, search, setSearch }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -20,12 +21,109 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
   const [notes, setNotes] = useState("");
   const token = localStorage.getItem("token");
 
+  const [form, setForm] = useState({
+    title: "",
+    imageUrl: "",
+    rating: "",
+    courseType: "",
+    prepTime: "",
+    cokkTime: "",
+    servings: "",
+    ingredients: "",
+    instructions: "",
+    notes: "",
+  });
+
+  const handleChange = (e) => {
+    setForm.label(e.target.value);
+  };
+
   const navigate = useNavigate();
+  const params = useParams();
 
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
     setLoading(true);
+  };
+
+  useEffect(() => {
+    const fetchInitialValue = () => {
+      fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setTitle(data.data.recipe.title || "");
+          setImageUrl(data.data.recipe.imageUrl || "");
+          setRating(data.data.recipe.rating || 0);
+          setCourseType(data.data.recipe.courseType || "");
+          setPrepTime(data.data.recipe.prepTime || 0);
+          setCookTime(data.data.recipe.cookTime || 0);
+          setServings(data.data.recipe.servings || 0);
+          setIngredients(data.data.recipe.ingredients || "");
+          setInstructions(data.data.recipe.instructions || "");
+          setNotes(data.data.recipe.notes || "");
+        })
+        .catch((error) => {
+          console.error("Error fetching initial value:", error);
+        });
+    };
+
+    fetchInitialValue();
+  }, [params.id]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const editedRecipe = {
+      title,
+      imageUrl,
+      rating,
+      courseType,
+      prepTime,
+      cookTime,
+      servings,
+      ingredients,
+      instructions,
+      notes,
+    };
+
+    const postOpts = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(editedRecipe),
+    };
+    fetch(
+      `https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`,
+      postOpts
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
+          .then((res) => res.json())
+          .then((data) => {
+            setRecipes(data.data.recipes);
+
+            const opts = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            };
+            fetch(
+              `https://node-mysql-api-0zxf.onrender.com/recipes/personal`,
+              opts
+            )
+              .then((res) => res.json())
+              .then((data) => {
+                setRecipesP(data.data.recipes);
+                navigate("/myrecipes");
+              });
+          });
+      });
+  }
+  const handleCancel = () => {
+    navigate(-1);
   };
 
   const handleTitle = (e) => {
@@ -45,9 +143,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
   };
 
   const handlePrep = (e) => {
-    if (e.target.value > 0) {
-      setPrepTime(Number(e.target.value));
-    }
+    setPrepTime(Number(e.target.value));
   };
 
   const handleCook = (e) => {
@@ -70,63 +166,15 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
     setNotes(e.target.value);
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const newRecipe = {
-      title,
-      imageUrl,
-      rating,
-      courseType,
-      prepTime,
-      cookTime,
-      servings,
-      ingredients,
-      instructions,
-      notes,
-    };
-    const opts = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newRecipe),
-    };
-
-    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`, opts)
-      .then((res) => res.json())
-      .then((data) => {
-        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
-          .then((res) => res.json())
-          .then((data) => {
-            setRecipes(data.data.recipes);
-            const opts = {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            };
-            fetch(
-              `https://node-mysql-api-0zxf.onrender.com/recipes/personal`,
-              opts
-            )
-              .then((res) => res.json())
-              .then((data) => setRecipesP(data.data.recipes));
-            navigate("/myrecipes");
-          });
-      });
-  }
-
-  const handleCancel = () => {
-    navigate(-1);
-  };
-
   return (
     <div>
-      <section className="form-container">
-        <div className="big-container">
-          <form className="form-stack recipe-form" onSubmit={handleSubmit}>
-            <div className="first-column">
-              <div className="segment">
+      <Nav search={search} setSearch={setSearch} />
+
+      <section>
+        <div className={classes.bigContainer}>
+          <form className={classes.recipeForm} onSubmit={handleSubmit}>
+            <div>
+              <div className={classes.segment}>
                 <TextField
                   margin="normal"
                   width="50px"
@@ -141,7 +189,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                   onChange={handleTitle}
                 />
               </div>
-              <div className="segment">
+              <div className={classes.segment}>
                 <TextField
                   margin="normal"
                   width="50px"
@@ -157,9 +205,9 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                 />
               </div>
 
-              <div className="inline">
+              <div className={classes.inline}>
                 <label htmlFor="rating">Star Rating</label>
-                <div className="rating">
+                <div className={classes.rating}>
                   <input
                     type="radio"
                     id="star5"
@@ -207,7 +255,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                   <label htmlFor="star1"></label>
                 </div>
               </div>
-              <div className="segment">
+              <div className={classes.segment}>
                 <FormControl>
                   <InputLabel htmlFor="courses" shrink={courseType !== ""}>
                     Course
@@ -242,7 +290,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                   </Select>
                 </FormControl>
               </div>
-              <div className="segment prep">
+              <div className={classes.segment}>
                 <TextField
                   label="Prep Time (mins)"
                   type="number"
@@ -290,7 +338,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
               />
             </div>
 
-            <div className="fourth-column segment add-margin">
+            <div>
               <TextField
                 label="Notes"
                 type="text"
@@ -300,7 +348,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
                 value={notes}
               />
             </div>
-            <div className="fifth-column segment">
+            <div className={`${classes.segment} ${classes.buttons}`}>
               <LoadingButton
                 size="small"
                 color="primary"
@@ -324,4 +372,4 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
   );
 };
 
-export default RecipeAdd;
+export default RecipeUpdate;

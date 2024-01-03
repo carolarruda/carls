@@ -1,4 +1,4 @@
-import RecipeAdd from "../RecipeForm/RecipeAdd";
+import RecipeAdd from "../RecipeAddUpdate/RecipeAdd";
 import FooterTwo from "../Footer/FooterTwo";
 import classes from "./pages.module.css";
 

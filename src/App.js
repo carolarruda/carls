@@ -7,7 +7,7 @@ import RecipesPage from "./components/pages/RecipesPage";
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import RecipeView from "./components/RecipeView/RecipeView";
 import AccountSettings from "./components/AccountSettings";
-import RecipeUpdate from "./components/RecipeUpdate";
+import RecipeUpdate from "./components/RecipeAddUpdate/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
 import { useNavigate } from "react-router-dom";
 import AddRecipePage from "./components/pages/AddRecipePage";

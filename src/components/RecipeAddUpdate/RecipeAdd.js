@@ -1,19 +1,13 @@
-import Nav from "./NavBar/Nav";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import "./styles/old.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
+import classes from "./Form.module.css";
 
-const RecipeUpdate = ({
-  setRecipes,
-  setRecipesP,
-  search,
-  setSearch,
-}) => {
+const RecipeAdd = ({ setRecipes, setRecipesP }) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
@@ -27,85 +21,28 @@ const RecipeUpdate = ({
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
-  const params = useParams();
 
   const [loading, setLoading] = useState(false);
 
-  const handleClick = () => {
-    setLoading(true);
+  const [form, setForm] = useState({
+    title: "",
+    imageUrl: "",
+    rating: "",
+    courseType: "",
+    prepTime: "",
+    cokkTime: "",
+    servings: "",
+    ingredients: "",
+    instructions: "",
+    notes: "",
+  });
+
+  const handleChange = (e) => {
+    setForm.label(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchInitialValue = () => {
-      fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setTitle(data.data.recipe.title || "");
-          setImageUrl(data.data.recipe.imageUrl || "");
-          setRating(data.data.recipe.rating || 0);
-          setCourseType(data.data.recipe.courseType || "");
-          setPrepTime(data.data.recipe.prepTime || 0);
-          setCookTime(data.data.recipe.cookTime || 0);
-          setServings(data.data.recipe.servings || 0);
-          setIngredients(data.data.recipe.ingredients || "");
-          setInstructions(data.data.recipe.instructions || "");
-          setNotes(data.data.recipe.notes || "");
-        })
-        .catch((error) => {
-          console.error("Error fetching initial value:", error);
-        });
-    };
-
-    fetchInitialValue();
-  }, [params.id]);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const editedRecipe = {
-      title,
-      imageUrl,
-      rating,
-      courseType,
-      prepTime,
-      cookTime,
-      servings,
-      ingredients,
-      instructions,
-      notes,
-    };
-
-    const postOpts = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(editedRecipe),
-    };
-    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`, postOpts)
-      .then((res) => res.json())
-      .then((data) => {
-        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
-          .then((res) => res.json())
-          .then((data) => {
-            setRecipes(data.data.recipes);
-
-            const opts = {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            };
-            fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
-              .then((res) => res.json())
-              .then((data) => {
-                setRecipesP(data.data.recipes);
-                navigate("/myrecipes");
-              });
-          });
-      });
-  }
-  const handleCancel = () => {
-    navigate(-1);
+  const handleClick = () => {
+    setLoading(true);
   };
 
   const handleTitle = (e) => {
@@ -125,7 +62,9 @@ const RecipeUpdate = ({
   };
 
   const handlePrep = (e) => {
-    setPrepTime(Number(e.target.value));
+    if (e.target.value > 0) {
+      setPrepTime(Number(e.target.value));
+    }
   };
 
   const handleCook = (e) => {
@@ -148,15 +87,63 @@ const RecipeUpdate = ({
     setNotes(e.target.value);
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newRecipe = {
+      title,
+      imageUrl,
+      rating,
+      courseType,
+      prepTime,
+      cookTime,
+      servings,
+      ingredients,
+      instructions,
+      notes,
+    };
+    const opts = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(newRecipe),
+    };
+
+    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`, opts)
+      .then((res) => res.json())
+      .then((data) => {
+        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
+          .then((res) => res.json())
+          .then((data) => {
+            setRecipes(data.data.recipes);
+            const opts = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            };
+            fetch(
+              `https://node-mysql-api-0zxf.onrender.com/recipes/personal`,
+              opts
+            )
+              .then((res) => res.json())
+              .then((data) => setRecipesP(data.data.recipes));
+            navigate("/myrecipes");
+          });
+      });
+  }
+
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
-      <Nav search={search} setSearch={setSearch} />
-
-      <section className="form-container">
-        <div className="big-container" id="set-height">
-          <form className="form-stack recipe-form" onSubmit={handleSubmit}>
-            <div className="first-column">
-              <div className="segment">
+      <section>
+        <div className={classes.bigContainer}>
+          <form className={classes.recipeForm} onSubmit={handleSubmit}>
+            <div>
+              <div className={classes.segment}>
                 <TextField
                   margin="normal"
                   width="50px"
@@ -167,11 +154,11 @@ const RecipeUpdate = ({
                   type="text"
                   label="Recipe Title"
                   name="title"
-                  value={title}
-                  onChange={handleTitle}
+                  value={value}
+                  onChange={handleChange}
                 />
               </div>
-              <div className="segment">
+              <div className={classes.segment}>
                 <TextField
                   margin="normal"
                   width="50px"
@@ -187,9 +174,9 @@ const RecipeUpdate = ({
                 />
               </div>
 
-              <div className="inline">
+              <div className={classes.inline}>
                 <label htmlFor="rating">Star Rating</label>
-                <div className="rating">
+                <div className={classes.rating}>
                   <input
                     type="radio"
                     id="star5"
@@ -237,7 +224,7 @@ const RecipeUpdate = ({
                   <label htmlFor="star1"></label>
                 </div>
               </div>
-              <div className="segment">
+              <div className={classes.segment}>
                 <FormControl>
                   <InputLabel htmlFor="courses" shrink={courseType !== ""}>
                     Course
@@ -272,7 +259,7 @@ const RecipeUpdate = ({
                   </Select>
                 </FormControl>
               </div>
-              <div className="segment prep">
+              <div className={classes.segment}>
                 <TextField
                   label="Prep Time (mins)"
                   type="number"
@@ -280,7 +267,7 @@ const RecipeUpdate = ({
                   value={prepTime}
                 />
               </div>
-              <div className="segment prep">
+              <div className={classes.segment}>
                 <TextField
                   label="Cook Time (mins)"
                   type="number"
@@ -288,7 +275,7 @@ const RecipeUpdate = ({
                   value={cookTime}
                 />
               </div>
-              <div className="segment prep">
+              <div className={classes.segment}>
                 <TextField
                   label="Servings"
                   type="number"
@@ -298,7 +285,7 @@ const RecipeUpdate = ({
               </div>
             </div>
 
-            <div className="second-column segment add-margin">
+            <div >
               <TextField
                 label="Ingredients"
                 type="text"
@@ -309,7 +296,7 @@ const RecipeUpdate = ({
               />
             </div>
 
-            <div className="third-column segment add-margin">
+            <div>
               <TextField
                 label="Instructions"
                 type="text"
@@ -320,7 +307,7 @@ const RecipeUpdate = ({
               />
             </div>
 
-            <div className="fourth-column segment add-margin">
+            <div >
               <TextField
                 label="Notes"
                 type="text"
@@ -330,7 +317,7 @@ const RecipeUpdate = ({
                 value={notes}
               />
             </div>
-            <div className="fifth-column segment">
+            <div className={`${classes.segment} ${classes.buttons}`}>
               <LoadingButton
                 size="small"
                 color="primary"
@@ -350,9 +337,8 @@ const RecipeUpdate = ({
           </form>
         </div>
       </section>
-
     </div>
   );
 };
 
-export default RecipeUpdate;
+export default RecipeAdd;
