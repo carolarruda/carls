@@ -21,10 +21,7 @@ import AddIcon from "@mui/icons-material/Add";
 const defaultTheme = createTheme();
 
 export default function MyRecipes({
-  search,
-  setSearch,
   recipesP,
-  setRecipesP,
   handleDelete,
 }) {
   const navigate = useNavigate();
@@ -202,7 +199,6 @@ export default function MyRecipes({
           <div className="div">New Recipe</div>
         </div>
       </main>
-      <FooterTwo />
     </ThemeProvider>
   );
 }

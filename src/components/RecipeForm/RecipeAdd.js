@@ -304,7 +304,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP }) => {
               <LoadingButton
                 size="small"
                 color="primary"
-                onClick={handleClick}
+                onSubmit={handleClick}
                 loading={loading}
                 loadingPosition="start"
                 startIcon={<SaveIcon />}

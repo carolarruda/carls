@@ -33,7 +33,6 @@ const AccountSettings = ({ search, setSearch }) => {
       .then((data) => {
         setImage(data.data.avatar);
         setUser(data.data);
-        console.log(data.data.avatar);
       })
       .catch((error) => console.error("Error fetching user:", error));
   }, [token, userId]);
@@ -62,10 +61,10 @@ const AccountSettings = ({ search, setSearch }) => {
           );
 
           if (response.ok) {
-            console.log("Image uploaded successfully");
+
             navigate(0);
 
-            console.log("Image URL:", image);
+      
           } else {
             console.error("Image upload failed");
           }

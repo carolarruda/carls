@@ -17,7 +17,6 @@ import SignUp from "./components/Sign And Log/SignUp";
 import Login from "./components/Sign And Log/Login";
 export const LoggedInUser = React.createContext();
 
-
 function App() {
   const [searchRecipe, setSearchRecipe] = useState("");
 
@@ -114,36 +113,28 @@ function App() {
             <Route
               path="/login"
               element={
-
-                  <Login
-                    setUsers={setUsers}
-                    users={users}
-                    setLoggedIn={setLoggedIn}
-                  />
-              
+                <Login
+                  setUsers={setUsers}
+                  users={users}
+                  setLoggedIn={setLoggedIn}
+                />
               }
             />
 
             <Route path="/" element={<Nav />}>
-              <Route
-                index
-                users={users}
-                setLoggedIn={setLoggedIn}
-                search={search}
-                setSearch={setSearch}
-                element={<LandingPage />}
-              />
+              <Route index element={<LandingPage />} />
             </Route>
             <Route path="/add" element={<Nav />}>
               <Route
                 index
-                recipes={recipes}
-                setRecipes={setRecipes}
-                recipesP={recipesP}
-                setRecipesP={setRecipesP}
-                search={search}
-                setSearch={setSearch}
-                element={<AddRecipePage />}
+                element={
+                  <AddRecipePage
+                    recipes={recipes}
+                    setRecipes={setRecipes}
+                    recipesP={recipesP}
+                    setRecipesP={setRecipesP}
+                  />
+                }
               />
             </Route>
 
@@ -155,8 +146,6 @@ function App() {
                   setRecipes={setRecipes}
                   recipesP={recipesP}
                   setRecipesP={setRecipesP}
-                  search={search}
-                  setSearch={setSearch}
                 />
               }
             />

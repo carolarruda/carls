@@ -1,5 +1,4 @@
 import Nav from "./NavBar/Nav";
-import FooterTwo from "./Footer/FooterTwo";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./styles/old.css";
@@ -10,8 +9,6 @@ import SaveIcon from "@mui/icons-material/Save";
 import Button from "@mui/material/Button";
 
 const RecipeUpdate = ({
-  recipes,
-  recipesP,
   setRecipes,
   setRecipesP,
   search,
@@ -85,7 +82,6 @@ const RecipeUpdate = ({
       },
       body: JSON.stringify(editedRecipe),
     };
-
     fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`, postOpts)
       .then((res) => res.json())
       .then((data) => {
@@ -338,8 +334,7 @@ const RecipeUpdate = ({
               <LoadingButton
                 size="small"
                 color="primary"
-                onClick={handleClick}
-                // onSubmit={handleClick}
+                onSubmit={handleClick}
                 loading={loading}
                 loadingPosition="start"
                 startIcon={<SaveIcon />}

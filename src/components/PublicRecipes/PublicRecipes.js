@@ -20,7 +20,7 @@ import { useContext } from "react";
 import { SearchContext } from "../../App";
 const defaultTheme = createTheme();
 
-const PublicRecipes = ({ search, setSearch, recipes, setRecipes, user }) => {
+const PublicRecipes = ({ recipes, setRecipes }) => {
   const [searchRecipe, setSearchRecipe] = useContext(SearchContext);
   const [isLiked, setIsLiked] = useState("");
 
@@ -76,7 +76,6 @@ const PublicRecipes = ({ search, setSearch, recipes, setRecipes, user }) => {
 
   let filteredRecipes;
 
-  console.log(searchRecipe);
 
   if (searchRecipe !== "") {
     filteredRecipes = recipes.filter((recipe) => {

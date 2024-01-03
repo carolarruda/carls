@@ -38,7 +38,6 @@ export default function DeleteAccount() {
   };
 
   const handleDeleteAccount = () => {
-    console.log("deleting user?");
     const opts = {
       headers: {
         Authorization: `Bearer ${token}`,
