@@ -5,7 +5,6 @@ import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import RecipeView from "./components/RecipeView/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import RecipeUpdate from "./components/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
@@ -13,11 +12,9 @@ import { useNavigate } from "react-router-dom";
 import AddRecipePage from "./components/pages/AddRecipePage";
 import RecipeViewPage from "./components/pages/RecipeViewPage";
 import PersonalRecipesPage from "./components/pages/PersonalRecipesPage";
+import SignUp from "./components/Sign And Log/SignUp";
+import Login from "./components/Sign And Log/Login";
 export const LoggedInUser = React.createContext();
-
-const LazyMyRecipes = lazy(() => import("./components/MyRecipes"));
-const LazySignUp = lazy(() => import("./components/Sign And Log/SignUp"));
-const LazyLogin = lazy(() => import("./components/Sign And Log/Login"));
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState("");
@@ -110,27 +107,9 @@ function App() {
       <SearchContext.Provider value={[searchRecipe, setSearchRecipe]}>
         <div className="App">
           <Routes>
-            <Route
-              path="/sign"
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <LazySignUp />
-                </Suspense>
-              }
-            />
+            <Route path="/sign" element={<SignUp />} />
 
-            <Route
-              path="/login"
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <LazyLogin
-                    setUsers={setUsers}
-                    users={users}
-                    setLoggedIn={setLoggedIn}
-                  />
-                </Suspense>
-              }
-            />
+            <Route path="/login" element={<Login />} />
 
             <Route path="/" element={<Nav />}>
               <Route
@@ -169,7 +148,7 @@ function App() {
               }
             />
             <Route path="/recipes/:id" element={<Nav />}>
-            <Route
+              <Route
                 index
                 element={
                   <RecipeViewPage
@@ -179,7 +158,7 @@ function App() {
                     user={user}
                   />
                 }
-              />           
+              />
             </Route>
 
             <Route
@@ -212,12 +191,12 @@ function App() {
               <Route index element={<BlogPage />} />
             </Route>
 
-              <Route path="/myrecipes" element={<Nav />}>
+            <Route path="/myrecipes" element={<Nav />}>
               <Route
                 index
                 element={
                   <PersonalRecipesPage
-                   recipesP={recipesP}
+                    recipesP={recipesP}
                     setRecipesP={setRecipesP}
                     setRecipes={setRecipes}
                     handleDelete={handleDelete}
@@ -225,7 +204,7 @@ function App() {
                 }
               />
             </Route>
-              <Route path="/myrecipes/:id" element={<Nav />}>
+            <Route path="/myrecipes/:id" element={<Nav />}>
               <Route
                 index
                 element={
@@ -238,7 +217,6 @@ function App() {
                 }
               />
             </Route>
-       
           </Routes>
         </div>
       </SearchContext.Provider>
