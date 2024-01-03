@@ -5,6 +5,7 @@ import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
 import React, { useEffect, useState, lazy, Suspense } from "react";
+import RecipeView from "./components/RecipeView/RecipeView";
 import AccountSettings from "./components/AccountSettings";
 import RecipeUpdate from "./components/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
@@ -15,6 +16,7 @@ import PersonalRecipesPage from "./components/pages/PersonalRecipesPage";
 import SignUp from "./components/Sign And Log/SignUp";
 import Login from "./components/Sign And Log/Login";
 export const LoggedInUser = React.createContext();
+
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState("");
@@ -109,7 +111,18 @@ function App() {
           <Routes>
             <Route path="/sign" element={<SignUp />} />
 
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/login"
+              element={
+
+                  <Login
+                    setUsers={setUsers}
+                    users={users}
+                    setLoggedIn={setLoggedIn}
+                  />
+              
+              }
+            />
 
             <Route path="/" element={<Nav />}>
               <Route
