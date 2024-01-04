@@ -1,16 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoggedInUser } from "../../App";
+import { LoggedInUser, User } from "../../App";
 import Typography from "@mui/material/Typography";
-
 import Link from "@mui/material/Link";
 
 import Grid from "@mui/material/Grid";
 
 import "../style.css";
 import classes from "./Sign.module.css";
-import { Class } from "@mui/icons-material";
+
 function Copyright(props) {
   return (
     <Typography
@@ -40,6 +39,8 @@ const Login = ({ setUsers, users }) => {
   const [redTwo, setRedTwo] = useState("");
   const [shake, setShake] = useState("");
   const [shakeTwo, setShakeTwo] = useState("");
+  const [user, setUser] = useContext(User);
+
 
   const sk = "shake 0.2s ease-in-out 0s 2";
 
@@ -89,7 +90,7 @@ const Login = ({ setUsers, users }) => {
         try {
           if (loginResponse.status === 200) {
             setLoggedIn(true);
-
+            setUser(data.data.user);
             localStorage.setItem("token", data.data.token);
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);

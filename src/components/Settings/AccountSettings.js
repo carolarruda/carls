@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import classes from "./Settings.module.css";
-import { User } from "../../App";
+import { LoggedInUser, User } from "../../App";
 import { useContext } from "react";
 
 const AccountSettings = ({ search, setSearch }) => {
@@ -19,27 +19,14 @@ const AccountSettings = ({ search, setSearch }) => {
 
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem("userId");
-
   const [user, setUser]= useContext(User)
+  const [loggedIn, setLoggedIn]= useContext(LoggedInUser)
 
   useEffect(() => {
-    const opts = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    
+        setImage(user.avatar);
 
-    fetch(
-      `https://node-mysql-api-0zxf.onrender.com/users/avatar/${userId}`,
-      opts
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setImage(data.data.avatar);
-        setUser(data.data);
-      })
-      .catch((error) => console.error("Error fetching user:", error));
+
   }, []);
 
   const handleImageUpload = async (files) => {
@@ -135,7 +122,7 @@ const AccountSettings = ({ search, setSearch }) => {
               </Box>
               <div className={classes.fullname}>
                 <h2>
-                  {user.profile.firstName} {user.profile.lastName}
+                  {user.firstName} {user.lastName}
                 </h2>
                 <button className="course-type settings edit">
                   Edit{" "}
@@ -169,11 +156,11 @@ const AccountSettings = ({ search, setSearch }) => {
               <div className="personal-details">
                 <div className="pd-card">
                   <h4 className="detail-topic">First Name</h4>
-                  <h4 className="detail-user">{user.profile.firstName}</h4>
+                  <h4 className="detail-user">{user.firstName}</h4>
                 </div>
                 <div className="pd-card">
                   <h4 className="detail-topic">Last Name</h4>
-                  <h4 className="detail-user">{user.profile.lastName}</h4>
+                  <h4 className="detail-user">{user.lastName}</h4>
                 </div>
                 <div className="pd-card">
                   <h4 className="detail-topic">Email Address</h4>
@@ -181,11 +168,11 @@ const AccountSettings = ({ search, setSearch }) => {
                 </div>
                 <div className="pd-card">
                   <h4 className="detail-topic">Phone</h4>
-                  <h4 className="detail-user">{user.profile.phone}</h4>
+                  <h4 className="detail-user">{user.phone}</h4>
                 </div>
                 <div className="pd-card">
                   <h4 className="detail-topic">Bio</h4>
-                  <h4 className="detail-user">{user.profile.bio}</h4>
+                  <h4 className="detail-user">{user.bio}</h4>
                 </div>
                 <div className="pd-card">
                   <h4 className="detail-topic">Role</h4>
