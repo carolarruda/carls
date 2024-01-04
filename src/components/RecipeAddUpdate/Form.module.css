@@ -90,3 +90,8 @@
     height: 25px;
  
 }
+
+.prep {
+  margin-top: 20px;
+  display: grid;
+}

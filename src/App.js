@@ -1,13 +1,10 @@
-/* eslint-disable no-unused-vars */
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
-import React, { useEffect, useState, lazy, Suspense } from "react";
-import RecipeView from "./components/RecipeView/RecipeView";
+import React, { useEffect, useState} from "react";
 import AccountSettings from "./components/AccountSettings";
-import RecipeUpdate from "./components/RecipeAddUpdate/RecipeUpdate";
 import BlogPage from "./components/pages/BlogPage";
 import { useNavigate } from "react-router-dom";
 import AddRecipePage from "./components/pages/AddRecipePage";
@@ -137,18 +134,24 @@ function App() {
                 }
               />
             </Route>
-
-            <Route
+            <Route 
               path="/edit/:id"
-              element={
-                <RecipeUpdate
-                  recipes={recipes}
-                  setRecipes={setRecipes}
-                  recipesP={recipesP}
-                  setRecipesP={setRecipesP}
-                />
-              }
-            />
+              element={<Nav />}>
+              <Route
+                index
+                element={
+                  <AddRecipePage
+                    recipes={recipes}
+                    setRecipes={setRecipes}
+                    recipesP={recipesP}
+                    setRecipesP={setRecipesP}
+                    update={true}
+                  />
+                }
+              />
+            </Route>
+
+         
             <Route path="/recipes/:id" element={<Nav />}>
               <Route
                 index

@@ -751,13 +751,20 @@ input::-webkit-inner-spin-button {
 
 .prep {
   margin-top: 20px;
+  display: grid;
+
 }
 
 .add-margin {
   margin-top: 15px;
+  display: grid;
+
+
 }
 
 .instruction-list {
+  display: grid;
+
   margin-top: 70px;
   @media (max-width: 450px) {
     margin-top: 0px;
