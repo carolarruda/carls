@@ -43,7 +43,13 @@ function App() {
         .catch((error) =>
           console.error("Error fetching personal recipes:", error)
         );
-     
+      fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data.data.user);
+          console.log('myuser', data.data.user);
+        })
+        .catch((error) => console.error("Error fetching user:", error));
     } else {
       setLoggedIn(false);
     }
@@ -62,7 +68,6 @@ function App() {
   }, [token, userId]);
 
   useEffect(() => {}, [token]);
-
 
   const handleDelete = (id) => {
     setRecipes(filteredRecipes);
