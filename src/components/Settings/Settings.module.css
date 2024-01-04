@@ -1,0 +1,122 @@
+.settingsGrid {
+  display: grid;
+  grid-template-columns: 1fr 60vw;
+  grid-template-rows: auto;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.leftOptionsSettings {
+  border-right: 3px solid #eeeeee;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  @media (max-width: 450px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.settingsButtons {
+  width: auto;
+  height: 30px;
+  color: #191d3a;
+  background-color: transparent;
+  border: 0.5px solid #d4dfed;
+  border-radius: 10px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.settingsButtons:hover {
+  background-color: #d0e0f5;
+}
+
+.settings {
+  font-size: 13px;
+  color: #79859a;
+  border-radius: 20px;
+  height: 40px;
+  font-weight: 400;
+  font-family: "Poppins";
+  border: none;
+}
+
+.settings:hover {
+  color: #1963fd;
+  background-color: #e9f0ff;
+}
+
+.rightSettings {
+    margin-top: 30px;
+    margin-left: 30px;
+  }
+
+  .optionHeader {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+
+  .PicName {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border: 2px solid #eeeeee;
+    border-radius: 20px;
+    margin-right: 20px;
+    padding: 10px;
+  }
+
+  .fullname {
+    display: grid;
+    align-items: center;
+    margin-left: 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  
+  .fullname h2 {
+    margin: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .courseType {
+    width: auto;
+    height: 30px;
+    color: #191d3a;
+    background-color: transparent;
+    border: 0.5px solid #d4dfed;
+    border-radius: 10px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .courseType:hover {
+    background-color: #d0e0f5;
+  }
+
+
+  .edit {
+    max-width: 300px;
+    justify-self: right;
+
+  }
+
+  .course-type.icons {
+    justify-self: center;
+    align-self: center;
+  }
+  

@@ -279,7 +279,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
                   value={prepTime}
                 />
               </div>
-              <div className="segment prep">
+              <div className={classes.prep}>
                 <TextField
                   label="Cook Time (mins)"
                   type="number"
@@ -287,7 +287,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
                   value={cookTime}
                 />
               </div>
-              <div className="segment prep">
+              <div className={classes.prep}>
                 <TextField
                   label="Servings"
                   type="number"
@@ -297,7 +297,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               </div>
             </div>
 
-            <div className="second-column segment add-margin">
+            <div className={classes.addMargin}>
               <TextField
                 label="Ingredients"
                 type="text"
@@ -308,7 +308,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               />
             </div>
 
-            <div className="third-column segment add-margin">
+            <div className={classes.addMargin}>
               <TextField
                 label="Instructions"
                 type="text"
@@ -319,7 +319,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               />
             </div>
 
-            <div>
+            <div className={classes.addMargin}>
               <TextField
                 label="Notes"
                 type="text"

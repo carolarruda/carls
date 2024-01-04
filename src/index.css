@@ -13,19 +13,14 @@ code {
     monospace;
 }
 
-.section-wrapper {
+.section-wrapper, .section-wrapper-settings {
   max-width: 1150px;
   margin: auto;
   padding: 9.6rem;
   overflow: hidden;
 }
 
-.section-wrapper-speciel {
-  max-width: 1150px;
-  margin: auto;
 
-  padding: 6.6rem;
-}
 .nav-wrapper {
   max-width: 1150px;
   margin: auto;
@@ -42,6 +37,10 @@ code {
 @media (max-width: 768px) {
   .section-wrapper {
     padding: 7.2rem 1.4rem;
+    margin: 0px;
+  }
+  .section-wrapper-settings {
+    padding: 2rem 1.4rem;
     margin: 0px;
   }
 }

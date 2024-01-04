@@ -74,15 +74,7 @@
 
 
 
-.fullname {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 
-.fullname div {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-}
 
 
 
@@ -609,8 +601,8 @@ input::-webkit-inner-spin-button {
 }
 
 .right-settings {
-  /* background-color: pink; */
   margin-top: 30px;
+  margin-left: 30px;
 }
 
 .settings-grid {
@@ -636,11 +628,6 @@ input::-webkit-inner-spin-button {
   border: none;
 }
 
-.empty {
-  /* height: 40px; */
-  margin-left: 20px;
-  margin-top: 15px;
-}
 
 .settings:hover {
   color: #1963fd;

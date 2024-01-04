@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { LoggedInUser } from "../App";
 import { useContext, useState } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
-import SaveIcon from "@mui/icons-material/Save";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function DeleteAccount() {
@@ -54,19 +54,20 @@ export default function DeleteAccount() {
   };
 
   return (
-    <div>
-      <Button
+<>
+
+<Button
         variant=""
         onClick={handleClickOpen}
         sx={{
+          marginRight: '20px',
+          marginTop: "20px",
           fontSize: "13px",
           color: "red",
           borderRadius: "20px",
           height: "40px",
           fontWeight: 400,
           fontFamily: "Poppins",
-          marginLeft: "20px",
-          marginTop: "5px",
           border: "none",
           textTransform: "none",
           "&:hover": {
@@ -74,7 +75,7 @@ export default function DeleteAccount() {
           },
         }}
       >
-        Delete Account
+        Delete
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -113,6 +114,7 @@ export default function DeleteAccount() {
             size="small"
             sx={{
               color: "#191d3a",
+              alignSelf: 'start',
               backgroundColor: "transparent",
               boxShadow: "none",
               border: "none",
@@ -137,6 +139,7 @@ export default function DeleteAccount() {
           </LoadingButton>
         </DialogActions>
       </Dialog>
-    </div>
+
+</>
   );
 }

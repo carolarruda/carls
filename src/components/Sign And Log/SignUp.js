@@ -2,13 +2,11 @@ import React, { useState, useContext } from "react";
 import { LoggedInUser } from "../../App";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-
 import Link from "@mui/material/Link";
-
 import Grid from "@mui/material/Grid";
-
 import "../style.css";
-import classes from './Sign.module.css'
+import classes from "./Sign.module.css";
+import User from "../../App";
 
 function Copyright(props) {
   return (
@@ -34,14 +32,14 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [terms, setTerms] = useState("");
-  
+
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
 
   // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [users, setUsers] = useState("");
+  const [user, setUser] = useContext(User);
 
   const navigate = useNavigate();
 
@@ -97,7 +95,7 @@ const SignUp = () => {
         const data = await registerResponse.json();
         setStatus(registerResponse.status);
         if (registerResponse.status === 201) {
-          setUsers(data);
+          setUser(data.data.user);
           async function loginUser() {
             try {
               const loginResponse = await fetch(
@@ -110,16 +108,15 @@ const SignUp = () => {
                 setLoggedIn(true);
 
                 localStorage.setItem("token", data.data.token);
-                localStorage.setItem("username", data.data.user.firstName);
-                localStorage.setItem("userId", data.data.user.id);
-                setUsers(data.data.user);
+
+                setUser(data.data.user);
                 navigate(`/home`);
               }
             } catch (error) {
               console.error("Error occurred during login", error);
             }
           }
-          loginUser()
+          loginUser();
         }
       } catch (error) {
         console.error("Error occurred during register: ", error);

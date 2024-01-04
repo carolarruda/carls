@@ -1,25 +1,27 @@
 /* eslint-disable no-unused-vars */
-import Nav from "./NavBar/Nav";
-import FooterTwo from "./Footer/FooterTwo";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteAccount from "./DeleteAccount";
+import DeleteAccount from "../DeleteAccount";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import classes from "./Settings.module.css";
+import { User } from "../../App";
+import { useContext } from "react";
 
 const AccountSettings = ({ search, setSearch }) => {
   const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
-  const [user, setUser] = useState('');
+
 
   const [image, setImage] = useState("");
 
   const navigate = useNavigate();
 
-
   const userId = localStorage.getItem("userId");
+
+  const [user, setUser]= useContext(User)
 
   useEffect(() => {
     const opts = {
@@ -28,14 +30,17 @@ const AccountSettings = ({ search, setSearch }) => {
       },
     };
 
-    fetch(`https://node-mysql-api-0zxf.onrender.com/users/avatar/${userId}`, opts)
+    fetch(
+      `https://node-mysql-api-0zxf.onrender.com/users/avatar/${userId}`,
+      opts
+    )
       .then((res) => res.json())
       .then((data) => {
         setImage(data.data.avatar);
         setUser(data.data);
       })
       .catch((error) => console.error("Error fetching user:", error));
-  }, [token, userId]);
+  }, []);
 
   const handleImageUpload = async (files) => {
     const image = files[0];
@@ -61,10 +66,7 @@ const AccountSettings = ({ search, setSearch }) => {
           );
 
           if (response.ok) {
-
             navigate(0);
-
-      
           } else {
             console.error("Image upload failed");
           }
@@ -77,20 +79,23 @@ const AccountSettings = ({ search, setSearch }) => {
 
   return (
     <div>
-      <Nav search={search} setSearch={setSearch} />
-      <div className="settings-grid section-wrapper">
-        <section className="left-options-settings">
-          <button className="course-type settings">My Profile</button>
-          <button className="course-type settings">Preferences</button>
-          <button className="course-type settings">Notifications</button>
-          <div className="empty"></div>
+      <div className={`${classes.settingsGrid} section-wrapper-settings`}>
+        <section className={classes.leftOptionsSettings}>
+          <button className={`${classes.settingsButtons} ${classes.settings}`}>
+            My Profile
+          </button>
+          <button className={`${classes.settingsButtons} ${classes.settings}`}>
+            Preferences
+          </button>
 
-          <DeleteAccount />
+          <DeleteAccount
+            className={`${classes.settingsButtons} ${classes.settings}`}
+          />
         </section>
         {user.length !== 0 && (
-          <section className="right-settings">
-            <h2 className="option-setting-header">My Profile</h2>
-            <div className="pic-and-name">
+          <section className={classes.rightSettings}>
+            <h2 className={classes.optionHeader}>My Profile</h2>
+            <div className={classes.PicName}>
               <Box
                 sx={{
                   display: "flex",
@@ -128,7 +133,7 @@ const AccountSettings = ({ search, setSearch }) => {
                   onChange={(e) => handleImageUpload(e.target.files)}
                 />
               </Box>
-              <div className="fullname">
+              <div className={classes.fullname}>
                 <h2>
                   {user.profile.firstName} {user.profile.lastName}
                 </h2>
@@ -144,20 +149,22 @@ const AccountSettings = ({ search, setSearch }) => {
                 </button>
               </div>
             </div>
+
             <div className="personal-info">
-              <div className="personal-edit">
-                <h3>Personal Information</h3>
-                <button className="course-type settings edit">
-                  Edit{" "}
-                  <EditIcon
-                    sx={{
-                      width: 25,
-                      height: 15,
-                      alignSelf: "center",
-                    }}
-                  />
-                </button>
-              </div>
+            <div className={classes.fullname} style={{marginLeft: '0px'}}>
+              <h3>Personal Information</h3>
+              <button className="course-type settings edit">
+                Edit{" "}
+                <EditIcon
+                  sx={{
+                    width: 25,
+                    height: 15,
+                    alignSelf: "center",
+                  }}
+                />
+              </button>
+            </div>
+  
 
               <div className="personal-details">
                 <div className="pd-card">
@@ -189,8 +196,6 @@ const AccountSettings = ({ search, setSearch }) => {
           </section>
         )}
       </div>
-
-      <FooterTwo />
     </div>
   );
 };
