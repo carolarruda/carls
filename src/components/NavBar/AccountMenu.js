@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { LoggedInUser } from "../../App";
 import { useContext } from "react";
 import { menuItems, loggedOptions } from "./menuLists";
+import {User} from '../../App'
 
 export default function AccountMenu() {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -20,12 +21,15 @@ export default function AccountMenu() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [user, setUser] = useContext(User)
 
   const handleLogOut = () => {
     setLoggedIn(false);
     localStorage.clear();
     navigate(`/`);
   };
+
+  console.log('user',user);
 
   const handleNewRecipe = () => {
     navigate("/add");

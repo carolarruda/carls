@@ -6,7 +6,6 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import "../style.css";
 import classes from "./Sign.module.css";
-import User from "../../App";
 
 function Copyright(props) {
   return (
@@ -38,8 +37,6 @@ const SignUp = () => {
 
   // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useContext(User);
 
   const navigate = useNavigate();
 
@@ -92,10 +89,8 @@ const SignUp = () => {
           opts
         );
 
-        const data = await registerResponse.json();
         setStatus(registerResponse.status);
         if (registerResponse.status === 201) {
-          setUser(data.data.user);
           async function loginUser() {
             try {
               const loginResponse = await fetch(
@@ -106,11 +101,11 @@ const SignUp = () => {
               setStatus(loginResponse.status);
               if (loginResponse.status === 200) {
                 setLoggedIn(true);
-
+      
+                localStorage.setItem("username", data.data.user.firstName);
+                localStorage.setItem("userId", data.data.user.id);
                 localStorage.setItem("token", data.data.token);
-
-                setUser(data.data.user);
-                navigate(`/home`);
+                navigate(`/`);
               }
             } catch (error) {
               console.error("Error occurred during login", error);
