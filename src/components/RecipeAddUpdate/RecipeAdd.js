@@ -243,7 +243,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
                   </InputLabel>
                   <Select
                     defaultValue={"DEFAULT"}
-                    name="course"
+                    name="courseType"
                     id="courses"
                     style={{ fontSize: "15px" }}
                     onChange={handleInputChange}
@@ -275,6 +275,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
                 <TextField
                   label="Prep Time (mins)"
                   type="number"
+                  name="prepTime"
                   onChange={handleInputChange}
                   value={prepTime}
                 />
@@ -283,6 +284,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
                 <TextField
                   label="Cook Time (mins)"
                   type="number"
+                  name="cookTime"
                   onChange={handleInputChange}
                   value={cookTime}
                 />
@@ -290,6 +292,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               <div className={classes.prep}>
                 <TextField
                   label="Servings"
+                  name="servings"
                   type="number"
                   onChange={handleInputChange}
                   value={servings}
@@ -301,6 +304,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               <TextField
                 label="Ingredients"
                 type="text"
+                name="ingredients"
                 multiline
                 minRows={22.4}
                 onChange={handleInputChange}
@@ -312,6 +316,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               <TextField
                 label="Instructions"
                 type="text"
+                name="instructions"
                 multiline
                 minRows={22.4}
                 onChange={handleInputChange}
@@ -323,6 +328,7 @@ const RecipeAdd = ({ setRecipes, setRecipesP, update }) => {
               <TextField
                 label="Notes"
                 type="text"
+                name="notes"
                 multiline
                 minRows={10.4}
                 onChange={handleInputChange}
