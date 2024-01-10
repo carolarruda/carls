@@ -50,9 +50,9 @@ function App() {
           console.log('myuser', data.data.user);
         })
         .catch((error) => console.error("Error fetching user:", error));
-    } else {
-      setLoggedIn(false);
     }
+    console.log('fetching public recipes, this might take a while');
+    setLoggedIn(false);
 
     fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
       .then((res) => res.json())
@@ -60,14 +60,10 @@ function App() {
         setRecipes(data.data);
       })
       .catch((error) => console.error("Error fetching recipes:", error));
-    const opts = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+
   }, [token, userId]);
 
-  useEffect(() => {}, [token]);
+
 
   const handleDelete = (id) => {
     setRecipes(filteredRecipes);

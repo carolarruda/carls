@@ -3,7 +3,6 @@ import { LoggedInUser } from "../../App";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import "../style.css";
 import classes from "./Sign.module.css";
 
@@ -191,7 +190,6 @@ const SignUp = () => {
           <button className={classes.logBut} type="submit">
             Sign Up
           </button>
-          <Grid container></Grid>
           <Copyright sx={{ mt: 5 }} />
         </form>
       </div>

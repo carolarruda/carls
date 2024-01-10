@@ -5,7 +5,6 @@ import { LoggedInUser, User } from "../../App";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-import Grid from "@mui/material/Grid";
 
 import "../style.css";
 import classes from "./Sign.module.css";
@@ -159,7 +158,6 @@ const Login = ({ setUsers, users }) => {
           <button className={classes.logBut} type="submit">
             Sign In
           </button>
-          <Grid container></Grid>
           <Copyright sx={{ mt: 5 }} />
         </form>
       </div>
