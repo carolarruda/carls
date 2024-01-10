@@ -16,7 +16,6 @@ export const LoggedInUser = React.createContext();
 export const User = React.createContext();
 
 function App() {
-  console.log('Welcome to the App');
   const [searchRecipe, setSearchRecipe] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,48 +35,37 @@ function App() {
           Authorization: `Bearer ${token}`,
         },
       };
-  
-      // Fetch personal recipes
       fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
         .then((res) => res.json())
         .then((data) => {
           setRecipesP(data.data.recipes);
         })
-        .catch((error) => {
-          console.error("Error fetching personal recipes:", error);
-        });
-  
-      // Fetch user data
+        .catch((error) =>
+          console.error("Error fetching personal recipes:", error)
+        );
       fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
         .then((res) => res.json())
         .then((data) => {
           setUser(data.data.user);
-          console.log('myuser', data.data.user);
         })
-        .catch((error) => {
-          console.error("Error fetching user:", error);
-        });
+        .catch((error) => console.error("Error fetching user:", error));
+    } else {
+      setLoggedIn(false);
+
     }
-  
-    console.log('fetching public recipes, this might take a while');
-    setLoggedIn(false);
-  
-    // Fetch public recipes
+
     fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data.data);
       })
-      .catch((error) => {
-        console.error("Error fetching recipes:", error);
-      });
+      .catch((error) => console.error("Error fetching recipes:", error));
+
   }, [token, userId]);
 
 
 
   const handleDelete = (id) => {
-    setRecipes(filteredRecipes);
-
     const opts = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -105,8 +93,6 @@ function App() {
     // });
   };
 
-  const [search, setSearch] = useState("");
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   return (
     <LoggedInUser.Provider value={[loggedIn, setLoggedIn]}>
@@ -180,8 +166,6 @@ function App() {
                   index
                   element={
                     <RecipesPage
-                      setSearch={setSearch}
-                      search={search}
                       recipes={recipes}
                       setRecipes={setRecipes}
                       handleDelete={handleDelete}
