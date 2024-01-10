@@ -16,6 +16,7 @@ export const LoggedInUser = React.createContext();
 export const User = React.createContext();
 
 function App() {
+  console.log('Welcome to the App');
   const [searchRecipe, setSearchRecipe] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
