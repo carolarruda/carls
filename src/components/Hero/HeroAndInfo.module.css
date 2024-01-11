@@ -42,7 +42,7 @@
 
 .section h1 {
   display: grid;
-  padding-top: 200px;
+
   @media (max-width: 450px) {
     padding-top: 0px;
   }
@@ -77,13 +77,13 @@
     }
 }
 
-.backImage {
-  background-image: url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #c4d6d6;
-  background-size: cover;
+.blob {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: -1000;
 }
+
 
 .welcomeInfo {
   display: grid;

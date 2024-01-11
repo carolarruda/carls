@@ -4,8 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { LoggedInUser } from "../../App";
 import AccountMenu from "./AccountMenu";
-import SearchAppBar from "../Search";
 import { useMediaQuery } from "@mui/material";
+import Logo from "../Logo/Logo";
 
 const NavBarDesktop = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -35,7 +35,8 @@ const NavBarDesktop = () => {
   }
 
   return (
-    <>
+    <section className={classes.navMain}>
+      <Logo />
       <ul className={classes.options}>
         <li>
           <Link to={{ pathname: "/" }} reloadDocument>
@@ -44,13 +45,12 @@ const NavBarDesktop = () => {
         </li>
         <li>
           <Link to={{ pathname: "/recipes" }} reloadDocument>
-            Recipes
+            Recipe
           </Link>
         </li>
-
         <li>
-          <Link to={{ pathname: "/", hash: "#about" }} reloadDocument>
-            About
+          <Link to={{ pathname: "/add" }} reloadDocument>
+            Add Recipe
           </Link>
         </li>
         <li>
@@ -58,9 +58,13 @@ const NavBarDesktop = () => {
             Blog
           </Link>
         </li>
-      </ul>
+        <li>
+          <Link to={{ pathname: "/", hash: "#about" }} reloadDocument>
+            About Us
+          </Link>
+        </li>
 
-      <SearchAppBar />
+      </ul>
 
       <div className="profile">
         {loggedIn ? (
@@ -71,12 +75,17 @@ const NavBarDesktop = () => {
             </div>
           </>
         ) : (
-          <button className={classes.logButtonHome} onClick={handleSign}>
-            Sign In
-          </button>
+          <>
+            <button className={classes.logButtonHome} onClick={handleSign}>
+              Log in
+            </button>
+            <button className={classes.signButtonHome} onClick={handleSign}>
+              Sign up
+            </button>
+          </>
         )}
       </div>
-    </>
+    </section>
   );
 };
 

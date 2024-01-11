@@ -19,6 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 
 
+
 const NavBarPhone = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const username = localStorage.getItem("username");
@@ -46,7 +47,8 @@ const NavBarPhone = () => {
   }
   return (
     <div className={classes.mobile}>
-      <Box
+      
+            <Box
         className={classes.icon}
         sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
       >
