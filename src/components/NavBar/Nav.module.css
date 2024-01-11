@@ -20,10 +20,10 @@
   display: flex;
   width: 1440px;
   height: 152px;
-  padding: 0px 120px;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
+  margin: 0px 120px
 }
 
 .maxWidth {

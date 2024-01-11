@@ -17,6 +17,9 @@ const NavBarDesktop = () => {
   const handleSign = () => {
     navigate("/login");
   };
+  const handleLog = () => {
+    navigate("/sign");
+  };
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -63,7 +66,6 @@ const NavBarDesktop = () => {
             About Us
           </Link>
         </li>
-
       </ul>
 
       <div className="profile">
@@ -79,7 +81,7 @@ const NavBarDesktop = () => {
             <button className={classes.logButtonHome} onClick={handleSign}>
               Log in
             </button>
-            <button className={classes.signButtonHome} onClick={handleSign}>
+            <button className={classes.signButtonHome} onClick={handleLog}>
               Sign up
             </button>
           </>
