@@ -15,10 +15,10 @@ const NavBarDesktop = () => {
   const navigate = useNavigate();
 
   const handleSign = () => {
-    navigate("/login");
+    navigate("/sign");
   };
   const handleLog = () => {
-    navigate("/sign");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -78,10 +78,10 @@ const NavBarDesktop = () => {
           </>
         ) : (
           <>
-            <button className={classes.logButtonHome} onClick={handleSign}>
+            <button className={classes.logButtonHome} onClick={handleLog}>
               Log in
             </button>
-            <button className={classes.signButtonHome} onClick={handleLog}>
+            <button className={classes.signButtonHome} onClick={handleSign} >
               Sign up
             </button>
           </>

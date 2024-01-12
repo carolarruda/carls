@@ -9,11 +9,17 @@
   margin-top: 208px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
 }
 
-.hero img {
+.rightHero  {
+  display: grid;
+}
+.rightHero img {
   justify-self: right;
 }
+
+
 
 .signupBtn {
   width: 130px;
@@ -50,8 +56,6 @@
 }
 
 .section h1 {
-
-
   @media (max-width: 450px) {
     padding-top: 0px;
   }
@@ -98,6 +102,48 @@
   top: 0px;
   right: 0px;
   z-index: -1000;
+}
+
+.signButtonHome {
+  margin-top: 25px;
+  display: flex;
+  width: 176px;
+  height: 54px;
+  font-size: 18px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  background: var(--Primary, rgba(181, 93, 81, 0.97));
+  color: var(--White, #fff);
+  border: none;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 0px 0px rgba(23, 23, 23, 0.04),
+    0px 2px 4px 0px rgba(23, 23, 23, 0.04),
+    0px 7px 7px 0px rgba(23, 23, 23, 0.03),
+    0px 15px 9px 0px rgba(23, 23, 23, 0.02),
+    0px 27px 11px 0px rgba(23, 23, 23, 0.01),
+    0px 42px 12px 0px rgba(23, 23, 23, 0);
+  border-radius: 8px;
+}
+
+.undertext {
+  margin-top: 12px;
+  color: var(--Gray--2, #878787);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.undertext span {
+  color: var(--Primary, rgba(181, 93, 81, 0.97));
+  cursor: pointer;
+
 }
 
 .welcomeInfo {

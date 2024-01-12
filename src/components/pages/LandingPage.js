@@ -1,14 +1,14 @@
 import Footer from "../Footer/Footer";
 import Hero from "../Hero/Hero";
-import Info from "../Hero/Info";
 import classes from "../Hero/HeroAndInfo.module.css";
+import Share from "../Share/Share";
 
 const LandingPage = () => {
   return (
     <main className={classes.main}>
       <div className={classes.section}>
         <Hero />
-        <Info />
+        <Share />
       </div>
       <Footer />
     </main>
