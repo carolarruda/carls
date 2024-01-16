@@ -1,0 +1,25 @@
+.avatar {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatarContainer {
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    
+}
+
+.name {
+    color: var(--Black, #000);
+
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    margin-left: 11px;
+}

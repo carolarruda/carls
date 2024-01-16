@@ -1,0 +1,44 @@
+.recipesContainer {
+  margin-bottom: 112px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 32px;
+  row-gap: 40px;
+}
+
+.recipeName {
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.ProductRatingStarFilled {
+  color: #b55d51f8;
+  font-family: FontAwesome;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.ProductRatingStarFilledTwo {
+  color: #a5a5a5;
+  font-family: FontAwesome;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.recipeImg {
+  height: 221px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.recipeInfo {
+  margin-left: 16px;
+  margin-right: 16px;
+}

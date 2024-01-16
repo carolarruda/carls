@@ -1,36 +1,43 @@
-import recipe1 from "../images/36700_erin_m_e1384569-a93f-4fde-a6ce-3e21b69b04fa 1.png";
 import classes from "./Trending.module.css";
+import Avatar from "../Avatar/Avatar";
 
 const SingleRecipeCard = ({ recipes, setRecipes }) => {
-  const renderStars = () => {
+  const renderStars = (recipe) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <span
           key={i}
           className={`${classes.ProductRatingStar} ${
-            i <= recipes.rating ? classes.ProductRatingStarFilled : ""
+            i <= recipe.rating
+              ? classes.ProductRatingStarFilled
+              : classes.ProductRatingStarFilledTwo
           }`}
         >
-          {i <= recipes.rating ? "★" : "☆"}
+          {i <= recipe.rating ? "★" : "★"}
         </span>
       );
     }
     return stars;
   };
 
-  return (
+  if (!Array.isArray(recipes) || !recipes.sort) {
+    console.error("Invalid recipes array");
+    return null;
+  }
+
+  const sortedRecipes = recipes.sort((a, b) => b.rating - a.rating).slice(0, 6);
+
+  return sortedRecipes.map((recipe) => (
     <div>
-      <img src={recipe1} alt="food1" />
-      <div className={classes.WeeklyFeaturedStarsContainer}>
-        {renderStars()}
-      </div>
-      <h4>onion rings</h4>
-      <div>
-        
+      <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
+      <div className={classes.recipeInfo}>
+        {renderStars(recipe)}
+        <h4 className={classes.recipeName}>{recipe.title}</h4>
+        <Avatar photo={recipe.user.avatar} name={"Carolina Arruda"} />
       </div>
     </div>
-  );
+  ));
 };
 
 export default SingleRecipeCard;

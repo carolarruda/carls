@@ -111,6 +111,7 @@ const PublicRecipes = ({ recipes, setRecipes }) => {
     filteredRecipes = recipes;
   }
 
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
