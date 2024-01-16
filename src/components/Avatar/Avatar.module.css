@@ -6,20 +6,18 @@
 }
 
 .avatarContainer {
-
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .name {
-    color: var(--Black, #000);
+  color: var(--Black, #000);
 
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
-    margin-left: 11px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  margin-left: 11px;
 }

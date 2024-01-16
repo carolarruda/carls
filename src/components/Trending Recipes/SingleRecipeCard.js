@@ -29,12 +29,12 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const sortedRecipes = recipes.sort((a, b) => b.rating - a.rating).slice(0, 6);
 
   return sortedRecipes.map((recipe) => (
-    <div>
+    <div className={classes.recipeCard}>
       <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
       <div className={classes.recipeInfo}>
         {renderStars(recipe)}
         <h4 className={classes.recipeName}>{recipe.title}</h4>
-        <Avatar photo={recipe.user.avatar} name={"Carolina Arruda"} />
+        <Avatar photo={recipe.user.avatar ? recipe.user.avatar : ''} name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`} />
       </div>
     </div>
   ));
