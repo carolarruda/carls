@@ -1,5 +1,6 @@
 import sugar from "../images/sugar.png";
 import fasting from "../images/fasting.png";
+import classes from './Blog.module.css'
 
 const Article = () => {
   const articles = [
@@ -19,8 +20,8 @@ const Article = () => {
   return articles.map((article) => (
     <div>
       <img src={article.img} alt="" />
-      <h3>{article.title}</h3>
-      <p>{article.subtitle}</p>
+      <h3 className={classes.articleTitle}>{article.title}</h3>
+      <p className={classes.articleSub}>{article.subtitle}</p>
     </div>
   ));
 };

@@ -8,7 +8,7 @@ const Blog = ({ recipes, setRecipes }) => {
   return (
     <section className="section-wrapper">
       <Header title={"Blog"} path={"/blog"} />
-      <div className={classes.recipesContainer}>
+      <div className={classes.articleContainer}>
         <Article />
       </div>
     </section>
