@@ -1,14 +1,17 @@
-import Caroussel from "./Caroussel";
-import { blogs } from "../Data";
+import classes from "./Blog.module.css";
+import Header from "../Header/Header";
+import Article from "./Article";
 
-const Blog = () => {
+const Blog = ({ recipes, setRecipes }) => {
+  console.log("trending", recipes);
+
   return (
-    <div>
-      <section className="caroussel">
-        <Caroussel blogs={blogs} />
-      </section>
-
-    </div>
+    <section className="section-wrapper">
+      <Header title={"Blog"} path={"/blog"} />
+      <div className={classes.recipesContainer}>
+        <Article />
+      </div>
+    </section>
   );
 };
 

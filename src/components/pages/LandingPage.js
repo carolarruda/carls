@@ -1,3 +1,4 @@
+import Blog from "../Blog/Blog";
 import Footer from "../Footer/Footer";
 import Hero from "../Hero/Hero";
 import classes from "../Hero/HeroAndInfo.module.css";
@@ -11,6 +12,7 @@ const LandingPage = ({recipes, setRecipes}) => {
         <Hero />
         <Share />
         <Trending recipes={recipes} setRecipes={setRecipes} />
+        <Blog/>
       </div>
       <Footer />
     </main>
