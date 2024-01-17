@@ -1,4 +1,4 @@
-import classes from './Newsletter.module.css'
+import classes from "./Newsletter.module.css";
 
 const Newsletter = () => {
   return (
@@ -9,11 +9,9 @@ const Newsletter = () => {
         offers.
       </p>
       <div className={classes.inputContainer}>
-      <input placeholder="Enter your Email" type="text" />
-      <button className={classes.newsletterButton}>
-Subscribe        </button>
+        <input placeholder="Enter your Email" type="text" />
+        <button className={classes.newsletterButton}>Subscribe </button>
       </div>
-
     </section>
   );
 };
