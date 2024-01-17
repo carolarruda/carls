@@ -28,7 +28,39 @@
   padding: 44px 0px;
 }
 
-
 .inputContainer {
-    padding-bottom: 49px;
+  padding-bottom: 49px;
+}
+
+.newsletterButton {
+  width: 176px;
+  height: 54px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  background: var(--Primary, rgba(181, 93, 81, 0.97));
+  color: var(--White, #fff);
+  border: none;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 0px 0px rgba(23, 23, 23, 0.04),
+    0px 2px 4px 0px rgba(23, 23, 23, 0.04),
+    0px 7px 7px 0px rgba(23, 23, 23, 0.03),
+    0px 15px 9px 0px rgba(23, 23, 23, 0.02),
+    0px 27px 11px 0px rgba(23, 23, 23, 0.01),
+    0px 42px 12px 0px rgba(23, 23, 23, 0);
+  border-radius: 8px;
+}
+
+.inputContainer input {
+  width: 574px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px;
+  gap: 10px;
+  margin-right: 24px;
+  color: #a5a5a5;
 }
