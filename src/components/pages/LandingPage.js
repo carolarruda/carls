@@ -1,7 +1,9 @@
 import Blog from "../Blog/Blog";
+import Explore from "../Explore/Explore";
 import Footer from "../Footer/Footer";
 import Hero from "../Hero/Hero";
 import classes from "../Hero/HeroAndInfo.module.css";
+import Newsletter from "../Newsletter/Newsletter";
 import Share from "../Share/Share";
 import Trending from "../Trending Recipes/Trending";
 
@@ -13,6 +15,8 @@ const LandingPage = ({recipes, setRecipes}) => {
         <Share />
         <Trending recipes={recipes} setRecipes={setRecipes} />
         <Blog/>
+        <Explore recipes={recipes}/>
+        <Newsletter/>
       </div>
       <Footer />
     </main>

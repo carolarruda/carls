@@ -1,0 +1,34 @@
+.newsletterContainer {
+  background-color: #fff0ed;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: Roboto;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding-top: 49px;
+}
+
+.newsletter {
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #878787;
+  max-width: 790px;
+  padding: 44px 0px;
+}
+
+
+.inputContainer {
+    padding-bottom: 49px;
+}

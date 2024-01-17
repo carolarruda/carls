@@ -8,13 +8,13 @@ const Article = () => {
       title: "Unlocking the Benefits of Intermittent Fasting",
       img: fasting,
       subtitle:
-        "Weight Management and Health Weight Management and Health Weight Management and Health Weight Management and Health Weight   ...",
+        "Weight Management and Health Weight Management and Health Weight Management and Health Weight Management and Health Weight ...",
     },
     {
       title: "The Impact of Sugar Consumption on Your Health",
       img: sugar,
       subtitle:
-        "Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers ....",
+        "Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers ...",
     },
   ];
   return articles.map((article) => (
