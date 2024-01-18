@@ -5,11 +5,12 @@
   height: min-content;
   justify-content: center;
   align-items: center;
-  margin-top: 77px;
-  margin-bottom: 77px;
+
   @media (max-width: 450px) {
     display: flex;
     flex-direction: column;
+    margin-top: 77px;
+    margin-bottom: 77px;
   }
 }
 
