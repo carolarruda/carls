@@ -19,7 +19,7 @@ const Article = () => {
   ];
   return articles.map((article) => (
     <div>
-      <img src={article.img} alt="" />
+      <img className={classes.img} src={article.img} alt="" />
       <h3 className={classes.articleTitle}>{article.title}</h3>
       <p className={classes.articleSub}>{article.subtitle}</p>
     </div>

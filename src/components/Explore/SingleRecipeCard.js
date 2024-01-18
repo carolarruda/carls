@@ -1,5 +1,6 @@
-import classes from './Explore.module.css'
+import classes from "./Explore.module.css";
 import Avatar from "../Avatar/Avatar";
+import { useMediaQuery } from "@mui/material";
 
 const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const renderStars = (recipe) => {
@@ -21,6 +22,8 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
     return stars;
   };
 
+  const isPhone = useMediaQuery("(max-width:1200px)");
+
   if (!Array.isArray(recipes) || !recipes.sort) {
     console.error("Invalid recipes array");
     return null;
@@ -34,7 +37,12 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
       <div className={classes.recipeInfo}>
         {renderStars(recipe)}
         <h4 className={classes.recipeName}>{recipe.title}</h4>
-        <Avatar photo={recipe.user.avatar ? recipe.user.avatar : ''} name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`} />
+        {!isPhone && (
+          <Avatar
+            photo={recipe.user.avatar ? recipe.user.avatar : ""}
+            name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`}
+          />
+        )}
       </div>
     </div>
   ));

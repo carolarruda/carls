@@ -4,6 +4,11 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 32px;
   row-gap: 40px;
+  column-gap: 32px;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 32px;
+  }
 }
 
 .articleTitle {
@@ -15,12 +20,23 @@
   text-align: center;
 }
 
+.img {
+  height: 221px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0px 0px;
+}
+
 .articleSub {
-    font-family: Roboto;
-font-size: 16px;
-font-weight: 400;
-line-height: 27px;
-letter-spacing: 0em;
-text-align: center;
-color: #878787;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #878787;
+}
+
+.articleContainer {
+  width: fit-content;
 }
