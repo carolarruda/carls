@@ -1,5 +1,4 @@
 .recipesContainer {
-  margin-bottom: 112px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 32px;
