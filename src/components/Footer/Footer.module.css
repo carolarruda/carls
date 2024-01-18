@@ -1,0 +1,159 @@
+.footerContainer {
+  background-color: #f5f5f5;
+  display: grid;
+  padding: 42px 60px;
+
+  justify-content: center;
+}
+
+.about {
+  margin-right: 95px;
+  @media (max-width: 450px) {
+    margin-right: 0px;
+    margin-bottom: 40px;
+  }
+}
+
+.pageLogo {
+  margin-bottom: 13px;
+  min-width: 235px;
+  @media (max-width: 450px) {
+    min-width: 154px;
+  }
+}
+
+.about p {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.footerGrid {
+  max-width: 1150px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 34px;
+  border-bottom: 1px solid #a5a5a5;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.linksContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: 450px) {
+    margin-bottom: 48px;
+  }
+}
+
+.linksContainer ul {
+  list-style: none;
+  padding-left: 0px;
+  width: 106px;
+}
+
+.linksContainer ul li {
+  margin-bottom: 18px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  @media (max-width: 450px) {
+    font-size: 14px;
+  }
+}
+
+.subscribe {
+  margin-left: 95px;
+  display: grid;
+  @media (max-width: 450px) {
+    display: none;
+  }
+}
+
+.subscribe h5 {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.input {
+  width: Fill (336.67px);
+  height: Fixed (48px);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.subscribe p {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.subscribeButton {
+  display: flex;
+  height: 54px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  background: var(--Primary, rgba(181, 93, 81, 0.97));
+  color: var(--White, #fff);
+  border: none;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.footerBottom {
+  display: grid;
+  grid-auto-flow: column;
+  @media (max-width: 450px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+.footerBottom p {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  align-self: center;
+  @media (max-width: 450px) {
+    margin-top: 48px;
+  }
+}
+
+.logos {
+  display: flex;
+  justify-self: right;
+}
+
+.logo {
+  margin-right: 20px;
+}

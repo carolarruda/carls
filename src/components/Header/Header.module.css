@@ -1,0 +1,56 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 100px;
+  margin-bottom: 72px;
+  @media (max-width: 450px) {
+    margin-top: 40px;
+    margin-bottom: 72px;
+  }
+}
+
+.header {
+  color: var(--Black, #000);
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+.viewMore {
+  color: var(--Primary, rgba(181, 93, 81, 0.97));
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  @media (max-width: 450px) {
+    font-size: 16px;
+  }
+}
+
+.WeeklyFeaturedStars {
+  color: orange;
+  width: 12px;
+  height: 14px;
+}
+
+.ProductRatingStar {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: gray;
+}

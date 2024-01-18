@@ -1,7 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,600;1,9..40,100;1,9..40,600&family=Montserrat:wght@100;400;600&family=Poppins:wght@100;500;600&family=Rubik:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 .welcome {
   background-color: #e2f2f59c;
+}
+
+.hero {
+  margin-top: 208px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    margin-top: 72px;
+
+  }
+}
+
+.rightHero {
+  display: grid;
+}
+.rightHero img {
+  justify-self: right;
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
 
 .signupBtn {
@@ -38,51 +61,153 @@
   animation: slide-in-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-
-
 .section h1 {
-  display: grid;
-  padding-top: 200px;
   @media (max-width: 450px) {
     padding-top: 0px;
   }
 }
 
 .header {
-    font-weight: 800;
-    align-self: start;
-    font-size: 2.5rem;
-    color: #000000;
-    font-family: "Helvetica";
-    width: 600px;
-    padding-bottom: 100px;
-    max-width: 450px;
+  color: var(--Black, #000);
+  font-family: Roboto;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 
-    @media(max-width:450px){
-      font-size: 2rem;
-      max-width: 100vw;
-    }
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: center;
   }
-
-.smallerText {
-  margin-top: 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  max-width: 450px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    @media(max-width:450px){
-      font-size: 1rem;
-      max-width: 60vw;
-    }
 }
 
-.backImage {
-  background-image: url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #c4d6d6;
-  background-size: cover;
+.smallerText {
+  color: var(--Gray--2, #878787);
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  margin-top: 25px;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}
+
+.buttons {
+  @media (max-width: 450px) {
+    display: flex;
+    justify-content: center; 
+    gap: 12px;
+  }
+}
+
+.logButtonHome {
+  margin-top: 25px;
+  display: flex;
+  width: 176px;
+  height: 54px;
+  font-size: 18px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--Black, #000000);
+  border: none;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 0px 0px rgba(23, 23, 23, 0.04),
+    0px 2px 4px 0px rgba(23, 23, 23, 0.04),
+    0px 7px 7px 0px rgba(23, 23, 23, 0.03),
+    0px 15px 9px 0px rgba(23, 23, 23, 0.02),
+    0px 27px 11px 0px rgba(23, 23, 23, 0.01),
+    0px 42px 12px 0px rgba(23, 23, 23, 0);
+  border-radius: 8px;
+  background: var(--Gray--4, #ebebeb);
+
+  @media (max-width: 450px) {
+    width: 108px;
+  }
+}
+.signButtonHome {
+  margin-top: 25px;
+  display: flex;
+  width: 176px;
+  height: 54px;
+  font-size: 18px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  background: var(--Primary, rgba(181, 93, 81, 0.97));
+  color: var(--White, #fff);
+  border: none;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 0px 0px rgba(23, 23, 23, 0.04),
+    0px 2px 4px 0px rgba(23, 23, 23, 0.04),
+    0px 7px 7px 0px rgba(23, 23, 23, 0.03),
+    0px 15px 9px 0px rgba(23, 23, 23, 0.02),
+    0px 27px 11px 0px rgba(23, 23, 23, 0.01),
+    0px 42px 12px 0px rgba(23, 23, 23, 0);
+  border-radius: 8px;
+  @media (max-width: 450px) {
+    width: 108px;
+  }
+}
+
+.span {
+  color: var(--Primary, rgba(181, 93, 81, 0.97));
+  font-family: Roboto;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}
+.blob {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: -1000;
+}
+
+.undertext {
+  margin-top: 12px;
+  color: var(--Gray--2, #878787);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  @media (max-width: 450px) {
+    display: none;
+  }
+}
+
+.undertext span {
+  color: var(--Primary, rgba(181, 93, 81, 0.97));
+  cursor: pointer;
 }
 
 .welcomeInfo {
@@ -110,9 +235,8 @@
   height: 100%;
   justify-self: center;
   background-color: #ffffff;
-    overflow: hidden;
+  overflow: hidden;
 }
-
 
 .infoCard:hover .textTag {
   opacity: 1;
@@ -148,9 +272,6 @@
   transition-delay: 0s;
 }
 
-
-
-
 .infoCard h2 {
   padding-left: 20px;
   padding-top: 30px;
@@ -167,7 +288,6 @@
   overflow: hidden;
 }
 
-
 .infoCard {
   height: 320px;
   padding-bottom: 10px;
@@ -175,13 +295,13 @@
 }
 
 @keyframes slide-in-left {
-    0% {
-      transform: translateX(-10px);
-      opacity: 0;
-    }
-  
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
   }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -16,8 +16,7 @@ import classes from "./Nav.module.css";
 import { useMediaQuery } from "@mui/material";
 import { loggedOptions, menuOptions, menuItems } from "./menuLists";
 import MenuIcon from "@mui/icons-material/Menu";
-
-
+import LogoMobile from "../Logo/LogoMobile";
 
 const NavBarPhone = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -25,7 +24,6 @@ const NavBarPhone = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
 
   const handleLogOut = () => {
     setLoggedIn(false);
@@ -40,12 +38,13 @@ const NavBarPhone = () => {
     setAnchorEl(null);
   };
 
-  const isPhone = useMediaQuery("(max-width:860px)");
+  const isPhone = useMediaQuery("(max-width:1200px)");
   if (!isPhone) {
     return null;
   }
   return (
     <div className={classes.mobile}>
+      <LogoMobile />
       <Box
         className={classes.icon}
         sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
@@ -72,7 +71,7 @@ const NavBarPhone = () => {
             {!loggedIn && (
               <MenuIcon
                 sx={{
-                  color: "#eeeeee",
+                  color: "#000000",
                   width: 32,
                   height: 32,
                 }}

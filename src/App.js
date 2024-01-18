@@ -51,7 +51,6 @@ function App() {
         .catch((error) => console.error("Error fetching user:", error));
     } else {
       setLoggedIn(false);
-
     }
 
     fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
@@ -60,10 +59,7 @@ function App() {
         setRecipes(data.data);
       })
       .catch((error) => console.error("Error fetching recipes:", error));
-
   }, [token, userId]);
-
-
 
   const handleDelete = (id) => {
     const opts = {
@@ -93,7 +89,6 @@ function App() {
     // });
   };
 
-
   return (
     <LoggedInUser.Provider value={[loggedIn, setLoggedIn]}>
       <User.Provider value={[user, setUser]}>
@@ -114,7 +109,12 @@ function App() {
               />
 
               <Route path="/" element={<Nav />}>
-                <Route index element={<LandingPage />} />
+                <Route
+                  index
+                  element={
+                    <LandingPage recipes={recipes} setRecipes={setRecipes} />
+                  }
+                />
               </Route>
               <Route path="/add" element={<Nav />}>
                 <Route

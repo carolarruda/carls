@@ -16,7 +16,6 @@ code {
 .section-wrapper, .section-wrapper-settings {
   max-width: 1150px;
   margin: auto;
-  padding: 9.6rem;
   overflow: hidden;
 }
 
@@ -36,7 +35,7 @@ code {
 
 @media (max-width: 768px) {
   .section-wrapper {
-    padding: 7.2rem 1.4rem;
+    padding: 1.2rem 1.4rem;
     margin: 0px;
   }
   .section-wrapper-settings {
@@ -47,6 +46,18 @@ code {
 @media (max-width: 450px) {
   .recipe {
     padding: 2.2rem 1.4rem;
+    margin: 0px;
+  }
+  .section-wrapper {
+    padding: 1.2rem 1.4rem;
+    margin: 0px;
+  }
+}
+
+
+@media (max-width: 1200px){
+  .section-wrapper {
+    padding: 1.2rem 1.4rem;
     margin: 0px;
   }
 }
