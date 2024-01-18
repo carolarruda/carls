@@ -8,11 +8,18 @@
 
 .about {
   margin-right: 95px;
+  @media (max-width: 450px) {
+    margin-right: 0px;
+    margin-bottom: 40px;
+  }
 }
 
 .pageLogo {
   margin-bottom: 13px;
   min-width: 235px;
+  @media (max-width: 450px) {
+    min-width: 154px;
+  }
 }
 
 .about p {
@@ -31,11 +38,17 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 34px;
   border-bottom: 1px solid #a5a5a5;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .linksContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: 450px) {
+    margin-bottom: 48px;
+  }
 }
 
 .linksContainer ul {
@@ -53,11 +66,17 @@
   line-height: 26px;
   letter-spacing: 0em;
   text-align: left;
+  @media (max-width: 450px) {
+    font-size: 14px;
+  }
 }
 
 .subscribe {
   margin-left: 95px;
   display: grid;
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
 
 .subscribe h5 {
@@ -111,6 +130,11 @@
 .footerBottom {
   display: grid;
   grid-auto-flow: column;
+  @media (max-width: 450px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 .footerBottom p {
   font-family: Roboto;
@@ -120,6 +144,9 @@
   letter-spacing: 0em;
   text-align: left;
   align-self: center;
+  @media (max-width: 450px) {
+    margin-top: 48px;
+  }
 }
 
 .logos {

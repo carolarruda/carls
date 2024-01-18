@@ -14,9 +14,9 @@ import { LoggedInUser } from "../../App";
 import { useContext } from "react";
 import classes from "./Nav.module.css";
 import { useMediaQuery } from "@mui/material";
-import Logo from "../Logo/Logo";
 import { loggedOptions, menuOptions, menuItems } from "./menuLists";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoMobile from "../Logo/LogoMobile";
 
 const NavBarPhone = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -44,7 +44,7 @@ const NavBarPhone = () => {
   }
   return (
     <div className={classes.mobile}>
-      <Logo />
+      <LogoMobile />
       <Box
         className={classes.icon}
         sx={{ display: "flex", alignItems: "center", textAlign: "center" }}

@@ -1,17 +1,21 @@
 import classes from "./Footer.module.css";
 import Logo from "../Logo/Logo";
+import LogoMobile from '../Logo/LogoMobile'
 import Tiktok from "../icons/socialMedia/Tiktok";
 import X from "../icons/socialMedia/X";
 import Facebook from "../icons/socialMedia/Facebook";
 import Instagram from "../icons/socialMedia/Instagram";
 import Pinterest from "../icons/socialMedia/Pinterest";
+import { useMediaQuery } from "@mui/material";
 
 const Footer = () => {
+
+  const isPhone = useMediaQuery("(max-width:1200px)");
   return (
     <section className={` ${classes.footerContainer}`}>
       <div className={classes.footerGrid}>
         <div className={classes.about}>
-         <div className={classes.pageLogo}><Logo /></div> 
+         <div className={classes.pageLogo}>{!isPhone ? <Logo /> : <LogoMobile/>}</div> 
           <p>
             A website dedicated to providing the best recipes and your space to
             showcase your culinary creativity.{" "}
