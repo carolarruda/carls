@@ -1,14 +1,19 @@
 import classes from "./HeroAndInfo.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoggedInUser } from "../../App";
 import { useNavigate } from "react-router-dom";
 import HeroBlob from "../Blob/HeroBlob";
 import food from "../images/Group.png";
+import { useMediaQuery } from "@mui/material";
+import HeroBlobMobile from "../Blob/HeroBlobMobile";
+import Herotablet from "../Blob/Herotablet";
 
 const Hero = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
 
   const handleBrowse = () => {
     navigate("/recipes");
@@ -19,11 +24,15 @@ const Hero = () => {
   const handleLog = () => {
     navigate("/login");
   };
+  const isPhone = useMediaQuery("(max-width:450px)");
+  const isTablet = useMediaQuery("(max-width:800px)");
 
   return (
     <>
       <div className={classes.blob}>
-        <HeroBlob />
+        {isPhone && <HeroBlobMobile />}
+        {isTablet && !isPhone && <Herotablet />}
+        {!isTablet && !isPhone && <HeroBlob />}
       </div>
       <section className={`${classes.hero} section-wrapper`}>
         <div className={classes.leftHero}>
