@@ -61,7 +61,10 @@ const Hero = () => {
                   </span>
                 </button>
               ) : (
-                <>
+                <div className={classes.buttons}>
+                 {isPhone && <button className={classes.logButtonHome} onClick={handleLog}>
+                    Log in
+                  </button>}
                   <button
                     className={classes.signButtonHome}
                     onClick={handleSign}
@@ -72,7 +75,7 @@ const Hero = () => {
                     Do you have an account?{" "}
                     <span onClick={handleLog}>Log in</span>
                   </p>
-                </>
+                </div>
               )}
             </h1>
           </div>

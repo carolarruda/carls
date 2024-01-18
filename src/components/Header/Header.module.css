@@ -13,6 +13,14 @@
   font-style: normal;
   font-weight: 500;
   line-height: 44px;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
 
 .viewMore {
@@ -24,6 +32,10 @@
   font-weight: 500;
   line-height: normal;
   text-decoration: none;
+  @media (max-width: 450px) {
+    font-size: 16px;
+
+  }
 }
 
 .WeeklyFeaturedStars {
