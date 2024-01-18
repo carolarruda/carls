@@ -11,7 +11,7 @@ const Footer = () => {
     <section className={` ${classes.footerContainer}`}>
       <div className={classes.footerGrid}>
         <div className={classes.about}>
-          <Logo />
+         <div className={classes.pageLogo}><Logo /></div> 
           <p>
             A website dedicated to providing the best recipes and your space to
             showcase your culinary creativity.{" "}

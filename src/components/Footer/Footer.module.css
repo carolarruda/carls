@@ -10,8 +10,9 @@
   margin-right: 95px;
 }
 
-.about img {
+.pageLogo {
   margin-bottom: 13px;
+  min-width: 235px;
 }
 
 .about p {
@@ -129,5 +130,3 @@
 .logo {
   margin-right: 20px;
 }
-
-

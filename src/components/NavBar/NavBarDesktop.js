@@ -28,7 +28,7 @@ const NavBarDesktop = () => {
     }
     setLoading(false);
   }, []);
-  const isPhone = useMediaQuery("(max-width:860px)");
+  const isPhone = useMediaQuery("(max-width:1200px)");
   if (isPhone) {
     return null;
   }
@@ -81,7 +81,7 @@ const NavBarDesktop = () => {
             <button className={classes.logButtonHome} onClick={handleLog}>
               Log in
             </button>
-            <button className={classes.signButtonHome} onClick={handleSign} >
+            <button className={classes.signButtonHome} onClick={handleSign}>
               Sign up
             </button>
           </>

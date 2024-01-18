@@ -10,7 +10,7 @@
   margin: 0;
   padding: 0px 9.6rem;
   justify-content: center;
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     justify-content: space-between;
     padding: 0px 1.5rem 0px 0.8rem;
   }
@@ -23,7 +23,7 @@
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  margin: 0px 120px
+  margin: 0px 120px;
 }
 
 .maxWidth {
@@ -32,10 +32,6 @@
 
 .nav > * {
   max-width: 1150px;
-}
-.nav div {
-  display: grid;
-  align-content: center;
 }
 
 .carlsLogo {
@@ -49,7 +45,7 @@
   display: flex;
   width: 60px;
   height: 44px;
-width: 108px;
+  width: 108px;
   justify-content: space-around;
   align-items: center;
   gap: 8px;
@@ -71,8 +67,8 @@ width: 108px;
   height: 44px;
   width: 108px;
   background: var(--Primary, rgba(181, 93, 81, 0.97));
-  color: var(--White, #FFF);
-border: none;
+  color: var(--White, #fff);
+  border: none;
   justify-content: space-around;
   align-items: center;
   gap: 8px;
@@ -200,12 +196,15 @@ border: none;
 .mobile {
   display: none;
 
-  @media (max-width: 450px) {
-    display: content;
+  @media (max-width: 1200px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 1.4rem;
+    width: 100%;
   }
 }
 .desktop {
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 }
