@@ -1,13 +1,14 @@
-import FooterTwo from "../Footer/FooterTwo";
-import classes from "./pages.module.css";
+import Footer from "../Footer/Footer";
+import classes from "../Hero/HeroAndInfo.module.css";
 import PublicRecipes from "../PublicRecipes/PublicRecipes";
 
-const RecipesPage = ({ recipes, setRecipes }) => {
+const RecipesPage = ({ recipes, setRecipes, loader }) => {
   return (
     <main className={classes.main}>
-      <PublicRecipes recipes={recipes} setRecipes={setRecipes} />
-
-      <FooterTwo />
+      <div className={classes.section}>
+         <PublicRecipes recipes={recipes}/>
+      </div>
+      <Footer />
     </main>
   );
 };
