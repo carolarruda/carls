@@ -91,6 +91,7 @@
 }
 
 .createRecipeButton {
+  cursor: pointer;
   display: flex;
   width: 176px;
   height: 54px;

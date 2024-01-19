@@ -1,6 +1,7 @@
 import classes from "./Trending.module.css";
 import Avatar from "../Avatar/Avatar";
 import { useMediaQuery } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const renderStars = (recipe) => {
@@ -31,20 +32,25 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
   const sortedRecipes = recipes.sort((a, b) => b.rating - a.rating).slice(0, 6);
 
-  return sortedRecipes.map((recipe) => (
-    <div className={classes.recipeCard}>
-      <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
-      <div className={classes.recipeInfo}>
-        {renderStars(recipe)}
-        <h4 className={classes.recipeName}>{recipe.title}</h4>
-        {!isPhone && (
-          <Avatar
-            photo={recipe.user.avatar ? recipe.user.avatar : ""}
-            name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`}
-          />
-        )}
+  return sortedRecipes.map((recipe, index) => (
+    <Link
+      to={`recipes/${recipe.id}`}
+      style={{ textDecoration: "none", color: "#212121" }}
+    >
+      <div className={classes.recipeCard} key={index}>
+        <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
+        <div className={classes.recipeInfo}>
+          {renderStars(recipe)}
+          <h4 className={classes.recipeName}>{recipe.title}</h4>
+          {!isPhone && (
+            <Avatar
+              photo={recipe.user.avatar ? recipe.user.avatar : ""}
+              name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   ));
 };
 

@@ -7,7 +7,7 @@ import AccountMenu from "./AccountMenu";
 import { useMediaQuery } from "@mui/material";
 import Logo from "../Logo/Logo";
 
-const NavBarDesktop = () => {
+const NavBarDesktop = ({}) => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
@@ -71,9 +71,9 @@ const NavBarDesktop = () => {
       <div className="profile">
         {loggedIn ? (
           <>
-            <p>Welcome back, {username}</p>
+            <p className={classes.welcome}>Welcome back, {username}</p>
             <div className={classes.maxWidth}>
-              <AccountMenu username={username} />
+              <AccountMenu username={username}  />
             </div>
           </>
         ) : (

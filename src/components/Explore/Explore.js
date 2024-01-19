@@ -3,7 +3,6 @@ import SingleRecipeCard from "./SingleRecipeCard";
 import Header from "../Header/Header";
 
 const Explore = ({ recipes, setRecipes }) => {
-  console.log("trending", recipes);
 
   return (
   <section className="section-wrapper">

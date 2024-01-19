@@ -17,8 +17,8 @@ const Article = () => {
         "Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers Unveiling the Hidden Dangers ...",
     },
   ];
-  return articles.map((article) => (
-    <div>
+  return articles.map((article, index) => (
+    <div key={index}>
       <img className={classes.img} src={article.img} alt="" />
       <h3 className={classes.articleTitle}>{article.title}</h3>
       <p className={classes.articleSub}>{article.subtitle}</p>

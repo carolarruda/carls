@@ -90,6 +90,7 @@ const Login = ({ setUsers, users }) => {
           if (loginResponse.status === 200) {
             setLoggedIn(true);
             setUser(data.data.user);
+            console.log('logged in as', user);
             localStorage.setItem("token", data.data.token);
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);

@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import Article from "./Article";
 
 const Blog = ({ recipes, setRecipes }) => {
-  console.log("trending", recipes);
 
   return (
     <section className="section-wrapper">

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -13,7 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { LoggedInUser } from "../../App";
 import { useContext } from "react";
 import { menuItems, loggedOptions } from "./menuLists";
-import {User} from '../../App'
+import { User } from "../../App";
+import Avatar from "../Avatar/Avatar";
 
 export default function AccountMenu() {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
@@ -21,15 +22,13 @@ export default function AccountMenu() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [user, setUser] = useContext(User)
+  const [user, setUser] = useContext(User);
 
   const handleLogOut = () => {
     setLoggedIn(false);
     localStorage.clear();
     navigate(`/`);
   };
-
-  console.log('user',user);
 
   const handleNewRecipe = () => {
     navigate("/add");
@@ -48,6 +47,7 @@ export default function AccountMenu() {
   const handleRecipesP = () => {
     navigate("/myrecipes");
   };
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -60,14 +60,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar
-              sx={{
-                backgroundColor: "#eeeeee",
-                color: "#161a21",
-              }}
-            >
-              {username[0] || ""}
-            </Avatar>
+            <Avatar photo={user.avatar} />
           </IconButton>
         </Tooltip>
       </Box>

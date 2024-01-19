@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import NavBarDesktop from "./NavBarDesktop";
 import NavBarPhone from "./NavBarPhone";
 
-const Nav = () => {
+const Nav = ({}) => {
   return (
     <>
       <nav className={classes.nav}>

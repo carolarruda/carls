@@ -13,7 +13,6 @@
   @media (max-width: 450px) {
     grid-template-columns: 1fr;
     margin-top: 72px;
-
   }
 }
 
@@ -106,8 +105,15 @@
 .buttons {
   @media (max-width: 450px) {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     gap: 12px;
+  }
+}
+
+.leftHero {
+  @media (max-width: 450px) {
+    display: grid;
+    justify-content: center;
   }
 }
 
@@ -141,6 +147,7 @@
   }
 }
 .signButtonHome {
+  cursor: pointer;
   margin-top: 25px;
   display: flex;
   width: 108px;

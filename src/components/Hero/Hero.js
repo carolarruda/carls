@@ -36,7 +36,7 @@ const Hero = () => {
       </div>
       <section className={`${classes.hero} section-wrapper`}>
         <div className={classes.leftHero}>
-          <div className="">
+          <div className={classes.container}>
             <h1 className={classes.header}>
               A Food Journey
               <br />
@@ -47,12 +47,14 @@ const Hero = () => {
                 your next creation!
               </p>
               {loggedIn ? (
-                <button
-                  className={classes.signButtonHome}
-                  onClick={handleBrowse}
-                >
-                  Recipes
-                </button>
+                <div className={classes.buttons}>
+                  <button
+                    className={classes.signButtonHome}
+                    onClick={handleBrowse}
+                  >
+                    Recipes
+                  </button>
+                </div>
               ) : (
                 <div className={classes.buttons}>
                   {isPhone && (

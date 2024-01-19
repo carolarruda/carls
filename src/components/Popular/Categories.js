@@ -19,8 +19,8 @@ const Categories = () => {
     { categorie: "Smoothie recipes", thumbnail: smoothie },
     { categorie: "Pasta recipes", thumbnail: pasta },
   ];
-  return categories.map((categorie) => (
-    <div className={classes.categorie}>
+  return categories.map((categorie, index) => (
+    <div className={classes.categorie} key={index}>
       <img src={categorie.thumbnail} alt={categorie.categorie} />
       <p className={classes.categorieTitle}>{categorie.categorie}</p>
     </div>
