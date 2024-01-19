@@ -85,7 +85,6 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const isPhone = useMediaQuery("(max-width:1200px)");
 
   if (!Array.isArray(recipes) || !recipes.sort) {
-    console.error("Invalid recipes array");
     return null;
   }
 
@@ -130,9 +129,10 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
   return sortedRecipes.map((recipe, index) => (
     <Link
       to={`recipes/${recipe.id}`}
+      key={index}
       style={{ textDecoration: "none", color: "#212121" }}
     >
-      <div className={classes.recipeCard} key={index}>
+      <div className={classes.recipeCard} >
         <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
         <div className={classes.recipeInfo}>
           {renderStars(recipe)}

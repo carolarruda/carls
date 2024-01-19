@@ -16,7 +16,7 @@ const HeroBlobMobile = () => {
           opacity="0.4"
           d="M110 220.753C69.6158 158.307 32.1734 34.6691 49 -21H926V176.253V687.533C847.365 688.441 672.871 701.244 600.5 666.753C510.036 623.64 497.841 588.306 422.871 552C347.901 515.694 360.861 396.306 334.871 360C308.881 323.694 160.479 298.811 110 220.753Z"
           fill="url(#paint0_linear_255_5949)"
-          fill-opacity="0.7"
+          fillOpacity="0.7"
         />
         <defs>
           <linearGradient
@@ -27,8 +27,8 @@ const HeroBlobMobile = () => {
             y2="383.5"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0.390625" stop-color="#FF1F00" />
-            <stop offset="1" stop-color="#FF8473" />
+            <stop offset="0.390625" stopColor="#FF1F00" />
+            <stop offset="1" stopColor="#FF8473" />
           </linearGradient>
         </defs>
       </svg>
