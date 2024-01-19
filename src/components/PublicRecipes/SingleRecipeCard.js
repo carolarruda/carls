@@ -89,6 +89,8 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
   }
 
   const sortedRecipes = recipes.sort((a, b) => b.rating - a.rating);
+  
+
 
   let filteredRecipes;
 
@@ -126,27 +128,46 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
     filteredRecipes = recipes;
   }
 
-  return sortedRecipes.map((recipe, index) => (
-    <Link
-      to={`recipes/${recipe.id}`}
-      key={index}
-      style={{ textDecoration: "none", color: "#212121" }}
-    >
-      <div className={classes.recipeCard} >
-        <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
-        <div className={classes.recipeInfo}>
-          {renderStars(recipe)}
-          <h4 className={classes.recipeName}>{recipe.title}</h4>
-          {!isPhone && (
-            <Avatar
-              photo={recipe.user.avatar ? recipe.user.avatar : ""}
-              name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`}
-            />
-          )}
+  return sortedRecipes.map((recipe, index) => {
+    let title;
+
+    if (recipe.title.trim().length > 30) {
+        console.log(recipe.title, recipe.title.length );
+      title = `${recipe.title.trim().slice(0, 30)}...`;
+    } else if (recipe.title.trim().length === 30) {
+      title = recipe.title.trim().slice(0, 30);
+    } else {
+      title = recipe.title.trim();
+    }
+
+    return (
+      <Link
+        to={`${recipe.id}`}
+        key={index}
+        style={{ textDecoration: "none", color: "#212121" }}
+      >
+        <div className={classes.recipeCard}>
+          <img
+            src={recipe.imageUrl}
+            alt="food1"
+            className={classes.recipeImg}
+          />
+          <div className={classes.recipeInfo}>
+            {renderStars(recipe)}
+            <h4 className={classes.recipeName}>
+              {!isPhone ? recipe.title.trim() : title}
+            </h4>
+            {!isPhone && (
+              <Avatar
+                photo={recipe.user.avatar ? recipe.user.avatar : ""}
+                name={`${recipe.user.profile.firstName} ${recipe.user.profile.lastName}`}
+              />
+            )}
+          </div>
         </div>
-      </div>
-    </Link>
-  ));
+      </Link>
+    );
+  });
 };
 
 export default SingleRecipeCard;
