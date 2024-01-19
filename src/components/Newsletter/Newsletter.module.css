@@ -14,7 +14,7 @@
   letter-spacing: 0em;
   text-align: center;
   padding-top: 49px;
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     font-family: Roboto;
     font-size: 32px;
     font-weight: 500;
@@ -36,7 +36,7 @@
   color: #878787;
   max-width: 790px;
   padding: 44px 0px;
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     font-family: Roboto;
     font-size: 18px;
     font-weight: 400;
@@ -50,7 +50,7 @@
 
 .inputContainer {
   padding-bottom: 49px;
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -80,8 +80,9 @@
     0px 27px 11px 0px rgba(23, 23, 23, 0.01),
     0px 42px 12px 0px rgba(23, 23, 23, 0);
   border-radius: 8px;
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     width: 308px;
+    margin-bottom: 74px;
   }
 }
 
@@ -93,7 +94,7 @@
   gap: 10px;
   margin-right: 24px;
   color: #a5a5a5;
-  @media (max-width: 450px) {
+  @media (max-width: 1200px) {
     max-width: 276px;
     margin-bottom: 16px;
     margin-right: 16px;
