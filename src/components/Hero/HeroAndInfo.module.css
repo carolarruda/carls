@@ -112,8 +112,10 @@
 
 .leftHero {
   @media (max-width: 450px) {
-    display: grid;
+    display: flex;
     justify-content: center;
+    gap: 10px;
+  
   }
 }
 
