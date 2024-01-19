@@ -25,18 +25,6 @@
 
 
 
-.righty.log {
-  height: 100%;
-  display: grid;
-  background-image: url("../components/images/login1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  justify-self: right;
-  @media (max-width: 450px) {
-    display: none;
-  }
-}
 
 
 

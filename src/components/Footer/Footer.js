@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
 
       <div className={classes.footerBottom}>
-        <p>© 2023 PerfectRecipe All Right Reserved</p>
+        <p>© 2023 Carl'sFoods All Right Reserved</p>
         <div className={classes.logos}>
           <div className={classes.logo}>
             <Tiktok />
