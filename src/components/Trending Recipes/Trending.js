@@ -1,16 +1,22 @@
 import classes from "./Trending.module.css";
-import SingleRecipeCard from "./SingleRecipeCard";
 import Header from "../Header/Header";
 import Loader from "../Loader/Loader";
+import { Suspense, lazy } from "react";
+
+
+
+const Lazyrecipes = lazy(() => (import("./SingleRecipeCard")));
 
 const Trending = ({ recipes, setRecipes, loader }) => {
   return (
     <section className="section-wrapper">
       <Header title={"Trending Recipes"} path={"/recipes"} />
-      <div className={classes.loader}> {loader && <Loader />}</div>
-      <div className={classes.recipesContainer}>
-        <SingleRecipeCard recipes={recipes} setRecipes={setRecipes} />
-      </div>
+
+      <Suspense fallback={<Loader />}>
+        <div className={classes.recipesContainer}>
+          <Lazyrecipes recipes={recipes} setRecipes={setRecipes} />
+        </div>
+      </Suspense>
     </section>
   );
 };
