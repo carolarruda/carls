@@ -71,7 +71,7 @@ const NavBarDesktop = ({}) => {
       <div className="profile">
         {loggedIn ? (
           <>
-            <p className={classes.welcome}>Welcome back, {username}</p>
+
             <div className={classes.maxWidth}>
               <AccountMenu username={username}  />
             </div>

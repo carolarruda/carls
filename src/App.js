@@ -26,28 +26,29 @@ function App() {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const navigate = useNavigate();
-  const [loader, setLoader]= useState('')
-
+  const [loader, setLoader] = useState("");
 
   useEffect(() => {
     if (token) {
-            setLoggedIn(true);
+      setLoggedIn(true);
       const opts = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-      setLoader(true)
+      setLoader(true);
+      console.log("loading fetch request");
       fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
         .then((res) => res.json())
         .then((data) => {
           setRecipesP(data.data.recipes);
-          setLoader(false)
-
         })
         .catch((error) =>
           console.error("Error fetching personal recipes:", error)
-        );
+        )
+        .finally(() => {
+          setLoader(false);
+        });
       fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
         .then((res) => res.json())
         .then((data) => {
@@ -117,7 +118,11 @@ function App() {
                 <Route
                   index
                   element={
-                    <LandingPage recipes={recipes} setRecipes={setRecipes} loader={loader} />
+                    <LandingPage
+                      recipes={recipes}
+                      setRecipes={setRecipes}
+                      loader={loader}
+                    />
                   }
                 />
               </Route>
@@ -171,6 +176,7 @@ function App() {
                   index
                   element={
                     <RecipesPage
+                      path="Home > Recipes"
                       recipes={recipes}
                       setRecipes={setRecipes}
                       handleDelete={handleDelete}

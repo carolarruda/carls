@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 const PublicRecipes = ({ recipes, setRecipes }) => {
   return (
     <section className="section-wrapper">
-      <Header title={"Recipes"} path={"/recipes"} />
+      <Header title={"Recipes"} path={"/recipes"} sort={true}/>
       <div className={classes.recipesContainer}>
         <SingleRecipeCard recipes={recipes} setRecipes={setRecipes} />
       </div>

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -16,6 +15,10 @@ import classes from "./Nav.module.css";
 import { useMediaQuery } from "@mui/material";
 import { loggedOptions, menuOptions, menuItems } from "./menuLists";
 import MenuIcon from "@mui/icons-material/Menu";
+import { User } from "../../App";
+import Avatar from "../Avatar/Avatar";
+
+
 import LogoMobile from "../Logo/LogoMobile";
 
 const NavBarPhone = () => {
@@ -24,6 +27,7 @@ const NavBarPhone = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [user, setUser] = useContext(User);
 
   const handleLogOut = () => {
     setLoggedIn(false);
@@ -59,14 +63,8 @@ const NavBarPhone = () => {
             aria-expanded={open ? "true" : undefined}
           >
             {loggedIn && (
-              <Avatar
-                sx={{
-                  backgroundColor: "#eeeeee",
-                  color: "#161a21",
-                }}
-              >
-                {username[0] || ""}
-              </Avatar>
+                      <Avatar photo={user.avatar} />
+
             )}
             {!loggedIn && (
               <MenuIcon
