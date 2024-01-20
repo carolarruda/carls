@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import classes from "./Header.module.css";
+import SortBy from "../SortBy/SortBy";
 
 const Header = ({ title, path, sort }) => {
   return (
@@ -15,6 +16,7 @@ const Header = ({ title, path, sort }) => {
           View more
         </Link>
       )}
+      {sort && <SortBy/>}
     </div>
   );
 };
