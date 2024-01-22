@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from './SortBy.module.css'
+import classes from "./SortBy.module.css";
 
 const SortBy = ({ handleSortChange }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -16,56 +16,64 @@ const SortBy = ({ handleSortChange }) => {
   };
 
   return (
-    <div className={classes.sortByContainer}>
-      <div className={classes.sortByHeader} onClick={handleToggleOptions}>
-        <h6>Sort by:</h6>
-        <div className={classes.selector}>{selectedSort} </div>
-      </div>
+    <section className={classes.display}>
+      <h6 className={classes.sortTitle}>Sort by:</h6>
+      <section className={classes.mainContainer}>
+        <div className={classes.sortByContainer}>
+          <div className={classes.sortByHeader} onClick={handleToggleOptions}>
+            <div className={classes.selector}>{selectedSort} </div>
+          </div>
 
-      {showOptions && (
-        <div className={classes.optionsContainer}>
-          <label>
-            <input
-              type="radio"
-              value="A to Z"
-              checked={selectedSort === "A to Z"}
-              onChange={() => handleSortChangeAndClose("A to Z")}
-            />
-            A to Z
-          </label>
+          {showOptions && (
+            <div className={classes.optionsContainer}>
+              <label>
+                <input
+                  className={classes.inputSort}
+                  type="radio"
+                  value="A to Z"
+                  checked={selectedSort === "A to Z"}
+                  onChange={() => handleSortChangeAndClose("A to Z")}
+                />
+                A to Z
+              </label>
 
-          <label>
-            <input
-              type="radio"
-              value="Relevance"
-              checked={selectedSort === "Relevance"}
-              onChange={() => handleSortChangeAndClose("Relevance")}
-            />
-            Relevance
-          </label>
+              <label>
+                <input
+                  className={classes.inputSort}
+                  type="radio"
+                  value="Relevance"
+                  checked={selectedSort === "Relevance"}
+                  onChange={() => handleSortChangeAndClose("Relevance")}
+                />
+                Relevance
+              </label>
 
-          <label>
-            <input
-              type="radio"
-              value="Newest"
-              checked={selectedSort === "Newest"}
-              onChange={() => handleSortChangeAndClose("Newest")}
-            />
-            Newest
-          </label>
+              <label>
+                <input
+                  className={classes.inputSort}
+                  type="radio"
+                  value="Newest"
+                  checked={selectedSort === "Newest"}
+                  onChange={() => handleSortChangeAndClose("Newest")}
+                />
+                Newest
+              </label>
 
-          <label>
-            <input
-              type="radio"
-              value="TopRated"
-              checked={selectedSort === "TopRated"}
-              onChange={() => handleSortChangeAndClose("TopRated")}
-            />
-            Top Rated
-          </label>
+              <label>
+                <input
+                  className={classes.inputSort}
+                  type="radio"
+                  value="TopRated"
+                  checked={selectedSort === "TopRated"}
+                  onChange={() => handleSortChangeAndClose("TopRated")}
+                />
+                Top Rated
+              </label>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </section>
+    </section>
   );
 };
 

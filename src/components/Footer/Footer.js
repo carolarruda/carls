@@ -40,7 +40,7 @@ const Footer = () => {
 
         <div className={classes.subscribe}>
           <h5>Newsletter</h5>
-          <p>Subscribe to our newsletter to get more </p>
+          <p>Subscribe to our newsletter to get more</p>
           <input
             className={classes.input}
             type="text"
