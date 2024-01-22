@@ -12,6 +12,9 @@ import PersonalRecipesPage from "./components/pages/PersonalRecipesPage";
 import SignUp from "./components/Sign And Log/SignUp";
 import Login from "./components/Sign And Log/Login";
 import SeetingsPage from "./components/pages/SeetingsPage";
+import { trackPromise } from "react-promise-tracker";
+
+
 export const LoggedInUser = React.createContext();
 export const User = React.createContext();
 
@@ -38,33 +41,40 @@ function App() {
       };
       setLoader(true);
       console.log("loading fetch request");
-      fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
-        .then((res) => res.json())
-        .then((data) => {
-          setRecipesP(data.data.recipes);
-        })
-        .catch((error) =>
-          console.error("Error fetching personal recipes:", error)
-        )
-        .finally(() => {
-          setLoader(false);
-        });
-      fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
-        .then((res) => res.json())
-        .then((data) => {
-          setUser(data.data.user);
-        })
-        .catch((error) => console.error("Error fetching user:", error));
+      trackPromise(
+        fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
+          .then((res) => res.json())
+          .then((data) => {
+            setRecipesP(data.data.recipes);
+          })
+          .catch((error) =>
+            console.error("Error fetching personal recipes:", error)
+          )
+          .finally(() => {
+            setLoader(false);
+          })
+      );
+
+      trackPromise(
+        fetch(`https://node-mysql-api-0zxf.onrender.com/users/${userId}`, opts)
+          .then((res) => res.json())
+          .then((data) => {
+            setUser(data.data.user);
+          })
+          .catch((error) => console.error("Error fetching user:", error))
+      );
     } else {
       setLoggedIn(false);
     }
 
-    fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
-      .then((res) => res.json())
-      .then((data) => {
-        setRecipes(data.data);
-      })
-      .catch((error) => console.error("Error fetching recipes:", error));
+    trackPromise(
+      fetch(`https://node-mysql-api-0zxf.onrender.com/recipes`)
+        .then((res) => res.json())
+        .then((data) => {
+          setRecipes(data.data);
+        })
+        .catch((error) => console.error("Error fetching recipes:", error))
+    );
   }, [token, userId]);
 
   const handleDelete = (id) => {
@@ -215,6 +225,7 @@ function App() {
                   }
                 />
               </Route>
+     
             </Routes>
           </div>
         </SearchContext.Provider>
