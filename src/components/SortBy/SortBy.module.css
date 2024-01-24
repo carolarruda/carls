@@ -53,15 +53,15 @@
 .optionsContainer {
   border: solid 1px #878787;
   width: 172px;
+
   height: fit-content;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 20px 20px 24px;
   border-radius: 8px;
   display: grid;
+  row-gap: 0.5rem;
   font-family: Roboto;
   font-size: 16px;
   font-weight: 400;
-
-  letter-spacing: 0em;
   text-align: left;
   position: absolute;
   top: 120%;
