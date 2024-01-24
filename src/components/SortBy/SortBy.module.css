@@ -82,7 +82,7 @@
 
 .inputSort {
   visibility: hidden;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 label {
   cursor: pointer;
