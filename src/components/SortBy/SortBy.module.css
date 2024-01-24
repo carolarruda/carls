@@ -19,9 +19,9 @@
 }
 .sortTitle {
   font-family: Roboto;
-  font-size: 16px;
+
   font-weight: 400;
-  line-height: 26px;
+
   letter-spacing: 0em;
   text-align: left;
 
@@ -53,11 +53,13 @@
 .optionsContainer {
   border: solid 1px #878787;
   width: 172px;
+  max-height: fit-content;
+
   height: fit-content;
   padding: 20px 20px 20px 24px;
   border-radius: 8px;
   display: grid;
-  row-gap: 0.5rem;
+
   font-family: Roboto;
   font-weight: 400;
   text-align: left;
