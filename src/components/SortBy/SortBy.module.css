@@ -53,12 +53,12 @@
 .optionsContainer {
   border: solid 1px #878787;
   width: 172px;
-  max-height: fit-content;
 
-  height: fit-content;
   padding: 20px 20px 20px 24px;
   border-radius: 8px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   font-family: Roboto;
   font-weight: 400;
@@ -88,4 +88,6 @@
 }
 label {
   cursor: pointer;
+  margin-bottom: 20px;
+
 }
