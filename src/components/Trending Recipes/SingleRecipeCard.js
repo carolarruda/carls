@@ -29,6 +29,8 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
     return null;
   }
 
+  
+
   const sortedRecipes = recipes.sort((a, b) => b.rating - a.rating).slice(0, 6);
 
   return sortedRecipes.map((recipe, index) => (

@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import classes from "./SortBy.module.css";
+import { Sorter } from '../../App'
 
 const SortBy = ({ handleSortChange }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [selectedSort, setSelectedSort] = useState("A to Z");
+
+  const [sort, setSort] = useContext(Sorter);
+
 
   const handleToggleOptions = () => {
     setShowOptions(!showOptions);
@@ -11,6 +15,7 @@ const SortBy = ({ handleSortChange }) => {
 
   const handleSortChangeAndClose = (value) => {
     setSelectedSort(value);
+    setSort(value)
     // handleSortChange(value);
     setShowOptions(false);
   };
@@ -65,7 +70,7 @@ const SortBy = ({ handleSortChange }) => {
                   type="radio"
                   value="TopRated"
                   checked={selectedSort === "TopRated"}
-                  onChange={() => handleSortChangeAndClose("TopRated")}
+                  onChange={() => handleSortChangeAndClose("Top Rated")}
                 />
                 Top Rated
               </label>

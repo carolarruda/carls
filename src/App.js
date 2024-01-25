@@ -14,9 +14,9 @@ import Login from "./components/Sign And Log/Login";
 import SeetingsPage from "./components/pages/SeetingsPage";
 import { trackPromise } from "react-promise-tracker";
 
-
 export const LoggedInUser = React.createContext();
 export const User = React.createContext();
+export const Sorter = React.createContext();
 
 function App() {
   const [searchRecipe, setSearchRecipe] = useState("");
@@ -30,6 +30,7 @@ function App() {
   const [user, setUser] = useState("");
   const navigate = useNavigate();
   const [loader, setLoader] = useState("");
+  const [sort, setSort] = useState("");
 
   useEffect(() => {
     if (token) {
@@ -40,7 +41,6 @@ function App() {
         },
       };
       setLoader(true);
-      console.log("loading fetch request");
       trackPromise(
         fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/personal`, opts)
           .then((res) => res.json())
@@ -109,125 +109,126 @@ function App() {
     <LoggedInUser.Provider value={[loggedIn, setLoggedIn]}>
       <User.Provider value={[user, setUser]}>
         <SearchContext.Provider value={[searchRecipe, setSearchRecipe]}>
-          <div className="App">
-            <Routes>
-              <Route path="/sign" element={<SignUp />} />
+          <Sorter.Provider value={[sort, setSort]}>
+            <div className="App">
+              <Routes>
+                <Route path="/sign" element={<SignUp />} />
 
-              <Route
-                path="/login"
-                element={
-                  <Login
-                    setUsers={setUsers}
-                    users={users}
-                    setLoggedIn={setLoggedIn}
+                <Route
+                  path="/login"
+                  element={
+                    <Login
+                      setUsers={setUsers}
+                      users={users}
+                      setLoggedIn={setLoggedIn}
+                    />
+                  }
+                />
+
+                <Route path="/" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <LandingPage
+                        recipes={recipes}
+                        setRecipes={setRecipes}
+                        loader={loader}
+                      />
+                    }
                   />
-                }
-              />
+                </Route>
+                <Route path="/add" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <AddRecipePage
+                        recipes={recipes}
+                        setRecipes={setRecipes}
+                        recipesP={recipesP}
+                        setRecipesP={setRecipesP}
+                      />
+                    }
+                  />
+                </Route>
+                <Route path="/edit/:id" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <AddRecipePage
+                        recipes={recipes}
+                        setRecipes={setRecipes}
+                        recipesP={recipesP}
+                        setRecipesP={setRecipesP}
+                        update={true}
+                      />
+                    }
+                  />
+                </Route>
 
-              <Route path="/" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <LandingPage
-                      recipes={recipes}
-                      setRecipes={setRecipes}
-                      loader={loader}
-                    />
-                  }
-                />
-              </Route>
-              <Route path="/add" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <AddRecipePage
-                      recipes={recipes}
-                      setRecipes={setRecipes}
-                      recipesP={recipesP}
-                      setRecipesP={setRecipesP}
-                    />
-                  }
-                />
-              </Route>
-              <Route path="/edit/:id" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <AddRecipePage
-                      recipes={recipes}
-                      setRecipes={setRecipes}
-                      recipesP={recipesP}
-                      setRecipesP={setRecipesP}
-                      update={true}
-                    />
-                  }
-                />
-              </Route>
+                <Route path="/settings" element={<Nav />}>
+                  <Route index element={<SeetingsPage user={user} />} />
+                </Route>
+                <Route path="/recipes/:id" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <RecipeViewPage
+                        recipes={recipes}
+                        setRecipes={setRecipes}
+                        handleDelete={handleDelete}
+                        user={user}
+                      />
+                    }
+                  />
+                </Route>
 
-              <Route path="/settings" element={<Nav />}>
-                <Route index element={<SeetingsPage user={user} />} />
-              </Route>
-              <Route path="/recipes/:id" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <RecipeViewPage
-                      recipes={recipes}
-                      setRecipes={setRecipes}
-                      handleDelete={handleDelete}
-                      user={user}
-                    />
-                  }
-                />
-              </Route>
+                <Route path="/recipes" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <RecipesPage
+                        path="Home > Recipes"
+                        recipes={recipes}
+                        setRecipes={setRecipes}
+                        handleDelete={handleDelete}
+                        user={user}
+                      />
+                    }
+                  />
+                </Route>
+                <Route path="/blog" element={<Nav />}>
+                  <Route index element={<BlogPage />} />
+                </Route>
 
-              <Route path="/recipes" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <RecipesPage
-                      path="Home > Recipes"
-                      recipes={recipes}
-                      setRecipes={setRecipes}
-                      handleDelete={handleDelete}
-                      user={user}
-                    />
-                  }
-                />
-              </Route>
-              <Route path="/blog" element={<Nav />}>
-                <Route index element={<BlogPage />} />
-              </Route>
-
-              <Route path="/myrecipes" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <PersonalRecipesPage
-                      recipesP={recipesP}
-                      setRecipesP={setRecipesP}
-                      setRecipes={setRecipes}
-                      handleDelete={handleDelete}
-                    />
-                  }
-                />
-              </Route>
-              <Route path="/myrecipes/:id" element={<Nav />}>
-                <Route
-                  index
-                  element={
-                    <RecipeViewPage
-                      recipes={recipes}
-                      setRecipes={setRecipes}
-                      handleDelete={handleDelete}
-                      user={user}
-                    />
-                  }
-                />
-              </Route>
-     
-            </Routes>
-          </div>
+                <Route path="/myrecipes" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <PersonalRecipesPage
+                        recipesP={recipesP}
+                        setRecipesP={setRecipesP}
+                        setRecipes={setRecipes}
+                        handleDelete={handleDelete}
+                      />
+                    }
+                  />
+                </Route>
+                <Route path="/myrecipes/:id" element={<Nav />}>
+                  <Route
+                    index
+                    element={
+                      <RecipeViewPage
+                        recipes={recipes}
+                        setRecipes={setRecipes}
+                        handleDelete={handleDelete}
+                        user={user}
+                      />
+                    }
+                  />
+                </Route>
+              </Routes>
+            </div>
+          </Sorter.Provider>
         </SearchContext.Provider>
       </User.Provider>
     </LoggedInUser.Provider>

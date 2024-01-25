@@ -1,17 +1,19 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { SearchContext } from "../../App";
 import classes from "./PublicRecipes.module.css";
 import { useMediaQuery } from "@mui/material";
 import Avatar from "../Avatar/Avatar";
+import { Sorter } from "../../App";
 
 const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const [searchRecipe, setSearchRecipe] = useContext(SearchContext);
   const [isLiked, setIsLiked] = useState("");
+
+  const [sort, setSort] = useContext(Sorter);
 
   const renderStars = (recipe) => {
     const stars = [];
@@ -88,9 +90,27 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
     return null;
   }
 
-  const sortedRecipes = recipes.sort((a, b) => b.rating - a.rating);
-  
+  let sortedRecipes;
 
+  switch (sort) {
+    case "A to Z":
+      recipes.map((recipe) => console.log(recipe.title.charAt(0)));
+      sortedRecipes = recipes.sort((a, b) =>
+        a.title.trim().charAt(0).localeCompare(b.title.trim().charAt(0))
+      );
+      break;
+    case "Top Rated":
+      sortedRecipes = recipes.sort((a, b) => b.rating - a.rating);
+      break;
+    case "Newest":
+      sortedRecipes = recipes.sort((a, b) => b.id - a.id);
+      break;
+    case "Relevance":
+      sortedRecipes = recipes.sort((a, b) => b.id - a.id);
+      break;
+    default:
+      sortedRecipes = recipes.sort((a, b) => b.rating - a.rating);
+  }
 
   let filteredRecipes;
 
@@ -132,7 +152,6 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
     let title;
 
     if (recipe.title.trim().length > 30) {
-        console.log(recipe.title, recipe.title.length );
       title = `${recipe.title.trim().slice(0, 30)}...`;
     } else if (recipe.title.trim().length === 30) {
       title = recipe.title.trim().slice(0, 30);

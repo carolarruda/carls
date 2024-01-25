@@ -2,7 +2,6 @@ import AvatarIcon from "../icons/AvatarIcon";
 import classes from "./Avatar.module.css";
 
 const Avatar = ({ photo, name }) => {
-console.log('avatar', photo);
   return (
     <div className={classes.avatarContainer}>
       {photo ? (
