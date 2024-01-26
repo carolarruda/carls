@@ -2,8 +2,16 @@ import { Link } from "react-router-dom";
 
 import classes from "./Header.module.css";
 import SortBy from "../SortBy/SortBy";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useState, useEffect } from "react";
+import SaveIcon from "@mui/icons-material/Save";
 
 const Header = ({ title, path, sort, recipeAdd }) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = () => {
+    setLoading(true);
+  };
   return (
     <div className={classes.headerContainer}>
       <h3 className={!recipeAdd ? `${classes.header}` : `${classes.recipeAdd}`}>
@@ -19,7 +27,28 @@ const Header = ({ title, path, sort, recipeAdd }) => {
         </Link>
       )}
       {sort && <SortBy />}
-      {recipeAdd && <button className={classes.signButtonHome}>Save </button>}
+      {recipeAdd && (
+        <>
+          {/* <button className={classes.signButtonHome}>Save </button> */}
+          <LoadingButton
+            size="small"
+            style={{
+              backgroundColor: "rgba(181, 93, 81, 0.97)",
+              width: "100px",
+              height: "44px",
+              borderRadius: "8px",
+            }}
+            onSubmit={handleClick}
+            loading={loading}
+            loadingPosition="start"
+            startIcon={<SaveIcon />}
+            variant="contained"
+            type="submit"
+          >
+            <span>Save</span>
+          </LoadingButton>
+        </>
+      )}
     </div>
   );
 };

@@ -15,7 +15,6 @@ const SortBy = ({ handleSortChange }) => {
   const handleSortChangeAndClose = (value) => {
     setSelectedSort(value);
     setSort(value);
-    // handleSortChange(value);
     setShowOptions(false);
   };
 
@@ -66,7 +65,7 @@ const SortBy = ({ handleSortChange }) => {
               </label>
 
               <label className={classes.label}>
-                {" "}
+       
                 <input
                   className={classes.inputSort}
                   type="radio"
