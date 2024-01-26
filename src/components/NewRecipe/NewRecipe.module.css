@@ -23,7 +23,6 @@
 }
 
 .titleInput {
-  /* max-width: 500px; */
   height: 40px;
   padding: 16px;
   border-radius: 8px;
@@ -43,7 +42,6 @@
 }
 
 .imageUpload {
-  /* max-width: 500px; */
   height: 302px;
   border: 1px;
   border: 1px dashed #a5a5a5;
@@ -58,8 +56,6 @@
 }
 
 .imageUploadButton {
-  border: 1px solid red;
-  border-color: red;
   padding: 8px 24px 8px 24px;
   border-radius: 8px;
   border: 1px;
