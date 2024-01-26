@@ -85,7 +85,8 @@
   visibility: hidden;
   /* margin-bottom: 20px; */
 }
-label {
+
+.label {
   cursor: pointer;
   margin-bottom: 20px;
 

@@ -7,7 +7,7 @@ const Explore = ({ recipes, setRecipes }) => {
   return (
     <section className="section-wrapper">
       <Header title={"Explore Recipes"} path={"/recipes"} />
-      <Loader/>
+      <Loader />
       <div className={classes.recipesContainer}>
         <SingleRecipeCard recipes={recipes} setRecipes={setRecipes} />
       </div>

@@ -18,7 +18,7 @@ const LandingPage = ({ recipes, setRecipes, loader  }) => {
         <Blog />
         <Explore recipes={recipes} />
         <Newsletter />
-        <Popular />
+        {/* <Popular /> */}
       </div>
       <Footer />
     </main>

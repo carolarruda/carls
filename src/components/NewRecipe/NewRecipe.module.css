@@ -1,0 +1,152 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.formLabel {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.titleInput {
+  /* max-width: 500px; */
+  height: 40px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px;
+  gap: 16px;
+  border: solid 1px #a5a5a5;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #a5a5a5;
+  @media (max-width: 630px) {
+    max-width: 100%;
+  }
+}
+
+.imageUpload {
+  /* max-width: 500px; */
+  height: 302px;
+  border: 1px;
+  border: 1px dashed #a5a5a5;
+  padding: 16px;
+  border-radius: 8px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  @media (max-width: 630px) {
+    max-width: 100%;
+  }
+}
+
+.imageUploadButton {
+  border: 1px solid red;
+  border-color: red;
+  padding: 8px 24px 8px 24px;
+  border-radius: 8px;
+  border: 1px;
+  gap: 8px;
+  border-color: #b55d51f8;
+  border-style: solid;
+  margin-bottom: 16px;
+}
+
+.infoUpload {
+  font-family: Roboto;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 8px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.maxCharacteres {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #a5a5a5;
+}
+
+.marginFix {
+  margin-bottom: 11px;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin-bottom: 40px;
+}
+
+.marginMultipleInputs {
+  margin-bottom: 16px;
+}
+
+.addIngredient {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  align-self: left;
+  color: #b55d51f8;
+}
+
+.portions {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #a5a5a5;
+}
+
+.times {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  border-radius: 8px;
+  border: 1px;
+  gap: 16px;
+  height: 40px;
+}
+
+.parts {
+  padding: 16px;
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px;
+  gap: 16px;
+  border: solid 1px #a5a5a5;
+  color: #a5a5a5;
+}
+
+.addMargin {
+  margin-top: 45px;
+}

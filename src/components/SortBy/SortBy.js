@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import classes from "./SortBy.module.css";
-import { Sorter } from '../../App'
+import { Sorter } from "../../App";
 
 const SortBy = ({ handleSortChange }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -8,14 +8,13 @@ const SortBy = ({ handleSortChange }) => {
 
   const [sort, setSort] = useContext(Sorter);
 
-
   const handleToggleOptions = () => {
     setShowOptions(!showOptions);
   };
 
   const handleSortChangeAndClose = (value) => {
     setSelectedSort(value);
-    setSort(value)
+    setSort(value);
     // handleSortChange(value);
     setShowOptions(false);
   };
@@ -31,7 +30,7 @@ const SortBy = ({ handleSortChange }) => {
 
           {showOptions && (
             <div className={classes.optionsContainer}>
-              <label>
+              <label className={classes.label}>
                 <input
                   className={classes.inputSort}
                   type="radio"
@@ -42,7 +41,8 @@ const SortBy = ({ handleSortChange }) => {
                 A to Z
               </label>
 
-              <label>
+              <label className={classes.label}>
+                {" "}
                 <input
                   className={classes.inputSort}
                   type="radio"
@@ -53,7 +53,8 @@ const SortBy = ({ handleSortChange }) => {
                 Relevance
               </label>
 
-              <label>
+              <label className={classes.label}>
+                {" "}
                 <input
                   className={classes.inputSort}
                   type="radio"
@@ -64,7 +65,8 @@ const SortBy = ({ handleSortChange }) => {
                 Newest
               </label>
 
-              <label>
+              <label className={classes.label}>
+                {" "}
                 <input
                   className={classes.inputSort}
                   type="radio"
