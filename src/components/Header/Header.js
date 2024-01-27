@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 import classes from "./Header.module.css";
 import SortBy from "../SortBy/SortBy";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { useState, useEffect } from "react";
 import SaveIcon from "@mui/icons-material/Save";
 
@@ -27,9 +27,9 @@ const Header = ({ title, path, sort, recipeAdd }) => {
         </Link>
       )}
       {sort && <SortBy />}
-      {recipeAdd && (
+      {/* {recipeAdd && (
         <>
-          {/* <button className={classes.signButtonHome}>Save </button> */}
+
           <LoadingButton
             size="small"
             style={{
@@ -48,7 +48,7 @@ const Header = ({ title, path, sort, recipeAdd }) => {
             <span>Save</span>
           </LoadingButton>
         </>
-      )}
+      )} */}
     </div>
   );
 };

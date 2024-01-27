@@ -5,6 +5,12 @@
   margin-bottom: 230px;
 }
 
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -232,6 +238,8 @@
 }
 
 .label {
+  display: flex;
+  justify-content: space-between;
   cursor: pointer;
   height: 40px;
   font-family: Roboto;
@@ -241,12 +249,34 @@
   letter-spacing: 0em;
   text-align: left;
   color: #a5a5a5;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+
+
 }
 
 .label:hover {
-  background-color: #f5f5f5;
+  color: #000000;
 }
 
 .correctMargin {
   margin-bottom: 30px;
+}
+
+.recipeAdd {
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: left;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+    width: 200px;
+  }
 }
