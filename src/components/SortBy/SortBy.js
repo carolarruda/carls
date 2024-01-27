@@ -1,12 +1,28 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import classes from "./SortBy.module.css";
 import { Sorter } from "../../App";
 
-const SortBy = ({ handleSortChange }) => {
+const SortBy = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [selectedSort, setSelectedSort] = useState("A to Z");
 
   const [sort, setSort] = useContext(Sorter);
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setShowOptions(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   const handleToggleOptions = () => {
     setShowOptions(!showOptions);
@@ -22,7 +38,7 @@ const SortBy = ({ handleSortChange }) => {
     <section className={classes.display}>
       <h6 className={classes.sortTitle}>Sort by:</h6>
       <section className={classes.mainContainer}>
-        <div className={classes.sortByContainer}>
+        <div className={classes.sortByContainer} ref={containerRef}>
           <div className={classes.sortByHeader} onClick={handleToggleOptions}>
             <div className={classes.selector}>{selectedSort} </div>
           </div>
@@ -39,7 +55,6 @@ const SortBy = ({ handleSortChange }) => {
                 />
                 A to Z
               </label>
-
               <label className={classes.label}>
                 {" "}
                 <input
@@ -75,6 +90,7 @@ const SortBy = ({ handleSortChange }) => {
                 />
                 Top Rated
               </label>
+
             </div>
           )}
         </div>
@@ -84,3 +100,5 @@ const SortBy = ({ handleSortChange }) => {
 };
 
 export default SortBy;
+
+   
