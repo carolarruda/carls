@@ -44,6 +44,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const handleSortChangeAndClose = (value) => {
     setSelectedSort(value);
     setShowOptions(false);
+    setCourseType(value);
   };
 
   const navigate = useNavigate();
@@ -146,9 +147,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
         case "imageUrl":
           setImageUrl(value);
           break;
-        case "courseType":
-          setCourseType(value);
-          break;
+
         case "cookTimeHours":
           setCookTimeHours(value || 0);
           break;
@@ -163,7 +162,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           break;
         case "servings":
           setServings(Number(value) || 0);
-
           break;
         case "notes":
           const truncatedValue = value.slice(0, 100);
@@ -258,6 +256,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
             className={classes.titleInput}
             placeholder="Enter Your Recipe name"
             name="title"
+            required
             value={title}
             onChange={handleInputChange}
           />
@@ -322,6 +321,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
             type="text"
             className={`${classes.titleInput} ${classes.marginFix}`}
             placeholder="#"
+            required
             name="servings"
             value={servings}
             onChange={handleInputChange}
@@ -399,7 +399,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
                       <input
                         className={classes.inputSort}
                         type="radio"
-                        value="Chinese"
+                        value={courseType}
                         checked={selectedSort === "Chinese"}
                         onChange={() => handleSortChangeAndClose("Chinese")}
                       />
@@ -411,7 +411,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
                       <input
                         className={classes.inputSort}
                         type="radio"
-                        value="Italian"
+                        value={courseType}
                         checked={selectedSort === "Italian"}
                         onChange={() => handleSortChangeAndClose("Italian")}
                       />
@@ -424,7 +424,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
                       <input
                         className={classes.inputSort}
                         type="radio"
-                        value="Thai"
+                        value={courseType}
                         checked={selectedSort === "Thai"}
                         onChange={() => handleSortChangeAndClose("Thai")}
                       />
@@ -435,9 +435,9 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
                       <input
                         className={classes.inputSort}
                         type="radio"
-                        value="Portuguese"
                         checked={selectedSort === "Portuguese"}
                         onChange={() => handleSortChangeAndClose("Portuguese")}
+                        value={courseType}
                       />
                       Portuguese{" "}
                       {selectedSort === "Portuguese" ? <CheckedBox /> : <Box />}{" "}
