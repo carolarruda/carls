@@ -7,7 +7,7 @@ import Box from "../icons/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 
-const RecipeForm = ({ setRecipes, update }) => {
+const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,10 @@ const RecipeForm = ({ setRecipes, update }) => {
   const [rating, setRating] = useState("");
   const [courseType, setCourseType] = useState("");
   const [prepTime, setPrepTime] = useState("");
-  const [cookTime, setCookTime] = useState("");
+  const [cookTimeHours, setCookTimeHours] = useState("");
+  const [cookTimeMinutes, setCookTimeMinutes] = useState("");
+  const [prepTimeHours, setPrepTimeHours] = useState("");
+  const [prepTimeMinutes, setPrepTimeMinutes] = useState("");
   const [servings, setServings] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
@@ -56,7 +59,8 @@ const RecipeForm = ({ setRecipes, update }) => {
           setRating(data.data.recipe.rating || 0);
           setCourseType(data.data.recipe.courseType || "");
           setPrepTime(data.data.recipe.prepTime || 0);
-          setCookTime(data.data.recipe.cookTime || 0);
+          setCookTimeHours(data.data.recipe.cookTime || 0);
+          setCookTimeMinutes(data.data.recipe.cookTime || 0);
           setServings(data.data.recipe.servings || 0);
           setIngredients(data.data.recipe.ingredients || []);
           setInstructions(data.data.recipe.instructions || []);
@@ -72,6 +76,7 @@ const RecipeForm = ({ setRecipes, update }) => {
   }, [params.id, update]);
 
   const addIngredient = (e) => {
+    e.preventDefault();
     setIngredientLine(ingredientLine + 1);
     setIngredients([...ingredients, ""]);
   };
@@ -95,6 +100,7 @@ const RecipeForm = ({ setRecipes, update }) => {
   }
 
   const addInstruction = (e) => {
+    e.preventDefault();
     setInstructionLine(instructionLine + 1);
     setInstructions([...instructions, ""]);
   };
@@ -131,7 +137,7 @@ const RecipeForm = ({ setRecipes, update }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "rating") {
-      setRating(Number(value));
+      setRating(value || 0);
     } else {
       switch (name) {
         case "title":
@@ -143,16 +149,23 @@ const RecipeForm = ({ setRecipes, update }) => {
         case "courseType":
           setCourseType(value);
           break;
-        case "prepTime":
-          setPrepTime(Number(value));
+        case "cookTimeHours":
+          setCookTimeHours(value || 0);
           break;
-        case "cookTime":
-          setCookTime(Number(value));
+        case "cookTimeMinutes":
+          setCookTimeMinutes(value || 0);
+          break;
+        case "prepTimeHours":
+          setPrepTimeHours(value || 0);
+          break;
+        case "prepTimeMinutes":
+          setPrepTimeMinutes(value || 0);
           break;
         case "servings":
-          setServings(Number(value));
+          setServings(Number(value) || 0);
+
           break;
-        case "description":
+        case "notes":
           const truncatedValue = value.slice(0, 100);
           setNotes(truncatedValue);
           setLength(truncatedValue.length);
@@ -168,10 +181,10 @@ const RecipeForm = ({ setRecipes, update }) => {
     const newRecipe = {
       title,
       imageUrl,
-      rating,
+      rating: 0,
       courseType,
-      prepTime,
-      cookTime,
+      prepTime: Number(prepTimeHours) * 60 + Number(prepTimeMinutes),
+      cookTime: Number(cookTimeHours) * 60 + Number(cookTimeMinutes),
       servings,
       ingredients: ingredients.join(";"),
       instructions: instructions.join(";"),
@@ -199,7 +212,17 @@ const RecipeForm = ({ setRecipes, update }) => {
           .then((res) => res.json())
           .then((data) => {
             setRecipes(data.data.recipes);
-
+            const opts = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            };
+            fetch(
+              `https://node-mysql-api-0zxf.onrender.com/recipes/personal`,
+              opts
+            )
+              .then((res) => res.json())
+              .then((data) => setRecipesP(data.data.recipes));
             navigate("/myrecipes");
           });
       });
@@ -241,7 +264,7 @@ const RecipeForm = ({ setRecipes, update }) => {
         </div>
         <div className={classes.inputSection}>
           <label className={classes.formLabel}>Recipe Image:</label>
-          <div className={classes.imageUpload}>
+          {/* <div className={classes.imageUpload}>
             <h6 className={classes.formLabel}>Upload Your Recipe Image</h6>
             <label htmlFor="filePicker" className={classes.imageUploadButton}>
               + Upload
@@ -251,7 +274,15 @@ const RecipeForm = ({ setRecipes, update }) => {
             <p className={classes.infoUpload}>
               Max file size 20 MB I Supports: JPG, PNG, webp
             </p>
-          </div>
+          </div> */}
+          <input
+            type="text"
+            className={classes.titleInput}
+            placeholder="Enter Your Recipe Image url"
+            name="imageUrl"
+            value={imageUrl}
+            onChange={handleInputChange}
+          />
         </div>
         <div className={classes.inputSection}>
           <label className={classes.formLabel}>Description:</label>
@@ -306,11 +337,17 @@ const RecipeForm = ({ setRecipes, update }) => {
               type="text"
               className={`${classes.parts} ${classes} `}
               placeholder="Hours"
+              name="cookTimeHours"
+              value={cookTimeHours}
+              onChange={handleInputChange}
             />
             <input
               type="text"
               className={`${classes.parts} ${classes}`}
               placeholder="Minutes"
+              name="cookTimeMinutes"
+              value={cookTimeMinutes}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -324,11 +361,17 @@ const RecipeForm = ({ setRecipes, update }) => {
               type="text"
               className={`${classes.parts} ${classes} `}
               placeholder="Hours"
+              name="prepTimeHours"
+              value={prepTimeHours}
+              onChange={handleInputChange}
             />
             <input
               type="text"
               className={`${classes.parts} ${classes}`}
               placeholder="Minutes"
+              name="prepTimeMinutes"
+              value={prepTimeMinutes}
+              onChange={handleInputChange}
             />
           </div>
         </div>

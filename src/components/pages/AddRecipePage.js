@@ -6,7 +6,7 @@ const AddRecipePage = ({ setRecipes, setRecipesP, update }) => {
   return (
     <main className={classes}>
       <div className={classes.section}>
-        <NewRecipe setRecipes={setRecipes} />
+        <NewRecipe setRecipes={setRecipes} setRecipesP={setRecipesP}/>
       </div>
       <Footer />
     </main>
