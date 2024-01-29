@@ -1,5 +1,5 @@
 import classes from "./HeroAndInfo.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { LoggedInUser } from "../../App";
 import { useNavigate } from "react-router-dom";
 import HeroBlob from "../Blob/HeroBlob";
@@ -12,8 +12,6 @@ const Hero = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
 
   const handleBrowse = () => {
     navigate("/recipes");

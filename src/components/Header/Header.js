@@ -1,10 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
-import LoadingButton from "@mui/lab/LoadingButton";
-
 import classes from "./Header.module.css";
 import SortBy from "../SortBy/SortBy";
-import { useState, useEffect } from "react";
-import SaveIcon from "@mui/icons-material/Save";
+import { useState } from "react";
 
 const Header = ({ title, path, sort, recipeAdd }) => {
   const [loading, setLoading] = useState(false);

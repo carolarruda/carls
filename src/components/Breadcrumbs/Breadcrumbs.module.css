@@ -3,3 +3,6 @@
     margin-bottom: 60px;
 }
 
+.lastCrumb  {
+    cursor:context-menu;
+}

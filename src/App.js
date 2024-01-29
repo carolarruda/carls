@@ -179,7 +179,7 @@ function App() {
                 <Route path="/settings" element={<Nav />}>
                   <Route index element={<SeetingsPage user={user} />} />
                 </Route>
-                <Route path="/recipes/:id" element={<Nav />}>
+                <Route path="/recipes/:title" element={<Nav />}>
                   <Route
                     index
                     element={
@@ -188,6 +188,7 @@ function App() {
                         setRecipes={setRecipes}
                         handleDelete={handleDelete}
                         user={user}
+                        path="Home > Recipes > Recipe Name"
                       />
                     }
                   />

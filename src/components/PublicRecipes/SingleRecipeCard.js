@@ -161,7 +161,7 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
     return (
       <Link
-        to={`${recipe.id}`}
+        to={`${recipe.title.toLowerCase().replace(/\s/g, '-')}`}
         key={index}
         style={{ textDecoration: "none", color: "#212121" }}
       >
