@@ -1,15 +1,14 @@
-import RecipeAdd from "../RecipeAddUpdate/RecipeAdd";
-import FooterTwo from "../Footer/FooterTwo";
+import Footer from "../Footer/Footer";
 import classes from "./pages.module.css";
+import NewRecipe from "../NewRecipe/NewRecipe";
 
-const AddRecipePage = ({setRecipes, setRecipesP, update}) => {
+const AddRecipePage = ({ setRecipes, setRecipesP, update }) => {
   return (
-    <main className={classes.main}>
-      <div className={classes.grid}>
-        <RecipeAdd setRecipes={setRecipes} setRecipesP={setRecipesP} 
-        update={update}/>
+    <main className={classes}>
+      <div className={classes.section}>
+        <NewRecipe setRecipes={setRecipes} setRecipesP={setRecipesP}/>
       </div>
-      <FooterTwo />
+      <Footer />
     </main>
   );
 };

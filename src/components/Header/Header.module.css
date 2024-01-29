@@ -55,3 +55,42 @@
   line-height: normal;
   color: gray;
 }
+
+
+.recipeAdd {
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: left;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+    width: 200px;
+  }
+}
+
+.signButtonHome {
+  display: flex;
+
+  height: 44px;
+  width: 108px;
+  background: var(--Primary, rgba(181, 93, 81, 0.97));
+  color: var(--White, #fff);
+  border: none;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 0px 0px rgba(23, 23, 23, 0.04),
+    0px 2px 4px 0px rgba(23, 23, 23, 0.04),
+    0px 7px 7px 0px rgba(23, 23, 23, 0.03),
+    0px 15px 9px 0px rgba(23, 23, 23, 0.02),
+    0px 27px 11px 0px rgba(23, 23, 23, 0.01),
+    0px 42px 12px 0px rgba(23, 23, 23, 0);
+  border-radius: 8px;
+}
