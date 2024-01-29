@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Nav from "./components/NavBar/Nav";
 import LandingPage from "./components/pages/LandingPage";
 import RecipesPage from "./components/pages/RecipesPage";
@@ -105,6 +105,14 @@ function App() {
     // });
   };
 
+  const ProtectedRoute = ({ loggedIn, children }) => {
+    if (!token) {
+      return <Navigate to="/login" replace />;
+    }
+
+    return children;
+  };
+
   return (
     <LoggedInUser.Provider value={[loggedIn, setLoggedIn]}>
       <User.Provider value={[user, setUser]}>
@@ -141,15 +149,18 @@ function App() {
                   <Route
                     index
                     element={
-                      <AddRecipePage
-                        recipes={recipes}
-                        setRecipes={setRecipes}
-                        recipesP={recipesP}
-                        setRecipesP={setRecipesP}
-                      />
+                      <ProtectedRoute>
+                        <AddRecipePage
+                          recipes={recipes}
+                          setRecipes={setRecipes}
+                          recipesP={recipesP}
+                          setRecipesP={setRecipesP}
+                        />
+                      </ProtectedRoute>
                     }
                   />
                 </Route>
+
                 <Route path="/edit/:id" element={<Nav />}>
                   <Route
                     index

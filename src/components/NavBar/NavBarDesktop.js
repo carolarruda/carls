@@ -11,6 +11,8 @@ const NavBarDesktop = ({}) => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
+  const nav = useNavigate();
+  const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
 
@@ -52,7 +54,7 @@ const NavBarDesktop = ({}) => {
           </Link>
         </li>
         <li>
-          <Link to={{ pathname: "/add" }} reloadDocument>
+          <Link to={token ? { pathname: "/add" } : { pathname: "/login"}} reloadDocument>
             Add Recipe
           </Link>
         </li>
