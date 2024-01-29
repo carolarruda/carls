@@ -1,1 +1,16 @@
+.headerContainer {
+    margin-top: 72px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
  
+ .header {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+ }
