@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 230px;
+
 }
 
 .title {
@@ -186,7 +186,7 @@
 
 .selector {
   border: solid 1px #878787;
-  width: 172px;
+  width: 200px;
   height: 26px;
   padding: 16px 24px 16px 24px;
   border-radius: 8px;
@@ -200,13 +200,13 @@
   padding-right: 20px;
   color: #a5a5a5;
   @media (max-width: 450px) {
-    max-width: 7rem;
+    max-width: 172px;
   }
 }
 
 .optionsContainer {
   border: solid 1px #878787;
-  width: 172px;
+  width: 200px;
   padding: 20px 20px 0px 20px;
   border-radius: 8px;
   display: flex;
@@ -221,7 +221,7 @@
   background-color: #ffffff;
   z-index: 10000;
   @media (max-width: 450px) {
-    max-width: 7rem;
+    max-width: 172px;
   }
 }
 

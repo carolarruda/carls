@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -38,7 +39,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const handleToggleOptions = () => {
     setShowOptions(!showOptions);
-    console.log(showOptions);
   };
 
   const handleSortChangeAndClose = (value) => {
@@ -59,7 +59,8 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setImageUrl(data.data.recipe.imageUrl || "");
           setRating(data.data.recipe.rating || 0);
           setCourseType(data.data.recipe.courseType || "");
-          setPrepTime(data.data.recipe.prepTime || 0);
+          setPrepTimeHours(data.data.recipe.prepTime || 0);
+          setPrepTimeMinutes(data.data.recipe.prepTime || 0);
           setCookTimeHours(data.data.recipe.cookTime || 0);
           setCookTimeMinutes(data.data.recipe.cookTime || 0);
           setServings(data.data.recipe.servings || 0);
@@ -315,6 +316,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
             </button>
           </div>
         </div>
+
         <div className={classes.inputSection}>
           <label className={classes.formLabel}>Servings:</label>
           <input
@@ -330,56 +332,8 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
             How many portions does this recipe make ?
           </p>
         </div>
-        <div className={`${classes.inputSection}`}>
-          <label className={classes.formLabel}>Cooking Time:</label>
-          <div className={classes.times}>
-            <input
-              type="text"
-              className={`${classes.parts} ${classes} `}
-              placeholder="Hours"
-              name="cookTimeHours"
-              value={cookTimeHours}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              className={`${classes.parts} ${classes}`}
-              placeholder="Minutes"
-              name="cookTimeMinutes"
-              value={cookTimeMinutes}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <p className={classes.portions}>
-          How long does it take to cook this recipe?{" "}
-        </p>
-        <div className={`${classes.inputSection} ${classes.addMargin}`}>
-          <label className={classes.formLabel}>Prep Time:</label>
-          <div className={classes.times}>
-            <input
-              type="text"
-              className={`${classes.parts} ${classes} `}
-              placeholder="Hours"
-              name="prepTimeHours"
-              value={prepTimeHours}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              className={`${classes.parts} ${classes}`}
-              placeholder="Minutes"
-              name="prepTimeMinutes"
-              value={prepTimeMinutes}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <p className={classes.portions}>
-          How long does it take to prepare this recipe?{" "}
-        </p>
 
-        <div className={`${classes.inputSection} ${classes.addMargin}`}>
+        <div className={classes.inputSection}>
           <label className={`${classes.formLabel} ${classes.correctMargin}`}>
             Cuisine:
           </label>
@@ -448,6 +402,54 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
             </section>
           </div>
         </div>
+        <div className={`${classes.inputSection}`}>
+          <label className={classes.formLabel}>Cooking Time:</label>
+          <div className={classes.times}>
+            <input
+              type="text"
+              className={`${classes.parts} ${classes} `}
+              placeholder="Hours"
+              name="cookTimeHours"
+              value={cookTimeHours}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              className={`${classes.parts} ${classes}`}
+              placeholder="Minutes"
+              name="cookTimeMinutes"
+              value={cookTimeMinutes}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <p className={classes.portions}>
+          How long does it take to cook this recipe?{" "}
+        </p>
+        <div className={`${classes.inputSection} ${classes.addMargin}`}>
+          <label className={classes.formLabel}>Prep Time:</label>
+          <div className={classes.times}>
+            <input
+              type="text"
+              className={`${classes.parts} ${classes} `}
+              placeholder="Hours"
+              name="prepTimeHours"
+              value={prepTimeHours}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              className={`${classes.parts} ${classes}`}
+              placeholder="Minutes"
+              name="prepTimeMinutes"
+              value={prepTimeMinutes}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <p className={classes.portions}>
+          How long does it take to prepare this recipe?{" "}
+        </p>
       </form>
     </>
   );
