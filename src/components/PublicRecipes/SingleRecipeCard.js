@@ -12,6 +12,7 @@ import { Sorter } from "../../App";
 const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const [searchRecipe, setSearchRecipe] = useContext(SearchContext);
   const [isLiked, setIsLiked] = useState("");
+  const [selectedRecipe, setSelectedRecipe] = useState("");
 
   const [sort, setSort] = useContext(Sorter);
 
@@ -161,8 +162,9 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
     return (
       <Link
-        to={`${recipe.title.toLowerCase().replace(/\s/g, '-')}`}
+        to={`${recipe.id}/${recipe.title.toLowerCase().replace(/\s/g, "-")}`}
         key={index}
+        selectedRecipe={selectedRecipe}
         style={{ textDecoration: "none", color: "#212121" }}
       >
         <div className={classes.recipeCard}>

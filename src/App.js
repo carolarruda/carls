@@ -161,7 +161,7 @@ function App() {
                   />
                 </Route>
 
-                <Route path="/edit/:id" element={<Nav />}>
+                <Route path="/edit/:id/:title" element={<Nav />}>
                   <Route
                     index
                     element={
@@ -179,7 +179,7 @@ function App() {
                 <Route path="/settings" element={<Nav />}>
                   <Route index element={<SeetingsPage user={user} />} />
                 </Route>
-                <Route path="/recipes/:title" element={<Nav />}>
+                <Route path="/recipes/:id/:title" element={<Nav />}>
                   <Route
                     index
                     element={
@@ -225,11 +225,12 @@ function App() {
                     }
                   />
                 </Route>
-                <Route path="/myrecipes/:id" element={<Nav />}>
+                <Route path="/myrecipes/:id/:title" element={<Nav />}>
                   <Route
                     index
                     element={
                       <RecipeViewPage
+                      path="Home > My Recipes > Recipe Name"
                         recipes={recipes}
                         setRecipes={setRecipes}
                         handleDelete={handleDelete}

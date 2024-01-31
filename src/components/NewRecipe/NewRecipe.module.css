@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .title {
@@ -30,7 +29,6 @@
 }
 
 .titleInput {
-  height: 40px;
   padding: 16px;
   border-radius: 8px;
   border: 1px;
@@ -42,7 +40,10 @@
   line-height: 26px;
   letter-spacing: 0em;
   text-align: left;
+  width: auto%;
+  word-break: break-word;
   color: #a5a5a5;
+
   @media (max-width: 630px) {
     max-width: 100%;
   }
@@ -141,7 +142,7 @@
 
 .parts {
   padding: 16px;
-  height: 40px;
+  min-height: 30px;
   width: 100%;
   border-radius: 8px;
   border: 1px;
@@ -251,8 +252,6 @@
   color: #a5a5a5;
   align-items: center;
   grid-template-columns: auto 1fr;
-
-
 }
 
 .label:hover {
@@ -279,4 +278,7 @@
     text-align: left;
     width: 200px;
   }
+}
+.textarea {
+  resize: none;
 }

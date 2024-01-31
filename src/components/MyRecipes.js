@@ -20,10 +20,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 const defaultTheme = createTheme();
 
-export default function MyRecipes({
-  recipesP,
-  handleDelete,
-}) {
+export default function MyRecipes({ recipesP, handleDelete }) {
   const navigate = useNavigate();
   const [loadingStates, setLoadingStates] = useState({});
 
@@ -31,8 +28,14 @@ export default function MyRecipes({
     setLoadingStates((prevState) => ({ ...prevState, [id]: true }));
   };
 
-  const handleEdit = (id) => {
-    navigate(`/edit/${id}`);
+  const handleEdit = (card) => {
+    console.log(card);
+    navigate(
+      `/edit/${card.id}/${card.title
+        .toLowerCase()
+        .replace(/\s/g, "-")}`
+    );
+    // to={`${recipe.id}/${recipe.title.toLowerCase().replace(/\s/g, "-")}`}
   };
   // const [isLiked, setIsLiked] = useState("");
 
@@ -114,7 +117,9 @@ export default function MyRecipes({
                       }}
                     >
                       <Link
-                        to={`${card.id}`}
+                        to={`${card.id}/${card.title
+                          .toLowerCase()
+                          .replace(/\s/g, "-")}`}
                         style={{ textDecoration: "none", color: "#212121" }}
                       >
                         <CardMedia
@@ -140,7 +145,7 @@ export default function MyRecipes({
                         <Button
                           size="small"
                           sx={{ color: "#191d3a" }}
-                          onClick={() => handleEdit(card.id)}
+                          onClick={() => handleEdit(card)}
                         >
                           Edit
                         </Button>
@@ -160,7 +165,7 @@ export default function MyRecipes({
                           color="primary"
                           onClick={() => {
                             handleDelete(card.id);
-                            handleClick(card.id);
+                            handleClick(card);
                           }}
                           loading={loadingStates[card.id] || false}
                           loadingPosition="start"

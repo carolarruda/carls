@@ -17,12 +17,10 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const [ingredientLine, setIngredientLine] = useState(2);
   const [instructionLine, setInstructionLine] = useState(2);
-
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
   const [courseType, setCourseType] = useState("");
-  const [prepTime, setPrepTime] = useState("");
   const [cookTimeHours, setCookTimeHours] = useState("");
   const [cookTimeMinutes, setCookTimeMinutes] = useState("");
   const [prepTimeHours, setPrepTimeHours] = useState("");
@@ -52,20 +50,32 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   useEffect(() => {
     const fetchInitialValue = () => {
+      console.log("fetching initial data");
       fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data.data.recipe);
           setTitle(data.data.recipe.title || "");
           setImageUrl(data.data.recipe.imageUrl || "");
           setRating(data.data.recipe.rating || 0);
           setCourseType(data.data.recipe.courseType || "");
-          setPrepTimeHours(data.data.recipe.prepTime || 0);
-          setPrepTimeMinutes(data.data.recipe.prepTime || 0);
-          setCookTimeHours(data.data.recipe.cookTime || 0);
-          setCookTimeMinutes(data.data.recipe.cookTime || 0);
+          const prepTimeInHours = Math.floor(data.data.recipe.prepTime / 60);
+          const prepTimeInMinutes = data.data.recipe.prepTime % 60;
+          const cookTimeInHours = Math.floor(data.data.recipe.cookTime / 60);
+          const cookTimeInMinutes = data.data.recipe.cookTime % 60;
+          setPrepTimeHours(prepTimeInHours || 0);
+          setPrepTimeMinutes(prepTimeInMinutes || 0);
+          setCookTimeHours(cookTimeInHours || 0);
+          setCookTimeMinutes(cookTimeInMinutes || 0);
           setServings(data.data.recipe.servings || 0);
-          setIngredients(data.data.recipe.ingredients || []);
-          setInstructions(data.data.recipe.instructions || []);
+          setLength(data.data.recipe.notes.length)
+
+          setIngredients(
+            modifyIngredientStringToArray(data.data.recipe.ingredients) || []
+          );
+          setInstructions(
+            modifyInstructionStringToArray(data.data.recipe.instructions) || []
+          );
           setNotes(data.data.recipe.notes || "");
         })
         .catch((error) => {
@@ -75,7 +85,23 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     if (update) {
       fetchInitialValue();
     }
-  }, [params.id, update]);
+  }, [params, update]);
+
+  const modifyIngredientStringToArray = (ingredientString) => {
+    const ingredientsArray = ingredientString
+      .split(";")
+      .map((ingredient) => ingredient.trim());
+    setIngredientLine(ingredientsArray.length);
+    return ingredientsArray;
+  };
+
+  const modifyInstructionStringToArray = (instructionString) => {
+    const InstructionArray = instructionString
+      .split(";")
+      .map((instruction) => instruction.trim());
+    setInstructionLine(InstructionArray.length);
+    return InstructionArray;
+  };
 
   const addIngredient = (e) => {
     e.preventDefault();
@@ -87,13 +113,14 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     let lines = [];
     for (let i = 0; i < ingredientLine; i++) {
       lines.push(
-        <input
+        <textarea
           key={i}
+          rows={`${Math.max(1, Math.ceil((ingredients[i]?.length || 0) / 117))}`}
           type="text"
-          className={`${classes.titleInput} ${classes.marginMultipleInputs}`}
+          className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
           placeholder="Add ingredients"
           name="ingredients"
-          value={ingredients[i]}
+          value={ingredients[i] || ""}
           onChange={(e) => handleIngredientChange(e, i)}
         />
       );
@@ -111,13 +138,13 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     let lines = [];
     for (let i = 0; i < instructionLine; i++) {
       lines.push(
-        <input
+        <textarea
+        rows={`${Math.max(1, Math.ceil((instructions[i]?.length || 0) / 117))}`}
           key={i}
-          type="text"
-          className={`${classes.titleInput} ${classes.marginMultipleInputs}`}
+          className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
           placeholder="Write Instruction"
           name="instructions"
-          value={instructions[i]}
+          value={instructions[i] || ""}
           onChange={(e) => handleInstructionChange(e, i)}
         />
       );
@@ -165,8 +192,10 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setServings(Number(value) || 0);
           break;
         case "notes":
+          console.log(value);
           const truncatedValue = value.slice(0, 100);
           setNotes(truncatedValue);
+          console.log(notes);
           setLength(truncatedValue.length);
           break;
         default:
@@ -177,6 +206,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const submit = (e) => {
     e.preventDefault();
+
     const newRecipe = {
       title,
       imageUrl,
@@ -189,6 +219,8 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
       instructions: instructions.join(";"),
       notes,
     };
+
+    console.log(newRecipe);
 
     const opts = {
       method: update ? "PATCH" : "POST",
@@ -307,7 +339,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           </div>
         </div>
         <div className={classes.inputSection}>
-          <label className={classes.formLabel}>Instructions::</label>
+          <label className={classes.formLabel}>Instructions:</label>
 
           {instrunctionTotalLines(instructionLine)}
           <div>
@@ -403,30 +435,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           </div>
         </div>
         <div className={`${classes.inputSection}`}>
-          <label className={classes.formLabel}>Cooking Time:</label>
-          <div className={classes.times}>
-            <input
-              type="text"
-              className={`${classes.parts} ${classes} `}
-              placeholder="Hours"
-              name="cookTimeHours"
-              value={cookTimeHours}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              className={`${classes.parts} ${classes}`}
-              placeholder="Minutes"
-              name="cookTimeMinutes"
-              value={cookTimeMinutes}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <p className={classes.portions}>
-          How long does it take to cook this recipe?{" "}
-        </p>
-        <div className={`${classes.inputSection} ${classes.addMargin}`}>
           <label className={classes.formLabel}>Prep Time:</label>
           <div className={classes.times}>
             <input
@@ -449,6 +457,30 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
         </div>
         <p className={classes.portions}>
           How long does it take to prepare this recipe?{" "}
+        </p>
+        <div c className={`${classes.inputSection} ${classes.addMargin}`}>
+          <label className={classes.formLabel}>Cooking Time:</label>
+          <div className={classes.times}>
+            <input
+              type="text"
+              className={`${classes.parts} ${classes} `}
+              placeholder="Hours"
+              name="cookTimeHours"
+              value={cookTimeHours}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              className={`${classes.parts} ${classes}`}
+              placeholder="Minutes"
+              name="cookTimeMinutes"
+              value={cookTimeMinutes}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <p className={classes.portions}>
+          How long does it take to cook this recipe?{" "}
         </p>
       </form>
     </>
