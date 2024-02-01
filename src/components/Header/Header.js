@@ -13,7 +13,7 @@ const Header = ({ title, path, sort, recipeAdd, header }) => {
   return (
     <div
       className={classes.headerContainer}
-      style={!header ? { display: " none" } : {}}
+      style={!header ? { display: " none" } : { display: " box" }}
     >
       <h3 className={!recipeAdd ? `${classes.header}` : `${classes.recipeAdd}`}>
         {title}

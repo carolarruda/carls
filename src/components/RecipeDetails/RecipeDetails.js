@@ -224,7 +224,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
             </h3>
             <div className={classes.otherContainer}>
               <Trending
-              small={true}
+                small={true}
                 recipes={recipes}
                 setRecipes={setRecipes}
                 header={false}
