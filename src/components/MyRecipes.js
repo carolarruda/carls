@@ -29,13 +29,12 @@ export default function MyRecipes({ recipesP, handleDelete }) {
   };
 
   const handleEdit = (card) => {
-    console.log(card);
     navigate(
       `/edit/${card.id}/${card.title
         .toLowerCase()
         .replace(/\s/g, "-")}`
     );
-    // to={`${recipe.id}/${recipe.title.toLowerCase().replace(/\s/g, "-")}`}
+
   };
   // const [isLiked, setIsLiked] = useState("");
 

@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import classes from "./NewRecipe.module.css";
 import CheckedBox from "../icons/CheckedBox";
 import Box from "../icons/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
+import Trash from "../icons/Trash";
+import { useMediaQuery } from "@mui/material";
 
 const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,8 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [selectedSort, setSelectedSort] = useState("Cuisine");
 
+  const isPhone = useMediaQuery("(max-width:450px)");
+
   const handleToggleOptions = () => {
     setShowOptions(!showOptions);
   };
@@ -50,11 +53,9 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   useEffect(() => {
     const fetchInitialValue = () => {
-      console.log("fetching initial data");
       fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.data.recipe);
           setTitle(data.data.recipe.title || "");
           setImageUrl(data.data.recipe.imageUrl || "");
           setRating(data.data.recipe.rating || 0);
@@ -68,7 +69,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setCookTimeHours(cookTimeInHours || 0);
           setCookTimeMinutes(cookTimeInMinutes || 0);
           setServings(data.data.recipe.servings || 0);
-          setLength(data.data.recipe.notes.length)
+          setLength(data.data.recipe.notes.length);
 
           setIngredients(
             modifyIngredientStringToArray(data.data.recipe.ingredients) || []
@@ -109,20 +110,55 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     setIngredients([...ingredients, ""]);
   };
 
+  const deleteLine = (index) => {
+    console.log(index);
+    console.log(index);
+    const newIngredients = [...ingredients];
+    newIngredients.splice(index, 1);
+    setIngredients(newIngredients);
+    setIngredientLine(newIngredients.length);
+  };
+  const deleteLineInstructionButton = (index) => {
+
+    const newInstructions = [...instructions];
+    newInstructions.splice(index, 1);
+    setInstructions(newInstructions);
+    setInstructionLine(newInstructions.length);
+  };
+
   function ingredientTotalLines(ingredientLine) {
     let lines = [];
     for (let i = 0; i < ingredientLine; i++) {
       lines.push(
-        <textarea
-          key={i}
-          rows={`${Math.max(1, Math.ceil((ingredients[i]?.length || 0) / 117))}`}
-          type="text"
-          className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
-          placeholder="Add ingredients"
-          name="ingredients"
-          value={ingredients[i] || ""}
-          onChange={(e) => handleIngredientChange(e, i)}
-        />
+        <>
+          <textarea
+            key={i}
+            rows={
+              !isPhone
+                ? `${Math.max(
+                    1,
+                    Math.ceil((ingredients[i]?.length || 0) / 117)
+                  )}`
+                : `${Math.max(
+                    1,
+                    Math.ceil((ingredients[i]?.length || 0) / 33)
+                  )}`
+            }
+            type="text"
+            className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
+            placeholder="Add ingredients"
+            name="ingredients"
+            value={ingredients[i] || ""}
+            onChange={(e) => handleIngredientChange(e, i)}
+          />
+          <div
+            className={classes.trashIcon}
+            key={i}
+            onClick={() => deleteLine(i)}
+          >
+            <Trash className={classes.deleteLineButton} />
+          </div>
+        </>
       );
     }
     return lines;
@@ -138,15 +174,34 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     let lines = [];
     for (let i = 0; i < instructionLine; i++) {
       lines.push(
-        <textarea
-        rows={`${Math.max(1, Math.ceil((instructions[i]?.length || 0) / 117))}`}
-          key={i}
-          className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
-          placeholder="Write Instruction"
-          name="instructions"
-          value={instructions[i] || ""}
-          onChange={(e) => handleInstructionChange(e, i)}
-        />
+        <>
+          <textarea
+            rows={
+              !isPhone
+                ? `${Math.max(
+                    1,
+                    Math.ceil((instructions[i]?.length || 0) / 117)
+                  )}`
+                : `${Math.max(
+                    1,
+                    Math.ceil((instructions[i]?.length || 0) / 33)
+                  )}`
+            }
+            key={i}
+            className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
+            placeholder="Write Instruction"
+            name="instructions"
+            value={instructions[i] || ""}
+            onChange={(e) => handleInstructionChange(e, i)}
+          />
+          <div
+            className={classes.trashIcon}
+            key={i}
+            onClick={() => deleteLineInstructionButton(i)}
+          >
+            <Trash className={classes.deleteLineInstructionButton} />
+          </div>
+        </>
       );
     }
     return lines;
@@ -192,10 +247,8 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setServings(Number(value) || 0);
           break;
         case "notes":
-          console.log(value);
           const truncatedValue = value.slice(0, 100);
           setNotes(truncatedValue);
-          console.log(notes);
           setLength(truncatedValue.length);
           break;
         default:
@@ -219,8 +272,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
       instructions: instructions.join(";"),
       notes,
     };
-
-    console.log(newRecipe);
 
     const opts = {
       method: update ? "PATCH" : "POST",

@@ -281,4 +281,23 @@
 }
 .textarea {
   resize: none;
+  /* width: 100%; */
+}
+
+.trashIcon {
+  position: relative;
+  top: -42px;
+  /* right: -93%; */
+  left: 95%;
+
+
+  @media (max-width: 500px) {
+    left: 90%;
+    top: -2%;
+
+  }
+}
+
+.trashIcon {
+  cursor: pointer;
 }

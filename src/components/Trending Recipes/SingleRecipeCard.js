@@ -3,7 +3,7 @@ import Avatar from "../Avatar/Avatar";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const SingleRecipeCard = ({ recipes, setRecipes }) => {
+const SingleRecipeCard = ({ recipes, setRecipes, small }) => {
   const renderStars = (recipe) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -39,7 +39,7 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
       style={{ textDecoration: "none", color: "#212121" } }
     >
       <div className={classes.recipeCard} >
-        <img src={recipe.imageUrl} alt="food1" className={classes.recipeImg} />
+        <img src={recipe.imageUrl} alt="food1" className={!small ? `${classes.recipeImg}` : `${classes.recipeImgSmall}`} />
         <div className={classes.recipeInfo}>
           {renderStars(recipe)}
           <h4 className={classes.recipeName}>{recipe.title}</h4>

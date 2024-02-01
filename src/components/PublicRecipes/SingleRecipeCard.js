@@ -95,7 +95,6 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
   switch (sort) {
     case "A to Z":
-      recipes.map((recipe) => console.log(recipe.title.charAt(0)));
       sortedRecipes = recipes.sort((a, b) =>
         a.title.trim().charAt(0).localeCompare(b.title.trim().charAt(0))
       );

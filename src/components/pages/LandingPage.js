@@ -8,13 +8,13 @@ import Popular from "../Popular/Popular";
 import Share from "../Share/Share";
 import Trending from "../Trending Recipes/Trending";
 
-const LandingPage = ({ recipes, setRecipes, loader  }) => {
+const LandingPage = ({ recipes, setRecipes  }) => {
   return (
     <main className={classes.main}>
       <div className={classes.section}>
         <Hero />
         <Share />
-        <Trending loader={loader} recipes={recipes} setRecipes={setRecipes} />
+        <Trending  recipes={recipes} setRecipes={setRecipes} />
         <Blog />
         <Explore recipes={recipes} />
         <Newsletter />

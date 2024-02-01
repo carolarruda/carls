@@ -57,6 +57,13 @@
   border-radius: 8px 8px 0px 0px;
 }
 
+.recipeImgSmall {
+  height: 123px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0px 0px;
+}
+
 .recipeInfo {
   margin-left: 16px;
   margin-right: 16px;
