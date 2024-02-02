@@ -1,24 +1,23 @@
-import classes from "./Trending.module.css";
-import Header from "../Header/Header";
-import Loader from "../Loader/Loader";
-import SingleRecipeCard from "./SingleRecipeCard";
+import classes from "../Trending.module.css";
+import Header from "../../Header/Header";
+import Loader from "../../Loader/Loader";
+import SingleRecipeCardSmall from "./SingleRecipeCardSmall";
 
-const Trending = ({ recipes, setRecipes, loader, header, small }) => {
+const TrendingSmall = ({ recipes, setRecipes, loader, header, small }) => {
   console.log(header);
   return (
     <section className="section-wrapper">
       <Header title={"Trending Recipes"} path={"/recipes"} header={header} />
       <Loader />
       <div className={classes.recipesContainer}>
-        <SingleRecipeCard
+        <SingleRecipeCardSmall
           recipes={recipes}
           setRecipes={setRecipes}
           small={small}
         />
       </div>
     </section>
-    
   );
 };
 
-export default Trending;
+export default TrendingSmall;

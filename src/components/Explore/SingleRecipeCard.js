@@ -29,9 +29,9 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
     return null;
   }
 
-  const sortedRecipes = recipes.sort((a, b) => a.rating - b.rating).slice(0, 6);
+  const recipesExplore = recipes.sort((a, b) =>  a.title.trim().charAt(0).localeCompare(b.title.trim().charAt(0))).slice(0, 6);
 
-  return sortedRecipes.map((recipe, index) => (
+  return recipesExplore.map((recipe, index) => (
     <Link
       to={`recipes/${recipe.id}`}
       key={index}

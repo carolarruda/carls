@@ -266,3 +266,38 @@
 .otherContainer {
   margin-top: 73px;
 }
+
+.lateralRecipesTrending {
+  /* Recent Recipes */
+
+width: 336px;
+height: 26px;
+
+/* Heading/H5 - medium */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 26px;
+/* identical to box height, or 108% */
+
+/* Black */
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin-bottom: 32px;
+
+}
+
+.rightRecipeDetails {
+  margin-left: 75px;
+}
+
+.trendLateral {
+  margin-bottom: 72px;
+}

@@ -13,11 +13,16 @@ import Share from "../icons/Share";
 import Print from "../icons/Print";
 import Box from "../icons/Box";
 import Trending from "../Trending Recipes/Trending";
+import TrendingSmall from "../Trending Recipes/Small/TrendingSmall";
+import TrendingLateral from "../Trending Recipes/Lateral/TrendingLateral";
+import Newsletter from "../Newsletter/Newsletter";
+import NewsletterSmall from "../Newsletter/NewsletterSmall";
 
 const RecipeDetails = ({ recipes, setRecipes }) => {
   const [loading, setLoading] = useState(false);
   const [recipe, setRecipe] = useState({});
   const [servings, setServings] = useState("");
+  const [checkUser, setCheckUser] = useState("");
   const nav = useNavigate();
   const handleEdit = (card) => {
     nav(`/edit/${params.id}/${params.title.toLowerCase().replace(/\s/g, "-")}`);
@@ -38,6 +43,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
       .then((data) => {
         setRecipe(data.data.recipe);
         setServings(data.data.recipe.servings);
+        setCheckUser(data.data.recipe.user.id);
       })
       .catch((error) => console.error("Error fetching recipe:", error));
   }, [params.id]);
@@ -67,27 +73,32 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
 
   const formattedDate = `${day} ${monthAbbreviation} ${year}`;
 
+  const loggedUserId = localStorage.getItem("userId");
+  console.log(checkUser);
+
   return (
     <section className="section-wrapper">
       <div className={classes.headerContainer}>
         <h3 className={classes.header}>{recipe.title}</h3>
-        <LoadingButton
-          size="small"
-          style={{
-            backgroundColor: "rgba(181, 93, 81, 0.97)",
-            width: "100px",
-            height: "44px",
-            borderRadius: "8px",
-          }}
-          onClick={() => handleEdit(params.id)}
-          loading={loading}
-          loadingPosition="start"
-          startIcon={<EditIcon />}
-          variant="contained"
-          type="submit"
-        >
-          <span>Edit</span>
-        </LoadingButton>
+        {Number(loggedUserId) === checkUser && (
+          <LoadingButton
+            size="small"
+            style={{
+              backgroundColor: "rgba(181, 93, 81, 0.97)",
+              width: "100px",
+              height: "44px",
+              borderRadius: "8px",
+            }}
+            onClick={() => handleEdit(params.id)}
+            loading={loading}
+            loadingPosition="start"
+            startIcon={<EditIcon />}
+            variant="contained"
+            type="submit"
+          >
+            <span>Edit</span>
+          </LoadingButton>
+        )}
       </div>
 
       <div className={classes.recipeContainer}>
@@ -223,7 +234,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
               You might like this
             </h3>
             <div className={classes.otherContainer}>
-              <Trending
+              <TrendingSmall
                 small={true}
                 recipes={recipes}
                 setRecipes={setRecipes}
@@ -233,7 +244,19 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
           </div>
         </div>
 
-        <div></div>
+        <div className={classes.rightRecipeDetails}>
+          <div className={classes.trendLateral}>
+          <h3 className={classes.lateralRecipesTrending}>Trending Recipes </h3>
+          <TrendingLateral
+            small={true}
+            recipes={recipes}
+            setRecipes={setRecipes}
+            header={false}
+          />
+          </div>
+
+          <NewsletterSmall />
+        </div>
       </div>
 
       <Loader />

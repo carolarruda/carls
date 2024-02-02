@@ -1,9 +1,10 @@
-import classes from "./Trending.module.css";
-import Avatar from "../Avatar/Avatar";
+import classes from "../Trending.module.css";
+import Avatar from "../../Avatar/Avatar";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const SingleRecipeCard = ({ recipes, setRecipes, small }) => {
+const SingleCardLateral = ({ recipes, setRecipes, small }) => {
   const renderStars = (recipe) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -29,21 +30,19 @@ const SingleRecipeCard = ({ recipes, setRecipes, small }) => {
     return null;
   }
 
-  const trendingRecipes = recipes.sort((a, b) => b.id - a.id).slice(0, 6);
+  const trendingRecipes = recipes.sort((a, b) => b.id - a.id).slice(6, 9);
 
   return trendingRecipes.map((recipe, index) => (
     <Link
-      to={`recipes/${recipe.id}`}
+      to={`/recipes/${recipe.id}/${recipe.title.replace(/\s+/g, "-")}`}
       key={index}
       style={{ textDecoration: "none", color: "#212121" }}
     >
-      <div className={classes.recipeCard}>
+      <div className={classes.recipeCardLateral}>
         <img
           src={recipe.imageUrl}
           alt="food1"
-          className={
-            !small ? `${classes.recipeImg}` : `${classes.recipeImgSmall}`
-          }
+          className={`${classes.recipeImgLateral}`}
         />
         <div className={classes.recipeInfo}>
           {renderStars(recipe)}
@@ -66,4 +65,4 @@ const SingleRecipeCard = ({ recipes, setRecipes, small }) => {
   ));
 };
 
-export default SingleRecipeCard;
+export default SingleCardLateral;
