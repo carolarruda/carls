@@ -35,8 +35,13 @@ function App() {
 
   useEffect(() => {
     const timeNow = new Date();
-    if (timeNow.toString() > expireToken) {
-      localStorage.clear();
+    if (expireToken && timeNow > new Date(expireToken)) {
+      // Token has expired, clear cache or perform other actions
+      localStorage.removeItem('token');
+      localStorage.removeItem('expireToken');
+      localStorage.removeItem('userId');
+      setLoggedIn(false);
+      return;
     }
     if (token) {
       setLoggedIn(true);

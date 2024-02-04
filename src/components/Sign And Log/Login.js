@@ -38,7 +38,7 @@ const Login = ({ setUsers, users }) => {
   const [shake, setShake] = useState("");
   const [shakeTwo, setShakeTwo] = useState("");
   const [user, setUser] = useContext(User);
-  const expiresInMinutes = 1440;
+  const expiresInMinutes = 5;
   const sk = "shake 0.2s ease-in-out 0s 2";
 
   const navigate = useNavigate();
