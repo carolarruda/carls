@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Loader from "../Loader/Loader";
 import classes from "./RecipeDetails.module.css";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -74,7 +75,6 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
   const formattedDate = `${day} ${monthAbbreviation} ${year}`;
 
   const loggedUserId = localStorage.getItem("userId");
-  console.log(checkUser);
 
   return (
     <section className="section-wrapper">

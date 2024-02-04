@@ -9,8 +9,6 @@ const Breadcrumbs = ({ path }) => {
     const pathElements = path.split(" > ");
     const totalCrumbCount = pathElements.length;
 
-    const paramsRecipe = params.title;
-
     if (pathElements[2] === "Recipe Name") {
       pathElements[2] = params.title
         .replace(/-/g, " ")

@@ -7,11 +7,10 @@ import AccountMenu from "./AccountMenu";
 import { useMediaQuery } from "@mui/material";
 import Logo from "../Logo/Logo";
 
-const NavBarDesktop = ({}) => {
+const NavBarDesktop = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
-  const nav = useNavigate();
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
