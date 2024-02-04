@@ -17,6 +17,7 @@ import TrendingSmall from "../Trending Recipes/Small/TrendingSmall";
 import TrendingLateral from "../Trending Recipes/Lateral/TrendingLateral";
 import Newsletter from "../Newsletter/Newsletter";
 import NewsletterSmall from "../Newsletter/NewsletterSmall";
+import RelatedRecipes from "../RelatedRecipes/RelatedRecipes";
 
 const RecipeDetails = ({ recipes, setRecipes }) => {
   const [loading, setLoading] = useState(false);
@@ -246,16 +247,29 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
 
         <div className={classes.rightRecipeDetails}>
           <div className={classes.trendLateral}>
-          <h3 className={classes.lateralRecipesTrending}>Trending Recipes </h3>
-          <TrendingLateral
-            small={true}
-            recipes={recipes}
-            setRecipes={setRecipes}
-            header={false}
-          />
+            <h3 className={classes.lateralRecipesTrending}>
+              Trending Recipes{" "}
+            </h3>
+            <TrendingLateral
+              small={true}
+              recipes={recipes}
+              setRecipes={setRecipes}
+              header={false}
+            />
           </div>
 
           <NewsletterSmall />
+          <div className={classes.recentLateral}>
+            <h3 className={classes.lateralRecipesTrending}>
+            Related Recipes{" "}
+            </h3>
+            <RelatedRecipes
+              small={true}
+              recipes={recipes}
+              setRecipes={setRecipes}
+              header={false}
+            />
+          </div>
         </div>
       </div>
 

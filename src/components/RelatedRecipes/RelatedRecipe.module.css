@@ -1,0 +1,124 @@
+.recipesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 32px;
+  row-gap: 24px;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+  }
+}
+
+.recipesContainerLateralRecent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 24px;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+  }
+}
+
+.recipeCard {
+  border: 1px solid #ebebeb;
+  border-radius: 8px 8px 8px 8px;
+}
+
+.recipeCardLateralRelated {
+  border: 1px solid #ebebeb;
+  border-radius: 8px 8px 8px 8px;
+  display: grid;
+  
+
+}
+
+.recipeName {
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  height: 52px;
+  margin-bottom: 10px;
+  margin-top: 19px;
+  @media (max-width: 450px) {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+.ProductRatingStarFilled {
+  color: #b55d51f8;
+  font-family: FontAwesome;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.ProductRatingStarFilledTwo {
+  color: #a5a5a5;
+  font-family: FontAwesome;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.recipeImg {
+  height: 221px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.recipeImgSmall {
+  height: 123px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.recipeImgLateral {
+  height: 97px;
+  width: 152px;
+  object-fit: cover;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.recipeInfo {
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.smallTitle {
+  width: 191.67px;
+  height: 50px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.smallTitleLateral {
+  line-break: auto;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+}

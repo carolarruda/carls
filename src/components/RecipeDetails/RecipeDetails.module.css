@@ -299,6 +299,10 @@ margin-bottom: 32px;
   width: 310px;
 }
 
-.trendLateral {
+.trendLateral, .recentLateral {
   margin-bottom: 72px;
+}
+
+.recentLateral {
+margin-top: 72px;
 }
