@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import classes from "./NewRecipe.module.css";
 import CheckedBox from "../icons/CheckedBox";
 import Box from "../icons/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
+import Trash from "../icons/Trash";
+import { useMediaQuery } from "@mui/material";
 
 const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const [loading, setLoading] = useState(false);
@@ -17,12 +18,10 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const [ingredientLine, setIngredientLine] = useState(2);
   const [instructionLine, setInstructionLine] = useState(2);
-
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
   const [courseType, setCourseType] = useState("");
-  const [prepTime, setPrepTime] = useState("");
   const [cookTimeHours, setCookTimeHours] = useState("");
   const [cookTimeMinutes, setCookTimeMinutes] = useState("");
   const [prepTimeHours, setPrepTimeHours] = useState("");
@@ -36,6 +35,31 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const [showOptions, setShowOptions] = useState(false);
   const [selectedSort, setSelectedSort] = useState("Cuisine");
+  const [activeTags, setActiveTags] = useState([]);
+  const tagButtons = [
+    "Desserts",
+    "CheesecakeRecipe",
+    "FoodBlog",
+    "Baking",
+    "Main",
+    "Appetizers",
+    "Fryed",
+    "Healthy",
+    "Chocolate",
+    "Asian",
+    "Thai",
+    "Chinese",
+    "Portuguese",
+    "American",
+    "Caramel",
+    "FoodPorn",
+    "foodinspiration",
+    "instafood",
+    "delicious",
+    "foodie",
+  ];
+
+  const isPhone = useMediaQuery("(max-width:450px)");
 
   const handleToggleOptions = () => {
     setShowOptions(!showOptions);
@@ -59,13 +83,25 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setImageUrl(data.data.recipe.imageUrl || "");
           setRating(data.data.recipe.rating || 0);
           setCourseType(data.data.recipe.courseType || "");
-          setPrepTimeHours(data.data.recipe.prepTime || 0);
-          setPrepTimeMinutes(data.data.recipe.prepTime || 0);
-          setCookTimeHours(data.data.recipe.cookTime || 0);
-          setCookTimeMinutes(data.data.recipe.cookTime || 0);
+          const prepTimeInHours = Math.floor(data.data.recipe.prepTime / 60);
+          const prepTimeInMinutes = data.data.recipe.prepTime % 60;
+          const cookTimeInHours = Math.floor(data.data.recipe.cookTime / 60);
+          const cookTimeInMinutes = data.data.recipe.cookTime % 60;
+          setPrepTimeHours(prepTimeInHours || 0);
+          setPrepTimeMinutes(prepTimeInMinutes || 0);
+          setCookTimeHours(cookTimeInHours || 0);
+          setCookTimeMinutes(cookTimeInMinutes || 0);
           setServings(data.data.recipe.servings || 0);
-          setIngredients(data.data.recipe.ingredients || []);
-          setInstructions(data.data.recipe.instructions || []);
+          setLength(data.data.recipe.notes.length);
+          setActiveTags(
+            modifyTagsStringToArray(data.data.recipe.courseType) || []
+          );
+          setIngredients(
+            modifyIngredientStringToArray(data.data.recipe.ingredients) || []
+          );
+          setInstructions(
+            modifyInstructionStringToArray(data.data.recipe.instructions) || []
+          );
           setNotes(data.data.recipe.notes || "");
         })
         .catch((error) => {
@@ -75,7 +111,28 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     if (update) {
       fetchInitialValue();
     }
-  }, [params.id, update]);
+  }, [params, update]);
+
+  const modifyIngredientStringToArray = (ingredientString) => {
+    const ingredientsArray = ingredientString
+      .split(";")
+      .map((ingredient) => ingredient.trim());
+    setIngredientLine(ingredientsArray.length);
+    return ingredientsArray;
+  };
+
+  const modifyInstructionStringToArray = (instructionString) => {
+    const InstructionArray = instructionString
+      .split(";")
+      .map((instruction) => instruction.trim());
+    setInstructionLine(InstructionArray.length);
+    return InstructionArray;
+  };
+  const modifyTagsStringToArray = (tagsString) => {
+    const TagsArray = tagsString.split(";").map((tag) => tag.trim());
+    setActiveTags(TagsArray.length);
+    return TagsArray;
+  };
 
   const addIngredient = (e) => {
     e.preventDefault();
@@ -83,19 +140,63 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     setIngredients([...ingredients, ""]);
   };
 
+  const deleteLine = (index) => {
+    const newIngredients = [...ingredients];
+    newIngredients.splice(index, 1);
+    setIngredients(newIngredients);
+    setIngredientLine(newIngredients.length);
+  };
+  const deleteLineInstructionButton = (index) => {
+    const newInstructions = [...instructions];
+    newInstructions.splice(index, 1);
+    setInstructions(newInstructions);
+    setInstructionLine(newInstructions.length);
+  };
+
+  const handleTagClick = (tag) => {
+    const index = activeTags.indexOf(tag);
+    if (index === -1) {
+      setActiveTags([...activeTags, tag]);
+    } else {
+      const newActiveTags = [...activeTags];
+      newActiveTags.splice(index, 1);
+      setActiveTags(newActiveTags);
+    }
+  };
+
   function ingredientTotalLines(ingredientLine) {
     let lines = [];
     for (let i = 0; i < ingredientLine; i++) {
       lines.push(
-        <input
-          key={i}
-          type="text"
-          className={`${classes.titleInput} ${classes.marginMultipleInputs}`}
-          placeholder="Add ingredients"
-          name="ingredients"
-          value={ingredients[i]}
-          onChange={(e) => handleIngredientChange(e, i)}
-        />
+        <>
+          <textarea
+            key={i}
+            rows={
+              !isPhone
+                ? `${Math.max(
+                    1,
+                    Math.ceil((ingredients[i]?.length || 0) / 117)
+                  )}`
+                : `${Math.max(
+                    1,
+                    Math.ceil((ingredients[i]?.length || 0) / 33)
+                  )}`
+            }
+            type="text"
+            className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
+            placeholder="Add ingredients"
+            name="ingredients"
+            value={ingredients[i] || ""}
+            onChange={(e) => handleIngredientChange(e, i)}
+          />
+          <div
+            className={classes.trashIcon}
+            key={i}
+            onClick={() => deleteLine(i)}
+          >
+            <Trash className={classes.deleteLineButton} />
+          </div>
+        </>
       );
     }
     return lines;
@@ -111,15 +212,34 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     let lines = [];
     for (let i = 0; i < instructionLine; i++) {
       lines.push(
-        <input
-          key={i}
-          type="text"
-          className={`${classes.titleInput} ${classes.marginMultipleInputs}`}
-          placeholder="Write Instruction"
-          name="instructions"
-          value={instructions[i]}
-          onChange={(e) => handleInstructionChange(e, i)}
-        />
+        <>
+          <textarea
+            rows={
+              !isPhone
+                ? `${Math.max(
+                    1,
+                    Math.ceil((instructions[i]?.length || 0) / 117)
+                  )}`
+                : `${Math.max(
+                    1,
+                    Math.ceil((instructions[i]?.length || 0) / 33)
+                  )}`
+            }
+            key={i}
+            className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
+            placeholder="Write Instruction"
+            name="instructions"
+            value={instructions[i] || ""}
+            onChange={(e) => handleInstructionChange(e, i)}
+          />
+          <div
+            className={classes.trashIcon}
+            key={i}
+            onClick={() => deleteLineInstructionButton(i)}
+          >
+            <Trash className={classes.deleteLineInstructionButton} />
+          </div>
+        </>
       );
     }
     return lines;
@@ -169,6 +289,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setNotes(truncatedValue);
           setLength(truncatedValue.length);
           break;
+
         default:
           break;
       }
@@ -177,14 +298,15 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const submit = (e) => {
     e.preventDefault();
+
     const newRecipe = {
       title,
       imageUrl,
       rating: 0,
-      courseType,
       prepTime: Number(prepTimeHours) * 60 + Number(prepTimeMinutes),
       cookTime: Number(cookTimeHours) * 60 + Number(cookTimeMinutes),
       servings,
+      courseType: activeTags.join(";"),
       ingredients: ingredients.join(";"),
       instructions: instructions.join(";"),
       notes,
@@ -307,7 +429,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           </div>
         </div>
         <div className={classes.inputSection}>
-          <label className={classes.formLabel}>Instructions::</label>
+          <label className={classes.formLabel}>Instructions:</label>
 
           {instrunctionTotalLines(instructionLine)}
           <div>
@@ -335,9 +457,24 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
         <div className={classes.inputSection}>
           <label className={`${classes.formLabel} ${classes.correctMargin}`}>
-            Cuisine:
+            Tags:
           </label>
-          <div className={classes.times}>
+          <div className={classes.tagsContainer}>
+            {tagButtons.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                className={`${classes.tagButton} ${
+                  activeTags.includes(tag) ? classes.activeTag : ""
+                }`}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          {/* <div className={classes.times}>
             <section className={classes.mainContainer}>
               <div className={classes.sortByContainer}>
                 <div
@@ -399,34 +536,10 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
                   </div>
                 )}
               </div>
-            </section>
-          </div>
+            </section> 
+          </div>*/}
         </div>
         <div className={`${classes.inputSection}`}>
-          <label className={classes.formLabel}>Cooking Time:</label>
-          <div className={classes.times}>
-            <input
-              type="text"
-              className={`${classes.parts} ${classes} `}
-              placeholder="Hours"
-              name="cookTimeHours"
-              value={cookTimeHours}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              className={`${classes.parts} ${classes}`}
-              placeholder="Minutes"
-              name="cookTimeMinutes"
-              value={cookTimeMinutes}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <p className={classes.portions}>
-          How long does it take to cook this recipe?{" "}
-        </p>
-        <div className={`${classes.inputSection} ${classes.addMargin}`}>
           <label className={classes.formLabel}>Prep Time:</label>
           <div className={classes.times}>
             <input
@@ -449,6 +562,30 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
         </div>
         <p className={classes.portions}>
           How long does it take to prepare this recipe?{" "}
+        </p>
+        <div c className={`${classes.inputSection} ${classes.addMargin}`}>
+          <label className={classes.formLabel}>Cooking Time:</label>
+          <div className={classes.times}>
+            <input
+              type="text"
+              className={`${classes.parts} ${classes} `}
+              placeholder="Hours"
+              name="cookTimeHours"
+              value={cookTimeHours}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              className={`${classes.parts} ${classes}`}
+              placeholder="Minutes"
+              name="cookTimeMinutes"
+              value={cookTimeMinutes}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <p className={classes.portions}>
+          How long does it take to cook this recipe?{" "}
         </p>
       </form>
     </>

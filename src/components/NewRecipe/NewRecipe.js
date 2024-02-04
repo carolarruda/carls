@@ -1,14 +1,15 @@
 import classes from "./NewRecipe.module.css";
-import Header from "../Header/Header";
 import RecipeForm from "./RecipeForm";
 
-const NewRecipe = ({setRecipes, setRecipesP}) => {
+const NewRecipe = ({ setRecipes, setRecipesP, update }) => {
   return (
     <section className="section-wrapper">
-      {/* <Header title={"Create new recipe"} path={"/recipes"} sort={false} recipeAdd={true} /> */}
-
       <div className={classes.formContainer}>
-        <RecipeForm setRecipes={setRecipes} setRecipesP={setRecipesP}/>
+        <RecipeForm
+          setRecipes={setRecipes}
+          setRecipesP={setRecipesP}
+          update={update}
+        />
       </div>
     </section>
   );

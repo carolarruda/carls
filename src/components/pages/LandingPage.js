@@ -8,17 +8,22 @@ import Popular from "../Popular/Popular";
 import Share from "../Share/Share";
 import Trending from "../Trending Recipes/Trending";
 
-const LandingPage = ({ recipes, setRecipes, loader  }) => {
+const LandingPage = ({ recipes, setRecipes }) => {
   return (
     <main className={classes.main}>
       <div className={classes.section}>
         <Hero />
         <Share />
-        <Trending loader={loader} recipes={recipes} setRecipes={setRecipes} />
-        <Blog />
-        <Explore recipes={recipes} />
+        <Trending
+          recipes={recipes}
+          setRecipes={setRecipes}
+          small={false}
+          header={true}
+        />
+        <Blog small={false} header={true} />
+        <Explore small={false} header={true} recipes={recipes} />
         <Newsletter />
-        <Popular />
+        <Popular  small={false} header={true} />
       </div>
       <Footer />
     </main>

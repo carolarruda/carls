@@ -12,6 +12,7 @@ import { Sorter } from "../../App";
 const SingleRecipeCard = ({ recipes, setRecipes }) => {
   const [searchRecipe, setSearchRecipe] = useContext(SearchContext);
   const [isLiked, setIsLiked] = useState("");
+  const [selectedRecipe, setSelectedRecipe] = useState("");
 
   const [sort, setSort] = useContext(Sorter);
 
@@ -94,7 +95,6 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
   switch (sort) {
     case "A to Z":
-      recipes.map((recipe) => console.log(recipe.title.charAt(0)));
       sortedRecipes = recipes.sort((a, b) =>
         a.title.trim().charAt(0).localeCompare(b.title.trim().charAt(0))
       );
@@ -161,8 +161,9 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
     return (
       <Link
-        to={`${recipe.id}`}
+        to={`${recipe.id}/${recipe.title.toLowerCase().replace(/\s/g, "-")}`}
         key={index}
+        selectedRecipe={selectedRecipe}
         style={{ textDecoration: "none", color: "#212121" }}
       >
         <div className={classes.recipeCard}>

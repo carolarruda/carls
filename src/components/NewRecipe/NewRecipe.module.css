@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .title {
@@ -30,7 +29,6 @@
 }
 
 .titleInput {
-  height: 40px;
   padding: 16px;
   border-radius: 8px;
   border: 1px;
@@ -42,7 +40,10 @@
   line-height: 26px;
   letter-spacing: 0em;
   text-align: left;
+  width: auto;
+  word-break: break-word;
   color: #a5a5a5;
+
   @media (max-width: 630px) {
     max-width: 100%;
   }
@@ -141,7 +142,7 @@
 
 .parts {
   padding: 16px;
-  height: 40px;
+  min-height: 30px;
   width: 100%;
   border-radius: 8px;
   border: 1px;
@@ -251,8 +252,6 @@
   color: #a5a5a5;
   align-items: center;
   grid-template-columns: auto 1fr;
-
-
 }
 
 .label:hover {
@@ -279,4 +278,68 @@
     text-align: left;
     width: 200px;
   }
+}
+.textarea {
+  resize: none;
+  /* width: 100%; */
+}
+
+.trashIcon {
+  position: relative;
+  top: -42px;
+  /* right: -93%; */
+  left: 95%;
+
+  @media (max-width: 500px) {
+    left: 90%;
+    top: -2%;
+  }
+}
+
+.trashIcon {
+  cursor: pointer;
+}
+
+.tagButton {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px;
+  gap: 16px;
+  border: solid 1px #a5a5a5;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: max-content;
+  word-break: break-word;
+  color: #a5a5a5;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  @media (max-width: 630px) {
+    max-width: 100%;
+  }
+}
+
+.tagButton:hover {
+  background-color: #a5a5a524;
+  color: #b55d51;
+
+}
+
+.activeTag {
+  background-color: #a5a5a524;
+  color: #b55d51;
+}
+
+.tagsContainer {
+  display: inline-block;
 }

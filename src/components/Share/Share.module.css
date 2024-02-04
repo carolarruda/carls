@@ -19,6 +19,7 @@
   height: 406px;
   flex-shrink: 0;
   border-radius: 8px 0px 0px 8px;
+  margin-bottom: 149px;
   @media (max-width: 450px) {
     width: 100%;
     object-fit: cover;
