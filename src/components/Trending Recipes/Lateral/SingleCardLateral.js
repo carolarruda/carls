@@ -45,14 +45,15 @@ const SingleCardLateral = ({ recipes, setRecipes, small }) => {
           className={`${classes.recipeImgLateral}`}
         />
         <div className={classes.recipeInfo}>
-          {renderStars(recipe)}
           <h4
             className={
-              !small ? `${classes.recipeName}` : `${classes.smallTitle}`
+              !small ? `${classes.recipeName}` : `${classes.smallTitleLateral}`
             }
           >
             {recipe.title}
           </h4>
+          {renderStars(recipe)}
+
           {!isPhone && !small && (
             <Avatar
               photo={recipe.user.avatar ? recipe.user.avatar : ""}

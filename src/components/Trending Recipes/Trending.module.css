@@ -28,6 +28,7 @@
   border: 1px solid #ebebeb;
   border-radius: 8px 8px 8px 8px;
   display: flex;
+  width: 100%;
 }
 
 .recipeName {
@@ -110,4 +111,15 @@ order: 1;
 align-self: stretch;
 flex-grow: 0;
 
+}
+
+.smallTitleLateral {
+line-break: auto;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+color: #000000;
 }
