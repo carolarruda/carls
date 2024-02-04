@@ -2,10 +2,7 @@ import classes from "../Trending.module.css";
 import Avatar from "../../Avatar/Avatar";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-
 const SingleRecipeCardSmall = ({ recipes, setRecipes, small }) => {
-  let params = useParams();
   const renderStars = (recipe) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {

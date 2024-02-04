@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext, useRef, useEffect } from "react";
 import classes from "./SortBy.module.css";
 import { Sorter } from "../../App";

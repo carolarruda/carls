@@ -9,8 +9,6 @@ const Breadcrumbs = ({ path }) => {
     const pathElements = path.split(" > ");
     const totalCrumbCount = pathElements.length;
 
-    const paramsRecipe = params.title;
-
     if (pathElements[2] === "Recipe Name") {
       pathElements[2] = params.title
         .replace(/-/g, " ")
@@ -32,7 +30,7 @@ const Breadcrumbs = ({ path }) => {
           } ${index === totalCrumbCount - 1 ? classes.lastCrumb : ""}`}
           key={index}
         >
-          {index > 0 && <span style={{ color: "#878787" }}> > </span>}
+          {index > 0 && <span style={{ color: "#878787" }}> {">"} </span>}
           <Link
             className={`${classes.breadcrumbs} ${
               index === 0 ? classes.firstCrumb : ""

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Loader from "../Loader/Loader";
 import classes from "./RecipeDetails.module.css";
 import LoadingButton from "@mui/lab/LoadingButton";
