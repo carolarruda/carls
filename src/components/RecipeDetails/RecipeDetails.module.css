@@ -19,12 +19,26 @@
   grid-template-columns: 3fr 1.5fr;
   margin-top: 55px;
   margin-bottom: 24px;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 }
 
+.bodyContainer {
+  display: grid;
+  grid-template-columns: 3fr 1.5fr;
+  margin-top: 55px;
+  margin-bottom: 24px;
+  @media (max-width: 450px) {
+    display: block;
+  }
+}
 .infoContainer {
   display: flex;
   gap: 19px;
-  margin-right: 75px;
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .rightContainerBox {
@@ -32,6 +46,10 @@
   gap: 9px;
   align-items: center;
   margin-left: 75px;
+  @media (max-width: 450px) {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
 }
 
 .infoContainerBox {
@@ -53,6 +71,10 @@
   width: 100%;
   object-fit: cover;
   border-radius: 7px;
+  @media (max-width: 450px) {
+    max-height: 276px;
+    width: 100%;
+  }
 }
 
 .timesServingsContainer {
@@ -101,8 +123,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
 
+.ingredientInstructions {
+  padding-right: 70px;
+  border-right: solid 1px #ebebeb;
+  @media (max-width: 450px) {
+    padding-right: 0px;
+    border: none;
+  }
+
+}
 .printButton label {
   margin-left: 9px;
   font-family: Roboto;
@@ -165,6 +199,10 @@
   letter-spacing: 0em;
   text-align: left;
   color: #878787;
+
+  @media (max-width: 450px) {
+    font-size: 14px;
+  }
 }
 
 .ingredientsTitle {
@@ -246,12 +284,10 @@
   border: none;
 }
 
-
 .postButtonContainer {
   display: flex;
   justify-content: right;
 }
-
 
 .headerForOtherRecipes {
   font-family: Roboto;
@@ -260,7 +296,6 @@
   margin-top: 49px;
   font-size: 40px;
   font-weight: 500;
-  
 }
 
 .otherContainer {
@@ -270,28 +305,26 @@
 .lateralRecipesTrending {
   /* Recent Recipes */
 
-width: 336px;
-height: 26px;
+  width: 336px;
+  height: 26px;
 
-/* Heading/H5 - medium */
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-line-height: 26px;
-/* identical to box height, or 108% */
+  /* Heading/H5 - medium */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26px;
+  /* identical to box height, or 108% */
 
-/* Black */
-color: #000000;
+  /* Black */
+  color: #000000;
 
-
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-margin-bottom: 32px;
-
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin-bottom: 32px;
 }
 
 .rightRecipeDetails {
@@ -299,10 +332,42 @@ margin-bottom: 32px;
   width: 310px;
 }
 
-.trendLateral, .recentLateral {
+.trendLateral,
+.recentLateral {
   margin-bottom: 72px;
 }
 
 .recentLateral {
-margin-top: 72px;
+  margin-top: 72px;
+}
+
+.tag {
+  cursor: context-menu;
+  display: inline-block;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+
+  outline: inherit;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px;
+  gap: 16px;
+  border: solid 1px #a5a5a5;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: max-content;
+  word-break: break-word;
+  color: #a5a5a5;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  @media (max-width: 630px) {
+    max-width: 100%;
+  }
 }

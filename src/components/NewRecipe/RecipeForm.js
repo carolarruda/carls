@@ -35,6 +35,29 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
   const [showOptions, setShowOptions] = useState(false);
   const [selectedSort, setSelectedSort] = useState("Cuisine");
+  const [activeTags, setActiveTags] = useState([]);
+  const tagButtons = [
+    "Desserts",
+    "CheesecakeRecipe",
+    "FoodBlog",
+    "Baking",
+    "Main",
+    "Appetizers",
+    "Fryed",
+    "Healthy",
+    "Chocolate",
+    "Asian",
+    "Thai",
+    "Chinese",
+    "Portuguese",
+    "American",
+    "Caramel",
+    "FoodPorn",
+    "foodinspiration",
+    "instafood",
+    "delicious",
+    "foodie",
+  ];
 
   const isPhone = useMediaQuery("(max-width:450px)");
 
@@ -70,7 +93,9 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setCookTimeMinutes(cookTimeInMinutes || 0);
           setServings(data.data.recipe.servings || 0);
           setLength(data.data.recipe.notes.length);
-
+          setActiveTags(
+            modifyTagsStringToArray(data.data.recipe.courseType) || []
+          );
           setIngredients(
             modifyIngredientStringToArray(data.data.recipe.ingredients) || []
           );
@@ -103,6 +128,11 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
     setInstructionLine(InstructionArray.length);
     return InstructionArray;
   };
+  const modifyTagsStringToArray = (tagsString) => {
+    const TagsArray = tagsString.split(";").map((tag) => tag.trim());
+    setActiveTags(TagsArray.length);
+    return TagsArray;
+  };
 
   const addIngredient = (e) => {
     e.preventDefault();
@@ -111,19 +141,27 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   };
 
   const deleteLine = (index) => {
-    console.log(index);
-    console.log(index);
     const newIngredients = [...ingredients];
     newIngredients.splice(index, 1);
     setIngredients(newIngredients);
     setIngredientLine(newIngredients.length);
   };
   const deleteLineInstructionButton = (index) => {
-
     const newInstructions = [...instructions];
     newInstructions.splice(index, 1);
     setInstructions(newInstructions);
     setInstructionLine(newInstructions.length);
+  };
+
+  const handleTagClick = (tag) => {
+    const index = activeTags.indexOf(tag);
+    if (index === -1) {
+      setActiveTags([...activeTags, tag]);
+    } else {
+      const newActiveTags = [...activeTags];
+      newActiveTags.splice(index, 1);
+      setActiveTags(newActiveTags);
+    }
   };
 
   function ingredientTotalLines(ingredientLine) {
@@ -251,6 +289,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setNotes(truncatedValue);
           setLength(truncatedValue.length);
           break;
+
         default:
           break;
       }
@@ -264,10 +303,10 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
       title,
       imageUrl,
       rating: 0,
-      courseType,
       prepTime: Number(prepTimeHours) * 60 + Number(prepTimeMinutes),
       cookTime: Number(cookTimeHours) * 60 + Number(cookTimeMinutes),
       servings,
+      courseType: activeTags.join(";"),
       ingredients: ingredients.join(";"),
       instructions: instructions.join(";"),
       notes,
@@ -418,9 +457,24 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
 
         <div className={classes.inputSection}>
           <label className={`${classes.formLabel} ${classes.correctMargin}`}>
-            Cuisine:
+            Tags:
           </label>
-          <div className={classes.times}>
+          <div className={classes.tagsContainer}>
+            {tagButtons.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                className={`${classes.tagButton} ${
+                  activeTags.includes(tag) ? classes.activeTag : ""
+                }`}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          {/* <div className={classes.times}>
             <section className={classes.mainContainer}>
               <div className={classes.sortByContainer}>
                 <div
@@ -482,8 +536,8 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
                   </div>
                 )}
               </div>
-            </section>
-          </div>
+            </section> 
+          </div>*/}
         </div>
         <div className={`${classes.inputSection}`}>
           <label className={classes.formLabel}>Prep Time:</label>

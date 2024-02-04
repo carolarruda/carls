@@ -12,12 +12,11 @@ import BookmarkBig from "../icons/BookmarkBig";
 import Share from "../icons/Share";
 import Print from "../icons/Print";
 import Box from "../icons/Box";
-import Trending from "../Trending Recipes/Trending";
 import TrendingSmall from "../Trending Recipes/Small/TrendingSmall";
 import TrendingLateral from "../Trending Recipes/Lateral/TrendingLateral";
-import Newsletter from "../Newsletter/Newsletter";
 import NewsletterSmall from "../Newsletter/NewsletterSmall";
 import RelatedRecipes from "../RelatedRecipes/RelatedRecipes";
+import Recent from "../Trending Recipes/Recent/Recent";
 
 const RecipeDetails = ({ recipes, setRecipes }) => {
   const [loading, setLoading] = useState(false);
@@ -130,8 +129,8 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
         </div>
       </div>
       <hr className={classes.hr} />
-      <div className={classes.recipeContainer}>
-        <div>
+      <div className={classes.bodyContainer}>
+        <div className={classes.left} >
           <img
             src={recipe.imageUrl}
             className={classes.recipeImg}
@@ -156,7 +155,8 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
             </button>
           </div>
           <div
-            style={{ paddingRight: "70px", borderRight: "solid 1px #EBEBEB" }}
+          className={classes.ingredientInstructions}
+
           >
             {recipe.notes ? (
               <p className={classes.description}>{recipe.notes}</p>
@@ -260,10 +260,29 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
 
           <NewsletterSmall />
           <div className={classes.recentLateral}>
-            <h3 className={classes.lateralRecipesTrending}>
-            Related Recipes{" "}
-            </h3>
+            <h3 className={classes.lateralRecipesTrending}>Related Recipes </h3>
             <RelatedRecipes
+              small={true}
+              recipes={recipes}
+              setRecipes={setRecipes}
+              header={false}
+            />
+          </div>
+          <div className={classes.recentLateral}>
+            <h3 className={classes.lateralRecipesTrending}>Tags </h3>
+            {recipe.courseType?.split(";").map((ingredient, index) => (
+              <>
+                {ingredient.length > 0 && (
+                  <div className={classes.tag}>
+                    <p> #{ingredient}</p>
+                  </div>
+                )}
+              </>
+            ))}
+          </div>
+          <div className={classes.recentLateral}>
+            <h3 className={classes.lateralRecipesTrending}>Recent Recipes </h3>
+            <Recent
               small={true}
               recipes={recipes}
               setRecipes={setRecipes}
