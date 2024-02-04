@@ -27,12 +27,17 @@ function App() {
   const [recipesP, setRecipesP] = useState("");
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
+  const expireToken = localStorage.getItem("expiresIn");
   const [user, setUser] = useState("");
   const navigate = useNavigate();
   const [loader, setLoader] = useState("");
   const [sort, setSort] = useState("");
 
   useEffect(() => {
+    const timeNow = new Date();
+    if (timeNow.toString() > expireToken) {
+      localStorage.clear();
+    }
     if (token) {
       setLoggedIn(true);
       const opts = {
@@ -75,7 +80,7 @@ function App() {
         })
         .catch((error) => console.error("Error fetching recipes:", error))
     );
-  }, [token, userId]);
+  }, [token, userId, expireToken]);
 
   const handleDelete = (id) => {
     const opts = {
@@ -230,7 +235,7 @@ function App() {
                     index
                     element={
                       <RecipeViewPage
-                      path="Home > My Recipes > Recipe Name"
+                        path="Home > My Recipes > Recipe Name"
                         recipes={recipes}
                         setRecipes={setRecipes}
                         handleDelete={handleDelete}

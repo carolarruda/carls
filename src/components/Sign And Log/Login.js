@@ -5,7 +5,6 @@ import { LoggedInUser, User } from "../../App";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-
 import "../style.css";
 import classes from "./Sign.module.css";
 
@@ -39,8 +38,7 @@ const Login = ({ setUsers, users }) => {
   const [shake, setShake] = useState("");
   const [shakeTwo, setShakeTwo] = useState("");
   const [user, setUser] = useContext(User);
-
-
+  const expiresInMinutes = 1440;
   const sk = "shake 0.2s ease-in-out 0s 2";
 
   const navigate = useNavigate();
@@ -85,12 +83,17 @@ const Login = ({ setUsers, users }) => {
 
         const data = await loginResponse.json();
         setStatus(loginResponse.status);
-
+        console.log(loginResponse);
         try {
           if (loginResponse.status === 200) {
             setLoggedIn(true);
             setUser(data.data.user);
             localStorage.setItem("token", data.data.token);
+            const now = new Date();
+            const expirationDate = new Date(
+              now.getTime() + expiresInMinutes * 60000
+            ); // Convert minutes to milliseconds
+            localStorage.setItem("expiresIn", expirationDate.toString());
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);
             setUsers(data.data.user);
@@ -124,7 +127,10 @@ const Login = ({ setUsers, users }) => {
           </button>
         </div>
 
-        <form className={`${classes.formy} ${classes.log}`} onSubmit={handleSubmit}>
+        <form
+          className={`${classes.formy} ${classes.log}`}
+          onSubmit={handleSubmit}
+        >
           <label htmlFor="username">Email</label>
           <input
             style={{
@@ -153,7 +159,9 @@ const Login = ({ setUsers, users }) => {
           />
           {!failed && !wrong && <div></div>}
           {failed && wrong && (
-            <div className={classes.error}>Invalid email and/or password provided</div>
+            <div className={classes.error}>
+              Invalid email and/or password provided
+            </div>
           )}
           <button className={classes.logBut} type="submit">
             Sign In

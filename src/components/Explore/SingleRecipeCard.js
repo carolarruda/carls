@@ -33,7 +33,7 @@ const SingleRecipeCard = ({ recipes, setRecipes }) => {
 
   return recipesExplore.map((recipe, index) => (
     <Link
-      to={`recipes/${recipe.id}`}
+    to={`recipes/${recipe.id}/${recipe.title.toLowerCase().replace(/\s/g, "-")}`}
       key={index}
       style={{ textDecoration: "none", color: "#212121" }}
     >

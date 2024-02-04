@@ -1,4 +1,4 @@
-.formContainer {
+ .formContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -287,12 +287,11 @@
 .trashIcon {
   position: relative;
   top: -42px;
-  /* right: -93%; */
   left: 95%;
 
   @media (max-width: 500px) {
     left: 90%;
-    top: -2%;
+    top: -42px;
   }
 }
 
@@ -332,6 +331,9 @@
 .tagButton:hover {
   background-color: #a5a5a524;
   color: #b55d51;
+  @media (max-width: 450px) {
+    background-color:none;
+    color: none;  }
 
 }
 
