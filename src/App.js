@@ -27,7 +27,7 @@ function App() {
   const [recipesP, setRecipesP] = useState("");
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
-  const expireToken = localStorage.getItem("expiresIn");
+  const expiresIn = localStorage.getItem("expiresIn");
   const [user, setUser] = useState("");
   const navigate = useNavigate();
   const [loader, setLoader] = useState("");
@@ -35,11 +35,12 @@ function App() {
 
   useEffect(() => {
     const timeNow = new Date();
-    if (expireToken && timeNow > new Date(expireToken)) {
-      // Token has expired, clear cache or perform other actions
+    if (expiresIn && timeNow > new Date(expiresIn)) {
+
       localStorage.removeItem('token');
-      localStorage.removeItem('expireToken');
+      localStorage.removeItem('expiresIn');
       localStorage.removeItem('userId');
+      localStorage.removeItem('username');
       setLoggedIn(false);
       return;
     }
@@ -85,7 +86,7 @@ function App() {
         })
         .catch((error) => console.error("Error fetching recipes:", error))
     );
-  }, [token, userId, expireToken]);
+  }, [token, userId, expiresIn ]);
 
   const handleDelete = (id) => {
     const opts = {

@@ -25,7 +25,7 @@ function Copyright(props) {
   );
 }
 
-const Login = ({ setUsers, users }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // eslint-disable-next-line no-unused-vars
@@ -37,7 +37,7 @@ const Login = ({ setUsers, users }) => {
   const [redTwo, setRedTwo] = useState("");
   const [shake, setShake] = useState("");
   const [shakeTwo, setShakeTwo] = useState("");
-  const [user, setUser] = useContext(User);
+  const [loggedUser, setLoggedUser] = useContext(User);
   const expiresInMinutes = 5;
   const sk = "shake 0.2s ease-in-out 0s 2";
 
@@ -87,7 +87,7 @@ const Login = ({ setUsers, users }) => {
         try {
           if (loginResponse.status === 200) {
             setLoggedIn(true);
-            setUser(data.data.user);
+            setLoggedUser(data.data.user);
             localStorage.setItem("token", data.data.token);
             const now = new Date();
             const expirationDate = new Date(
@@ -96,7 +96,8 @@ const Login = ({ setUsers, users }) => {
             localStorage.setItem("expiresIn", expirationDate.toString());
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);
-            setUsers(data.data.user);
+            setLoggedUser(data.data.user);
+            console.log(loggedUser);
             navigate(`/`);
           } else if (loginResponse.status === 400) {
             setFailed(true);
