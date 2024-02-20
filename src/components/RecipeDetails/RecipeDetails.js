@@ -18,18 +18,28 @@ import TrendingLateral from "../Trending Recipes/Lateral/TrendingLateral";
 import NewsletterSmall from "../Newsletter/NewsletterSmall";
 import RelatedRecipes from "../RelatedRecipes/RelatedRecipes";
 import Recent from "../Trending Recipes/Recent/Recent";
+import CheckedBox from "../icons/CheckedBox";
 
 const RecipeDetails = ({ recipes, setRecipes }) => {
   const [loading, setLoading] = useState(false);
   const [recipe, setRecipe] = useState({});
   const [servings, setServings] = useState("");
   const [checkUser, setCheckUser] = useState("");
+  const [checkedIngredients, setCheckedIngredients] = useState({});
+
   const nav = useNavigate();
   const handleEdit = (card) => {
     nav(`/edit/${params.id}/${params.title.toLowerCase().replace(/\s/g, "-")}`);
   };
 
   const params = useParams();
+
+  const toggleIngredient = (ingredientId) => {
+    setCheckedIngredients((prevState) => ({
+      ...prevState,
+      [ingredientId]: !prevState[ingredientId],
+    }));
+  };
 
   const handleServingsChange = (increment) => {
     const newServings = servings + increment;
@@ -48,8 +58,6 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
       })
       .catch((error) => console.error("Error fetching recipe:", error));
   }, [params.id]);
-
-  console.log(recipe);
 
   const inputTimestamp = recipe.createdAt;
   const date = new Date(inputTimestamp);
@@ -130,7 +138,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
       </div>
       <hr className={classes.hr} />
       <div className={classes.bodyContainer}>
-        <div className={classes.left} >
+        <div className={classes.left}>
           <img
             src={recipe.imageUrl}
             className={classes.recipeImg}
@@ -154,10 +162,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
               <label>Print Recipe</label>
             </button>
           </div>
-          <div
-          className={classes.ingredientInstructions}
-
-          >
+          <div className={classes.ingredientInstructions}>
             {recipe.notes ? (
               <p className={classes.description}>{recipe.notes}</p>
             ) : (
@@ -182,13 +187,79 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
               </div>
             </div>
             <ul className={classes.ingredientList}>
-              {recipe.ingredients?.split(";").map((ingredient) => (
-                <li className={classes.SingleIngredient}>
-                  <Box />
+              {recipe.ingredients?.split(";").map((ingredient, index) => {
+                if (ingredient.length > 0) {
+                  const parts = ingredient.match(/(\d+(?:[\s/_.\d]+)?)\s*(.+)/);
+                  if (parts) {
+                    let numericPart = parts[1];
+                    if (isNaN(numericPart)) {
+                      const [numerator, denominator] = numericPart
+                        .split("/")
+                        .map(Number);
 
-                  <p>{ingredient}</p>
-                </li>
-              ))}
+                      if (denominator !== 0) {
+                        numericPart = numerator / denominator;
+                      }
+                    }
+
+                    const textPart = parts[2];
+                    return (
+                      <li className={classes.SingleIngredient} key={index}>
+                        <div onClick={() => toggleIngredient(index)}>
+                          {checkedIngredients[index] ? <CheckedBox /> : <Box />}
+                        </div>{" "}
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "5px",
+                            color: checkedIngredients[index] ? "#878787" : "",
+                          }}
+                        >
+                          <span className="numeric-part">
+                            {!isNaN(numericPart)
+                              ? (
+                                  (numericPart * servings) /
+                                  recipe.servings
+                                ).toFixed(
+                                  ((numericPart * servings) / recipe.servings) %
+                                    1 ===
+                                    0
+                                    ? 0
+                                    : 2
+                                )
+                              : numericPart}
+                          </span>
+                          <p>
+                            {"   "}
+                            {textPart}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <li className={classes.SingleIngredient} key={index}>
+                        <div onClick={() => toggleIngredient(index)}>
+                          {checkedIngredients[index] ? <CheckedBox /> : <Box />}
+                        </div>{" "}
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "5px",
+                            color: checkedIngredients[index] ? "#878787" : "",
+                          }}
+                        >
+                          <p>
+                            {""}
+                            {ingredient}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  }
+                }
+                return null;
+              })}
             </ul>
             <div className={classes.ingredientsTitleContainer}>
               <h3 className={classes.ingredientsTitle}>Instructions:</h3>
