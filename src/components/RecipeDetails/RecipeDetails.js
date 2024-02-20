@@ -174,6 +174,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                 <button
                   className={classes.servingsButton}
                   onClick={() => handleServingsChange(-1)}
+                  style={{display: "flex", justifyContent: "center", alignItems: "center"}}
                 >
                   -
                 </button>
@@ -181,6 +182,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                 <button
                   className={classes.servingsButton}
                   onClick={() => handleServingsChange(1)}
+                  style={{display: "flex", justifyContent: "center", alignItems: "center"}}
                 >
                   +
                 </button>
