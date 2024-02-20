@@ -217,8 +217,10 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                             color: checkedIngredients[index] ? "#878787" : "",
                           }}
                         >
-                          <span className="numeric-part">
-                            {!isNaN(numericPart)
+                        
+
+                          <p>
+                          {!isNaN(numericPart)
                               ? (
                                   (numericPart * servings) /
                                   recipe.servings
@@ -230,10 +232,9 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                                     : 2
                                 )
                               : numericPart}
-                          </span>
-                          <p>
-                            {"   "}
-                            {textPart}
+                     
+                 
+                           {" "} {textPart}
                           </p>
                         </div>
                       </li>
