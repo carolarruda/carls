@@ -174,7 +174,11 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                 <button
                   className={classes.servingsButton}
                   onClick={() => handleServingsChange(-1)}
-                  style={{display: "flex", justifyContent: "center", alignItems: "center"}}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
                 >
                   -
                 </button>
@@ -182,7 +186,11 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                 <button
                   className={classes.servingsButton}
                   onClick={() => handleServingsChange(1)}
-                  style={{display: "flex", justifyContent: "center", alignItems: "center"}}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
                 >
                   +
                 </button>
@@ -217,10 +225,8 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                             color: checkedIngredients[index] ? "#878787" : "",
                           }}
                         >
-                        
-
                           <p>
-                          {!isNaN(numericPart)
+                            {!isNaN(numericPart)
                               ? (
                                   (numericPart * servings) /
                                   recipe.servings
@@ -231,10 +237,8 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
                                     ? 0
                                     : 2
                                 )
-                              : numericPart}
-                     
-                 
-                           {" "} {textPart}
+                              : numericPart}{" "}
+                            {textPart}
                           </p>
                         </div>
                       </li>
@@ -342,18 +346,20 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
               header={false}
             />
           </div>
-          <div className={classes.recentLateral}>
-            <h3 className={classes.lateralRecipesTrending}>Tags </h3>
-            {recipe.courseType?.split(";").map((ingredient, index) => (
-              <>
-                {ingredient.length > 0 && (
-                  <div className={classes.tag}>
-                    <p> #{ingredient}</p>
-                  </div>
-                )}
-              </>
-            ))}
-          </div>
+          {recipe.courseType && (
+            <div className={classes.recentLateral}>
+              <h3 className={classes.lateralRecipesTrending}>Tags </h3>
+              {recipe.courseType?.split(";").map((tag, index) => (
+                <>
+                  {tag.length > 0 && (
+                    <div className={classes.tag}>
+                      <p> #{tag}</p>
+                    </div>
+                  )}
+                </>
+              ))}
+            </div>
+          )}
           <div className={classes.recentLateral}>
             <h3 className={classes.lateralRecipesTrending}>Recent Recipes </h3>
             <Recent
