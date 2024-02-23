@@ -6,7 +6,7 @@ import SingleCardLateral from "./SingleCardLateral";
 const TrendingLateral = ({ recipes, setRecipes, loader, header, small }) => {
   console.log(header);
   return (
-    <section className="section-wrapper">
+    <section style={{ marginTop: "1.5rem" }}>
       <Header title={"Trending Recipes"} path={"/recipes"} header={header} />
       <Loader />
       <div className={classes.recipesContainerLateral}>

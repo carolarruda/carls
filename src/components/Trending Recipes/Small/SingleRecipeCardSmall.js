@@ -37,7 +37,7 @@ const SingleRecipeCardSmall = ({ recipes, setRecipes, small }) => {
       key={index}
       style={{ textDecoration: "none", color: "#212121" }}
     >
-      <div className={classes.recipeCard}>
+      <div className={classes.recipeCardSmall}>
         <img
           src={recipe.imageUrl}
           alt="food1"

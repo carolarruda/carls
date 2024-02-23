@@ -27,24 +27,15 @@
 }
 
 .titleSmall {
-  /* Stay connected with our Recipes updates */
-
   width: 272px;
   height: 52px;
-
-  /* Heading/H5 - medium */
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 26px;
-  /* or 108% */
   text-align: center;
-
-  /* Black */
   color: #000000;
-
-  /* Inside auto layout */
   flex: none;
   order: 0;
   align-self: stretch;
@@ -197,7 +188,7 @@
     0px 42px 12px 0px rgba(23, 23, 23, 0);
   border-radius: 8px;
   @media (max-width: 1200px) {
-    width: 308px;
+
     margin-bottom: 74px;
   }
 }

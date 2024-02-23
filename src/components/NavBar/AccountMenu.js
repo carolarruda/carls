@@ -10,10 +10,9 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import { LoggedInUser } from "../../App";
-import { useContext } from "react";
+import { LoggedInUser, User } from "../../App";
+import { useContext, useEffect } from "react";
 import { menuItems, loggedOptions } from "./menuLists";
-import { User } from "../../App";
 import Avatar from "../Avatar/Avatar";
 
 export default function AccountMenu() {
@@ -29,6 +28,12 @@ export default function AccountMenu() {
     localStorage.clear();
     navigate(`/`);
   };
+
+  // useEffect(() => {
+  //   if (!user) {
+  //     handleLogOut();
+  //   }
+  // }, [user]);
 
   const handleNewRecipe = () => {
     navigate("/add");
@@ -47,6 +52,7 @@ export default function AccountMenu() {
   const handleRecipesP = () => {
     navigate("/myrecipes");
   };
+
 
   return (
     <React.Fragment>

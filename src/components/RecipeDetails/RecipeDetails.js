@@ -137,8 +137,8 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
         </div>
       </div>
       <hr className={classes.hr} />
-      <div className={classes.bodyContainer}>
-        <div className={classes.left}>
+      <section className={classes.recipeMainBody}>
+      <div className={classes.left}>
           <img
             src={recipe.imageUrl}
             className={classes.recipeImg}
@@ -322,7 +322,6 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
             </div>
           </div>
         </div>
-
         <div className={classes.rightRecipeDetails}>
           <div className={classes.trendLateral}>
             <h3 className={classes.lateralRecipesTrending}>
@@ -370,9 +369,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
             />
           </div>
         </div>
-      </div>
-
-      <Loader />
+      </section>
     </section>
   );
 };

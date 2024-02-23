@@ -6,7 +6,7 @@ import SingleCardRelated from "./SingleCardRelated";
 const RelatedRecipes = ({ recipes, setRecipes, loader, header, small }) => {
   console.log(header);
   return (
-    <section className="section-wrapper">
+    <section style={{marginTop: "20px"}}>
       <Header title={"Trending Recipes"} path={"/recipes"} header={header} />
       <Loader />
       <div className={classes.recipesContainerLateralRecent}>

@@ -6,10 +6,10 @@ import SingleRecipeCardSmall from "./SingleRecipeCardSmall";
 const TrendingSmall = ({ recipes, setRecipes, loader, header, small }) => {
   console.log(header);
   return (
-    <section className="section-wrapper">
+    <section className="">
       <Header title={"Trending Recipes"} path={"/recipes"} header={header} />
       <Loader />
-      <div className={classes.recipesContainer}>
+      <div className={classes.recipesContainerSmall}>
         <SingleRecipeCardSmall
           recipes={recipes}
           setRecipes={setRecipes}

@@ -15,10 +15,10 @@ const SingleCardRelated = ({ recipes, setRecipes, small }) => {
   return trendingRecipes.map((recipe, index) => {
     let title;
 
-    if (recipe.title.trim().length > 30) {
-      title = `${recipe.title.trim().slice(0, 30)}...`;
-    } else if (recipe.title.trim().length === 30) {
-      title = recipe.title.trim().slice(0, 30);
+    if (recipe.title.trim().length > 25) {
+      title = `${recipe.title.trim().slice(0, 25)}...`;
+    } else if (recipe.title.trim().length === 25) {
+      title = recipe.title.trim().slice(0, 25);
     } else {
       title = recipe.title.trim();
     }

@@ -37,7 +37,7 @@ const SingleCardRecent = ({ recipes, setRecipes, small }) => {
       key={index}
       style={{ textDecoration: "none", color: "#212121" }}
     >
-      <div className={classes.recipeCardLateral}>
+      <div className={classes.recipeCardLateralRecent}>
         <img
           src={recipe.imageUrl}
           alt="food1"
