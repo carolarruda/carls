@@ -102,7 +102,7 @@ const LoginNew = () => {
   return (
     <div className={`${classes.loginContainer} section-wrapper`}>
       <div>
-        <img src={login} alt="" />
+        <img src={login} alt="" className={classes.loginImg} />
       </div>
       <div className={classes.formContainer}>
         <h2 className={classes.loginPrompt}>Welcome Back!</h2>
@@ -149,7 +149,7 @@ const LoginNew = () => {
             <p>Sign in with Google</p>
           </div>
           <div className={classes.alternativeLogin}>
-            <img src={facebook} alt="facebook" />
+            <img src={facebook} alt="facebook" style={{width: "33px", height: "32px"}}/>
             <p>Sign in with Facebook</p>
           </div>
         </div>
