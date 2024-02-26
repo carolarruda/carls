@@ -29,12 +29,6 @@ export default function AccountMenu() {
     navigate(`/`);
   };
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     handleLogOut();
-  //   }
-  // }, [user]);
-
   const handleNewRecipe = () => {
     navigate("/add");
   };

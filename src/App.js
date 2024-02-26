@@ -13,6 +13,7 @@ import SignUp from "./components/Sign And Log/SignUp";
 import Login from "./components/Sign And Log/Login";
 import SeetingsPage from "./components/pages/SeetingsPage";
 import { trackPromise } from "react-promise-tracker";
+import LoginPage from "./components/pages/LoginPage";
 
 export const LoggedInUser = React.createContext();
 export const User = React.createContext();
@@ -36,11 +37,10 @@ function App() {
   useEffect(() => {
     const timeNow = new Date();
     if (expiresIn && timeNow > new Date(expiresIn)) {
-
-      localStorage.removeItem('token');
-      localStorage.removeItem('expiresIn');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('username');
+      localStorage.removeItem("token");
+      localStorage.removeItem("expiresIn");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("username");
       setLoggedIn(false);
       return;
     }
@@ -86,7 +86,7 @@ function App() {
         })
         .catch((error) => console.error("Error fetching recipes:", error))
     );
-  }, [token, userId, expiresIn ]);
+  }, [token, userId, expiresIn]);
 
   const handleDelete = (id) => {
     const opts = {
@@ -136,13 +136,16 @@ function App() {
                 <Route
                   path="/login"
                   element={
-                    <Login
-                      setUsers={setUsers}
-                      users={users}
-                      setLoggedIn={setLoggedIn}
-                    />
+                    // <Login
+                    //   setUsers={setUsers}
+                    //   users={users}
+                    //   setLoggedIn={setLoggedIn}
+                    // />
+                    <Nav />
                   }
-                />
+                >
+                  <Route index element={<LoginPage />} />
+                </Route>
 
                 <Route path="/" element={<Nav />}>
                   <Route
