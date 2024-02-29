@@ -7,9 +7,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedInUser, User } from "../../App";
 
+import LogoMobile from "../Logo/LogoMobile";
+
+
 const LoginNew = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [status, setStatus] = useState("");
@@ -39,6 +43,10 @@ const LoginNew = () => {
   };
   const handlePass = (e) => {
     setPassword(e.target.value);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e) => {
@@ -74,7 +82,7 @@ const LoginNew = () => {
             const now = new Date();
             const expirationDate = new Date(
               now.getTime() + expiresInMinutes * 60000
-            ); // Convert minutes to milliseconds
+            );
             localStorage.setItem("expiresIn", expirationDate.toString());
             localStorage.setItem("username", data.data.user.firstName);
             localStorage.setItem("userId", data.data.user.id);
@@ -120,7 +128,7 @@ const LoginNew = () => {
 
           <div>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               className={classes.passwordInput}
               placeholder="password"
@@ -128,8 +136,11 @@ const LoginNew = () => {
               value={password}
               onChange={handlePass}
             />
-            <div className={classes.passVisibleButton}>
-              <Eye />
+            <div
+              onClick={toggleShowPassword}
+              className={classes.passVisibleButton}
+            >
+              <Eye fill={showPassword ? "#b76256" : "#878787"} />
             </div>
           </div>
           {!failed && !wrong && <div></div>}
@@ -142,18 +153,25 @@ const LoginNew = () => {
             Login
           </button>
         </form>
-        <p className={classes.loginTag}>Or you can join with</p>
+        <p className={classes.joinTag}>Or you can join with</p>
         <div className={classes.socials}>
           <div className={classes.alternativeLogin}>
             <Google />
             <p>Sign in with Google</p>
           </div>
           <div className={classes.alternativeLogin}>
-            <img src={facebook} alt="facebook" style={{width: "33px", height: "32px"}}/>
+            <img
+              src={facebook}
+              alt="facebook"
+              style={{ width: "24px", height: "24px" }}
+            />
             <p>Sign in with Facebook</p>
           </div>
         </div>
-        <p className={classes.loginTag}>Already have an account? Log in</p>
+        <p className={classes.loginTag}>Don't have an account yet? Sign up</p>
+        <div className={classes.logoContainer}>
+          <LogoMobile />
+        </div>
       </div>
     </div>
   );
