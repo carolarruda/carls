@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { LoggedInUser, User } from "../../App";
 
 import LogoMobile from "../Logo/LogoMobile";
-
+import { GoogleLogin } from '@react-oauth/google';
 
 const LoginNew = () => {
   const [email, setEmail] = useState("");
@@ -34,6 +34,13 @@ const LoginNew = () => {
     localStorage.clear();
   }, [setLoggedIn]);
 
+
+  const responseMessage = (response) => {
+    console.log(response);
+};
+const errorMessage = (error) => {
+    console.log(error);
+};
   const handleGoToRegister = (e) => {
     navigate("/sign");
   };
@@ -156,8 +163,10 @@ const LoginNew = () => {
         <p className={classes.joinTag}>Or you can join with</p>
         <div className={classes.socials}>
           <div className={classes.alternativeLogin}>
-            <Google />
-            <p>Sign in with Google</p>
+            {/* <Google />
+            <p>Sign in with Google</p> */}
+          
+          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
           </div>
           <div className={classes.alternativeLogin}>
             <img
