@@ -1,14 +1,16 @@
 import Eye from "../icons/Eye";
 import Google from "../icons/Google";
-import login from "../images/LoginImg.png";
+import loginImage from "../images/LoginImg.png";
 import classes from "./LogSign.module.css";
 import facebook from "../images/facebook 1.png";
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedInUser, User } from "../../App";
-
 import LogoMobile from "../Logo/LogoMobile";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from "@react-oauth/google";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+
 
 const LoginNew = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +29,53 @@ const LoginNew = () => {
   const expiresInMinutes = 1440;
   const sk = "shake 0.2s ease-in-out 0s 2";
 
+  const responseGoogle = (response) => {
+    const { profileObj } = response;
+    console.log(`Welcome, ${profileObj.name}
+  !`);
+    // Perform actions using user data
+  };
+
+  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setProfile(res.data);
+          let googleUser = {
+            email: profile.email,
+            password: profile.id,
+          };
+
+          console.log(googleUser);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,13 +83,6 @@ const LoginNew = () => {
     localStorage.clear();
   }, [setLoggedIn]);
 
-
-  const responseMessage = (response) => {
-    console.log(response);
-};
-const errorMessage = (error) => {
-    console.log(error);
-};
   const handleGoToRegister = (e) => {
     navigate("/sign");
   };
@@ -63,12 +105,22 @@ const errorMessage = (error) => {
       password,
     };
 
+    let googleUser;
+    if (user && profile) {
+      googleUser = {
+        email: profile.email,
+        password: profile.id,
+      };
+
+      console.log(googleUser);
+    }
+
     const opts = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(user || googleUser),
     };
 
     async function loginUser() {
@@ -117,7 +169,7 @@ const errorMessage = (error) => {
   return (
     <div className={`${classes.loginContainer} section-wrapper`}>
       <div>
-        <img src={login} alt="" className={classes.loginImg} />
+        <img src={loginImage} alt="" className={classes.loginImg} />
       </div>
       <div className={classes.formContainer}>
         <h2 className={classes.loginPrompt}>Welcome Back!</h2>
@@ -163,19 +215,24 @@ const errorMessage = (error) => {
         <p className={classes.joinTag}>Or you can join with</p>
         <div className={classes.socials}>
           <div className={classes.alternativeLogin}>
-            {/* <Google />
-            <p>Sign in with Google</p> */}
-          
-          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+            {/* <button onClick={login}>Sign in with Google 🚀 </button>{" "} */}
+            <GoogleLogin
+            onSuccess={credentialResponse => {
+              console.log(credentialResponse);
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
           </div>
-          <div className={classes.alternativeLogin}>
+          {/* <div className={classes.alternativeLogin}>
             <img
               src={facebook}
               alt="facebook"
               style={{ width: "24px", height: "24px" }}
             />
             <p>Sign in with Facebook</p>
-          </div>
+          </div> */}
         </div>
         <p className={classes.loginTag}>Don't have an account yet? Sign up</p>
         <div className={classes.logoContainer}>
