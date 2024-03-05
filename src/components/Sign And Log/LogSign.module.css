@@ -1,10 +1,13 @@
 .loginContainer {
-  display: flex;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 3rem;
   min-height: 55vh;
   align-items: center;
   @media (max-width: 450px) {
     gap: 0;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -18,9 +21,9 @@
 }
 
 .loginImg {
-  @media (max-width: 450px) {
-    display: none;
-  }
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .loginTag {
   font-family: "Roboto";
@@ -29,7 +32,12 @@
   font-size: 14px;
   line-height: 26px;
   color: #878787;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.loginTag span {
+  color: #b76256;
+  cursor: pointer;
 }
 
 .joinTag {
@@ -75,10 +83,14 @@
 }
 
 .formContainer {
+  height: 100%;
   width: 100%;
-  padding: 3rem;
+}
+
+.imgContainer {
+  height: 100%;
   @media (max-width: 450px) {
-    padding: 0rem;
+    display: none;
   }
 }
 
@@ -95,9 +107,8 @@
 
 .signButtonHome {
   display: flex;
-  width: 60px;
   height: 44px;
-  width: 108px;
+  width: 120px;
   background: var(--Primary, rgba(181, 93, 81, 0.97));
   color: var(--White, #fff);
   border: none;
@@ -118,10 +129,9 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.5rem;
-  /* border: 1px solid #ebebeb; */
-  /* padding: 8px 16px; */
+  border: 1px solid #ebebeb;
+  padding: 8px 16px;
   border-radius: 8px;
-  width: 100%;
   cursor: pointer;
 }
 
@@ -136,6 +146,7 @@
   align-items: center;
   text-align: center;
   color: #878787;
+  margin-left: 10px;
 }
 .socials {
   display: flex;
@@ -148,4 +159,18 @@
   display: flex;
   align-items: flex-end;
   justify-content: right;
+  @media(max-width:450px){
+    display: none;
+  }
+}
+
+.error {
+  font-size: 13px;
+  color: #b76256;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+
+.passContainer {
+  height: 70px;
 }

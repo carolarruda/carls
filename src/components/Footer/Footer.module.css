@@ -3,8 +3,11 @@
   display: grid;
   padding: 42px 60px;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 3rem;
+  @media(max-width:450px){
+    margin-top: 1rem;
 
+  }
 }
 
 .about {

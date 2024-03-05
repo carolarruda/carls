@@ -1,22 +1,19 @@
+/* eslint-disable no-unused-vars */
 import Eye from "../icons/Eye";
-import Google from "../icons/Google";
 import loginImage from "../images/LoginImg.png";
 import classes from "./LogSign.module.css";
-import facebook from "../images/facebook 1.png";
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoggedInUser, User } from "../../App";
 import LogoMobile from "../Logo/LogoMobile";
 import { GoogleLogin } from "@react-oauth/google";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-
 
 const LoginNew = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [status, setStatus] = useState("");
   const [failed, setFailed] = useState(false);
@@ -29,14 +26,7 @@ const LoginNew = () => {
   const expiresInMinutes = 1440;
   const sk = "shake 0.2s ease-in-out 0s 2";
 
-  const responseGoogle = (response) => {
-    const { profileObj } = response;
-    console.log(`Welcome, ${profileObj.name}
-  !`);
-    // Perform actions using user data
-  };
-
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState();
   const [profile, setProfile] = useState([]);
 
   const login = useGoogleLogin({
@@ -44,8 +34,65 @@ const LoginNew = () => {
     onError: (error) => console.log("Login Failed:", error),
   });
 
+  const googleMessage = (res) => {
+    console.log(res);
+    setProfile(res);
+    const googleUser = {
+      client_id: res.clientId,
+      jwtToken: res.credential,
+    };
+    const opts = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(googleUser),
+    };
+
+    async function loginGoogle() {
+      try {
+        const loginResponse = await fetch("https://node-mysql-api-0zxf.onrender.com/google", opts);
+        const data = await loginResponse.json();
+        console.log(data);
+
+        setStatus(loginResponse.status);
+        console.log(loginResponse);
+        try {
+          if (loginResponse.status === 200) {
+            setLoggedIn(true);
+            setLoggedUser(data.data.user);
+            console.log(user);
+            localStorage.setItem("token", data.data.token);
+            const now = new Date();
+            const expirationDate = new Date(
+              now.getTime() + expiresInMinutes * 60000
+            );
+            localStorage.setItem("expiresIn", expirationDate.toString());
+            localStorage.setItem("username", data.data.user.user.firstName);
+            localStorage.setItem("userId", data.data.user.user.id);
+            setLoggedUser(data.data.user.user);
+            navigate(`/`);
+          } else if (loginResponse.status === 400) {
+            setFailed(true);
+            setWrong(true);
+            setRed("#b76256");
+            setRedTwo("#b76256");
+            setShake(sk);
+            setShakeTwo(sk);
+          }
+        } catch (error) {
+          console.error("Error occurred during login", error);
+        }
+      } catch (error) {
+        console.error("Error occurred during login: ", error);
+      }
+    }
+    loginGoogle();
+  };
+
   useEffect(() => {
     if (user) {
+      console.log("getting here", user);
       axios
         .get(
           `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
@@ -58,6 +105,7 @@ const LoginNew = () => {
         )
         .then((res) => {
           setProfile(res.data);
+          console.log(profile);
           let googleUser = {
             email: profile.email,
             password: profile.id,
@@ -67,14 +115,7 @@ const LoginNew = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [user]);
-
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
+  }, [user, login]);
 
   const navigate = useNavigate();
 
@@ -83,7 +124,7 @@ const LoginNew = () => {
     localStorage.clear();
   }, [setLoggedIn]);
 
-  const handleGoToRegister = (e) => {
+  const goToSign = () => {
     navigate("/sign");
   };
 
@@ -105,22 +146,12 @@ const LoginNew = () => {
       password,
     };
 
-    let googleUser;
-    if (user && profile) {
-      googleUser = {
-        email: profile.email,
-        password: profile.id,
-      };
-
-      console.log(googleUser);
-    }
-
     const opts = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user || googleUser),
+      body: JSON.stringify(user),
     };
 
     async function loginUser() {
@@ -151,8 +182,8 @@ const LoginNew = () => {
           } else if (loginResponse.status === 400) {
             setFailed(true);
             setWrong(true);
-            setRed("red");
-            setRedTwo("red");
+            setRed("#b76256");
+            setRedTwo("#b76256");
             setShake(sk);
             setShakeTwo(sk);
           }
@@ -168,14 +199,18 @@ const LoginNew = () => {
 
   return (
     <div className={`${classes.loginContainer} section-wrapper`}>
-      <div>
+      <div className={classes.imgContainer}>
         <img src={loginImage} alt="" className={classes.loginImg} />
       </div>
       <div className={classes.formContainer}>
         <h2 className={classes.loginPrompt}>Welcome Back!</h2>
-        <p className={classes.loginTag}>Enter your email & passpord to login</p>
+        <p className={classes.loginTag}>Enter your email & password to login</p>
         <form onSubmit={handleSubmit} className={classes.loginForm}>
           <input
+            style={{
+              color: `${red}`,
+              animation: `${shake}`,
+            }}
             required
             id="email"
             className={classes.emailInput}
@@ -185,8 +220,12 @@ const LoginNew = () => {
             onChange={handleEmail}
           />
 
-          <div>
+          <div className={classes.passContainer}>
             <input
+              style={{
+                color: `${redTwo}`,
+                animation: `${shakeTwo}`,
+              }}
               type={showPassword ? "text" : "password"}
               id="password"
               className={classes.passwordInput}
@@ -202,39 +241,28 @@ const LoginNew = () => {
               <Eye fill={showPassword ? "#b76256" : "#878787"} />
             </div>
           </div>
-          {!failed && !wrong && <div></div>}
-          {failed && wrong && (
-            <div className={classes.error}>
-              Invalid email and/or password provided
-            </div>
-          )}
+
+          <div
+            className={classes.error}
+            style={{ visibility: failed && wrong ? "visible" : "hidden" }}
+          >
+            Invalid email and/or password provided
+          </div>
+
           <button type="submit" className={classes.signButtonHome}>
             Login
           </button>
         </form>
         <p className={classes.joinTag}>Or you can join with</p>
         <div className={classes.socials}>
-          <div className={classes.alternativeLogin}>
-            {/* <button onClick={login}>Sign in with Google 🚀 </button>{" "} */}
-            <GoogleLogin
-            onSuccess={credentialResponse => {
-              console.log(credentialResponse);
-            }}
+          <GoogleLogin
+            onSuccess={googleMessage}
             onError={() => {
-              console.log('Login Failed');
+              console.log("Login Failed");
             }}
           />
-          </div>
-          {/* <div className={classes.alternativeLogin}>
-            <img
-              src={facebook}
-              alt="facebook"
-              style={{ width: "24px", height: "24px" }}
-            />
-            <p>Sign in with Facebook</p>
-          </div> */}
         </div>
-        <p className={classes.loginTag}>Don't have an account yet? Sign up</p>
+        <p className={classes.loginTag}>Don't have an account yet? <span onClick={goToSign}>Sign up</span></p>
         <div className={classes.logoContainer}>
           <LogoMobile />
         </div>
