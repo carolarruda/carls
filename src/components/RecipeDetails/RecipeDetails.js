@@ -197,7 +197,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
               </div>
             </div>
             <ul className={classes.ingredientList}>
-              {recipe.ingredients?.split(";").map((ingredient, index) => {
+              {recipe.ingredients?.map((ingredient, index) => {
                 if (ingredient.length > 0) {
                   const parts = ingredient.match(/(\d+(?:[\s/_.\d]+)?)\s*(.+)/);
                   if (parts) {
@@ -272,7 +272,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
               <h3 className={classes.ingredientsTitle}>Instructions:</h3>
             </div>
             <ul className={classes.instructionList}>
-              {recipe.instructions?.split(";").map((ingredient, index) => (
+              {recipe.instructions?.map((ingredient, index) => (
                 <li className={classes.SingleInstruction}>
                   <div className={classes.boxWithNumber}>
                     <p>{index + 1}</p>
@@ -348,7 +348,7 @@ const RecipeDetails = ({ recipes, setRecipes }) => {
           {recipe.courseType && (
             <div className={classes.recentLateral}>
               <h3 className={classes.lateralRecipesTrending}>Tags </h3>
-              {recipe.courseType?.split(";").map((tag, index) => (
+              {recipe.courseType?.map((tag, index) => (
                 <>
                   {tag.length > 0 && (
                     <div className={classes.tag}>

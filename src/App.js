@@ -10,10 +10,10 @@ import AddRecipePage from "./components/pages/AddRecipePage";
 import RecipeViewPage from "./components/pages/RecipeViewPage";
 import PersonalRecipesPage from "./components/pages/PersonalRecipesPage";
 import SignUp from "./components/Sign And Log/SignUp";
-import Login from "./components/Sign And Log/Login";
 import SeetingsPage from "./components/pages/SeetingsPage";
 import { trackPromise } from "react-promise-tracker";
 import LoginPage from "./components/pages/LoginPage";
+import SignPage from "./components/pages/SignPage";
 
 export const LoggedInUser = React.createContext();
 export const User = React.createContext();
@@ -133,18 +133,11 @@ function App() {
               <Routes>
                 <Route path="/sign" element={<SignUp />} />
 
-                <Route
-                  path="/login"
-                  element={
-                    // <Login
-                    //   setUsers={setUsers}
-                    //   users={users}
-                    //   setLoggedIn={setLoggedIn}
-                    // />
-                    <Nav />
-                  }
-                >
+                <Route path="/login" element={<Nav />}>
                   <Route index element={<LoginPage />} />
+                </Route>
+                <Route path="/sign" element={<Nav />}>
+                  <Route index element={<SignPage />} />
                 </Route>
 
                 <Route path="/" element={<Nav />}>
@@ -169,6 +162,7 @@ function App() {
                           setRecipes={setRecipes}
                           recipesP={recipesP}
                           setRecipesP={setRecipesP}
+              
                         />
                       </ProtectedRoute>
                     }

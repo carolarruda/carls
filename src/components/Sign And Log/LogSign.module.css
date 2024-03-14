@@ -2,12 +2,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   gap: 3rem;
   min-height: 55vh;
   align-items: center;
   @media (max-width: 450px) {
     gap: 0;
     grid-template-columns: 1fr;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -52,7 +56,9 @@
 }
 
 .passwordInput,
-.emailInput {
+.emailInput,
+.nameInput,
+.phoneInput {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -63,28 +69,37 @@
   height: 3rem;
   border: 1px solid #ebebeb;
   margin-bottom: 0.5rem;
+  padding-left: 3rem;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position-x: 1rem;
+  background-position-y: center;
 }
 
 .emailInput {
   background-image: url("../images/Email.png");
-  padding-left: 3rem;
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position-x: 1rem;
-  background-position-y: center;
+
 }
 .passwordInput {
   background-image: url("../images/Lock.png");
-  padding-left: 3rem;
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position-x: 1rem;
-  background-position-y: center;
+
+}
+.phoneInput {
+  background-image: url("../images/telephone.png");
+
+}
+
+.nameInput {
+  background-image: url("../images/ProfileIcon.png");
+
 }
 
 .formContainer {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .imgContainer {
@@ -108,7 +123,7 @@
 .signButtonHome {
   display: flex;
   height: 44px;
-  width: 120px;
+  width: 10rem;
   background: var(--Primary, rgba(181, 93, 81, 0.97));
   color: var(--White, #fff);
   border: none;
@@ -123,6 +138,9 @@
     0px 42px 12px 0px rgba(23, 23, 23, 0);
   border-radius: 8px;
   margin-bottom: 1rem;
+  @media (max-width: 450px) {
+    width: 60%;
+  }
 }
 
 .alternativeLogin {
@@ -156,10 +174,11 @@
 }
 
 .logoContainer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: right;
-  @media(max-width:450px){
+  display: grid;
+  justify-content: end;
+  align-items: end;
+  min-height: auto;
+  @media (max-width: 450px) {
     display: none;
   }
 }
@@ -172,5 +191,5 @@
 }
 
 .passContainer {
-  height: 70px;
+  height: 55px;
 }

@@ -10,9 +10,12 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
-const LoginNew = () => {
+const SignNew = () => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repeatPass, setRepeatPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loggedIn, setLoggedIn] = useContext(LoggedInUser);
   const [status, setStatus] = useState("");
@@ -35,7 +38,6 @@ const LoginNew = () => {
   });
 
   const googleMessage = (res) => {
-    console.log(res);
     setProfile(res);
     const googleUser = {
       client_id: res.clientId,
@@ -95,6 +97,7 @@ const LoginNew = () => {
 
   useEffect(() => {
     if (user) {
+      console.log("getting here", user);
       axios
         .get(
           `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
@@ -118,6 +121,17 @@ const LoginNew = () => {
         .catch((err) => console.log(err));
     }
   }, [user, login]);
+  useEffect(() => {
+    if (password !== repeatPass) {
+      console.log("wrong");
+      setFailed(true);
+      setWrong(true);
+      setRed("#b76256");
+      setRedTwo("#b76256");
+      setShake(sk);
+      setShakeTwo(sk);
+    }
+  }, []);
 
   const navigate = useNavigate();
 
@@ -126,8 +140,17 @@ const LoginNew = () => {
     localStorage.clear();
   }, [setLoggedIn]);
 
-  const goToSign = () => {
-    navigate("/sign");
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+
+  console.log(name);
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
   };
 
   const handleEmail = (e) => {
@@ -136,6 +159,9 @@ const LoginNew = () => {
   const handlePass = (e) => {
     setPassword(e.target.value);
   };
+  const handlePassRepeat = (e) => {
+    setRepeatPass(e.target.value);
+  };
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -143,9 +169,12 @@ const LoginNew = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email,
+    const newUser = {
+      firstName: name.split(" ")[0],
+      lastName: name.split(" ")[1],
       password,
+      phone,
+      email,
     };
 
     const opts = {
@@ -153,50 +182,45 @@ const LoginNew = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(newUser),
     };
 
-    async function loginUser() {
+    async function registerUser() {
       try {
-        const loginResponse = await fetch(
-          "https://node-mysql-api-0zxf.onrender.com/login",
+        const registerResponse = await fetch(
+          "https://node-mysql-api-0zxf.onrender.com/users",
           opts
         );
+        setStatus(registerResponse.status);
+        if (registerResponse.status === 201) {
+          async function loginUser() {
+            try {
+              const loginResponse = await fetch(
+                "https://node-mysql-api-0zxf.onrender.com/login",
+                opts
+              );
+              const data = await loginResponse.json();
+              setStatus(loginResponse.status);
+              if (loginResponse.status === 200) {
+                setLoggedIn(true);
 
-        const data = await loginResponse.json();
-        setStatus(loginResponse.status);
-        console.log(loginResponse);
-        try {
-          if (loginResponse.status === 200) {
-            setLoggedIn(true);
-            setLoggedUser(data.data.user);
-            localStorage.setItem("token", data.data.token);
-            const now = new Date();
-            const expirationDate = new Date(
-              now.getTime() + expiresInMinutes * 60000
-            );
-            localStorage.setItem("expiresIn", expirationDate.toString());
-            localStorage.setItem("username", data.data.user.firstName);
-            localStorage.setItem("userId", data.data.user.id);
-            setLoggedUser(data.data.user);
-            console.log(loggedUser);
-            navigate(`/`);
-          } else if (loginResponse.status === 400) {
-            setFailed(true);
-            setWrong(true);
-            setRed("#b76256");
-            setRedTwo("#b76256");
-            setShake(sk);
-            setShakeTwo(sk);
+                localStorage.setItem("username", data.data.user.firstName);
+                localStorage.setItem("userId", data.data.user.id);
+                localStorage.setItem("token", data.data.token);
+                navigate(`/`);
+              }
+            } catch (error) {
+              console.error("Error occurred during login", error);
+            }
           }
-        } catch (error) {
-          console.error("Error occurred during login", error);
+          loginUser();
         }
       } catch (error) {
-        console.error("Error occurred during login: ", error);
+        console.error("Error occurred during register: ", error);
       }
     }
-    loginUser();
+
+    registerUser();
   };
 
   return (
@@ -205,73 +229,95 @@ const LoginNew = () => {
         <img src={loginImage} alt="" className={classes.loginImg} />
       </div>
       <div className={classes.formContainer}>
-        <section>
-          <h2 className={classes.loginPrompt}>Welcome Back!</h2>
-          <p className={classes.loginTag}>
-            Enter your email & password to login
-          </p>
-          <form onSubmit={handleSubmit} className={classes.loginForm}>
+        <h2 className={classes.loginPrompt}>Want to join the cooking?</h2>
+        <form onSubmit={handleSubmit} className={classes.loginForm}>
+          <input
+            required
+            id="name"
+            className={classes.nameInput}
+            placeholder="full name"
+            type="text"
+            value={name}
+            onChange={handleName}
+          />
+          <input
+            id="phone"
+            className={classes.phoneInput}
+            placeholder="phone number (optional)"
+            type="text"
+            value={phone}
+            onChange={handlePhone}
+          />
+          <input
+            required
+            id="email"
+            className={classes.emailInput}
+            placeholder="email"
+            type="text"
+            value={email}
+            onChange={handleEmail}
+          />
+
+          <div className={classes.passContainer}>
             <input
               style={{
-                color: `${red}`,
-                animation: `${shake}`,
+                color: `${redTwo}`,
+                animation: `${shakeTwo}`,
               }}
+              type={showPassword ? "text" : "password"}
+              id="password"
+              className={classes.passwordInput}
+              placeholder="password"
               required
-              id="email"
-              className={classes.emailInput}
-              placeholder="email"
-              type="text"
-              value={email}
-              onChange={handleEmail}
+              value={password}
+              onChange={handlePass}
             />
-
-            <div className={classes.passContainer}>
-              <input
-                style={{
-                  color: `${redTwo}`,
-                  animation: `${shakeTwo}`,
-                }}
-                type={showPassword ? "text" : "password"}
-                id="password"
-                className={classes.passwordInput}
-                placeholder="password"
-                required
-                value={password}
-                onChange={handlePass}
-              />
-              <div
-                onClick={toggleShowPassword}
-                className={classes.passVisibleButton}
-              >
-                <Eye fill={showPassword ? "#b76256" : "#878787"} />
-              </div>
-            </div>
 
             <div
-              className={classes.error}
-              style={{ visibility: failed && wrong ? "visible" : "hidden" }}
+              onClick={toggleShowPassword}
+              className={classes.passVisibleButton}
             >
-              Invalid email and/or password provided
+              <Eye fill={showPassword ? "#b76256" : "#878787"} />
             </div>
-
-            <button type="submit" className={classes.signButtonHome}>
-              Login
-            </button>
-          </form>
-          <p className={classes.joinTag}>Or you can join with</p>
-          <div className={classes.socials}>
-            <GoogleLogin
-              onSuccess={googleMessage}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            />
           </div>
-          <p className={classes.loginTag}>
-            Don't have an account yet? <span onClick={goToSign}>Sign up</span>
-          </p>
-        </section>
 
+          <input
+            style={{
+              color: `${redTwo}`,
+              animation: `${shakeTwo}`,
+            }}
+            type={"password"}
+            id="repeat password"
+            className={classes.passwordInput}
+            placeholder="repeat password"
+            required
+            value={repeatPass}
+            onChange={handlePassRepeat}
+          />
+
+          <div
+            className={classes.error}
+            style={{ visibility: failed && wrong ? "visible" : "hidden" }}
+          >
+            Password did not match{" "}
+          </div>
+
+          <button type="submit" className={classes.signButtonHome}>
+            Sign up
+          </button>
+        </form>
+        <p className={classes.joinTag}>Or you can join with</p>
+        <div className={classes.socials}>
+          <GoogleLogin
+            onSuccess={googleMessage}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+        </div>
+        <p className={classes.loginTag}>
+          Already have an account? <span onClick={goToLogin}>Log in</span>
+        </p>
         <div className={classes.logoContainer}>
           <LogoMobile />
         </div>
@@ -280,4 +326,4 @@ const LoginNew = () => {
   );
 };
 
-export default LoginNew;
+export default SignNew;
