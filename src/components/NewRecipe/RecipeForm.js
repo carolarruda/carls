@@ -2,23 +2,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import classes from "./NewRecipe.module.css";
-import CheckedBox from "../icons/CheckedBox";
-import Box from "../icons/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import Trash from "../icons/Trash";
 import { useMediaQuery } from "@mui/material";
 
 const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
-
-
   const [ingredientLine, setIngredientLine] = useState(2);
   const [instructionLine, setInstructionLine] = useState(2);
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState("");
   const [courseType, setCourseType] = useState([]);
-    const [cookTimeHours, setCookTimeHours] = useState("");
+  const [cookTimeHours, setCookTimeHours] = useState("");
   const [cookTimeMinutes, setCookTimeMinutes] = useState("");
   const [prepTimeHours, setPrepTimeHours] = useState("");
   const [prepTimeMinutes, setPrepTimeMinutes] = useState("");
@@ -29,9 +25,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const token = localStorage.getItem("token");
   const [length, setLength] = useState(0);
 
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedSort, setSelectedSort] = useState("Cuisine");
-  const [activeTags, setActiveTags] = useState([]);
   const tagButtons = [
     "Desserts",
     "CheesecakeRecipe",
@@ -61,18 +54,17 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
   const params = useParams();
 
   useEffect(() => {
-
     let isMounted = true;
 
     const fetchInitialValue = () => {
       fetch(`https://node-mysql-api-0zxf.onrender.com/recipes/${params.id}`)
         .then((response) => response.json())
         .then((data) => {
-          if(isMounted){
+          if (isMounted) {
             setTitle(data.data.recipe.title || "");
             setImageUrl(data.data.recipe.imageUrl || "");
             setRating(data.data.recipe.rating || 0);
-  
+
             const prepTimeInHours = Math.floor(data.data.recipe.prepTime / 60);
             const prepTimeInMinutes = data.data.recipe.prepTime % 60;
             const cookTimeInHours = Math.floor(data.data.recipe.cookTime / 60);
@@ -88,11 +80,11 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
               modifyIngredientStringToArray(data.data.recipe.ingredients) || []
             );
             setInstructions(
-              modifyInstructionStringToArray(data.data.recipe.instructions) || []
+              modifyInstructionStringToArray(data.data.recipe.instructions) ||
+                []
             );
             setDescription(data.data.recipe.description);
           }
-         
         })
         .catch((error) => {
           console.error("Error fetching initial value:", error);
@@ -102,7 +94,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
       fetchInitialValue();
 
       return () => {
-        isMounted = false; 
+        isMounted = false;
       };
     }
   }, [params, update]);
@@ -152,7 +144,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
       setCourseType(newActiveTags);
     }
   };
-
 
   function ingredientTotalLines(ingredientLine) {
     let lines = [];
@@ -273,7 +264,7 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
           setServings(Number(value) || 0);
           break;
         case "description":
-          const truncatedValue = value.slice(0, 100);
+          const truncatedValue = value.slice(0, 200);
           setDescription(truncatedValue);
           setLength(truncatedValue.length);
           break;
@@ -352,7 +343,6 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
               height: "44px",
               borderRadius: "8px",
             }}
-
             loadingPosition="start"
             startIcon={<SaveIcon />}
             variant="contained"
@@ -397,15 +387,20 @@ const RecipeForm = ({ setRecipes, update, setRecipesP }) => {
         </div>
         <div className={classes.inputSection}>
           <label className={classes.formLabel}>Description:</label>
-          <input
+          <textarea
+            rows={
+              !isPhone
+                ? `${Math.max(1, Math.ceil((description?.length || 0) / 117))}`
+                : `${Math.max(1, Math.ceil((description?.length || 0) / 33))}`
+            }
             type="text"
-            className={`${classes.titleInput} ${classes.marginFix}`}
+            className={`${classes.titleInput} ${classes.marginMultipleInputs} ${classes.textarea}`}
             placeholder="Introduce your recipe"
             name="description"
             value={description}
             onChange={handleInputChange}
           />
-          <p className={classes.maxCharacteres}>{length}/100</p>
+          <p className={classes.maxCharacteres}>{length}/200</p>
         </div>
         <div className={classes.inputSection}>
           <label className={classes.formLabel}>Ingredients:</label>
