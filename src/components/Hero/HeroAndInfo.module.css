@@ -6,7 +6,8 @@
 }
 
 .hero {
-  margin-top: 208px;
+  margin-top: 12rem;
+  margin-bottom: 14rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 28px;
